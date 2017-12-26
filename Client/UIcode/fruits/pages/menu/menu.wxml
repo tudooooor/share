@@ -1,0 +1,155 @@
+<!--满减通告  -->
+<view class='minus'>
+  <view class='standard'>
+    <view class='minus_mark'>
+        减
+    </view>
+    <view class='minus_text'>满21减21；满50减35；满100减60（在线支付专享）</view>
+  </view>
+</view>
+<!--买家与卖家tab  -->
+<view class='roles'>
+    <view class='standard'>
+       <view class='diancai' bindtap='selected' data-id='1' style='{{rolesId==1?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>点菜</view>
+       <view class='business'  bindtap='selected' data-id='2' style='{{rolesId==2?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>商家</view>
+    </view>
+</view>
+<!--侧边栏分类  -->
+<view class='tab'>
+    <view class='tab_list'>
+    <view class='tab_left'>
+     <view class='tab_li' bindtap='checked' data-id='1' style='{{checkId==1?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==1?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      热销
+      </view>
+     </view>
+
+     <view class='tab_li' bindtap='checked' data-id='2' style='{{checkId==2?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==2?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      折扣
+      </view>
+     </view>
+
+     <view class='tab_li' bindtap='checked' data-id='3' style='{{checkId==3?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==3?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      时令水果
+      </view>
+      </view>
+     <view class='tab_li' bindtap='checked' data-id='4' style='{{checkId==4?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==4?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      地区特产
+      </view>
+      </view>
+
+     <view class='tab_li' bindtap='checked' data-id='5' style='{{checkId==5?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==5?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      水果套餐
+      </view>
+      </view>
+     <view class='tab_li' bindtap='checked' data-id='6' style='{{checkId==6?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==6?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      洗净装盒
+      </view>
+     </view>
+    </view>
+
+    
+    <view class='tab_right'>
+        <view class='tab_title'>
+          <view class='tit_h1'>热销</view>
+          <view class='tit_h3'>店长推荐，新鲜可口</view>
+        </view>
+
+      <block wx:for='{{goods_list}}'>
+        <view class='goods_list'>
+        
+         <view style='border-bottom:1px solid #e5e5e5;' class='standard'>
+          <view class='cover'>
+            <image src='/images/pic.png'></image>
+          </view>
+          <view class='information'>
+            <view class='first_line'>
+              <view class='goods_name'>南丰蜜桔</view>
+              <view class='goods_discount'>5折</view>
+            </view>
+            <view class='second_line'>
+              <view class='sec_left'>
+                <view class='sales'>月售89</view>
+                <view class='like'>赞19</view>
+              </view>
+              <view class='sec_right'>限100份</view>
+            </view>
+            <view class='third_line'>
+              <view class='vip'>会员价<span style='font-size:30rpx;font-weight:400;'>￥15.9</span></view>
+              <view class='count'  style='justify-content:{{flexDir}}'>
+                <view class='sub' bindtap='sub' style='display:{{subDisplay}};'></view>
+                <view class='number'  style='display:{{subDisplay}};'>{{fenshu}}</view>
+                <view class='plus' bindtap='plus'></view>
+              </view>
+            </view>
+          </view>
+        </view>
+       </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!--底部购物车  -->
+<view class='footer'>
+  <view class='shopcar'>
+    <view class='shopcar_mark'>
+      <view class='carbg' bindtap='showProduct'></view>
+    </view>
+    <view class='fee'>
+      <view class='amount'>￥63.6</view>
+      <view class='deliver'>配送费￥5</view>
+    </view>
+  </view>
+  <view class='gopay'>去结算</view>
+</view>
+
+<view class='goods_number' style='display:{{carDisplay}}'>
+  {{goodsNumber}}
+</view>
+
+<!--购物车内的商品展示  -->
+<view class='mask' style='display:{{showCar}}'>
+<view  class='product'>
+
+  <view class='clear' bindtap='clearAll'>
+   <view  class='standard'  style='justify-content:flex-end;'>
+    <view class='clear_mark'></view>
+    <view class='clear_text'>清空购物车</view>
+    </view>
+  </view>
+
+<block wx:for='{{productList}}'>
+  <view class='product_li'>
+     <view class='standard'>
+        <view class='pro_title'>【精选】南丰蜜桔500g，好吃不贵，经济实惠，欢迎回购</view>
+        <view class='pro_price'>￥15.9</view>
+        <view class='count'  style='width:20%;margin-left: 10%;justify-content:{{flexDir}};height:110rpx;line-height:110rpx;'>
+                <view class='sub' bindtap='sub' style='display:{{subDisplay}};'></view>
+                <view class='number'  style='display:{{subDisplay}};'>{{fenshu}}</view>
+                <view class='plus' bindtap='plus'></view>
+              </view>
+     </view>
+  </view>
+</block>
+
+
+
+
+
+
+
+
+</view>
+</view>

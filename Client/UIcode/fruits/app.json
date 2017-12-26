@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/homePage/homePage",
+    "pages/menu/menu",
+    "pages/order/order",
+    "pages/management/management"
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "borderStyle":"#fff",
+    "color":"#999",
+    "selectedColor":"#333",
+    "list": [
+      {
+        "pagePath": "pages/homePage/homePage",
+        "text": "首页",
+        "iconPath":"/images/home.png",
+        "selectedIconPath":"/images/homeSel.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/images/order.png",
+        "selectedIconPath": "/images/orderSel.png"
+      },
+      {
+        "pagePath": "pages/management/management",
+        "text": "管理",
+        "iconPath": "/images/man.png",
+        "selectedIconPath": "/images/manSel.png"
+      }
+    ]
+  }
+}
