@@ -1,0 +1,231 @@
+@import '/lib/style/stylesheet.wxss';
+/*订单转换处  */
+.roles{
+  width: 100%;
+  height: 70rpx;
+  background-color:#fff;
+  border-bottom:1px solid #e5e5e5; 
+}
+.standard{
+  width: 94%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.diancai,.business{
+  width: 18%;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size:30rpx;
+  font-weight: 500;
+  color:#999;
+}
+.business{
+  margin-left: 6%;
+}
+
+.order_h1{
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #eef7e6;
+  font-size: 30rpx;
+  font-weight: 400;
+}
+
+/*订单信息  */
+.order,.minus,.sum{
+  width: 100%;
+  background-color: #fff;
+  margin-top: 20rpx;
+  min-height: 60rpx;
+  line-height: 60rpx;
+}
+.dis{
+  display: flex;
+  flex-direction: row;
+}
+.shop_logal,.minus_logal{
+  width: 10%;
+  margin-left: 2%;
+}
+.shop_logal_bg{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50rpx;
+  background-color: #e2e2e2;
+}
+.shop_logal_bg image{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50rpx;
+}
+.shop_name,.shop_name1,.shop_name2{
+  width: 48%;
+  font-size: 26rpx;
+  color: #333;
+  min-height: 60rpx;
+  line-height: 60rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.shop_name{
+  font-weight: 400;
+}
+.shop_name2{
+  color: #999;
+}
+.service{
+  width: 40%;
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #666;
+  text-align: right;
+  
+}
+
+.minus,.sum{
+  margin-top: 1px;
+}
+.minus_logalbg,.minus_logalbg1,.minus_logalbg2{
+   margin-top: 12rpx;
+   width: 50rpx;
+   height: 36rpx;
+   line-height: 36rpx;
+   text-align: center;
+   color: #fff;
+   font-size: 22rpx;
+}
+.minus_logalbg{
+  background-color: #ffb200;
+}
+.minus_logalbg1{
+  background-color: #fa3d34;
+}
+.minus_logalbg2{
+  background-color: #b822af;
+}
+.number{
+  color: #fa3d34;
+}
+.original{
+  color: #999;
+  text-decoration: line-through;
+}
+.nowprice{
+  color: #333;
+}
+.nowprice1{
+  color: #999;
+  min-height: 60rpx;
+  line-height: 60rpx;
+}
+.number,.original,.nowprice{
+  font-weight: 350;
+  margin-left: 7%;
+}
+
+.extra{
+  width: 100%;
+  height: 120rpx;
+  background-color: #fff;
+  color: #999;
+  font-size: 26rpx;
+}
+.fee{
+  height: 60rpx;
+  line-height: 60rpx;
+  font-weight: 450;
+  margin-left: 2%;
+  margin-right: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/*总计  */
+.sum{
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+.fee_left{
+  width: 60%;
+  margin-left: 2%;
+}
+
+.info{
+  min-height: 70rpx;
+  line-height: 70rpx;
+  justify-content:flex-start;
+  border-bottom:1px solid #dcdcdc;
+  font-size:26rpx;
+}
+.title_left{
+  color: #666;
+  width: 18%;
+}
+.title_right{
+  color: #999;
+  white-space: pre-line;
+}
+
+/*订单状态  */
+.deal_logal{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+}
+.step{
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.deal_mark::after,.deal_mark1::after,.deal_mark2::after,.deal_mark3::after,.deal_mark4::after{
+  font-family: 'iconfont';
+  font-size: 40rpx;
+  /* color: #fa3d34; */
+  color: #5bbc04;
+}
+.deal_mark::after{
+  content: '\e61d';
+}
+.deal_mark1::after{
+  content: '\e606';
+  font-size: 45rpx;
+}
+.deal_mark2::after{
+  content: '\e64a';
+  font-size: 45rpx;
+}
+.deal_mark3::after{
+  content: '\e61d';
+  
+}
+.deal_mark4::after{
+  content: '\e694';
+  font-size: 45rpx;
+}
+.deal_text{
+  margin-left: 8%;
+  font-size: 26rpx;
+  color: #666;
+}
+.deal_time{
+  font-size: 24rpx;
+  color: #999;
+}
+.line{
+  white-space:pre-line;
+  width: 90%;
+  margin: auto 5% ;
+  height: 100rpx;
+  border-left: 1px solid #5bbc04;
+  font-size: 23rpx;
+  color: #666;
+  padding-left: 7%;
+}

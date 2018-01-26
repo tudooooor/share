@@ -1,44 +1,47 @@
 <view id="main" hidden="{{!page.load && !page.operate || notNetCon.error == 1 && notNetCon.show == 1 || notServerCon.error == 1 && notServerCon.show == 1 || image_load == 0}}">
+
+<!--轮播图 -->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" 
+  indicator-color="{{colorSel}}">
+   <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+
     <view class="container" wx:if="{{banners != 'undefined'}}">
         <view class="main-view" id="co-focus" >
-            <!--<view class="index_loctaion">
-                <view class="location" bindtap="location">
-                    <view class='i'></view>
-                    <view class='span'>{{address_info}}</view>
-                </view>
-                <view class='location-arrow'>
-                </view>
-            </view>
-            <view class='header' style="margin-bottom: 9.6px;"></view>
-            -->
             <view class="div tuan" id="tuan">
-                 <view id="channelSlider" class="ch-container div">                   
+                 <!-- <view id="channelSlider" class="ch-container div">                   
                     <!--<view class="ch-left span"></view>
                     <view class="ch-right span"></view>-->
-                    <scroll-view class="ch-content recommend_scroll_x_box" scroll-x="true" scroll-left="{{nav_scroll_left}}" scroll-with-animation="true">
+                    <!-- <scroll-view class="ch-content recommend_scroll_x_box" scroll-x="true" scroll-left="{{nav_scroll_left}}" scroll-with-animation="true">
                     <!--<view class="ch-content ul">-->
-                        <view class="ch-tab-item li"><view class="{{ current_index == undefine || current_index == -1 ?  'cur-ch-tab' : 'ch-tab'}} span" data-index="-1" data-cate_id="0" catchtap="channelRendered">首页</view></view>
+                       <!--  view class="ch-tab-item li"><view class="{{ current_index == undefine || current_index == -1 ?  'cur-ch-tab' : 'ch-tab'}} span" data-index="-1" data-cate_id="0" catchtap="channelRendered">首页</view></view
                         <block wx:key="item" wx:for="{{cates}}">
                             <view class="ch-tab-item li">
                                 <view class="{{current_index == index ?  'cur-ch-tab' : 'ch-tab'}} span" data-index="{{index}}" data-cate_id="{{item.cate_id}}" catchtap="channelRendered">{{item.cate_name}}</view>
                             </view>
-                        </block>
+                        </block> -->
                     <!--</view>-->
-                    </scroll-view>
-                </view>
+                   <!--  </scroll-view>
+                </view> -->
 
                   <scroll-view 
     scroll-top="{{scroll_Top}}"
     bindscroll="scroll" style="height: {{windowHeight}}px; width: {{windowWidth}}px;" 
     scroll-y="{{is_scroll}}" bindscrolltoupper="pullUpLoad" bindscrolltolower="pullDown">
 
-                <view id="rp-banner">
+                <!--view id="rp-banner">
                      <swiper bindchange="bindchange"  indicator-dots="{{indicator-dots}}" indicator-color="#fff" indicator-active-color="#e02e24" 
                     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width:{{banner_img.imageWidth}}px;height:{{banner_img.imageheight}}px;{{ current_index == undefine || current_index == -1 ? '' : 'display:none;'}}" id="slider" circular="true">
                         <block wx:key="item" wx:for="{{banners}}">
                             <swiper-item style="width:100%;height:100%;">
                                 <!--<navigator url="{{item.banner_type == '1' && item.target_url && item.target_url != '#' ? item.target_url : ''}}"></navigator>-->
-                                    <image  src="{{item.image_url}}" class=" slide-image" style="width: 100%;height: 100%;" bindload='cusImageLoad'  data-id="banner_img" mode="widthFix" bindtap="bannerDetail" data-index="{{index}}"/>
+                             <!--        <image  src="{{item.image_url}}" class=" slide-image" style="width: 100%;height: 100%;" bindload='cusImageLoad'  data-id="banner_img" mode="widthFix" bindtap="bannerDetail" data-index="{{index}}"/>
                                 
                             </swiper-item>
                         </block>
@@ -50,8 +53,7 @@
                         </block>
                     </view>
                     
-                </view>
-                
+                </view>-->
                 
                     <view class="div clear-both"></view>
 
@@ -75,7 +77,7 @@
                                 
                                     <view class="tuan_goods_core div">
                                         <view class="tuan_goods_btn div">
-                                            <view class="span">去开团</view>
+                                            <view class="span">下单</view>
                                         </view>
 
                                         <view class="tuan_goods_price">
@@ -86,6 +88,37 @@
                                             <view class="span group-desc">  {{item.group_number}}人团.单买价{{item.alone_price}}元</view>
                                         </view>
                                     </view>
+
+                                    <view class='information'>
+                                    <view class='shop_name' bindtap='look'>百果园水果（杭州滨江）</view>
+                                    <!--店铺综合情况  -->
+                                     <view class='comprehensive_situation'>
+                                      <view class='com_left'>
+                                        <block wx:for="{{flower}}">
+                                        <view class='flower'></view>
+                                         </block>
+          
+                                         <view class='sales'>月售487单</view>
+                                           </view>
+                                         <view class='com_right'>2km</view>
+                                          </view>
+                                           <view class='rules'>
+                                           <view class='com_left'>
+                                           <view class='Starting_price'>起送￥20</view>
+                                           <view class='delivery'>配送￥8</view>
+                                           </view>
+                                           <view class='com_right'>48分钟</view>
+                                           </view>
+                                           <view class='vip'  bindtap='viewMenu'>
+                                              <view class='com_left'>
+                                          <view class='vip_price'>
+                                            会员价<span>{{item.group_price}} </span>
+                                            <!-- <span style="font-size:32rpx;font-weight:590;">￥15.9</span> -->
+                                          </view>
+                                           </view>
+                                           <view class='com_right1'></view>
+                                     </view>
+                                  </view>
                                 </navigator>
                             </view>
                         </view> 

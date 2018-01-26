@@ -1,0 +1,75 @@
+<view class='standard title'>
+    联系人
+</view>
+<!--个人信息  -->
+<view class='person_info'>
+  <view class='standard'>
+    <view class='uname'>姓名</view>
+    <view class='writein'>
+      <input type='text' placeholder='填写收货人姓名' placeholder-style='color:#e2e2e2'/>
+    </view>
+  </view>
+  <view class='standard' style='border-bottom:1px solid #f0f0f0'>
+     <view class='sex'></view>
+     <view class='writein' style='border:none;'>
+      <view class='man' data-id='1' bindtap='selectSex' 
+      style='{{selected==1?"background-color:#5bbc04;color:#fff":"background-color:#fff;color:#999"}}'>先生</view>
+      <view class='woman' data-id='2' bindtap='selectSex' style='{{selected==2?"background-color:#5bbc04;color:#fff":"background-color:#fff;color:#999"}}'>女士</view>
+     </view>
+  </view>
+
+  <view class='standard'>
+    <view class='uname'>手机</view>
+    <view class='writein' style='border:none;'>
+      <input type='text' placeholder='填写收货人手机号' placeholder-style='color:#e2e2e2'/>
+    </view>
+  </view>
+</view>
+
+<view class='standard title'>
+    收货地址
+</view>
+<view class='person_info' style='height: 230rpx;'>
+  <view class='standard' style='border-bottom:1px solid #f0f0f0'>
+      <view class='uname' style='width:40%;letter-spacing:0;z-index:0;'>小区/大厦/学校</view>
+      <!-- <view class='writein' style='border:none;' bindtap='selectAddress'> -->
+      <view class='writein' style='border:none;'>
+      <input type='text' placeholder='点击选择' placeholder-style='color:#e2e2e2'/>
+    </view>
+    <view class='arrow'></view>
+  </view>
+  <view class='explanation'>
+    <view class='standard' style='height:140rpx;border-bottom:1px solid #f0f0f0;'>
+      <view class='uname' style='width:38%;'>补充说明</view>
+      <view class='writein' style='border:none;height:140rpx;'>
+      <input type='text' placeholder='详细地址（如门牌号等）' placeholder-style='color:#e2e2e2'/>
+    </view>
+    </view>
+  </view>
+</view>
+<view class='save'>
+  保存
+</view>
+
+
+
+
+
+<!--地址选择  -->
+<view class='mask' style='display:{{maskDisplay}}'>
+  <view class='type'>
+   <view class='standard'>
+    <view class='mark'></view>
+    <view class='type_name'>小区</view>
+    
+   </view>
+   <view class='standard'>
+   <view class='mark'></view>
+    <view class='type_name'>大厦</view>
+    </view>
+   <view class='standard'>
+   <view class='mark'></view>
+    <view class='type_name'>学校</view>
+   </view>
+  </view>
+</view>

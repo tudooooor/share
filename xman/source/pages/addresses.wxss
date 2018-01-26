@@ -25,28 +25,28 @@ page {background-color: #fff;}
     background-color: #fff;
 }
 
-.div_block {
+/* .div_block {
     display: block;
     float: left;
     background-color: #fff;
     z-index: 9999;
     width: 10px;
-}
+} */
 
 .add_address_red {
     position: fixed;
     height: 70px;
-    line-height: 70px;
-    background-color: #f1f1f2;
+    /* line-height: 70px; */
+    background-color: #cc6600; 
     text-align: center;
     width: 100%;
-    bottom: 56px;
+    bottom: 0rpx;
     z-index: 999;
-    max-width: 640px;
+    max-width: 640px; 
 }
 
 
-.address_list .address {
+/* .address_list .address {
     overflow: hidden;
     position: relative!important;
     word-break: break-all;
@@ -69,7 +69,7 @@ page {background-color: #fff;}
 
 .wrap_address {
     position: relative;
-}
+} */
 
 .address_list .ul, .appointment_type .ul, .invoice_list .li, .pay_list .li, .promo_list .cash .li, .promo_list .jd .li, .promo_list .man .li, .shipping_type .ul {
     border-bottom: 1px solid #e7e7e7;
@@ -88,16 +88,7 @@ page {background-color: #fff;}
     width: 20px;
 }
 
-.add_li {
-    font-size: 15px;
-    font-weight: 700;
-    color: #000;
-}
 
-.add_li_font {
-    font-size: 13px;
-    margin-top: 2px;
-}
 
 .address_list .edit {
     bottom: 10px;
@@ -109,40 +100,25 @@ page {background-color: #fff;}
     z-index: 2;
 }
 
-.address_name {
-    position: absolute;
-    z-index: 88;
-    top: 16px;
-    right: 15%;
-    border: 1px solid #e02e24;
-    border-radius: 15px;
-    display: inline-block;
-    width: 45px;
-    color: #e02e24;
-    height: 20px;
-    line-height: 20px;
-    font-size: 13px;
-    text-align: center;
-}
 
-.address_list .address {
+/* .address_list .address {
     overflow: hidden;
     position: relative!important;
     word-break: break-all;
     word-wrap: break-word;
-}
+} */
 
-.address {
+/* .address {
     background-color: #fff;
     border-bottom: 0 none;
     font-size: 12px;
-}
+} */
 
 .address {
-    background: none repeat scroll 0 0 #fff;
+    /* background: none repeat scroll 0 0 #fff;
     border-bottom: 1px solid #e2e2e2;
     border-top: 1px solid #e2e2e2;
-    font-size: 12px;
+    font-size: 12px; */
     padding: 15px 10px;
 }
 
@@ -204,15 +180,15 @@ page {background-color: #fff;}
 	background-color: #fff;
 }
 
-.div_block {
+/* .div_block {
     display: block;
     float: left;
     background-color: #fff;
     z-index: 9999;
     width: 10px;
-}
+} */
 
-.add_address_red {
+/* .add_address_red {
     position: fixed;
     height: 70px;
     line-height: 70px;
@@ -222,29 +198,29 @@ page {background-color: #fff;}
     bottom: 0px;
     z-index: 999;
     max-width: 640px;
-}
+} */
 
 .inner_red {
     margin-top: 10px;
     font-size: 20px;
     margin-left: 5%;
     margin-right: 5%;
-    height: 50px;
+    /* height: 50px; */
     line-height: 50px;
     border-radius: 3px;
     background-color: #e02e24;
 }
 
-.add_text_red {
+/* .add_text_red {
     display: inline-block;
     min-width: 300px;
-}
+} */
 
-.address {
+/* .address {
     background-color: #fff;
     border-bottom: 0 none;
     font-size: 12px;
-}
+} */
 
 .icon_address, .icon_address1 {
     width: 20px;
@@ -273,11 +249,11 @@ page {background-color: #fff;}
     left: 9px;
 }
 
-.icon_address, .icon_address1 {
+/* .icon_address, .icon_address1 {
     width: 20px;
     height: 20px;
     display: block;
     position: absolute;
     top: 50%;
     -webkit-transform: translateY(-10px);
-}
+} */

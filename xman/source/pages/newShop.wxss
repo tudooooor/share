@@ -1,0 +1,127 @@
+.img
+{
+  width: 100%;
+  height: 100%;
+}
+
+.btn
+{}
+
+.content{  
+  display: flex;  
+  flex-direction: row;  
+  height: 500rpx;
+}  
+
+#adduser{  
+    background: #f5f5f5;  
+}  
+.section__title{  
+
+    float: left;  
+    width:40%;  
+}  
+.form-group{  
+    position:relative;
+    width: 100%;  
+}  
+.section{  
+    margin: 0 auto;
+    padding: 5rpx;
+}  
+.input-text{  
+    position:relative; 
+    border: 1px solid #ddd;  
+}  
+/* .button{  
+    position:relative; 
+    border: 1px solid #1aad19;  
+}   */
+.picker{   
+    background-color: #FFFFFF;  
+}  
+
+.add_shop_red {
+    position: fixed;
+    height: 70px;
+    line-height: 70px;
+    background-color: #f1f1f2;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    z-index: 999;
+    max-width: 640px;
+}
+
+.inner_red {
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 3px;
+    background-color: #e02e24;
+}
+
+.add_text_red {
+    display: inline-block;
+    min-width: 300px;
+    background-color: e02e24;
+}
+#button
+{
+    background-color: e02e24;
+}
+.logoinfo
+{
+  width: 100px;
+  height: 100px;
+}
+.jiaPicture
+{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.itemView{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 50px;
+  
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+}
+
+.itemViewTextarea{
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 50px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.input{
+ width: 200px;
+ height: 50px; 
+ border: 1px solid lightgray;
+ border-radius: 15px;
+}
+
+span
+{
+    width: 150rpx;
+}
+
+.margin_footer {
+    height: 100px;
+  	background-color: #f1f1f2;
+}
+
+textarea
+{
+  height: 100rpx;
+  width: 100rpx;
+}

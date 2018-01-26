@@ -1,0 +1,34 @@
+<view class="body" hidden="{{!page.load && !page.operate}}">
+    <view class="div add_shop_red">
+        <view class="inner_red div">
+            <navigator url="./newShop?edit={{false}}" class="a add_text_red" style="color:white" id="new">新增商品</navigator>
+        </view>
+    </view>
+
+      <view class="div address_list" id="addressList">
+          <view class="div address">
+              <block wx:key="item" wx:for="{{address_list}}">
+                <view class="ul">
+                  <image class="img" src='{{item.image_url}}'></image>
+                  <view class='goodInfo'>
+                    <view class="li">{{item.goods_name}}</view>
+                    <view class="li">{{item.goods_desc}}</view>
+                  </view>
+                  <view class='operator'>
+                    <!-- <view class="li button" bindtap='bindEditGood' data-goods_id='{{item.goods_id}}' data-edit='{{true}}'>修改商品</view> -->
+                    <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}' class="li button" bindtap='bindEditGood'>修改商品</navigator>
+                    <view class="li button" bindtap='bindDeleteGood' data-goods_id='{{item.goods_id}}'>删除商品</view> 
+                  </view>
+                </view>
+              </block>
+          </view>
+          <view class="div margin_footer"></view>
+      </view>
+
+</view>
+
+<modal hidden="{{hidden}}" title="这里是title" confirm-text="自定义确定按钮" cancel-text="自定义取消按钮"  bindconfirm="bindDeleteGood">
+修改商品
+</modal>
+
+<include src="common/footer.wxml" />

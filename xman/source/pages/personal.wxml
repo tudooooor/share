@@ -41,6 +41,14 @@
 					<view class="li nav_item nav_cart" ptag="12478.10.1">
 						<view class="div nav_item_hd"><navigator url="addresses" class="a" href="addresses.html" >我的地址 </navigator></view>
 					</view>
+
+					<view class="li nav_item nav_cart" ptag="12478.10.1">
+						<view class="div nav_item_hd"><navigator url="newShop" class="a" href="newShop.html" >user mgmt </navigator></view>
+					</view>
+
+					<view class="li nav_item nav_cart" ptag="12478.10.1">
+							<view class="div nav_item_hd"><navigator url="shops" class="a" href="shops.html" >shops</navigator></view>
+					</view>
 					<!--<view class="li nav_item nav_cart" ptag="12478.10.1">
 						<view class="div nav_item_hd_coupons"><view class="coupons_a a" href="coupons.html" >我的优惠券 </view></view>
 					</view>-->
@@ -51,7 +59,7 @@
 							<button type="default-light" size="30" style="display:block;line-height:4;z-index:9999999999;width:369px;height:40px;margin-left:6px;background-color:red;margin-top:-43px;opacity:-0.5;" open-type="contact"> </button>  
 						</view>
 					</view>
-					
+
 					
 					<!--<view class="li nav_item nav_cart" ptag="12478.10.1">
 						<view class="div nav_item_hd_promotion"><view class="a" href="#" >降价提醒</view>

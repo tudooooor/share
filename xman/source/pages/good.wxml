@@ -1,0 +1,143 @@
+<view class="body" hidden="{{!page.load && !page.operate}}">
+	<view class="div mod_container">
+		<view class="div wx_bar">
+            <view class="div wx_bar_back">
+                <navigator id="back" url="javascript:void(0);"></navigator>
+            </view>
+            <view class="div wx_bar_tit">商品编辑</view>
+        </view>
+		<form bindsubmit="listenFormSubmit" bindreser="listenFormReser" report-submit="true">
+		<view class=" div wx_wrap">
+			<view class="good_new">
+				<view class="p">
+                    <label for="name"><view class="span tit">标题</view>
+                        <input id="name" name="receive_name" value="{{good.receive_name}}" placeholder="请描述你的商品" type="text" bindblur='receive_function'/>
+                        <view class="span" id="updateTip1" style="color: #F43530; {{!receive_name_tip ? 'display: none;' : ''}}">请填写商品名</view>
+                    </label>
+                </view>
+
+				<view class="p">
+                    <label for="price"><view class="span tit">价格</view>
+                        <input id="price" name="price" value="{{good.price}}" placeholder="99.99" type="number" bindblur='price_function'/>
+                        <view class="span" id="updateTip2" style="color: #F43530; {{!price_tip ? 'display: none;' : ''}}">请填写正确商品价格</view>
+                    </label>
+                </view>
+
+               <view class="p">
+                    <label for="repertory"><view class="span tit">库存</view>
+                        <input id="repertory" name="repertory" value="{{good.repertory}}" placeholder="99" type="number" bindblur='repertory_function'/>
+                        <view class="span" id="updateTip2" style="color: #F43530; {{!repertory_tip ? 'display: none;' : ''}}">请填写正确商品库存</view>
+                    </label>
+                </view>
+
+          
+
+                <view class="p" id="adType">
+                    <view class="label" for="adType"><view class="span tit">商品类别</view>
+                        <picker bindchange="adTypesChange" value="{{adTypeIndex}}" range="{{adTypes}}">
+                            <view class="picker">
+                                {{adTypes[adTypeIndex]}}
+                                <input disabled="true" name="good_name" value="{{good_name[adTypeIndex]}}" class="hide"/>
+                            </view>
+                        </picker>
+                        <view class="span" id="updateTip7" style="color: #F43530; {{!adType_tip ? 'display: none;' : ''}}">请选择水果/海鲜/零食</view>
+                    </view>
+                </view>
+
+
+
+                <view class="p">
+                    <view class="label" for="adinfo"><view class="span tit">商品详细信息</view>
+                        <input id="adinfo" name="good" value="{{good.good}}" placeholder="详细信息" type="text" bindblur='adinfo_function'/>
+                        <view classs="span" id="updateTip6" style="color: #F43530; {{!adinfo_tip ? 'display: none;' : ''}}">请填写详细信息</view>
+                    </view>
+                </view>
+
+                <!--view class="p">
+                    <label for="name"><view class="span tit">标题</view>
+                        <input id="name" name="receive_name" value="{{good.receive_name}}" placeholder="请描述你的商品" type="text" bindblur='receive_function'/>
+                        <view class="span" id="updateTip1" style="color: #F43530; {{!receive_name_tip ? 'display: none;' : ''}}">请填写商品名</view>
+                    </label>
+                </view-->
+
+
+                <view class="p action">
+                    <button class="submit" id="add" formType="submit">确认</button>
+                    <block wx:if="{{good.good_id}}">  
+                        <button class="submit hidden" style="background-color: #F43530;" id="deletes" bindtap="deletes" data-good_id="{{good.good_id}}">删除</button>
+                    </block>
+                </view>
+
+
+                <!--<view animation="{{animationData}}" style="background:red;height:100rpx;width:100rpx" bindtap="test"></view>-->
+
+                 <view class="good_select" style="{{good_select ? '' : 'display:none;'}}">
+                    <view class="area_ctrl slideInUp">
+                        <view class="div area_btn_box">
+                            <view class="div area_btn larea_cancel" bindtap="close" style="visibility:hidden;">取消</view>
+                            <view class="div area_btn larea_finish" bindtap="finish">完成
+                            </view>
+                        </view>
+
+                        <view class="area_roll_mask">
+                            <view class="area_roll">
+                                  <view class="selectItem">
+                                    <view class="gear provinces" data-class="gear" data-top="{{provinceTop}}" data-len="{{provinces.length}}" data-val="{{provinceVal}}" animation="{{animationProvinces}}" data-type="provinces" catchtouchstart="touchstart" catchtouchmove="touchmove" catchtouchend="touchend">
+                                        <view wx:key="item" wx:for="{{provinces}}">
+                                            <view class="tooth" data-id="{{item.region_id}}" data-left="{{index-1}}" data-right="{{index+1}}" >{{item.region_name}}</view>
+                                            <!--bindtap='provinces'-->
+                                        </view>
+                                    </view>
+                                    <view class="div area_grid"></view>
+                                </view>
+
+                                        
+                                <view class="selectItem ">
+                                    <view class="gear citys" animation="{{animationCitys}}"  data-top="{{cityTop}}" data-len="{{citys.length}}" data-val="{{cityVal}}" data-class="gear" data-type="citys" catchtouchstart="touchstart" catchtouchmove="touchmove" catchtouchend="touchend">
+                                        <view wx:key="item" wx:for="{{citys}}">
+                                            <!--data-left="{{index-1}}" data-right="{{index+1}}"  bindtap='citys'-->
+                                            <view class="tooth" data-id="{{item.region_id}}">{{item.region_name}}</view>
+                                        </view>    
+                                    </view>
+                                    <view class="div area_grid"></view>
+                                </view>
+
+                                <view class="selectItem">
+                                    <view class="gear areas " animation="{{animationAreas}}"   data-top="{{areaTop}}" data-len="{{areas.length}}" data-val="{{areaVal}}" data-class="gear" data-type="areas" catchtouchstart="touchstart" catchtouchmove="touchmove" catchtouchend="touchend" >
+                                        <view wx:key="item" wx:for="{{areas}}">
+                                        <!-- data-left="{{index-1}}" data-right="{{index+1}}" bindtap='areas'-->
+                                            <view class="tooth" data-id="{{item.region_id}}">{{item.region_name}}</view>
+                                        </view>    
+                                    </view>
+                                    <view class="div area_grid"></view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <!--<view class="p">
+                    <label for="provinceId"><span class="tit">省份</span>
+                    <picker bindchange="bindProvinceIdChange" value="{{provincesId}}" range="{{provinces.values}}" bindtap="loadProvince" data-provinceId="0">
+                        <view class="picker">
+                            {{provinces.values[provincesId]}}
+                        </view>
+                    </picker>
+                    </label>
+                </view>
+
+                <view class="p">
+                    <label for="cityId"><span class="tit">市</span>
+                         <picker bindchange="bindCityIdChange" value="{{cityId}}" range="{{citys.values}}" bindtap="loadCity" data-provinceId="0">
+                            <view class="picker">
+                                {{citys.values[citysId]}}
+                            </view>
+						</picker>
+                    </label>
+                </view>-->
+			</view>
+		</view>
+        </form>
+	</view>
+</view>
+
+<include src="common/footer.wxml"/>

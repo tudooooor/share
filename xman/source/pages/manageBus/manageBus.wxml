@@ -1,0 +1,150 @@
+
+<!--买家与卖家tab  -->
+<view class='roles'>
+    <view class='standard'>
+       <view class='diancai' bindtap='selected' data-id='1' style='{{rolesId==1?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>分类</view>
+       <view class='business'  bindtap='selected' data-id='2' style='{{rolesId==2?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>用户评论</view>
+    </view>
+</view>
+<!--侧边栏分类  -->
+<view class='container1'  style='display:{{boxOne}}'>
+<view class='tab'>
+    <view class='tab_list'>
+    <view class='tab_left'>
+     <view class='tab_li' bindtap='checked' data-id='1' style='{{checkId==1?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==1?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      热销
+      </view>
+     </view>
+
+     <view class='tab_li' bindtap='checked' data-id='2' style='{{checkId==2?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==2?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      折扣
+      </view>
+     </view>
+
+     <view class='tab_li' bindtap='checked' data-id='3' style='{{checkId==3?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==3?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      时令水果
+      </view>
+      </view>
+     <view class='tab_li' bindtap='checked' data-id='4' style='{{checkId==4?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==4?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      地区特产
+      </view>
+      </view>
+
+     <view class='tab_li' bindtap='checked' data-id='5' style='{{checkId==5?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==5?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      水果套餐
+      </view>
+      </view>
+     <view class='tab_li' bindtap='checked' data-id='6' style='{{checkId==6?"background-color:#fff":"background-color:#f5f5f5;"}}'>
+     <view class='half_circle' style='{{checkId==6?"display:{{cirDisplay}}":"display:none"}}'></view>
+      <view style='width:92%;margin:0 auto;'>
+      洗净装盒
+      </view>
+     </view>
+    </view>
+
+    
+    <view class='tab_right'>
+        <view class='tab_title'>
+          <view class='tit_h1'>热销</view>
+          <view class='tit_h3'>店长推荐，新鲜可口</view>
+        </view>
+      <!--商品列表循环  -->
+      <block wx:for='{{goods_list}}'>
+        <view class='goods_list'>
+         <view  class='standard'>
+          <view class='cover'>
+            <image src='/images/pic.png'></image>
+          </view>
+          <view class='information'>
+            <view class='first_line'>
+              <view class='goods_name'>南丰蜜桔</view>
+              <view class='goods_discount'>5折</view>
+            </view>
+            <view class='second_line'>
+              <view class='sec_left'>
+                <view class='sales'>库存无限</view>
+                <view class='like'>月售5箱</view>
+              </view>
+              <view class='sec_right'>限100份</view>
+            </view>
+            <view class='third_line'>
+              <view class='vip'>原价<span style='font-size:30rpx;font-weight:400;'>￥31.8</span></view>
+              <view class='count'>
+                <view class='sub' bindtap='sub'></view>
+                <view class='plus'>同步朋友圈</view>
+              </view>
+            </view>
+            </view>
+          </view>
+          </view>
+           <!--编辑和下架  -->
+          <view class='standard operating'  style='border-bottom:1px solid #e5e5e5;'>
+            <view class='edit'>编辑</view>
+            <view class='undershelf'>下架</view>
+          </view>
+
+
+      </block>
+    </view>
+  </view>
+</view>
+</view>
+<!--用户评论  -->
+<view class='container2'  style='display:{{boxTwo}}'>
+   <!--评论的状态  -->
+   <view class='status'>
+     <view class='badreview' bindtap='viewOne' data-id='0' style='{{viewId==0?"background-color:#5bbc04;color:#fff;":"background-color:#fff;color:#5bbc04;"}}'>未回复差评(0)</view>
+     <view class='unanswered' bindtap='viewOne' data-id='1' style='{{viewId==1?"background-color:#5bbc04;color:#fff;":"background-color:#fff;color:#5bbc04;"}}'>未回复(12)</view>
+     <view class='all' bindtap='viewOne' data-id='2' style='{{viewId==2?"background-color:#5bbc04;color:#fff;":"background-color:#fff;color:#5bbc04;"}}'>全部</view>
+   </view>
+<!--评论的内容  -->
+
+<block wx:for='{{commentList}}'>
+<view class='comment'>
+<view class='standard' style='display:flex;flex-direction:column;'>
+  <view class='header'>
+    <view class='user_name'>匿名用户</view>
+    <view class='review_time'>2018-01-07</view>
+  </view>
+
+  <view class='keyword'>
+    <view class='trade'>商家</view>
+    <view class='rank'>{{flower}}</view>
+    <view class='key_comment'>无懈可击   物美价廉</view>
+  </view>
+
+  <view class='important'>水分很足，味道鲜美</view>
+  <view class='orderdetail'>
+   <view class='standard' style='display:flex;flex-direction:column;'>
+    <view class='order_title'>订单详情:</view>
+    <view class='order_number'>南丰桔1箱</view>
+   </view>
+  </view> 
+
+  <view class='action'>
+    <view class='act_logal'></view>
+    <view class='activity'>
+     <view class='unreply'>未回复</view>
+     <view class='distribute'>发卷</view>
+    </view>
+  </view>
+  </view>
+
+  
+
+
+
+</view>
+
+</block>
+</view>

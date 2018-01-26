@@ -272,13 +272,6 @@ button::after {
     z-index: 999999999;
 }
 
-.service {
-    background: url(http://139.199.168.122:8989/Public/Api/images/service_5ca802.png) no-repeat;
-    background-size: contain;
-    top: 276px;
-    width: 56px;
-    height: 56px;
-}
 
 .explain_icon_right {
     right: -50px;

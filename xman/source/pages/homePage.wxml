@@ -1,0 +1,64 @@
+<!--轮播图 -->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" 
+  indicator-color="{{colorSel}}">
+  <block wx:key="item" wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+<!--店铺列表  -->
+<block wx:key="item" wx:for="{{shopList}}" wx:if="{{current_index == undefine || current_index == -1}}">
+<view bindtap='selectFruits'>
+<view class='shop'>
+  <view class='standard'>
+    <view class='cover'>
+      <image src='{{item.img_url}}'></image>
+      <!--image src="{{item.img_url}}"  class="slide-image"/-->
+      <view class='discount'></view>
+      <view class='percent'>{{discount}}<span style="font-size:20rpx;"></span></view>
+    </view>
+    <!--店铺信息  -->
+    <view class='information'>
+      <view class='shop_name' bindtap='look'>百果园水果（杭州滨江）</view>
+      <!--店铺综合情况  -->
+      <view class='comprehensive_situation'>
+        <view class='com_left'>
+         <!--block wx:key="item" wx:for="{{flower}}">
+          <view class='flower'></view>
+          </block-->
+          
+          <view class='sales'>水果铺子</view>
+        </view>
+        <view class='com_right'>2km</view>
+      </view>
+      <view class='rules'>
+        <view class='com_left'>
+          <view class='Starting_price'>起送￥20</view>
+          <view class='delivery'>配送￥8</view>
+        </view>
+        <view class='com_right'>48分钟</view>
+      </view>
+      <view class='vip'  bindtap='viewMenu'>
+         <!--view class='com_left'>
+          <view class='vip_price'>
+            会员价<span style="font-size:32rpx;font-weight:590;">￥15.9</span>
+          </view>
+          
+        </view-->
+        <view class='com_right1'></view>
+        <navigator hover-class="none" url="./goods?goods_id={{item.goods_id}}">
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+</block>
+
+
+
+<!-- 引入图片预加载组件 -->
+<import src="../utils/img-loader/img-loader.wxml"/>
+<template is="img-loader" data="{{ imgLoadList }}"></template>

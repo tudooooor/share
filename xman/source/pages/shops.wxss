@@ -1,0 +1,91 @@
+
+.add_shop_red {
+    position: fixed;
+    height: 70px;
+    line-height: 70px;
+    background-color: #f1f1f2;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    z-index: 999;
+    max-width: 640px;
+}
+
+.inner_red {
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 3px;
+    background-color: #e02e24;
+}
+
+.add_text_red {
+    display: inline-block;
+    min-width: 300px;
+}
+
+.address_list {
+    display:block;
+    margin: 0;
+    /* width: 100%; */
+}
+
+.address
+{
+  width: 100%;
+  padding: 0rpx;
+}
+
+.ul
+{
+    margin: 0;
+    padding: 20rpx 10rpx;
+    border-bottom: 1rpx solid #777;
+    background-color: #FFF;
+    height: 200rpx;
+    display: flex;
+}
+
+.li 
+{
+  padding: 10rpx;
+  display: flex;
+  margin: 0;
+}
+.button
+{
+  background-color:#e02e24;
+  border-radius:10rpx;
+  margin:10rpx;
+  text-align:center;
+  color: #FFF;
+}
+.goodInfo
+{
+  flex-direction: column;
+  width: 320rpx;
+  font-size: 1.2em;
+}
+
+.operator
+{
+    flex-direction: column;
+    width: 160rpx;
+    /* position: fixed; */
+    height: 100%;
+    line-height: 70rpx;
+    /* width: 100%; */
+}
+.margin_footer {
+    height: 100px;
+  	background-color: #f1f1f2;
+}
+
+.img {
+  width:240rpx;
+  height:200rpx;
+}
+

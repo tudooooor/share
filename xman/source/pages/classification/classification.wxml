@@ -1,0 +1,7 @@
+<view class='fruits' style='background-image: url(/images/bg1.png);background-repeat:no-repeat; background-size:100% 100%;'>
+  <text class='title'>当季鲜果</text>
+</view>
+
+<view class='fruits' style='background-image: url(/images/bg2.png);background-repeat:no-repeat; background-size:100% 100%;'>
+  <text class='title'>超值海鲜 </text>
+</view>

@@ -1,7 +1,12 @@
 {
   "pages":[
+    "pages/homePage",
     "pages/index",
     "pages/groups",
+    "pages/orderMy/orderMy",
+    "pages/order/order",
+    "pages/businessInfo/businessInfo",
+    "pages/orderDetail/orderDetail",
     "pages/orders",
     "pages/checkout",
     "pages/personal",
@@ -10,7 +15,12 @@
     "pages/address",
     "pages/order",
     "pages/group",
-    "pages/express"
+    "pages/express",
+    "pages/menu/menu",
+    "pages/submit/submit",
+    "pages/newAddress/newAddress",
+    "pages/shops",
+    "pages/newShop"
   ],
   "window":{
     "backgroundColor": "#fff",
@@ -23,26 +33,29 @@
     "selectedColor" : "#df2127",
     "color" : "#777",
     "list": [{
-      "pagePath": "pages/index",
-      "text": "首页",
-      "iconPath" : "./utils/images/home.png",
-      "selectedIconPath" : "./utils/images/select_home.png"
-    }, 
+      "pagePath": "pages/homePage",
+      "text": "homePage",
+      "iconPath": "./utils/images/homePage.png",
+      "selectedIconPath": "./utils/images/homePageSel.png"
+    },
+
     {
-      "pagePath": "pages/groups",
-      "text": "我的团",
-      "iconPath" : "./utils/images/groups.png",
-      "selectedIconPath" : "./utils/images/select_groups.png"
-    }, 
+      "pagePath": "pages/index",
+      "text": "index",
+      "iconPath": "./utils/images/homePage.png",
+      "selectedIconPath": "./utils/images/homePageSel.png"
+    },
+    
+    
      {
-      "pagePath": "pages/orders",
-      "text": "我的订单",
+      "pagePath": "pages/orderMy/orderMy",
+      "text": "订单",
       "iconPath" : "./utils/images/orders.png",
       "selectedIconPath" : "./utils/images/select_orders.png"
     }, 
      {
       "pagePath": "pages/personal",
-      "text": "个人中心",
+      "text": "我",
       "iconPath" : "./utils/images/personal.png",
       "selectedIconPath" : "./utils/images/select_personal.png"
     }]
@@ -51,5 +64,5 @@
     "request": 10000,
     "downloadFile": 10000
   },
-  "debug" : false
+  "debug" : true
 }

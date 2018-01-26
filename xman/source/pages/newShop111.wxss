@@ -1,0 +1,40 @@
+.img
+{
+  width: 100px;
+  height: 100px;
+}
+
+.btn
+{}
+
+.content{  
+  display: flex;  
+  flex-direction: row;  
+}  
+
+#adduser{  
+    background: #f5f5f5;  
+}  
+.section__title{  
+
+    float: left;  
+    width:40%;  
+}  
+.form-group{  
+    position:relative;
+    width: 90%;  
+}  
+.section{  
+    margin: 0 auto;
+}  
+.input-text{  
+    position:relative; 
+    border: 1px solid #ddd;  
+}  
+.button{  
+    position:relative; 
+    border: 1px solid #1aad19;  
+}  
+.picker{   
+    background-color: #FFFFFF;  
+}  
