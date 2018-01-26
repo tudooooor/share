@@ -3,14 +3,16 @@
   <view class='order_top'>
     <view class='standard'>
     <!--点击跳转到该店铺下的菜单页  -->
-      <navigator class='shop_name' url='./order?id={{order.order_id}}'>百草园（杭州滨江店）</navigator> 
+      <navigator class='shop_name' url='./order?id={{order.order_id}}'>{{order.order_id}}</navigator> 
       <view class='evaluation' wx:if='{{hadEva==1}}'>待评价</view>
       <view class='evaluation1' wx:else>已评价</view>
     </view>
   </view>
 
   <!--点击跳转到订单列表页  -->
-  <view class='order_bottom' bindtap='viewOrder'>
+<!--   <view class='order_bottom' bindtap='viewOrder'> -->
+  <view class='order_bottom'  >
+    <navigator url="/pages/orderDetail/orderDetail?id={{order.order_id}}" >
     <view class='standard' style='justify-content:flex-start;'>
       <view class='cover'>
         <image src='{{order.order_goods.image_url}}'></image>
@@ -25,10 +27,10 @@
           <view class='delivery'>由商家提供配送服务</view>
         </view>
         <view class='info_right'></view>
+       </view>
       </view>
     </view>
-
-    </view>
+    </navigator>
   </view>
 </view>
 </block>    

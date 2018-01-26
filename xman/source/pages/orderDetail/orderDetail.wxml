@@ -15,16 +15,18 @@
     <view class='standard'>
       <view class='shop_logal'>
        <view class='shop_logal_bg'>
-        <image src='/images/pic.png'></image>
+        <image src='{{order.order_goods.image_url}}'></image>
       </view>
       </view>
-      <view class='shop_name'>百草园（杭州滨江店）</view>
-      <view class='service'>由商家提供配送服务</view>
+      <navigator url="/pages/goods?goods_id={{order.goods_id}}" >
+        <view class='shop_name'>{{order.order_goods.goods_name}}</view>
+        <view class='service'>由商家提供配送服务</view>
+      </navigator>
     </view>
   </view>
 
   <!--满减详情  -->
-  <view class='minus'>
+<!--   <view class='minus'>
     <view class='standard' style='display:flex;flex-direction:column;border-bottom:1px solid #dcdcdc;'>
       <block wx:for='{{disList}}'>
         <view class='dis'>
@@ -40,7 +42,7 @@
         </view>
       </block>
     </view>
-  </view>
+  </view> -->
 
 
 
@@ -60,7 +62,7 @@
     </view>
   </view>
   <!--新客  -->
-  <view class='new'>
+<!--   <view class='new'>
     <view class='standard' style='display:flex;flex-direction:column;border-bottom:1px solid #dcdcdc;'>
       <view class='dis' style='width:100%;'>
         <view class='minus_logal'>
@@ -86,16 +88,16 @@
 
 
     </view>
-  </view>
+  </view> -->
   <!--总计  -->
   <view class='sum'>
 
     <view class='fee'>
-      <view class='fee_left'>总计：￥42
-        <span style="color:#999;font-size:24rpx;padding-left:5%;">优惠￥21.6</span>
+      <view class='fee_left'>总计：{{order.pay_amount}}
+        <span style="color:#999;font-size:24rpx;padding-left:5%;">优惠￥6</span>
       </view>
       <view>实付：
-        <span style="color:#fa3d34">￥27.6</span>
+        <span style="color:#fa3d34">{{order.order_amount}}</span>
       </view>
     </view>
 
@@ -114,9 +116,9 @@
     <view class='standard info'>
       <view class='title_left'>配送地址:</view>
       <view class='title_right'>
-        张三（男）
-        <br/> 159264645415451
-        <br/> 湖北 武汉武汉武汉武汉武汉武汉武汉
+        {{order.receive_name}}
+        <br/> {{order.mobile}}
+        <br/> {{order.shipping_address}}
       </view>
     </view>
     <view class='standard info' style='border:none;'>
@@ -133,7 +135,7 @@
   <view class='deliv_info'>
     <view class='standard info'>
       <view class='title_left'>订单号:</view>
-      <view class='title_right'>12154700013264545484157485185</view>
+      <view class='title_right'>{{order.order_sn}}</view>
     </view>
     <view class='standard info'>
       <view class='title_left'>支付方式:</view>
@@ -141,7 +143,7 @@
     </view>
     <view class='standard info'>
       <view class='title_left'>下单时间:</view>
-      <view class='title_right'>2017-12-21 13:08</view>
+      <view class='title_right'>{{order.order_time}}</view>
     </view>
     <view class='standard info' style='border:none;'>
       <view class='title_left'>发票信息:</view>
@@ -166,9 +168,9 @@
        <view class='standard step' style='height:70rpx;line-height:90rpx;'> 
       <view class='deal_logal'>
        <view class='deal_mark'></view>
-       <view class='deal_text'>订单交易成功</view>
+       <view class='deal_text'>订单状态{{order.order_status_lang}}</view>
       </view>
-       <view class='deal_time'>{{timeF}}</view>
+       <view class='deal_time'>下单时间{{order.order_time}}</view>
       </view>
     </view>
     <view class='line'></view>
@@ -207,7 +209,7 @@
       <view class='standard step'>
       <view class='deal_logal'>
        <view class='deal_mark3'></view>
-       <view class='deal_text'>商品配送中</view>
+       <view class='deal_text'>{{order.state_class}}</view>
       </view>
        <view class='deal_time'>{{timeF}}</view>
       </view>
