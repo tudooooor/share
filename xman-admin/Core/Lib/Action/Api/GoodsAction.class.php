@@ -16,6 +16,33 @@ class GoodsAction extends ApiAction {
     /**
      * 商品列表
      */
+    public function del() {
+        $id = $this->_get('id','intval',0);
+        if(!$id)$this->error('参数错误!');
+        
+        $GoodsDb = D('Goods');
+        if($GoodsDb->delGoods('goods_id='.$id)){
+            $this->success('删除成功！',U('Admin/Goods/index'));
+        }else{
+            $this->error('删除失败!');
+        }
+    }
+
+    public function edit() {
+        $GoodsDb = D('Goods');
+            if($GoodsDb->create()) {
+                $goodsId = $GoodsDb->save();
+                
+                if($goodsId) {
+                    $this->success('编辑成功',U('Goods/index'));
+                } else {
+                    $this->success('编辑失败 ',U('Goods/index'));
+                }
+            }  else {
+                $this->error($GoodsDb->getError());
+            }
+    }
+
     public function lists() {
         $map = array();
         $GoodsDb = D('Goods');

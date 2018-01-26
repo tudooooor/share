@@ -2,7 +2,11 @@
 /*
 * 系统公共类
 */
+$info_img = '';
+
 class CmsAction extends Action{
+    
+     
 
     public function _initialize() {
 		/*
@@ -11,7 +15,62 @@ class CmsAction extends Action{
 		//import("ORG.Util.Image");	//图像操作类库
 		Load('extend');		//Think扩展函数库
     }
-    
+ 
+    public function upload1()
+    {
+        $ret = $this->upload();
+
+
+        echo json_encode($ret);
+    }
+
+    public function upload3()
+    {
+        global $info_img;
+        $this->data['image_url'] = $info_img;
+        $temp = json_decode($_POST['goods_imgs']);
+        $serialTemp = serialize($temp);
+        $GoodsDb = D('Goods');
+        if($GoodsDb->create()) {
+            $GoodsDb->__set('image_url', $temp[0]);
+            $GoodsDb->__set('goods_imgs', $serialTemp);
+            $GoodsDb->__set('member_id', $this->memberInfo['member_id']);
+            $goodId = $GoodsDb->save();
+            // if($goodId) {
+            //     $this->success('添加成功',U('Admin/Goods/index'));
+            // } else {
+            //     $this->error('添加失败',U('Admin/Goods/index'));
+            // }
+        } else {
+            $this->error($GoodsDb->getError());
+        }
+    }
+    public function upload2()
+    {
+        //$ret = $this->upload();
+        global $info_img;
+        $this->data['image_url'] = $info_img;
+        $temp = json_decode($_POST['goods_imgs']);
+        $serialTemp = serialize($temp);
+        $GoodsDb = D('Goods');
+        
+        if($GoodsDb->create()) {
+            $GoodsDb->__set('image_url', $temp[0]);
+            $GoodsDb->__set('goods_imgs', $serialTemp);
+            $GoodsDb->__set('member_id', $this->memberInfo['member_id']);
+            $goodId = $GoodsDb->add();
+            // if($goodId) {
+            //     $this->success('添加成功',U('Admin/Goods/index'));
+            // } else {
+            //     $this->error('添加失败',U('Admin/Goods/index'));
+            // }
+        } else {
+            $this->error($GoodsDb->getError());
+        }
+
+        //echo json_encode($ret);
+    }
+
     /**
      * 公共上传
      */
@@ -30,6 +89,9 @@ class CmsAction extends Action{
             $info =  $upload->getUploadFileInfo();
         }
         
+
+       
+ 
         //上传成功后处理
         $ossConfig = C('yun_oss');
         foreach($info as $k=>$v){
@@ -56,6 +118,8 @@ class CmsAction extends Action{
             }else{
                 $data['oss'] = 0;
                 $data['attach_url'] = C('web_url'). 'Uploads/' . $dir_name.'/' . $v['savename'];
+                global $info_img;
+                $info_img = $data['attach_url'];
                 $data['time'] = time();
                 $attach_id = M('Attachment')->add($data);
                 $attach_array[] = $attach_id;
@@ -63,8 +127,7 @@ class CmsAction extends Action{
                 unset($data);
             }
         }
-        
-        
+
         return array('error'=>0,'attach'=>$attach_array,'url'=>$attach_url[0],'url_arr'=>$attach_url);
         
     }

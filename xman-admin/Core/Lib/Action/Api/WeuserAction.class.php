@@ -26,7 +26,7 @@ class WeuserAction extends ApiAction {
         $time = time();
         if(!$memberInfo) {
            $this->memberInfo =false;
-           echo json_encode(array('result' => 'fail','error_code' => 40001,'error_info' => '用户校验失败'));
+           echo json_encode(array('result' => 'fail','error_code' => 40001,'error_info' => '用户校验失败 token:' + $token));
            exit;
         }
         
@@ -177,6 +177,67 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
     
+
+        /**
+     * 地址列表
+     */
+    public function shops() {
+        $ShopsDb = D('shops');
+        
+        //添加地址
+        if($this->isPost()) {
+            if($ShopsDb->create()) {
+                $data['member_id'] = $this->memberInfo['member_id'];
+                $data['shop_name'] = $_POST['shop_name'];
+
+                $shop_Id = $ShopsDb->add();
+                
+                // if($goodId) {
+                //     $this->success('添加成功',U('Admin/Goods/index'));
+                // } else {
+                //     $this->error('添加失败',U('Admin/Goods/index'));
+                // }
+            } else {
+                $this->error($GoodsDb->getError());
+            }
+
+
+            
+            $ret['result'] = 'ok';
+            $ret['shop_id'] = $shop_Id;
+            echo json_encode($ret);
+            exit;
+        }
+        
+        //修改地址
+        if($this->isPut()) {
+            $address_id = I('get.address_id');
+            $data = file_get_contents("php://input");
+            $data = json_decode($data,true);
+            
+            $data['province_id'] = $data['province'];
+            $data['city_id'] = $data['city'];
+            $data['district_id'] = $data['district'];
+            $province = $RegionDb->getRegionById($data['province']);
+            $city = $RegionDb->getRegionById($data['city']);
+            $district = $RegionDb->getRegionById($data['district']);
+            
+            $data['province'] = $province['region_name'];
+            $data['city'] = $city['region_name'];
+            $data['district'] = $district['region_name'];
+            
+            $data['full_address'] = $province['region_name'].$city['region_name'].$district['region_name'].$data['address'];
+            
+            $data['last_updated_time'] = time();
+            
+            $AddressDb->where(array('address_id' => $address_id,'member_id' => $this->memberInfo['member_id']))->save($data);
+            
+            $ret['result'] = 'ok';
+            
+            echo json_encode($ret);
+            exit;
+        }
+    }
     /**
      * 提交订单
      */

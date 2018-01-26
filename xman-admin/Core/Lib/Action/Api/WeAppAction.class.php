@@ -48,6 +48,8 @@ class WeAppAction extends ApiAction {
             $encryptedData = $input['encryptedData'];
     
             $memberInfo = $MemberTokenDB->getUser($token);
+            echo $memberInfo;
+            echo 'time:'.time();
             if(!$memberInfo) {
                 echo json_encode(array('result' => 'fail','error_code' => 40001,'error_info' => '用户校验失败'));
                 exit;
@@ -89,7 +91,7 @@ class WeAppAction extends ApiAction {
         $memberInfo = $MemberDb->getMember(array('open_id'=>$ret['openid']));
         
         $data['access_token'] = $ret['session_key'];
-        $data['expires'] = time() . $ret['expires_in'];
+        $data['expires'] = time() + 7200;// . $ret['expires_in'];
         $data['refresh_token'] = $ret['session_key'];
         
         if(!$memberInfo) {
