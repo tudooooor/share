@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/homePage",
+    "pages/homePage/homePage",
     "pages/index",
     "pages/groups",
     "pages/orderMy/orderMy",
@@ -8,9 +8,9 @@
     "pages/businessInfo/businessInfo",
     "pages/orderDetail/orderDetail",
     "pages/orders",
-    "pages/checkout",
+    "pages/checkout/checkout",
     "pages/personal",
-    "pages/goods",
+    "pages/goods/goods",
     "pages/addresses",
     "pages/address",
     "pages/order",
@@ -33,8 +33,8 @@
     "selectedColor" : "#df2127",
     "color" : "#777",
     "list": [{
-      "pagePath": "pages/homePage",
-      "text": "homePage",
+      "pagePath": "pages/homePage/homePage",
+      "text": "首页",
       "iconPath": "./utils/images/homePage.png",
       "selectedIconPath": "./utils/images/homePageSel.png"
     },
