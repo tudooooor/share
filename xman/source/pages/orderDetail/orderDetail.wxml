@@ -12,17 +12,17 @@
 
   <!--订单信息  -->
   <view class='order'>
-    <view class='standard'>
-      <view class='shop_logal'>
-       <view class='shop_logal_bg'>
-        <image src='{{order.order_goods.image_url}}'></image>
+    <navigator url="/pages/goods/goods?goods_id={{order.goods_id}}" >
+      <view class='standard'>
+        <view class='shop_logal'>
+         <view class='shop_logal_bg'>
+          <image src='{{order.order_goods.image_url}}'></image>
+        </view>
+        </view>       
+          <view class='shop_name'>{{order.order_goods.goods_name}}</view>
+          <view class='service'>由商家提供配送服务</view>       
       </view>
-      </view>
-      <navigator url="/pages/goods?goods_id={{order.goods_id}}" >
-        <view class='shop_name'>{{order.order_goods.goods_name}}</view>
-        <view class='service'>由商家提供配送服务</view>
-      </navigator>
-    </view>
+    </navigator>
   </view>
 
   <!--满减详情  -->
