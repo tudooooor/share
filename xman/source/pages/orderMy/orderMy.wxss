@@ -25,12 +25,19 @@ page{
 .standard{
   justify-content: space-between;
 }
-.shop_name::after,.info_right::after{
+.shop_name::after,{
   font-family: 'iconfont';
   content: '\e645';
   font-size: 40rpx;
   font-weight: bold;
   color: #999;
+}
+.info_right::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #999; 
 }
 .evaluation,.evaluation1{
    font-size: 26rpx;

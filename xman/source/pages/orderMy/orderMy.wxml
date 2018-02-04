@@ -3,7 +3,7 @@
   <view class='order_top'>
     <view class='standard'>
     <!--点击跳转到该店铺下的菜单页  -->
-      <navigator class='shop_name' url='./order?id={{order.order_id}}'>{{order.order_id}}</navigator> 
+      <navigator class='shop_name' url='./order?id={{order.order_id}}'>{{order.order_goods.goods_name}}</navigator> 
       <view class='evaluation' wx:if='{{hadEva==1}}'>待评价</view>
       <view class='evaluation1' wx:else>已评价</view>
     </view>
@@ -26,7 +26,7 @@
           <view class='date'>{{order.order_time}}</view>
           <view class='delivery'>由商家提供配送服务</view>
         </view>
-        <view class='info_right'></view>
+<!--         <view class='info_right'></view> -->
        </view>
       </view>
     </view>
