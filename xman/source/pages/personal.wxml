@@ -47,7 +47,7 @@
 					</view>-->
 
           <view class="li nav_item nav_cart" ptag="12478.10.1">
-						<view class="div nav_item_hd"><navigator url="management/management" class="a" href="management/management.html" >我的卖家 </navigator></view>
+						<view class="div nav_item_hd"><navigator url="seller" class="a" href="seller.html" >我的卖家 </navigator></view>
 					</view>
 
 					<view class="li nav_item nav_cart" ptag="12478.10.1">

@@ -21,7 +21,7 @@
     "pages/newAddress/newAddress",
     "pages/shops",
     "pages/newShop",
-    "pages/management/management"
+    "pages/seller"
   ],
   "window":{
     "backgroundColor": "#fff",
