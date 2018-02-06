@@ -20,7 +20,8 @@
     "pages/submit/submit",
     "pages/newAddress/newAddress",
     "pages/shops",
-    "pages/newShop"
+    "pages/newShop",
+    "pages/management/management"
   ],
   "window":{
     "backgroundColor": "#fff",

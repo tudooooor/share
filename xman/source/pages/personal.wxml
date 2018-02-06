@@ -42,8 +42,12 @@
 						<view class="div nav_item_hd"><navigator url="addresses" class="a" href="addresses.html" >我的地址 </navigator></view>
 					</view>
 
-					<view class="li nav_item nav_cart" ptag="12478.10.1">
-						<view class="div nav_item_hd"><navigator url="newShop" class="a" href="newShop.html" >user mgmt </navigator></view>
+					<!--view class="li nav_item nav_cart" ptag="12478.10.1">
+						<view class="div nav_item_hd"><navigator url="newShop" class="a" href="newShop.html" >我的卖家 </navigator></view>
+					</view>-->
+
+          <view class="li nav_item nav_cart" ptag="12478.10.1">
+						<view class="div nav_item_hd"><navigator url="management/management" class="a" href="management/management.html" >我的卖家 </navigator></view>
 					</view>
 
 					<view class="li nav_item nav_cart" ptag="12478.10.1">
