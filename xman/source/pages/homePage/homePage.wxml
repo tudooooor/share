@@ -83,7 +83,7 @@
                                         <view class="tuan_goods_price">
                                             <view class="red span">
                                                 <view class="small">￥</view>
-                                                <span>会员价{{item.group_price}} </span>
+                                                <span>会员价{{item.market_price}} </span>
                                             </view>
                                             <!-- <view class="span group-desc">  {{item.group_number}}人团.单买价{{item.alone_price}}元</view> -->
                                         </view>

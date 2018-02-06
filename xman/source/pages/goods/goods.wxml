@@ -28,7 +28,7 @@
             <view class="goods_price div">
                 <view class="red span" style="{{goods.sell_type == 2 ? 'display:none;' : ''}}">
                     <view class="red-padding span">￥</view>
-                    {{goods.group_price}} 
+                    {{goods.market_price}} 
                 </view>
 
                  <view class="red span" style="{{goods.sell_type == 2 ? '' : 'display:none;'}}">
@@ -113,7 +113,7 @@
                 
                 <view class="div goods-group-btn" data-reactid="72" wx:if="{{!isShow_out && (goods.sell_type == 0 || goods.sell_type == 1)}}">              <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
                 <view class="span goods-buy-price" data-reactid="73">
-                    <view class="i" data-reactid="74">￥</view><!-- react-text: 75 -->{{goods.group_price}}*{{fenshu}}<!-- /react-text --></view>
+                    <view class="i" data-reactid="74">￥</view><!-- react-text: 75 -->｛{order.pay_amount}｝<!-- {{goods.market_price}}*{{fenshu}} --><!-- /react-text --></view>
                     <view class="span" data-reactid="76">提交订单</view>
                  </navigator>
                 </view>
