@@ -39,14 +39,6 @@
       "iconPath": "./utils/images/homePage.png",
       "selectedIconPath": "./utils/images/homePageSel.png"
     },
-
-    {
-      "pagePath": "pages/index",
-      "text": "index",
-      "iconPath": "./utils/images/homePage.png",
-      "selectedIconPath": "./utils/images/homePageSel.png"
-    },
-    
     
      {
       "pagePath": "pages/orderMy/orderMy",
