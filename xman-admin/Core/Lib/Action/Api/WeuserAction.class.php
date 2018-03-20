@@ -176,7 +176,27 @@ class WeuserAction extends ApiAction {
         $ret['result'] = 'ok';
         echo json_encode($ret);
     }
-    
+   
+    public function lists() {
+
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $GoodsDb = D('Goods');
+        $GoodCateDb = D('GoodsCate');
+                
+        $offset = I('get.offset');
+        $size = I('get.size');
+
+        $cate_id = I('get.cate_id',0,'intval');
+        
+        $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
+        if(!$list) {
+            $ret['goods'] = array();
+        } else {
+            $ret['goods'] = $list;
+        }
+        $ret['result'] = 'ok';
+        echo json_encode($ret);
+    }
 
         /**
      * 地址列表

@@ -14,10 +14,11 @@ var Config = {
 
      //接口 基础 url http://localhost/weipin-admin/   http://118.31.0.172/weipin/
      "baseApiUrl": "https://www.bujxu.com/index.php",
-    
+     //"baseApiUrl": "http://localhost/weipin-admin/",
     //网站配置
     "web" :  {
       "url": "https://www.bujxu.com/",
+      //"url": "http://localhost/weipin-admin/",
         "name" : "微拼",
     },
     //是否开启测试

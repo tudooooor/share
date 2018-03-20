@@ -138,7 +138,7 @@ Page({
       var self = this;
       
       // var url = this.baseApiUrl + "?g=Api&m=Weuser&a=addresses&token=" + this.token;
-      var url = this.baseApiUrl + "?g=Api&m=Goods&a=lists";
+      var url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&token=" + this.token;
 
       util.ajax({
           "url" :  url,
