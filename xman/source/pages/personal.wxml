@@ -35,11 +35,11 @@
 							</view>
 						</view>
 					</view>
-					<view class="li nav_item nav_cheap">
-						<view class="div nav_item_hd"><view class="a" bindtap="toGroup" data-url="groups"  href="groups.html"  open-type="switchTab"> 我的拼团 </view></view>
-					</view>
+					<!--<view class="li nav_item nav_cheap">
+						< view class="div nav_item_hd"><view class="a" bindtap="toGroup" data-url="groups"  href="groups.html"  open-type="switchTab"> 我的拼团 </view></view>
+					</view>-->
 					<view class="li nav_item nav_cart" ptag="12478.10.1">
-						<view class="div nav_item_hd"><navigator url="addresses" class="a" href="addresses.html" >我的收获地址 </navigator></view>
+						<view class="div nav_item_hd"><navigator url="addresses" class="a" href="addresses.html" >收货地址 </navigator></view>
 					</view>
 
 					<!--view class="li nav_item nav_cart" ptag="12478.10.1">
