@@ -25,77 +25,14 @@
     </navigator>
   </view>
 
-  <!--满减详情  -->
-<!--   <view class='minus'>
-    <view class='standard' style='display:flex;flex-direction:column;border-bottom:1px solid #dcdcdc;'>
-      <block wx:for='{{disList}}'>
-        <view class='dis'>
-          <view class='minus_logal'>
-            <view class='minus_logalbg'>折</view>
-          </view>
-          <view class='shop_name1'>微店新客立减</view>
-          <view class='service' style='display: flex;flex-direction: row;justify-content: flex-end;'>
-            <view class='number'>*3</view>
-            <view class='original'>￥36</view>
-            <view class='nowprice'>￥21.6</view>
-          </view>
-        </view>
-      </block>
-    </view>
-  </view> -->
 
-
-
-
-
-  <!--额外费用  -->
-  <view class='extra'>
-    <view class='standard' style='border-bottom:1px solid #dcdcdc;display:flex;flex-direction:column;justify-content: space-between;'>
-      <view class='fee'>
-        <view>餐盒费</view>
-        <view>￥3</view>
-      </view>
-      <view class='fee'>
-        <view>配送费</view>
-        <view>￥3</view>
-      </view>
-    </view>
-  </view>
-  <!--新客  -->
 <!--   <view class='new'>
-    <view class='standard' style='display:flex;flex-direction:column;border-bottom:1px solid #dcdcdc;'>
-      <view class='dis' style='width:100%;'>
-        <view class='minus_logal'>
-          <view class='minus_logalbg1'>新</view>
-        </view>
-        <view class='shop_name2'>微店新客立减</view>
-        <view class='service' style='display: flex;flex-direction: row;justify-content:flex-end;'>
-
-          <view class='nowprice1'>￥21.6</view>
-        </view>
-      </view>
-
-      <view class='dis' style='width:100%;'>
-        <view class='minus_logal'>
-          <view class='minus_logalbg2'>返</view>
-        </view>
-        <view class='shop_name2'>微店新客立减</view>
-        <view class='service' style='display: flex;flex-direction: row;justify-content:flex-end;'>
-
-          <view class='nowprice1'>返3元商家券</view>
-        </view>
-      </view>
-
-
-    </view>
   </view> -->
   <!--总计  -->
   <view class='sum'>
 
     <view class='fee'>
-      <view class='fee_left'>总计：{{order.pay_amount}}
-        <span style="color:#999;font-size:24rpx;padding-left:5%;">优惠￥6</span>
-      </view>
+      <view class='fee_left'>总计：{{order.pay_amount}}</view>
       <view>实付：
         <span style="color:#fa3d34">{{order.order_amount}}</span>
       </view>

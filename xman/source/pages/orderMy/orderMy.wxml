@@ -1,14 +1,36 @@
+<view class="div nav_fixed">
+    <!--data-status="1" href="#" ms-class="nav_cur: all_status==3" ms-click=statusChange(3)-->
+    <view class="a fixed_nav_item {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-all_status="3" bindtap="statusChange">
+        <view class="span nav_txt">全部订单</view>
+    </view>
+    <!--data-status="2" href="#" ms-class="nav_cur: all_status==0" ms-click=statusChange(0)-->
+    <view class="a fixed_nav_item {{all_status == 0 ? 'nav_cur' : ''}}" data-all_status="0" bindtap="statusChange">
+        <view class="span nav_txt nav_payment">待付款
+            <view class="b nav_payment_num" style="display:none;"></view>
+        </view>
+    </view>
+    <!--data-status="3" href="#" ms-class="nav_cur: all_status==1" ms-click=statusChange(1)-->
+    <view class="a fixed_nav_item {{all_status == 1 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
+        <view class="span nav_txt nav_receiving">待收货
+            <view class="b nav_receiving_num" style="display:none;"></view>
+        </view>
+    </view>
+
+    <view class="a fixed_nav_item {{all_status == 2 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
+        <view class="span nav_txt nav_receiving">已收货
+            <view class="b nav_receiving_num" style="display:none;"></view>
+        </view>
+    </view>
+
+    <view class="a fixed_nav_item {{all_status == 4 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
+        <view class="span nav_txt nav_receiving">已取消
+            <view class="b nav_receiving_num" style="display:none;"></view>
+        </view>
+    </view>
+</view>
+
 <block ms-repeat-order="orders" wx:key="" wx:for-item="order" wx:for="{{orders}}">
 <view class='order_list'>
-  <view class='order_top'>
-    <view class='standard'>
-    <!--点击跳转到该店铺下的菜单页  -->
-      <navigator class='shop_name' url='./order?id={{order.order_id}}'>{{order.order_goods.goods_name}}</navigator> 
-      <view class='evaluation' wx:if='{{hadEva==1}}'>待评价</view>
-      <view class='evaluation1' wx:else>已评价</view>
-    </view>
-  </view>
-
   <!--点击跳转到订单列表页  -->
 <!--   <view class='order_bottom' bindtap='viewOrder'> -->
   <view class='order_bottom'  >
