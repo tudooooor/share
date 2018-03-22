@@ -9,7 +9,9 @@
           <view class="div address">
               <block wx:key="item" wx:for="{{address_list}}">
                 <view class="ul">
+                  <navigator hover-class="none" url="./goods/goods?goods_id={{item.goods_id}}">
                   <image class="img" src='{{item.image_url}}'></image>
+                  </navigator>
                   <view class='goodInfo'>
                     <view class="li">{{item.goods_name}}</view>
                     <view class="li">{{item.goods_desc}}</view>
