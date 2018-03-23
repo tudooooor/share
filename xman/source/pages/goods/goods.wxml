@@ -58,9 +58,9 @@
             </view>
 
             <view class='count'  style='justify-content:{{flexDir}}'>
-              <view class='sub' bindtap='sub' style='display:{{subDisplay}};'></view>
+              <view class='sub' bindtap='sub' style='display:{{subDisplay}};'>-</view>
               <view class='number'  style='display:{{subDisplay}};'>{{fenshu}}</view>
-            <view class='plus' bindtap='plus'></view>
+            <view class='plus' bindtap='plus' style='color:red'>+</view>
             </view>
                                             
             <view class="goods-sold div">
@@ -114,7 +114,7 @@
                 <view class="div goods-group-btn" data-reactid="72" wx:if="{{!isShow_out && (goods.sell_type == 0 || goods.sell_type == 1)}}">              
                     <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
                 <view class="span goods-buy-price" data-reactid="73">
-                    <view class="i" data-reactid="74">{{goods.market_price}}</view>
+                    <view class="i" data-reactid="74">{{fenshu * goods.market_price}}</view>
                     <view class="span" data-reactid="76">提交订单</view>
                     </view>
                  </navigator>

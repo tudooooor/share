@@ -49,7 +49,8 @@
                                         <view class="div order_goods_attr_item">
                                             <view id="goodsPrice" class="div order_goods_price2">
                                                 <view class="i">￥</view>
-                                                    <block wx:if="{{sell_type == 1}}">{{goods.group_price}}</block>
+                                                    <block wx:if="{{sell_type == 1}}">{{goods.market_price}}</block>
+                                                    <!-- <view class="i" data-reactid="74">{{goods.market_price}}</view> -->
                                                     <block wx:else>{{goods.alone_price}}</block>
                                                 <view class="i" style="display:none;">/8个 </view>
                                             </view>
@@ -63,8 +64,8 @@
                 </view>
             </view>
             <view class="div" id="pay_area" style="opacity: 1;">
-                <view class="div total">快递：<view class="small">￥</view>0.00 总价：<view id="totalPrice" class="span total_price"><view class="i">￥</view>
-                    <block wx:if="{{sell_type == 1}}">{{goods.group_price}}</block>
+                <view class="div total">快递：<view class="small">￥</view>5.00 总价：<view id="totalPrice" class="span total_price"><view class="i">￥</view>
+                    <block wx:if="{{sell_type == 1}}">{{goods.market_price}}</block>
                     <block wx:else>{{goods.alone_price}}</block></view></view>
                 <view class="pay2 div ">
                     <view class="div pay2_hd">请选择支付方式</view>
