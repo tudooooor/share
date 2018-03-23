@@ -1,7 +1,6 @@
 {
   "pages":[
     "pages/homePage/homePage",
-    "pages/index",
     "pages/groups",
     "pages/orderMy/orderMy",
     "pages/order/order",

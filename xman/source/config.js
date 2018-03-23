@@ -9,7 +9,7 @@ var Config = {
     //默认分享文字
      'share_text' : {
         'title' : '风靡全国的拼团商城，优质水果新鲜直供，快来一起“微拼123”吧',
-        'path' :　'pages/index'
+        'path' :　'pages/homePage/homePage'
      },
 
      //接口 基础 url http://localhost/weipin-admin/   http://118.31.0.172/weipin/
