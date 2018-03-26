@@ -4,13 +4,13 @@
             <view class="div wx_bar_back">
                 <navigator id="back" url="javascript:void(0);"></navigator>
             </view>
-            <view class="div wx_bar_tit">个人信息</view>
+            <view class="div wx_bar_tit">卖家信息</view>
         </view>
 		<form bindsubmit="listenFormSubmit" bindreser="listenFormReser" report-submit="true">
 		<view class=" div wx_wrap">
 			<view class="address_new">
 				<view class="p">
-                    <label for="name"><view class="span tit">我的信息</view>
+                    <label for="name"><view class="span tit">卖家</view>
                         <input id="name" name="receive_name" value="{{address.receive_name}}" placeholder="名字" type="text" bindblur='receive_function'/>
                         <view class="span" id="updateTip1" style="color: #F43530; {{!receive_name_tip ? 'display: none;' : ''}}">请填写姓名</view>
                     </label>

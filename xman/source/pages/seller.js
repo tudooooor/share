@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js')
+var util = require('../utils/util.js')
 
 Page({
   data:{
@@ -75,7 +75,7 @@ Page({
         success : function(data){
             if(data.result == 'ok') {
                util.loadding(self);
-               var url = "./personalinfo/personalinfo";
+               var url = "./addresses";
                if(self.options.goods_id != undefined) {
                    url = url + "?sell_type=" + self.options.sell_type + "&goods_id=" 
                         + self.options.goods_id + "&address_id=" + self.options.address_id;
@@ -219,7 +219,7 @@ Page({
                   wx.setStorageSync('select_address_id',data.address_id);
 
                   var pages = getCurrentPages()    //获取加载的页面
-                  if (pages[pages.length - 2] != undefined && pages[pages.length - 2].route == "pages/personalinfo/personalinfo") {
+                  if(pages[pages.length-2] != undefined && pages[pages.length-2].route == "pages/addresses") {
                     wx.navigateBack({delta : 2});
                     return; 
                   }
@@ -243,7 +243,7 @@ Page({
         success : function(data){
             util.loaded(self);
             if(data.result == 'ok') {
-              var url = "./personalinfo/personalinfo";
+               var url = "./addresses";
                if(self.options.goods_id != undefined && self.options.goods_id != "undefined" &&  self.options.sell_type != undefined &&  self.options.sell_type != "undefined") {
                   wx.setStorageSync('select_address_id',self.options.address_id);
                   wx.navigateBack({delta : 2});
@@ -258,11 +258,11 @@ Page({
   onLoad:function(options){
     if(this.options.address_id) {
       wx.setNavigationBarTitle({
-        title: '编辑个人信息'
+        title: '编辑卖家信息'
       })
     } else {
       wx.setNavigationBarTitle({
-        title: '添加个人信息'
+        title: '添加新卖家'
       })
     }
 

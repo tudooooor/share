@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js')
+var util = require('../utils/util.js')
 Page({
   data:{
     "address_list": [],
