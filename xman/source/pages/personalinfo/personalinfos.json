@@ -1,0 +1,6 @@
+{
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText" : "个人信息管理",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+}
