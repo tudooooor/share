@@ -12,6 +12,14 @@
   display: flex;
   flex-direction: row;
 }
+
+.view_hide{
+ display: none;
+}
+.view_show{
+ display: block;
+}
+
 .diancai,.business{
   width: 18%;
   height: 68rpx;
