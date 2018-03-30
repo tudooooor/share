@@ -19,7 +19,7 @@
 				<view class="ul nav_list">
 					<view class="li nav_item nav_order" ptag="12478.1.1">
 						<view bindtap="toOrder" data-type="3" class="a" ptag="12478.16.1">
-							<view class="a" ptag="12478.1.1" href="orders.html">
+							<view class="a" ptag="12478.1.1" href="orderMy.html">
 								<view class="div nav_item_hd">我的订单</view>
 							</view>
 						</view>

@@ -120,7 +120,7 @@ Page({
   },
   toOrder : function(e) {
     wx.setStorageSync('order_type',e.currentTarget.dataset.type);  
-    wx.switchTab({url : "orders"});
+    wx.switchTab({url : "/pages/orderMy/orderMy"});
   },
   toGroup : function(e) {
     wx.setStorageSync('groups_type',1);  
