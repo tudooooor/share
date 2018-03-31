@@ -217,6 +217,10 @@ Page({
                         duration: 3000
                       });
                     }
+
+                    wx.navigateTo({
+                      "url": "shops"
+                    });
                   },
 
                 });
