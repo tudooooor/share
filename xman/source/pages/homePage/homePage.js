@@ -47,7 +47,7 @@ Page({
      var self = this;
      
      self.getConfig();
-
+     this.token = wx.getStorageSync('token'); 
      util.checkNet({
         success : function() {
           util.succNetCon(self);
@@ -208,7 +208,7 @@ Page({
       "size" : size
     };
 
-    var url = this.baseApiUrl + "?g=Api&m=Goods&a=lists";
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&token=" + this.token;
     
     var page = 0;
     if(this.cate_id != undefined && this.cate_id != 0) {

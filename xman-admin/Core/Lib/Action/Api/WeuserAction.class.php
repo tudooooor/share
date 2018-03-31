@@ -177,6 +177,68 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
    
+    public function addGood() {
+        $goods_id = I('get.goods_id');
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $goods = $this->MemberDb->where($map)->field('goods')->select();
+   
+        $goodsArray = unserialize($goods[0]['goods']);
+        $temp = array_push($goodsArray, $goods_id);
+        $goodsArray = array_unique($goodsArray);
+        
+        $serialTemp = serialize($goodsArray);
+        $this->MemberDb->__set('goods', $serialTemp);
+        $result = $this->MemberDb->save();
+        if($result) {
+            $this->success('添加成功',U('Admin/Goods/index'));
+        } else {
+            $this->error('添加失败',U('Admin/Goods/index'));
+        }
+    }
+
+    public function goodslists() {
+        $id = I('get.id');
+        //$map = array('member_id' => $this->memberInfo['member_id']);
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $goods = $this->MemberDb->where($map)->field('goods')->select();
+        $goodsArray = unserialize($goods[0]['goods']);
+
+
+        $GoodsDb = D('Goods');
+        $GoodCateDb = D('GoodsCate');
+                
+        $offset = I('get.offset');
+        $size = I('get.size');
+
+        $cate_id = I('get.cate_id',0,'intval');
+
+        
+        $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
+        if(!$list) {
+            $ret['goods'] = array();
+        } else {
+            $listTemp;
+            $listTempLenght = 0;
+            $listLenght = count($list);
+            $goodsLenght = count($goodsArray);
+            for($i = 0; $i < $listLenght; $i++)
+            {
+                for($j = 0; $j < $goodsLenght; $j++)
+                {
+                    if ($list[$i]['goods_id'] == $goodsArray[$j])
+                    {
+                        $listTemp[$listTempLenght++] = $list[$i];
+                        break;
+                    }
+                }
+            }
+
+            $ret['goods'] = $listTemp;
+        }
+        $ret['result'] = 'ok';
+        echo json_encode($ret);
+    }
+
     public function lists() {
 
         $map = array('member_id' => $this->memberInfo['member_id']);

@@ -32,13 +32,35 @@ Page({
           util.notNetCon(self);
        }
      });
-
+     this.token = wx.getStorageSync('token'); 
      // 页面初始化 options为页面跳转所带来的参数
      this.imgLoader = new ImgLoader(this)
-     
+     this.addGood(options.goods_id);
      //this.doneOrderBanner();
       //console.log(options);
     // 页面初始化 options为页面跳转所带来的参数
+  },
+  addGood:function(goods_id)
+  {
+    var self = this;
+      
+    // var url = this.baseApiUrl + "?g=Api&m=Weuser&a=addresses&token=" + this.token;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=addGood&goods_id=" + goods_id + "&token=" + this.token;
+
+    util.ajax({
+        "url" :  url,
+        // "method" :　"POST",
+        "data": {
+          "offset": 0,
+          "size": 20
+        },
+        "success" : function(data) {
+            if(data['result'] == "ok") {
+
+            }
+            
+        }
+      });
   },
   refresh : function() {
      var self = this;
