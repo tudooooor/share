@@ -217,10 +217,26 @@ Page({
                         duration: 3000
                       });
                     }
+                    var data = JSON.parse(res.data);
+                    var url = that.baseApiUrl + "?g=Api&m=Weuser&a=addGood&goods_id=" + data['goods_id'] + "&token=" + that.token;
 
-                    wx.navigateTo({
-                      "url": "shops"
-                    });
+                    util.ajax({
+                        "url" :  url,
+                        // "method" :　"POST",
+                        "data": {
+                          "offset": 0,
+                          "size": 20
+                        },
+                        "success" : function(data) {
+                            if(data['result'] == "ok") {
+                
+                            }
+                            
+                        }
+                      });
+
+
+                    wx.navigateBack();
                   },
 
                 });

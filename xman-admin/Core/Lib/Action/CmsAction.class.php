@@ -64,11 +64,13 @@ class CmsAction extends Action{
             // } else {
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
+            $ret['goods_id'] = $goodId;
+            echo json_encode($ret);  
         } else {
             $this->error($GoodsDb->getError());
         }
 
-        //echo json_encode($ret);
+        
     }
 
     /**
