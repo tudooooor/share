@@ -41,9 +41,36 @@ class CmsAction extends Action{
             // } else {
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
+
         } else {
             $this->error($GoodsDb->getError());
         }
+
+
+    }
+
+    public function addGoodWhenAdd($goods_id) {
+        
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $goods = $this->MemberDb->where($map)->field('goods')->select();
+        
+        $goodsArray;
+        if ($goods[0]['goods'] == "")
+        {
+            $goodsArray = array();
+        }
+        else
+        {
+            $goodsArray = unserialize($goods[0]['goods']);           
+        }
+
+        $temp = array_push($goodsArray, $goods_id);
+        $goodsArray = array_unique($goodsArray);
+        
+        $serialTemp = serialize($goodsArray);
+        $this->MemberDb->__set('goods', $serialTemp);
+        $result = $this->MemberDb->save();
+        //echo json_encode($result);
     }
     public function upload2()
     {
@@ -65,13 +92,13 @@ class CmsAction extends Action{
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
             $ret['goods_id'] = $goodId;
+            $this->addGoodWhenAdd($goodId);
             echo json_encode($ret);  
         } else {
             $this->error($GoodsDb->getError());
         }
-
-        
     }
+
 
     /**
      * 公共上传

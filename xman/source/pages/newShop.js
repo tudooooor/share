@@ -211,12 +211,7 @@ Page({
                   success: function (res) {
                 
                     console.log(res)
-                    if (res) {
-                      wx.showToast({
-                        title: '已提交发布！',
-                        duration: 3000
-                      });
-                    }
+/*
                     var data = JSON.parse(res.data);
                     var url = that.baseApiUrl + "?g=Api&m=Weuser&a=addGood&goods_id=" + data['goods_id'] + "&token=" + that.token;
 
@@ -234,7 +229,7 @@ Page({
                             
                         }
                       });
-
+*/
 
                     wx.navigateBack();
                   },
