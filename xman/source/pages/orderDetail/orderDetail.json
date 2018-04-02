@@ -3,5 +3,5 @@
   "navigationBarTextStyle": "#fff",
   "navigationBarTitleText": "订单信息",
   "backgroundTextStyle": "light",
-  "enablePullDownRefresh": "true"
+  "enablePullDownRefresh": true
 }
