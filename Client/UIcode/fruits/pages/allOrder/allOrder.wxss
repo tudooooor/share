@@ -1,0 +1,138 @@
+@import '/lib/style/stylesheet.wxss';
+page{
+  background-color: #f8f8f8;
+  font-family: '微软雅黑';
+}
+.navbar{
+  width: 100%;
+  height: 80rpx;
+}
+.all,.pay,.delive,.get,.cancel{
+  width: 14%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #999;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.order_list{
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.order_bottom{
+  
+  border-bottom: 1px solid #e8e8e8;
+}
+.standard{
+  justify-content: space-between;
+}
+.info_right::after,.right_bot::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #999;
+  text-align: right;
+}
+.evaluation,.evaluation1{
+   font-size: 26rpx;
+   font-weight: 400;
+}
+.evaluation{
+  color: #ffb200;
+}
+.evaluation1{
+  color: #999;
+}
+
+.cover{
+  width: 22%;
+  height: 180rpx;
+}
+.cover image{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 140rpx;
+}
+.order_info{
+  width: 78%;
+}
+.info_right{
+  height: 180rpx;
+  line-height: 260rpx;
+}
+.info_right1{
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.vip_price,.right_top{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #5bbc04;
+  font-weight: 400;
+}
+.date,.delivery{
+  font-size: 22rpx;
+  color: #666;
+  height: 40rpx;
+  font-weight: 400;
+}
+.date{
+  line-height: 35rpx;
+}
+.delivery{
+  line-height: 30rpx;
+}
+/*代发货  */
+.right_bot{
+  text-align: right;
+  margin-top: 30rpx;
+}
+/*待付款  */
+.order_left{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.select{
+  height: 180rpx;
+  line-height: 180rpx;
+}
+.select::after{
+  font-family: 'iconfont';
+  content: '\e614';
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #999;
+  text-align: right;
+}
+.sum{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+.product{
+  margin-right: 20rpx;
+}
+.fee1{
+  margin-top: 20rpx;
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #5bbc04;
+  border:1px solid #5bbc04;
+  border-radius:35rpx;
+}
+.quxiao{
+  color: #999;
+  border:1px solid #999;
+  margin-left: 20rpx;
+}

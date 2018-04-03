@@ -112,7 +112,7 @@
       <view class='deliver'>配送费￥5</view>
     </view>
   </view>
-  <view class='gopay'>去结算</view>
+  <view class='gopay' bindtap='goOrder'>去结算</view>
 </view>
 
 <view class='goods_number' style='display:{{carDisplay}}'>
@@ -143,13 +143,5 @@
      </view>
   </view>
 </block>
-
-
-
-
-
-
-
-
 </view>
 </view>

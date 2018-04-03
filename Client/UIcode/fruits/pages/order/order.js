@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    colorSel: "#eeeceb",
+    shopList: [1, 2, 3, 4, 5, 6],
+    flower: [1, 2, 3, 4],
+    discount: 7,
+    ship:1  //是否发货的参数，默认1为已发货，并显示其样式，否则显示未发货
   },
 
   /**
@@ -14,7 +18,11 @@ Page({
   onLoad: function (options) {
   
   },
-
+  viewDetail:function(){
+    wx.navigateTo({
+      url: '/pages/orderDetail/orderDetail',
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

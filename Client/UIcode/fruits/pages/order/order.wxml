@@ -1,2 +1,52 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+
+<!--店铺列表  -->
+<block wx:for="{{shopList}}">
+<view>
+<view class='shop'>
+  <view class='standard'>
+    <view class='cover'>
+      <image src='/images/pic.png'></image>
+      <view class='discount'></view>
+      <view class='percent'>{{discount}}<span style="font-size:20rpx;">折</span></view>
+    </view>
+    <!--店铺信息  -->
+    <view class='information'  bindtap='viewDetail'>
+      <view class='shop_name'>百果园水果（杭州滨江）</view>
+      <!--店铺综合情况  -->
+      <view class='comprehensive_situation'>
+        <view class='com_left'>
+         <block wx:for="{{flower}}">
+          <view class='flower'></view>
+          </block>
+          
+          <view class='sales'>月售487单</view>
+        </view>
+        <view class='com_right'>2km</view>
+      </view>
+      <view class='rules'>
+        <view class='com_left'>
+          <view class='Starting_price'>起送￥20</view>
+          <view class='delivery'>配送￥8</view>
+        </view>
+        <view class='com_right'>48分钟</view>
+      </view>
+      <view class='vip'>
+         <view class='com_left' style='width:72%;'>
+          <view class='vip_price'>
+            会员价<span style="font-size:32rpx;font-weight:590;">￥15.9</span>
+          </view>
+          
+        </view>
+        <view class='com_right1' wx:if="{{ship==1}}">
+          <view class='send_bg'></view>
+          <view class='send_text'>已发货</view>
+        </view>
+        <view class='com_right2' wx:else>未发货</view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+</block>
+
+

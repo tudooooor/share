@@ -30,10 +30,19 @@ Page({
   onLoad: function (options) {
   
   },
-  
+  look:function(){
+    wx.navigateTo({
+      url: '/pages/businessInfo/businessInfo',
+    })
+  },
   selectFruits:function(){
     wx.setNavigationBarTitle({
-      title:'可获取接口传来的值'
+      title:'获取该ID下的店名'
+    })
+  },
+  viewMenu:function(){
+    wx.navigateTo({
+      url: '/pages/menu/menu',
     })
   },
   /**

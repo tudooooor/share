@@ -1,0 +1,138 @@
+@import '/lib/style/stylesheet.wxss';
+
+
+page{
+  background-color: #f4f4f4;
+}
+.order_top{
+  background-color: #fff;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  font-weight: 400;
+  border-bottom: 1px solid #dcdcdc;
+}
+.standard{
+  justify-content: space-between;
+}
+.shop_name::after,.info_right::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #999;
+}
+.count_bg{
+  margin-top: 22rpx;
+  width: 26rpx;
+  height: 26rpx;
+  border-radius: 20rpx;
+  background-color: #fa3137; 
+}
+/*此处的数字在电脑上与手机显示有差异，我是按照手机的效果处理的  */
+.number{
+  position: relative;
+  top: -20rpx;
+  left: 10rpx;
+  font-size: 18rpx;
+  color: #fff;
+}
+
+
+.order{
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.standard{
+  justify-content: space-between;
+}
+.cover{
+  width: 15%;
+  height: 180rpx;
+}
+.cover image{
+  width: 100%;
+  height: 100rpx;
+  margin-top: 20rpx;
+}
+.info{
+  margin-left: 3%;
+  width: 82%;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+  
+}
+.info_title,.info_number{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.info_title{
+  height: 110rpx;
+  border-bottom: 2px solid #dcdcdc;
+}
+.pro_name{
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 80rpx;
+  color: #333;
+  font-weight: 400;
+}
+.pro_time{
+  font-size: 20rpx;
+  color: #666;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.info_right1{
+  margin-top: 25rpx;
+  width: 150rpx;
+  height: 60rpx;
+  color: #999;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  text-align: right;
+  font-weight: 400;
+}
+.info_number{
+  height: 70rpx;
+  line-height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 300;
+}
+.num_left{
+  width: 70%;
+  font-size: 22rpx;
+  color: #333;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.ordernum{
+  width: 45%;
+}
+.delivery{
+  width: 55%;
+  margin-left: 3%;
+}
+.sum{
+  font-size: 26rpx;
+  font-weight: 450;
+  color: #333;
+}
+
+.tips{
+  width: 100%;
+  height:80rpx;
+  line-height: 80rpx;
+  background-color: #fafafa; 
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+}/* pages/orderCus/orderCus.wxss */
