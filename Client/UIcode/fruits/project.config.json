@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.7.2",
 	"appid": "wx5bdde4092582015a",
-	"projectname": "fruits1",
+	"projectname": "fruits",
 	"condition": {
 		"search": {
 			"current": -1,

@@ -10,7 +10,7 @@
 </swiper>
 <!--店铺列表  -->
 <block wx:for="{{shopList}}">
-<view bindtap='selectFruits'>
+<navigator url="/pages/menu/menu" hover-class="navigator-hover" bindtap='selectFruits'>
 <view class='shop'>
   <view class='standard'>
     <view class='cover'>
@@ -20,7 +20,7 @@
     </view>
     <!--店铺信息  -->
     <view class='information'>
-      <view class='shop_name' bindtap='look'>百果园水果（杭州滨江）</view>
+      <view class='shop_name'>百果园水果（杭州滨江）</view>
       <!--店铺综合情况  -->
       <view class='comprehensive_situation'>
         <view class='com_left'>
@@ -39,7 +39,7 @@
         </view>
         <view class='com_right'>48分钟</view>
       </view>
-      <view class='vip'  bindtap='viewMenu'>
+      <view class='vip'>
          <view class='com_left'>
           <view class='vip_price'>
             会员价<span style="font-size:32rpx;font-weight:590;">￥15.9</span>
@@ -51,6 +51,6 @@
     </view>
   </view>
 </view>
-</view>
+</navigator>
 </block>
 

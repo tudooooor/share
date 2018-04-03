@@ -138,7 +138,7 @@ page{
   min-height: 60rpx;
   line-height: 60rpx;
   font-size: 32rpx;
-   font-weight: 300; 
+  font-weight: 600;
   color: #333;
 }
 .goods_discount{
@@ -159,7 +159,7 @@ page{
 .sec_left{
   width: 70%;
   font-size: 23rpx;
-  font-weight: 300;
+  font-weight: 550;
   color: #666;
   display: flex;
   flex-direction: row;
@@ -338,6 +338,6 @@ page{
 }
 .pro_title,.pro_price{
   font-size: 32rpx;
-  font-weight: 400;
+  font-weight: 600;
   color: #333;
 }
