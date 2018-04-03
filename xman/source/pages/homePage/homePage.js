@@ -250,7 +250,7 @@ Page({
          }
           
         var goods = data.goods;
-        if(data.goods.length != 0) {
+        if(data.goods != null && data.goods.length != 0) {
             if(data.goods.length < self.size) {
               self.setData({ "is_over": 1, "no_data": 1 });
               if (self.page == 1) {
