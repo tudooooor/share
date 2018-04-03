@@ -56,6 +56,8 @@ Page({
         },
         error : function() {
           util.notNetCon(self,1);
+        },
+        refresh : function() {
         }
      });
   },
