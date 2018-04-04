@@ -2,6 +2,7 @@ var util = require('../../utils/util.js')
 Page({
   data:{
       hadEva:1, //处理后台传来的参数，待评价为1，其他情况则视为已评价
+      check_id:'1',
       "URL" : 3,
       "is_over" : false,
       "no_order" : false,
@@ -59,6 +60,11 @@ Page({
     var self = this;
 
     self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
+    console.log()
+    var check_id = e.target.dataset.id;
+    self.setData({
+      check_id:check_id
+    })
     
     util.checkNet({
      success : function() {
@@ -108,13 +114,14 @@ Page({
         })
       }
     })
-
+    console.log({e});
     if(!this.is_onload) {
       // 页面初始化 options为页面跳转所带来的参数
       if( wx.getStorageSync('order_type') != '') {
          if(wx.getStorageSync('order_type') == '3') {
             this.setData({"all_status" : 3});
-            this.order_status = undefined;  
+            //this.order_status = undefined;  
+            console.log({all_status});
          } else {
             var all_status = wx.getStorageSync('order_type') == "0" ? 0 : 1;
             this.setData({"all_status" : all_status});
@@ -226,7 +233,11 @@ Page({
      var self = this;
 
      self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
-     
+     var check_id = e.target.dataset.id;
+     self.setData({
+        check_id:check_id
+     })
+
      util.checkNet({
       success : function() {
         util.succNetCon(self);

@@ -1,33 +1,18 @@
-<view class="div nav_fixed">
-    <!--data-status="1" href="#" ms-class="nav_cur: all_status==3" ms-click=statusChange(3)-->
-    <view class="a fixed_nav_item {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-all_status="3" bindtap="statusChange">
-        <view class="span nav_txt">全部订单</view>
-    </view>
-    <!--data-status="2" href="#" ms-class="nav_cur: all_status==0" ms-click=statusChange(0)-->
-    <view class="a fixed_nav_item {{all_status == 0 ? 'nav_cur' : ''}}" data-all_status="0" bindtap="statusChange">
-        <view class="span nav_txt nav_payment">待付款
-            <view class="b nav_payment_num" style="display:none;"></view>
-        </view>
-    </view>
-    <!--data-status="3" href="#" ms-class="nav_cur: all_status==1" ms-click=statusChange(1)-->
-    <view class="a fixed_nav_item {{all_status == 1 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
-        <view class="span nav_txt nav_receiving">待收货
-            <view class="b nav_receiving_num" style="display:none;"></view>
-        </view>
-    </view>
-
-    <view class="a fixed_nav_item {{all_status == 2 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
-        <view class="span nav_txt nav_receiving">已收货
-            <view class="b nav_receiving_num" style="display:none;"></view>
-        </view>
-    </view>
-
-    <view class="a fixed_nav_item {{all_status == 4 ? 'nav_cur' : ''}}" data-all_status="1" bindtap="statusChange">
-        <view class="span nav_txt nav_receiving">已取消
-            <view class="b nav_receiving_num" style="display:none;"></view>
-        </view>
-    </view>
+<view class='navbar'>
+  <view class="standard">
+    <view class="all {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-id='1' data-all_status="3"bindtap="statusChange"
+    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>全部</view>
+    <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
+    style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>待付款</view>
+    <view class="delive {{all_status == 1 ? 'nav_cur' : ''}}" data-id='3' data-all_status="1" bindtap="statusChange"
+    style='{{check_id==3?"border-bottom:1px solid #5bbc04;":""}}'>待收货</view>
+    <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='4' data-all_status="2" bindtap="statusChange"
+    style='{{check_id==4?"border-bottom:1px solid #5bbc04;":""}}'>已收货</view>
+    <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='5' data-all_status="4" bindtap="statusChange"
+    style='{{check_id==5?"border-bottom:1px solid #5bbc04;":""}}'>已取消</view>
+  </view>
 </view>
+
 
 <block ms-repeat-order="orders" wx:key="" wx:for-item="order" wx:for="{{orders}}">
 <view class='order_list'>
