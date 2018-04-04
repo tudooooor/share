@@ -202,7 +202,7 @@ Page({
     that.setData(util.wxAutoImageCal(e));
   },
   onShareAppMessage: function () {
-    return getApp().share({title : this.data.goods.goods_name,path : "pages/goods?goods_id=" + this.goods_id});
+    return getApp().share({title : this.data.goods.goods_name,path : "pages/goods/goods?goods_id=" + this.goods_id});
   },
   tohomePage:function(e) {
     wx.switchTab({
