@@ -1,0 +1,34 @@
+<view class='header'>
+  <view class='standard'>
+    <image src='/images/sky.jpg'></image>
+    <view class='nickname'>用户微信昵称</view>
+  </view>
+</view>
+<view class='func'>
+  <view class='fun_li'>
+    <view class='mark first'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+  <view class='fun_li'>
+    <view class='mark second'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+  <view class='fun_li'>
+    <view class='mark third'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+  <view class='fun_li' style='border:none;'>
+    <view class='mark fourth'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+</view>
+<view class='fun2'>
+   <view class='fun_li1'>
+    <view class='mark fifth'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+  <view class='fun_li1'>
+    <view class='mark sixth'></view>
+    <view class='txt'>我的订单</view>
+  </view>
+</view>

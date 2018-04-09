@@ -1,0 +1,16 @@
+<view class='address'>
+  <view class='standard'>
+    <view class='left'>
+      <view class='top'>
+        <view class='name'>张三</view>
+        <view class='sex'>男士</view>
+        <view class='tel'>12344556777</view>
+      </view>
+      <view class='bot'>武汉市洪山区关山大道光谷软件园</view>
+    </view>
+    <view class='right'>
+      <view class='edit'></view>
+      <view class='del'></view>
+    </view>
+  </view>
+</view>

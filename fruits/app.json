@@ -1,0 +1,55 @@
+{
+  "pages":[
+    "pages/busMine/busMine",
+    "pages/mine/mine",
+    "pages/address/address",
+    "pages/newAddress/newAddress",
+    "pages/allOrder/allOrder",
+    "pages/orderMy/orderMy",
+    
+    "pages/orderDetail/orderDetail",
+    
+    "pages/order/order",
+    "pages/homePage/homePage",
+    "pages/orderCus/orderCus",
+    "pages/orderBus/orderBus",
+    "pages/classification/classification",
+    "pages/management/management",
+    "pages/businessInfo/businessInfo",
+    "pages/submit/submit",
+    "pages/menu/menu"
+    
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "borderStyle":"#fff",
+    "color":"#999",
+    "selectedColor":"#333",
+    "list": [
+      {
+        "pagePath": "pages/homePage/homePage",
+        "text": "首页",
+        "iconPath":"/images/home.png",
+        "selectedIconPath":"/images/homeSel.png"
+      },
+      {
+        "pagePath": "pages/orderMy/orderMy",
+        "text": "订单",
+        "iconPath": "/images/order.png",
+        "selectedIconPath": "/images/orderSel.png"
+      },
+      {
+        "pagePath": "pages/management/management",
+        "text": "管理",
+        "iconPath": "/images/man.png",
+        "selectedIconPath": "/images/manSel.png"
+      }
+    ]
+  }
+}

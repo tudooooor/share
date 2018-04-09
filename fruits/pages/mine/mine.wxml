@@ -1,0 +1,43 @@
+<view class='ava'>
+  <image src='/images/sky.jpg'></image>
+</view>
+<view class='contact'>
+  <view class='standard'>
+    <view class='mark1'></view>
+    <view class='detail'>
+      <view class='name'>姓名</view>
+      <view class='user'>张三</view>
+      <view class='edit'></view>
+    </view>
+  </view>
+</view>
+
+<view class='contact'>
+  <view class='standard'>
+    <view class='mark2'></view>
+    <view class='detail'>
+      <view class='name'>手机号</view>
+      <view class='user'>123456789</view>
+    </view>
+  </view>
+</view>
+
+<view class='contact'>
+  <view class='standard'>
+    <view class='mark3'></view>
+    <view class='detail'>
+      <view class='name'>微信号</view>
+      <view class='user'>13214234325</view>
+    </view>
+  </view>
+</view>
+
+<view class='contact'>
+  <view class='standard'>
+    <view class='mark4'></view>
+    <view class='detail1'>
+      <view class='name'>收货地址</view>
+      <view class='arrow'></view>
+    </view>
+  </view>
+</view>
