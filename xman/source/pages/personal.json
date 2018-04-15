@@ -1,3 +1,7 @@
 {
-    "navigationBarTitleText" : " "
+  "navigationBarBackgroundColor": "#5bbc04",
+  "navigationBarTextStyle": "#fff",
+  "navigationBarTitleText": "ÎÒµÄ",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
 }

@@ -1,6 +1,6 @@
 page {background-color: #eceded;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     font-family: PingFangSC-Regular,Helvetica,STHeiti STXihei,Microsoft JhengHei,Microsoft YaHei,Arial;
 }
 .a {display: inline;}
@@ -946,3 +946,6 @@ contact-button {
     font-size: 10px;
     color: #333;
 }
+
+
+
