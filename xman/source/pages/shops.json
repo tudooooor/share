@@ -1,6 +1,7 @@
 {
-    "enablePullDownRefresh": true,
-    "navigationBarTitleText" : "管理收货地址",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#5bbc04",
+  "navigationBarTextStyle": "#fff",
+  "navigationBarTitleText": "我的店铺",
+  "backgroundTextStyle": "light"
 }
