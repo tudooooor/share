@@ -28,10 +28,10 @@
 <view class='fun2'>
   <view class='fun_li1'>
     <view class='mark fifth'></view>
-    <view class='txt'>我的订单</view>
+    <view class='txt'>流量统计</view>
   </view>
   <view class='fun_li1'>
     <view class='mark sixth'></view>
-    <view class='txt'>我的订单</view>
+    <view class='txt'>售后服务</view>
   </view>
 </view>
