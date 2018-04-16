@@ -1,0 +1,32 @@
+<view class='box'>
+  <view class='standard'>
+    <view class='left'>
+       <image src='/images/pic.png'></image>
+       <view class='left_txt'>
+          <text class='tit'>南丰蜜桔</text>
+          <text class='stora'>库存82箱  月售24箱</text>
+          <text class='price'>￥31.8</text>
+       </view>
+    </view>
+    <view class='right'>
+      <view class='edit'>编辑</view>
+      <view class='out'>下架</view>
+    </view>
+  </view>
+</view>
+<view class='box'>
+  <view class='standard'>
+    <view class='left'>
+       <image src='/images/add.png'></image>
+       <view class='left_txt'>
+          <text class='tit'>商品名称</text>
+          <text class='stora'>库存0  月售0</text>
+          <text class='price'>￥31.8</text>
+       </view>
+    </view>
+    <view class='right'>
+      <view class='edit'>编辑</view>
+      <view class='out'>下架</view>
+    </view>
+  </view>
+</view>

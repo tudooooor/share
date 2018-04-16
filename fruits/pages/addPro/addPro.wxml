@@ -1,0 +1,41 @@
+<view class='standard'>
+  <view class='left'>商品名：</view>
+  <view class='right'>
+     <input placeholder='请输入名称' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view>
+
+<view class='standard'>
+  <view class='left'>库存：</view>
+  <view class='right'>
+     <input placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view>
+
+<view class='standard'>
+  <view class='left'>单价：</view>
+  <view class='right'>
+     <input placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view>
+
+<view class='standard'>
+  <view class='left p'>商品规格:</view>
+  <view class='right pr'>
+     <input placeholder='请输入商品规格' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view>
+
+<view class='standard'>
+  <view class='desc'>商品描述:</view>
+  <view class='desc_right '>
+     <input placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view>
+
+<view class='standard' style='margin-top:100rpx;'>
+  <view class='upload'>上传商品照片:</view>
+  <image src='/images/add.png'></image>
+</view>
+
+<view class='submit'>提交</view>
