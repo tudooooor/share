@@ -1,5 +1,4 @@
 <view id="main" hidden="{{!page.load && !page.operate || notNetCon.error == 1 && notNetCon.show == 1 || notServerCon.error == 1 && notServerCon.show == 1 || image_load == 0}}">
-
 <!--轮播图 -->
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" 
@@ -11,54 +10,11 @@
   </block>
 </swiper>
 
-
-    <view class="container" wx:if="{{banners != 'undefined'}}">
+<view class="container" wx:if="{{banners != 'undefined'}}">
         <view class="main-view" id="co-focus" >
             <view class="div tuan" id="tuan">
-                 <!-- <view id="channelSlider" class="ch-container div">                   
-                    <!--<view class="ch-left span"></view>
-                    <view class="ch-right span"></view>-->
-                    <!-- <scroll-view class="ch-content recommend_scroll_x_box" scroll-x="true" scroll-left="{{nav_scroll_left}}" scroll-with-animation="true">
-                    <!--<view class="ch-content ul">-->
-                       <!--  view class="ch-tab-item li"><view class="{{ current_index == undefine || current_index == -1 ?  'cur-ch-tab' : 'ch-tab'}} span" data-index="-1" data-cate_id="0" catchtap="channelRendered">首页</view></view
-                        <block wx:key="item" wx:for="{{cates}}">
-                            <view class="ch-tab-item li">
-                                <view class="{{current_index == index ?  'cur-ch-tab' : 'ch-tab'}} span" data-index="{{index}}" data-cate_id="{{item.cate_id}}" catchtap="channelRendered">{{item.cate_name}}</view>
-                            </view>
-                        </block> -->
-                    <!--</view>-->
-                   <!--  </scroll-view>
-                </view> -->
-
-                  <scroll-view 
-    scroll-top="{{scroll_Top}}"
-    bindscroll="scroll" style="height: {{windowHeight}}px; width: {{windowWidth}}px;" 
-    scroll-y="{{is_scroll}}" bindscrolltoupper="pullUpLoad" bindscrolltolower="pullDown">
-
-                <!--view id="rp-banner">
-                     <swiper bindchange="bindchange"  indicator-dots="{{indicator-dots}}" indicator-color="#fff" indicator-active-color="#e02e24" 
-                    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width:{{banner_img.imageWidth}}px;height:{{banner_img.imageheight}}px;{{ current_index == undefine || current_index == -1 ? '' : 'display:none;'}}" id="slider" circular="true">
-                        <block wx:key="item" wx:for="{{banners}}">
-                            <swiper-item style="width:100%;height:100%;">
-                                <!--<navigator url="{{item.banner_type == '1' && item.target_url && item.target_url != '#' ? item.target_url : ''}}"></navigator>-->
-                             <!--        <image  src="{{item.image_url}}" class=" slide-image" style="width: 100%;height: 100%;" bindload='cusImageLoad'  data-id="banner_img" mode="widthFix" bindtap="bannerDetail" data-index="{{index}}"/>
-                                
-                            </swiper-item>
-                        </block>
-                    </swiper>
-
-                    <view class="ul rp-islider-dot-wrap">
-                        <block wx:key="item" wx:for="{{banners}}" wx:for-index="idx">
-                            <view class="li rp-islider-dot {{current == (idx + 1) ? 'active' : ''}}"></view>
-                        </block>
-                    </view>
-                    
-                </view>-->
-                
                     <view class="div clear-both"></view>
-
                     <view class="for-margin-top"></view>           
-
                     <block wx:key="{{item}}" wx:for="{{goods}}" wx:if="{{current_index == undefine || current_index == -1}}">
                         <view style="" class="goods_list tuan-new div">
                             <view class="tuan_g div">
@@ -109,21 +65,7 @@
                                            </view>
                                            <view class='com_right'>48分钟</view>
                                            </view>
-                                           <!-- <view class='vip'  bindtap='viewMenu'> -->
-                                            <!-- <view class='count'  style='justify-content:{{flexDir}}'>
-                                            <view class='sub' bindtap='sub' style='display:{{subDisplay}};'></view>
-                                            <view class='number'  style='display:{{subDisplay}};'>{{fenshu}}</view>
-                                            <view class='plus' bindtap='plus'></view>
-                                            </view> -->
-                                              <!-- <view class='com_left'> -->
-                                          <!-- <view class='vip_price'>
-                                            会员价<span>{{item.group_price}} </span>
-                                            <!-- <span style="font-size:32rpx;font-weight:590;">￥15.9</span> -->
-                                          <!-- </view> -->
-                                      <!--      </view> -->
-                                           <!-- <view class='com_right1'></view> -->
-                                     <!-- </view> -->
-                                  </view>
+                                            </view>
                                 </navigator>
                             </view>
                         </view> 
@@ -175,8 +117,6 @@
                     <view class="goods-recommend-line"></view><view class="p">已经到底部了</view>
                 </view>
 
-
-                </scroll-view>
               </view>
         </view>
     </view>

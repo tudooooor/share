@@ -12,8 +12,8 @@ Page({
       'autoplay': true,
       'interval': 5000,
       'duration': 500,
-      'loaded': false,
-      'indicator-dots' : false,
+      'loaded': true,
+      'indicatorDots' : true,
       "is_over" : false,
       "no_data" : false,
       "goods_img" : {
@@ -137,6 +137,8 @@ Page({
     }
   },
   onReady:function(){},
+  // onShow: function () {  
+  // },
   onShow:function(){
     wx.getSystemInfo( {
       success: ( res ) => {
