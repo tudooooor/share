@@ -15,7 +15,7 @@
     <view class='mark second'></view>
     <view class='txt'>收货地址</view>
   </navigator>
-  <navigator class='fun_li' url="seller">
+  <navigator class='fun_li' url="seller?userImage={{userInfo.avatarUrl}}">
     <view class='mark third'></view>
     <view class='txt'>个人信息管理</view>
   </navigator>
