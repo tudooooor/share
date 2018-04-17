@@ -48,7 +48,8 @@ Page({
      'city_tip' : false,
      'district_tip' : false,
      'adType_tip' : false,
-     'adinfo_tip' : false
+     'adinfo_tip' : false,
+     userImage: "",
   },
   formId:function(options){
   },
@@ -265,7 +266,7 @@ Page({
         title: '添加新卖家'
       })
     }
-
+    this.setData({ userImage: options.userImage });
     util.loadding(this);
 
     console.log("op : " + JSON.stringify(options));
