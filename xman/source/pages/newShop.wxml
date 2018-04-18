@@ -1,21 +1,32 @@
 <form bindsubmit="formSubmit">
 <view class='standardnew'>
   <view class='left'>商品名：</view>
-  <view class='right'>
-     <input name="goodName" placeholder='请输入名称' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput" value='{{goodName}}'></input>
+  <view class='right' wx:if="{{edit=='false'}}">
+     <input name="goodName" placeholder='请输入名称' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput" ></input>
+  </view>
+    <view class='right' wx:if="{{edit=='true'}}">
+     <input name="goodName"  placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput" value='{{goodName}}'></input>
   </view>
 </view>
 
 <view class='standardnew'>
   <view class='left'>库存：</view>
-  <view class='right'>
+  <view class='right' wx:if="{{edit=='false'}}">
+     <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" ></input>
+  </view>
+
+    <view class='right' wx:if="{{edit=='true'}}">
      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{storageNumber}}'></input>
   </view>
 </view>
 
 <view class='standardnew'>
   <view class='left'>单价：</view>
-  <view class='right'>
+  <view class='right' wx:if="{{edit=='false'}}">
+     <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice"></input>
+  </view>
+
+    <view class='right' wx:if="{{edit=='true'}}">
      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{price}}'></input>
   </view>
 </view>
@@ -27,9 +38,13 @@
   </view>
 </view> -->
 
-<view class='standardnew'>
+<view class='standardnew' wx:if="{{edit=='false'}}">
   <view class='desc'>商品描述:</view>
   <view class='desc_right '>
+     <input name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" ></input>
+  </view>
+
+    <view class='desc_right ' wx:if="{{edit=='true'}}">
      <input name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" value='{{goodsDesc}}'></input>
   </view>
 </view>
@@ -56,47 +71,3 @@
 
 
 
-
-<!-- 
-
-<form bindsubmit="formSubmit">
-
-  <view class="itemView">
-    <span>商品名:</span> 
-    <input class="input" type="text" name="goodName" placeholder="请输入商品名称" bindinput="goodNameInput" value='{{goodName}}' />
-  </view>       
-  <view class="itemView">
-    <span>库存:</span>
-    <input class="input" type="number" name="storageInput" placeholder="请输入库存" bindinput="bindStorageInput" value='{{storageNumber}}'/>
-  </view>
-  <view class="itemView">
-      <span>单价:</span>
-    <input class="input" type="number" name="price" placeholder="请输入市场价" bindinput="bindPrice" value='{{price}}'/>
-  </view>
- 
-  <view class="itemView">
-    　商品描述：
-      <input class="input" type="text" name="goodsDesc" placeholder="请输入商品描述" bindinput="bindGoodsDesc" value='{{goodsDesc}}'/>
-    </view>
-
-
-  <image bindtap="upimg" src='../utils/images/jia.png' class="jiaPicture"></image>
-  <swiper class="content">
-
-    <block wx:for="{{img_arr}}">
-      <swiper-item>
-        <image src='{{item}}' class="img" mode="aspectFill"></image>
-      </swiper-item>
-    </block>
-  </swiper>
-  <view class="div margin_footer"></view>
-
-
-  <view class="add_shop_red">
-    <view class="inner_red">
-      <button id="button" formType="submit" class="add_text_red">提交</button>
-    </view>
-  </view>
-
-
-</form> -->

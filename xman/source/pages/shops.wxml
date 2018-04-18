@@ -1,5 +1,4 @@
-<view class='box'>
-
+<scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
   <view wx:key="item" wx:for="{{address_list}}" class='standard_new'>
     <view class='left box'>
       <navigator url="./goods/goods?goods_id={{item.goods_id}}">
@@ -16,13 +15,13 @@
       <view class='out' bindtap='bindDeleteGood' data-goods_id='{{item.goods_id}}'>下架</view>
     </view>
   </view>
-</view>
+</scroll-view>
 
 
 
 
-  <view class="add_shop_red">
-    <view class="inner_red">
-      <navigator url="./newShop?edit={{false}}" class="a add_text_red" style="color:white" >新增商品</navigator>
-    </view>
+<view class="add_shop_red">
+  <view class="inner_red">
+    <navigator url="./newShop?edit={{false}}" class="a add_text_red" style="color:white">新增商品</navigator>
+  </view>
 </view>
