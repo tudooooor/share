@@ -1,3 +1,85 @@
+page {
+  background-color: white;
+}
+.standardnew{
+  margin: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+swiper {
+  height: 450rpx;
+}
+.standardnew1{
+  margin: 3px;
+  display: flex;
+  flex-direction: row;
+}
+.left{
+  width: 18%;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+.p{
+  width: 22%; 
+}
+.pr{
+  width: 78%;
+}
+
+.right,.desc_right{
+  width: 82%;
+}
+.right input{
+  width: 97%;
+   height: 60rpx;
+  line-height: 60rpx;
+  margin-top: 10rpx;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+.desc{
+   width: 22%;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+.desc_right input{
+  width: 97%;
+  height: 120rpx;
+  margin-top:10rpx;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+.upload{
+  width:35%;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  height: 100rpx;
+}
+.standardnew1 image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.submit{
+  position: absolute;
+  bottom: 20rpx;
+  width: 80%;
+  margin-left: 10%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #5bbc04;
+  border-radius: 6rpx;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+
 .img
 {
   width: 100%;

@@ -1,4 +1,65 @@
 <form bindsubmit="formSubmit">
+<view class='standardnew'>
+  <view class='left'>商品名：</view>
+  <view class='right'>
+     <input name="goodName" placeholder='请输入名称' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput" value='{{goodName}}'></input>
+  </view>
+</view>
+
+<view class='standardnew'>
+  <view class='left'>库存：</view>
+  <view class='right'>
+     <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{storageNumber}}'></input>
+  </view>
+</view>
+
+<view class='standardnew'>
+  <view class='left'>单价：</view>
+  <view class='right'>
+     <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{price}}'></input>
+  </view>
+</view>
+
+<!-- <view class='standardnew'>
+  <view class='left p'>商品规格:</view>
+  <view class='right pr'>
+     <input placeholder='请输入商品规格' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  </view>
+</view> -->
+
+<view class='standardnew'>
+  <view class='desc'>商品描述:</view>
+  <view class='desc_right '>
+     <input name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" value='{{goodsDesc}}'></input>
+  </view>
+</view>
+
+<view class='standardnew1' style='margin-top:20rpx;'>
+  <view class='upload' style='margin-top:40rpx;'>上传商品照片:</view>
+  <image bindtap="upimg" src='/images/home.png'></image>
+
+</view>
+
+  <swiper >
+    <block wx:for="{{img_arr}}">
+      <swiper-item>
+        <image src='{{item}}' class="img" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+<button id="button" class='submit' formType="submit">提交</button>
+</form>
+
+
+
+
+
+
+
+<!-- 
+
+<form bindsubmit="formSubmit">
 
   <view class="itemView">
     <span>商品名:</span> 
@@ -18,31 +79,10 @@
       <input class="input" type="text" name="goodsDesc" placeholder="请输入商品描述" bindinput="bindGoodsDesc" value='{{goodsDesc}}'/>
     </view>
 
-<!-- 
-  <view class="section">
-  
-    <view class='form-group'>
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-        <view class="picker">
-          <input type="hidden" disabled="true" name="addr" value="{{array[index]}}" />
-        </view>
-      </picker>
-    </view>
-  </view>
 
-  <view class="section">
-   
-    <view class='form-group'>
-      <picker bindchange="bindPickerChangeBuy" value="{{indexBuy}}" range="{{arrayBuy}}">
-        <view class="picker">
-          <input type="hidden" disabled="true" name="addr" value="{{arrayBuy[indexBuy]}}" />
-        </view>
-      </picker>
-    </view>
-  </view> -->
   <image bindtap="upimg" src='../utils/images/jia.png' class="jiaPicture"></image>
   <swiper class="content">
-    <!-- <image bindtap="upimg" src='../utils/images/jia.png' class = "img"></image>   -->
+
     <block wx:for="{{img_arr}}">
       <swiper-item>
         <image src='{{item}}' class="img" mode="aspectFill"></image>
@@ -58,5 +98,5 @@
     </view>
   </view>
 
-  <!-- <button class='btn' formType="submit"> 上传图片 </button>   -->
-</form>
+
+</form> -->

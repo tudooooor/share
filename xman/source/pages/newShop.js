@@ -22,7 +22,7 @@ Page({
     sell_count:0,
     in_selling:0,
   },
-  bindGoodName: function(e)
+  goodNameInput: function(e)
   {
     console.log('bindGoodName，携带值为', e.detail.value)  
     this.setData({  

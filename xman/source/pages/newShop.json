@@ -1,7 +1,8 @@
 {
     "enablePullDownRefresh": true,
-     "navigationBarTitleText" : " ",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black",
-    "disableScroll" : false
+  "navigationBarTextStyle": "#fff",
+  "navigationBarBackgroundColor": "#5bbc04",
+    "navigationBarTitleText": "新增商品",
+  "backgroundTextStyle": "light",
+    "disableScroll" : true
 }
