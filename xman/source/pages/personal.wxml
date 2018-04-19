@@ -1,7 +1,7 @@
 <view class='header'>
   <view class='standard_new'>
     <image src="{{userInfo.avatarUrl}}"></image>
-    <view class='nickname'>{{userInfo.nickName}}</view>
+    <view class='nickname'>{{userInfo.nickName}}</view>    
   </view>
 </view>
 
@@ -15,9 +15,9 @@
     <view class='mark second'></view>
     <view class='txt'>收货地址</view>
   </navigator>
-  <navigator class='fun_li' url="seller?userImage={{userInfo.avatarUrl}}">
+  <navigator class='fun_li' url="seller?userImage={{userInfo.avatarUrl}}&nickname={{userInfo.nickName}}">
     <view class='mark third'></view>
-    <view class='txt'>个人信息管理</view>
+    <view class='txt'>个人信息</view>
   </navigator>
   <navigator class='fun_li' style='border:none;' url="shops">
     <view class='mark fourth'></view>

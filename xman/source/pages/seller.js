@@ -1,4 +1,5 @@
 var util = require('../utils/util.js')
+var app = getApp();
 
 Page({
   data:{
@@ -51,6 +52,15 @@ Page({
      'adinfo_tip' : false,
      userImage: "",
   },
+
+  edit:function(options){
+    console.log("---view1 bindtap click");
+  },
+
+  getPhoneNumber:function(options){
+
+  },
+
   formId:function(options){
   },
   deletes:function(options){
@@ -259,14 +269,16 @@ Page({
   onLoad:function(options){
     if(this.options.address_id) {
       wx.setNavigationBarTitle({
-        title: '编辑卖家信息'
+        title: '编辑个人信息'
       })
     } else {
       wx.setNavigationBarTitle({
-        title: '添加新卖家'
+        title: '个人信息'
       })
     }
     this.setData({ userImage: options.userImage });
+    this.setData({ nickname: options.nickname});
+
     util.loadding(this);
 
     console.log("op : " + JSON.stringify(options));

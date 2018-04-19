@@ -1,14 +1,22 @@
 <view class='ava'>
   <image src="{{userImage}}"></image>
 </view>
+
+<span style="font-size: 14px;"><button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button></span> 
+
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark1'></view>
     <view class='detail'>
+      <view class='name'>昵称</view>
+      <view class='user'>{{nickname}}</view>
+      <view class="edit" catchtap="edit"></view>
+    </view>
+    <!--<view class='detail'>
     <view class='name'>姓名</view>
       <input class='input' placeholder="请输入姓名">
       </input>
-    </view>
+    </view>-->
   </view>
 </view>
 
