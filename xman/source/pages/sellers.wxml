@@ -29,7 +29,7 @@
     <view class='mark3'></view>
     <view class='detail'>
       <view class='name'>微信号</view>
-      <input id="wxNumber" name="wxNumber" value="{{address.wxNumber}}" type="number"/>
+      <input id="wxNumber" name="wxNumber" value="{{address.wxNumber}}" type="txt"/>
     </view>
   </view>
 </view>
