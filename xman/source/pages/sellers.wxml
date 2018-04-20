@@ -10,9 +10,6 @@
     <view class='detail'>
       <view class='name'>昵称</view>
       <view class='user'>{{nickname}}</view>
-      <navigator class='fun_li' url="sellers">
-        <view class="edit"></view>
-      </navigator>       
     </view>
   </view>
 </view>
@@ -21,8 +18,10 @@
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail'>
-      <view class='name'>手机号</view>
-      <view class='user'>123456789</view>
+      <label for="mobile"><view class='name'>手机号</view>
+        <input id="mobile" name="mobile" value="{{address.mobile}}" type="number" bindblur='mobile_function'/>
+        <view class="span" id="updateTip2" style="color: #F43530; {{!mobile_tip ? 'display: none;' : ''}}">请填写正确的手机号</view>
+        </label>
     </view>
   </view>
 </view>
