@@ -20,7 +20,8 @@
     "pages/newAddress/newAddress",
     "pages/shops",
     "pages/newShop",
-    "pages/seller"
+    "pages/seller",
+    "pages/sellers"
   ],
   "window":{
     "backgroundColor": "#fff",
