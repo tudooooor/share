@@ -2,15 +2,13 @@
   <image src="{{userImage}}"></image>
 </view>
 
-<span style="font-size: 14px;"><button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button></span> 
-
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark1'></view>
     <view class='detail'>
       <view class='name'>昵称</view>
       <view class='user'>{{nickname}}</view>
-      <navigator class='fun_li' url="sellers">
+      <navigator class='fun_li' url="sellers?userImage={{userImage}}">
         <view class="edit"></view>
       </navigator>       
     </view>
@@ -48,4 +46,3 @@
     </view>
   </view>
 </view>
-

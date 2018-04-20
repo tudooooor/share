@@ -41,6 +41,7 @@ Page({
      'address' :  {
        "receive_name" : '',
        "mobile" : '',
+       "wxNumber":'',
        "address" : ''
      },
      'receive_name_tip' : false,

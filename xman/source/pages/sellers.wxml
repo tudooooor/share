@@ -2,14 +2,12 @@
   <image src="{{userImage}}"></image>
 </view>
 
-<span style="font-size: 14px;"><button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button></span> 
-
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark1'></view>
     <view class='detail'>
-      <view class='name'>昵称</view>
-      <view class='user'>{{nickname}}</view>
+      <view class='name'>姓名</view>
+       <input id="name" name="name" value="{{address.name}}" type="txt"/>
     </view>
   </view>
 </view>
@@ -18,9 +16,9 @@
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail'>
-      <label for="mobile"><view class='name'>手机号</view>
+    <view class='name'>手机号</view>
+      <label for="mobile">
         <input id="mobile" name="mobile" value="{{address.mobile}}" type="number" bindblur='mobile_function'/>
-        <view class="span" id="updateTip2" style="color: #F43530; {{!mobile_tip ? 'display: none;' : ''}}">请填写正确的手机号</view>
         </label>
     </view>
   </view>
@@ -31,20 +29,12 @@
     <view class='mark3'></view>
     <view class='detail'>
       <view class='name'>微信号</view>
-      <view class='user'>13214234325</view>
+      <input id="wxNumber" name="wxNumber" value="{{address.wxNumber}}" type="number"/>
     </view>
   </view>
 </view>
 
 <view class='contact'>
-  <view class='standard_new'>
-    <view class='mark4'></view>
-    <view class='detail1'>
-      <view class='name'>收货地址</view>
-      <navigator class='fun_li' url="addresses">
-        <view class='arrow'></view>
-      </navigator>
-    </view>
-  </view>
+  <button class="submit" id="add" formType="submit">确认</button>
 </view>
 
