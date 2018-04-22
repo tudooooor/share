@@ -21,32 +21,19 @@
     <!--店铺信息  -->
     <view class='information'>
       <view class='shop_name' bindtap='look'>百果园水果（杭州滨江）</view>
-      <!--店铺综合情况  -->
-      <view class='comprehensive_situation'>
-        <view class='com_left'>
-         <block wx:for="{{flower}}">
-          <view class='flower'></view>
-          </block>
+      <!--店铺简介  -->
           
-          <view class='sales'>月售487单</view>
-        </view>
-        <view class='com_right'>2km</view>
-      </view>
-      <view class='rules'>
-        <view class='com_left'>
-          <view class='Starting_price'>起送￥20</view>
-          <view class='delivery'>配送￥8</view>
-        </view>
-        <view class='com_right'>48分钟</view>
+      <view class='fresh'>
+        当季水果，新鲜采摘，特甜口感好
       </view>
       <view class='vip'  bindtap='viewMenu'>
-         <view class='com_left'>
           <view class='vip_price'>
-            会员价<span style="font-size:32rpx;font-weight:590;">￥15.9</span>
+            ￥15.9
           </view>
           
+        <view class='buy'>
+          立即购买
         </view>
-        <view class='com_right1'></view>
       </view>
     </view>
   </view>

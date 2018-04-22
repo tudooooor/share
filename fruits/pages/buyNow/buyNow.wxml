@@ -1,0 +1,36 @@
+<!--商品切换 -->
+<scroll-view class="scroll-view_H" scroll-x scroll-with-animation style="width: 100%;height:{{windowHeight}}px" bindscroll="getSelectItem">
+     <block wx:for="{{proList}}"  wx:key="unique" wx:for-index="id" wx:for-item="item">
+      <view class="scroll_item  {{item.selected ? 'selected' : ''}}"  data-index='{{item.index}}'
+      bindtap='selectProItem'>
+       <view class='proImg'><image src="/images/pic.png" class="slide-image" 
+       mode="widthFix"/>
+       </view>
+      </view>
+     </block>
+   </scroll-view>
+<!--商品简介  -->
+<view class='information'>
+    <view class='info_top'> 
+    <view class='standard' style='justify-content:space-between;'>
+      <view class='shop_name'>百果园水果（杭州滨江）</view>
+      <view class='price'>￥15.9</view>
+    </view>
+    <view class='weight'>
+      <view class='standard'>1斤</view>
+    </view>
+    
+  </view>
+</view>
+<!--数量  -->
+<view class='standard'  style='justify-content:space-between;height:100rpx;line-height:100rpx;'>
+  <view class='num_left'>
+  数量
+  </view>
+  <view class='num_right'>
+     <view class='sub'></view>
+     <view class='count'>1</view>
+     <view class='plus'></view>
+  </view>
+</view>
+<view class='buy_now'>立即购买</view>

@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/buyNow/buyNow",
     "pages/addPro/addPro",
     "pages/myShop/myShop",
     "pages/busMine/busMine",

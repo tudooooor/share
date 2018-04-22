@@ -55,6 +55,7 @@ swiper,swiper image{
 .information{
   width: 62%;
   margin-left: 3%;
+  margin-top: 10rpx;
   display: flex;
   flex-direction: column;
 }
@@ -69,50 +70,14 @@ swiper,swiper image{
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.comprehensive_situation,.rules,.vip{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-.com_left{
-  width: 65%;
-  height: 45rpx;
-  line-height: 45rpx;
-  display: flex;
-  flex-direction: row;
-}
-.rank,.Starting_price{
-  width: 40%;
-  font-size: 24rpx;
-  font-weight: 500;
-}
-.flower{
-  color: #fa3137;
-}
-.flower::after{
-  font-family: 'iconfont';
-  content: '\e604';
-  color: #fa3137;
-  font-size: 24rpx;
-  font-weight: bold;
-}
-.Starting_price,.delivery{
+.fresh{
+  font-size:28rpx;
   color: #999;
-  font-size: 24rpx;
+  line-height: 30rpx;
 }
-.sales,.delivery{
-  width: 60%;
  
-  font-weight: 500;
-  /* font: 24rpx #333  400 ; */
-}
-.sales{
-  margin-left: 7%;
-  color: #333;
-  font-size: 28rpx;
-  font-weight: 400;
-}
+
+
 .com_right{
   width: 35%;
   height: 45rpx;
@@ -122,23 +87,25 @@ swiper,swiper image{
   color: #333;
   text-align: right;
 }
-.com_right1{
-  width: 35%;
-  height: 45rpx;
-  line-height: 45rpx;
-  text-align: right;
-}
-.com_right1::after{
-  font-family: 'iconfont';
-  content: '\e6c2';
-  color: #5bbc04;
-  font-size: 45rpx;
-  font-weight: 500;
-  padding: 0 4rpx;
+.vip{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 80rpx;
 }
 .vip_price{
   width: 100%;
-  font-size: 24rpx;
   color: #5bbc04;
-  font-weight: 400;
+  font-size:32rpx;
+  font-weight:590;
+}
+.buy{
+  width: 150rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #fff;
+  border-radius: 25rpx;
+  text-align: center;
+  background-color: #5bbc04;
 }
