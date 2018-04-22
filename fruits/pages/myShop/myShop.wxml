@@ -30,3 +30,9 @@
     </view>
   </view>
 </view>
+<view class='buy_now'>
+ <view class='standard' style='justify-content:center;'>
+    <view class='add_mark'></view>
+    <view class='add_txt'>新增商品</view>
+</view>
+</view>
