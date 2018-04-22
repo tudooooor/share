@@ -5,13 +5,13 @@
         <image src='{{item.image_url}}'></image>
       </navigator>
       <view class='left_txt'>
-        <text class='tit'>{{item.goods_name}}</text>
-        <text class='stora'>{{item.goods_stock}}</text>
-        <text class='price'>{{item.market_price}}</text>
+        <view><text class='tit'>{{item.goods_name}}</text></view>
+        <view class='stora'>库存:<text >{{item.goods_stock}}</text></view>
+        <view class='price'>单价:<text >{{item.market_price}}</text>¥</view>
       </view>
     </view>
     <view class='right'>
-      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}' class='edit' bindtap='bindEditGood'>编辑</navigator>
+      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}&images={{item.goods_imgs}}' class='edit' bindtap='bindEditGood'>编辑</navigator>
       <view class='out' bindtap='bindDeleteGood' data-goods_id='{{item.goods_id}}'>下架</view>
     </view>
   </view>
