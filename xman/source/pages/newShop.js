@@ -226,15 +226,43 @@ Page({
     var urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
     this.data.tempImages = [];
 
+    var count = 0;
     for (var i = 0; i < this.data.img_arr.length; i++) {
       if (this.data.img_arr[i].indexOf("Uploads") == -1) {
         this.data.tempImages.push(this.data.img_arr[i]);
       }
-
+      else
+      {
+        count++;
+      }
     }
+    if (count == this.data.img_arr.length)
+    {
+      var goods_id = this.data.goods_id;
+      urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload3&token=" + this.token;
 
-    this.upload(0, this.data.tempImages.length, urls);
-
+      var goods_imgs = JSON.stringify(this.data.img_arr);
+      wx.request({
+        url: urls,
+        method: 'POST',
+        data: {
+          "goods_imgs": goods_imgs,
+          "goods_id": goods_id
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'
+        },
+        success: function (res) {
+          console.log(res);
+          wx.navigateBack();
+        }
+      });
+    }
+    else
+    {
+      this.upload(0, this.data.tempImages.length, urls);
+    }
   },
 
   upload: function (index, uploadCount, urls) {
@@ -252,14 +280,7 @@ Page({
           var data = JSON.parse(res.data);
           goods_imgs_temp[index] = data["url"];
         }
-
         console.log(res)
-        // var good_img = {goods_imgs:data["url"]};
-        // adds.goods_imgs.push(data["url"]);
-        // JSON.stingify(adds.image_urls);
-        // adds.goods_imgs[index] = data["url"];
-
-
         if (res) {
           wx.showToast({
             title: '已提交发布！',
@@ -309,15 +330,6 @@ Page({
               }
             }
             adds.goods_imgs = JSON.stringify(goods_imgs_temp);
-            // util.ajax({
-            //   "url": urls,
-            //   "method": "POST",
-            //   "data": {'goods_imgs':adds.goods_imgs},
-            //   "success": function (res) {
-            //     console.log(res);
-            //   }
-            // });
-
             wx.request({
               url: urls,
               method: 'POST',
@@ -329,6 +341,7 @@ Page({
               },
               success: function (res) {
                 console.log(res);
+                wx.navigateBack();
               }
           });
           }

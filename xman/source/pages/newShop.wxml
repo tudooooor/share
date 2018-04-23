@@ -51,7 +51,7 @@
 
   <view class='standardnew1' style='margin-top:20rpx;'>
     <view class='upload' style='margin-top:40rpx;'>上传商品照片:</view>
-    <image bindtap="upimg" src='/images/home.png'></image>
+    <image bindtap="upimg" src='/images/add.png'></image>
 
   </view>
 

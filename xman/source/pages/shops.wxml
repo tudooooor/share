@@ -7,7 +7,7 @@
       <view class='left_txt'>
         <view><text class='tit'>{{item.goods_name}}</text></view>
         <view class='stora'>库存:<text >{{item.goods_stock}}</text></view>
-        <view class='price'>单价:<text >{{item.market_price}}</text>¥</view>
+        <view class='price'>单价:¥<text >{{item.market_price}}</text></view>
       </view>
     </view>
     <view class='right'>
