@@ -2,7 +2,8 @@
   <image src="{{userImage}}"></image>
 </view>
 
-<view class='contact'>
+<form class="contact" bindsubmit="formSubmit" bindreset="formReset">
+<!--<view class='contact'>-->
   <view class='standard_new'>
     <view class='mark1'></view>
     <view class='detail'>
@@ -10,9 +11,9 @@
        <input id="name" name="name" value="{{address.name}}" type="txt"/>
     </view>
   </view>
-</view>
+<!--</view>-->
 
-<view class='contact'>
+<!--<view class='contact'>-->
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail'>
@@ -22,9 +23,9 @@
         </label>
     </view>
   </view>
-</view>
+<!--</view>-->
 
-<view class='contact'>
+<!--<view class='contact'>-->
   <view class='standard_new'>
     <view class='mark3'></view>
     <view class='detail'>
@@ -32,9 +33,14 @@
       <input id="wxNumber" name="wxNumber" value="{{address.wxNumber}}" type="txt"/>
     </view>
   </view>
+<!--</view>-->
+
+<!--<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>-->
+
+<view class="p action">
+  <button form-type="submit">提交</button>
+  <button form-type="reset">重置</button>
 </view>
 
-<view class='contact'>
-  <button class="submit" id="add" formType="submit">确认</button>
-</view>
+</form>
 

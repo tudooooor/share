@@ -53,29 +53,35 @@ Page({
      userImage: "",
   },
 
-  edit:function(options){
-    console.log("---view1 bindtap click");
-  },
-
-  getPhoneNumber:function(options){
-
-  },
-
   formId:function(options){
   },
-  deletes:function(options){
-    var self = this;
-    wx.showModal({
-      title: '确定删除这个地址吗？',
-      content: '',
-      success: function(res) {
-        if (res.confirm) {
-           self.modalConfirm();
-        } 
-      }
-    })
-    //this.setData({modalHidden : false});
+
+
+  //表单提交按钮
+  formSubmit: function (e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    this.setData({
+      allValue: e.detail.value
+    });
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+
+    prevPage.setData({
+      address: e.detail.value
+    });
+
+    wx.navigateBack();
   },
+  //表单重置按钮
+  formReset: function (e) {
+    console.log('form发生了reset事件，携带数据为：', e.detail.value)
+    this.setData({
+      allValue: ''
+    })
+  },
+
+
   modalConfirm:function(options){
     util.loadding(this,1);
     var url = this.baseApiUrl + "?g=Api&m=Weuser&a=address&address_id=" + this.options.address_id + "&token=" + this.token;;
