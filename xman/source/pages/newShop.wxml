@@ -12,22 +12,22 @@
   <view class='standardnew'>
     <view class='left'>库存：</view>
     <view class='right' wx:if="{{edit=='false'}}">
-      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput"></input>
+      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" type="number"></input>
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
-      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{storageNumber}}'></input>
+      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{storageNumber}}' type="number"></input>
     </view>
   </view>
 
   <view class='standardnew'>
     <view class='left'>单价：</view>
     <view class='right' wx:if="{{edit=='false'}}">
-      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice"></input>
+      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" type="number"></input>
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
-      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{price}}'></input>
+      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{price}}' type="number"></input>
     </view>
   </view>
 
@@ -41,11 +41,11 @@
   <view class='standardnew'>
     <view class='desc'>商品描述:</view>
     <view class='desc_right ' wx:if="{{edit=='false'}}">
-      <input name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" ></input>
+      <textarea  name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" ></textarea >
     </view>
 
     <view class='desc_right ' wx:if="{{edit=='true'}}">
-      <input name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" value='{{goodsDesc}}'></input>
+      <textarea  name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" value='{{goodsDesc}}'></textarea >
     </view>
   </view>
 

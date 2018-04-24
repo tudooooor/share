@@ -206,5 +206,5 @@ span
 textarea
 {
   height: 100rpx;
-  width: 100rpx;
+  width: 580rpx;
 }

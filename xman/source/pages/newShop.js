@@ -79,7 +79,7 @@ Page({
     let ty = currentY - this.data.lastY;
     console.log(tx);
     console.log(ty);
-    if (ty < -60 || ty > 60) {
+    if (ty < -100 || ty > 100) {
       this.deleteImage(event);
     }
 
