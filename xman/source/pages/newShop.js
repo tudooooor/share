@@ -1,5 +1,6 @@
 var util = require('../utils/util.js')
-var adds = { "goods_name": "", "sell_count": 0, "in_selling": 0, "cate_id": "", "sell_type": "", "goods_stock": "", "image_url": "", "market_price": "", "group_number": "", "alone_price": "", "limit_buy": "", "goods_desc": "", "goods_sort": "0", "image_urls": [], goods_imgs: [] };
+var adds = { "goods_name": "", "sell_count": 0, "in_selling": 0, "cate_id": "", "sell_type": "", "goods_stock": "", "image_url": "", "market_price": "", "group_number": "", "alone_price": "", "limit_buy": "", "goods_desc": "", "goods_sort": "0", "image_urls": [], goods_imgs: [], "goodCategory":[] };
+
 var goods_imgs_temp = [];
 Page({
   data: {
@@ -11,6 +12,7 @@ Page({
     indexBuy: 0,
     storageData: 0,
     goodName: 0,
+    specifications:0,
     storageInput: 0,
     price: 0,
     tuanPrice: 0,
@@ -28,7 +30,19 @@ Page({
     currentImg: 0,
     swiperCurrent: 0,
     tempImages: [],
-  },
+    goodCategory: [
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },
+       { 'storageInput': 0, 'price': 0, 'specifications': "" },]
+     },
+  
   swiperChange: function (e) {
     if (this.data.currentImg > 0) {
       var tempImage = this.data.img_arr;
@@ -108,14 +122,26 @@ Page({
       goodsDesc: e.detail.value
     })
   },
+  bindSpecificationsInput: function(e)
+  {
+    var index = parseInt(e.currentTarget.offsetLeft / 375);
+    this.data.goodCategory[index].specifications = e.detail.value;
+    console.log('specifications', this.data.goodCategory[index].specifications);
+    console.log('index', index);
+  },
   bindStorageInput: function (e) {
-    console.log('bindStorageInput', e.detail.value)
-    this.setData({
-      storageInput: e.detail.value
-    })
+    this.data.strageInput = e.detail.value;
+    var index = parseInt(e.currentTarget.offsetLeft / 375);
+    this.data.goodCategory[index].storageInput = e.detail.value;
+    console.log('bindStorageInput', this.data.goodCategory[index].storageInput);
+    console.log('index', index);
+
   },
   bindPrice: function (e) {
-    console.log('bindPrice', e.detail.value)
+    var index = parseInt(e.currentTarget.offsetLeft / 375);
+    this.data.goodCategory[index].price = e.detail.value;
+    console.log('bindPrice', this.data.goodCategory[index].price) 
+    console.log('index', index);
     this.setData({
       price: e.detail.value
     })
@@ -164,6 +190,7 @@ Page({
 
   },
   onLoad: function (options) {
+    
     this.token = wx.getStorageSync('token');
     this.baseApiUrl = util.config('baseApiUrl');
     this.setData({ edit: options.edit });
@@ -173,6 +200,7 @@ Page({
     this.setData({ price: options.price });
     this.setData({ goodsDesc: options.goodsDesc });
     this.setData({ goods_id: options.goods_id });
+    this.setData({specification:options.specification});
 
     if (this.data.edit == 'true') {
       this.getImages(this.data.goods_id);
@@ -209,7 +237,7 @@ Page({
     adds.sell_type = "0";
     adds.goods_stock = e.detail.value.storageInput;
     adds.image_url = "http://xubuju";
-
+    
     // JSON.stringify(adds.image_urls);
 
     adds.market_price = e.detail.value.price;
@@ -222,8 +250,11 @@ Page({
     adds.goods_desc = e.detail.value.goodsDesc;
     adds.goods_sort = "0";
     adds.dosubmit = "";
+    adds.goods_id = this.data.goods_id;
+    adds.goodCategorys = JSON.stringify(this.data.goodCategory);
     // adds.goods_imgs = null;
     var urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
+
     this.data.tempImages = [];
 
     var count = 0;
@@ -238,17 +269,12 @@ Page({
     }
     if (count == this.data.img_arr.length)
     {
-      var goods_id = this.data.goods_id;
       urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload3&token=" + this.token;
-
-      var goods_imgs = JSON.stringify(this.data.img_arr);
+      adds.goods_imgs = JSON.stringify(this.data.img_arr);
       wx.request({
         url: urls,
         method: 'POST',
-        data: {
-          "goods_imgs": goods_imgs,
-          "goods_id": goods_id
-        },
+        data: adds,
         header: {
           'content-type': 'application/x-www-form-urlencoded',
           'Accept': 'application/json'
@@ -267,7 +293,6 @@ Page({
 
   upload: function (index, uploadCount, urls) {
     var that = this;
-
     wx.uploadFile({
       url: urls,//'http://127.0.0.1/weipin-admin/',
       filePath: that.data.tempImages[index],
@@ -275,7 +300,6 @@ Page({
       header: { "Content-Type": "application/json" },
       formData: adds,
       success: function (res) {
-
         if (res.data != "") {
           var data = JSON.parse(res.data);
           goods_imgs_temp[index] = data["url"];
@@ -298,11 +322,10 @@ Page({
           that.upload(index, uploadCount, urls);
         }
         else if (index == uploadCount) {
-          var urls
+          var urls;
           if (that.data.edit == "false") {
             urls = that.baseApiUrl + "?g=Api&m=Weuser&a=upload2&token=" + that.token;
             adds.goods_imgs = JSON.stringify(goods_imgs_temp);
-
 
             wx.uploadFile({
               url: urls,
@@ -322,7 +345,6 @@ Page({
             });
           }
           else {
-            adds.goods_id = that.data.goods_id;
             urls = that.baseApiUrl + "?g=Api&m=Weuser&a=upload3&token=" + that.token;
             for (var i = 0; i < that.data.img_arr.length; i++) {
               if (that.data.img_arr[i].indexOf("Uploads") != -1) {
@@ -333,8 +355,7 @@ Page({
             wx.request({
               url: urls,
               method: 'POST',
-              data: { "goods_imgs": adds.goods_imgs,
-                      "goods_id": adds.goods_id},
+              data: adds,
               header: {
                 'content-type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json'
