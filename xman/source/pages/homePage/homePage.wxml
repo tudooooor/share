@@ -12,7 +12,7 @@
 <!--店铺列表  -->
 <view class="container" wx:if="{{banners != 'undefined'}}">
 <block wx:key="{{item}}" wx:for="{{goods}}" wx:if="{{current_index == undefine || current_index == -1}}">
-<view style="" class="goods_list">
+<navigator style="" class="goods_list"  url="../goods/goods?goods_id={{item.goods_id}}">
 <!-- <block wx:key="{{item}}" wx:for="{{shopList}}"> -->
 <view bindtap='selectFruits'>
 <view class='shop'>
@@ -44,15 +44,15 @@
           <view class='vip_price'>
             ￥{{item.market_price}}
           </view>
-        <navigator class='buy' url="../goods/goods?goods_id={{item.goods_id}}">
+        <view class='buy'>
           立即购买
-          </navigator>
+          </view>
         </view>
     </view>
   </view>
 </view>
 </view>
-</view>
+</navigator>
 </block>
 </view>
 
