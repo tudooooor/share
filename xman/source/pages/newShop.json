@@ -1,5 +1,5 @@
 {
-    "enablePullDownRefresh": true,
+    "enablePullDownRefresh": false,
   "navigationBarTextStyle": "#fff",
   "navigationBarBackgroundColor": "#5bbc04",
     "navigationBarTitleText": "新增商品",

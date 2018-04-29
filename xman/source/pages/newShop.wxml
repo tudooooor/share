@@ -15,16 +15,16 @@
   <view style="background: yellow; width: 200px; height: 100px; display: inline-block"></view>
 </scroll-view> -->
 <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
-   <view wx:key="item" wx:for="{{goodCategory}}" style="display: inline-block; width:750rpx"> 
+   <view wx:key="item" wx:for="{{goodCategorys}}" style="display: inline-block; width:750rpx"> 
 
   <view class='standardnew' >
     <view class='left'>库存：</view>
     <view class='right' wx:if="{{edit=='false'}}">
-      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" ></input>
+      <input name="storageInput" placeholder='请输入商品库存' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" ></input>
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
-      <input name="storageInput" placeholder='0.00' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{storageNumber}}' type="number"></input>
+      <input name="storageInput" placeholder='请输入商品库存' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" value='{{item.storageInput}}' type="number"></input>
     </view>
   </view>
 
@@ -35,14 +35,14 @@
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
-      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{price}}' type="number"></input>
+      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{item.price}}' type="number"></input>
     </view>
   </view>
 
 <view class='standardnew'>
   <view class='left p'>商品规格:</view>
   <view class='right pr' wx:if="{{edit=='true'}}">
-     <input placeholder='请输入商品规格' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindSpecificationsInput" value='{{specifications}}'></input>
+     <input placeholder='请输入商品规格' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindSpecificationsInput" value='{{item.specifications}}'></input>
   </view>
 
     <view class='right pr' wx:if="{{edit=='false'}}">

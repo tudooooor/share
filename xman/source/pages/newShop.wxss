@@ -67,7 +67,7 @@ swiper {
 }
 .submit{
   position: absolute;
-  bottom: 20rpx;
+  bottom: 10rpx;
   width: 80%;
   margin-left: 10%;
   height: 80rpx;

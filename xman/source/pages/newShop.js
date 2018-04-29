@@ -1,5 +1,5 @@
 var util = require('../utils/util.js')
-var adds = { "goods_name": "", "sell_count": 0, "in_selling": 0, "cate_id": "", "sell_type": "", "goods_stock": "", "image_url": "", "market_price": "", "group_number": "", "alone_price": "", "limit_buy": "", "goods_desc": "", "goods_sort": "0", "image_urls": [], goods_imgs: [], "goodCategory":[] };
+var adds = { "goods_name": "", "sell_count": 0, "in_selling": 0, "cate_id": "", "sell_type": "", "goods_stock": "", "image_url": "", "market_price": "", "group_number": "", "alone_price": "", "limit_buy": "", "goods_desc": "", "goods_sort": "0", "image_urls": [], goods_imgs: [], "goodCategorys":[] };
 
 var goods_imgs_temp = [];
 Page({
@@ -30,17 +30,17 @@ Page({
     currentImg: 0,
     swiperCurrent: 0,
     tempImages: [],
-    goodCategory: [
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },
-       { 'storageInput': 0, 'price': 0, 'specifications': "" },]
+    goodCategorys: [
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },
+      { 'storageInput': "", 'price': "", 'specifications': "" },]
      },
   
   swiperChange: function (e) {
@@ -125,22 +125,22 @@ Page({
   bindSpecificationsInput: function(e)
   {
     var index = parseInt(e.currentTarget.offsetLeft / 375);
-    this.data.goodCategory[index].specifications = e.detail.value;
-    console.log('specifications', this.data.goodCategory[index].specifications);
+    this.data.goodCategorys[index].specifications = e.detail.value;
+    console.log('specifications', this.data.goodCategorys[index].specifications);
     console.log('index', index);
   },
   bindStorageInput: function (e) {
     this.data.strageInput = e.detail.value;
     var index = parseInt(e.currentTarget.offsetLeft / 375);
-    this.data.goodCategory[index].storageInput = e.detail.value;
-    console.log('bindStorageInput', this.data.goodCategory[index].storageInput);
+    this.data.goodCategorys[index].storageInput = e.detail.value;
+    console.log('bindStorageInput', this.data.goodCategorys[index].storageInput);
     console.log('index', index);
 
   },
   bindPrice: function (e) {
     var index = parseInt(e.currentTarget.offsetLeft / 375);
-    this.data.goodCategory[index].price = e.detail.value;
-    console.log('bindPrice', this.data.goodCategory[index].price) 
+    this.data.goodCategorys[index].price = e.detail.value;
+    console.log('bindPrice', this.data.goodCategorys[index].price) 
     console.log('index', index);
     this.setData({
       price: e.detail.value
@@ -196,14 +196,14 @@ Page({
     this.setData({ edit: options.edit });
     // this.images = JSON.parse(options.images);
     this.setData({ goodName: options.goodName });
-    this.setData({ storageNumber: options.storageInput });
-    this.setData({ price: options.price });
+    // this.setData({ storageNumber: options.storageInput });
+    // this.setData({ price: options.price });
     this.setData({ goodsDesc: options.goodsDesc });
     this.setData({ goods_id: options.goods_id });
-    this.setData({specification:options.specification});
 
     if (this.data.edit == 'true') {
       this.getImages(this.data.goods_id);
+      this.setData({ goodCategorys: JSON.parse(options.goodCategorys) });
     }
     // 页面初始化 options为页面跳转所带来的参数
   },
@@ -235,12 +235,12 @@ Page({
     adds.goods_name = e.detail.value.goodName;
     adds.cate_id = "36";
     adds.sell_type = "0";
-    adds.goods_stock = e.detail.value.storageInput;
+    adds.goods_stock = this.data.goodCategorys[0].storageInput;
     adds.image_url = "http://xubuju";
     
     // JSON.stringify(adds.image_urls);
 
-    adds.market_price = e.detail.value.price;
+    adds.market_price = this.data.goodCategorys[0].price;
     adds.in_selling = 0;
     adds.group_price = this.data.tuanPrice;
     adds.group_number = this.data.tuanNumber;
@@ -251,7 +251,7 @@ Page({
     adds.goods_sort = "0";
     adds.dosubmit = "";
     adds.goods_id = this.data.goods_id;
-    adds.goodCategorys = JSON.stringify(this.data.goodCategory);
+    adds.goodCategorys = JSON.stringify(this.data.goodCategorys);
     // adds.goods_imgs = null;
     var urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
 
