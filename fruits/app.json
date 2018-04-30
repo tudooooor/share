@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/hha/hha",
+    "pages/myShop/myShop",
     "pages/buyNow/buyNow",
     "pages/addPro/addPro",
     "pages/myShop/myShop",
