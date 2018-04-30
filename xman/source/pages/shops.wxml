@@ -1,5 +1,5 @@
 <scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
-  <view wx:key="item" wx:for="{{address_list}}" class='standard_new'>
+  <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
       <navigator url="./goods/goods?goods_id={{item.goods_id}}">
         <image src='{{item.image_url}}'></image>
@@ -11,7 +11,7 @@
       </view>
     </view>
     <view class='right'>
-      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}&images={{item.goods_imgs}}' class='edit' bindtap='bindEditGood'>编辑</navigator>
+      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}&goodCategorys={{item.goodCategorys}}&images={{item.goods_imgs}}' class='edit' bindtap='bindEditGood'>编辑</navigator>
       <view class='out' bindtap='bindDeleteGood' data-goods_id='{{item.goods_id}}'>下架</view>
     </view>
   </view>

@@ -40,8 +40,10 @@ Page({
       { 'storageInput': "", 'price': "", 'specifications': "" },
       { 'storageInput': "", 'price': "", 'specifications': "" },
       { 'storageInput': "", 'price': "", 'specifications': "" },
-      { 'storageInput': "", 'price': "", 'specifications': "" },]
-     },
+      { 'storageInput': "", 'price': "", 'specifications': "" },],
+    isSubmitDisable: false,
+    submitTimes:0
+  },
   
   swiperChange: function (e) {
     if (this.data.currentImg > 0) {
@@ -58,7 +60,6 @@ Page({
   },
   refresh: function () {
     util.loadding(this, 1);
-    //this.addressList();
   },
   onPullDownRefresh: function () {
     this.onLoad();
@@ -110,12 +111,6 @@ Page({
       goodName: e.detail.value
     })
   },
-  bindTuantimes: function (e) {
-    console.log('bindTuantimes', e.detail.value)
-    this.setData({
-      tuantimes: e.detail.value
-    })
-  },
   bindGoodsDesc: function (e) {
     console.log('bindGoodsDesc', e.detail.value)
     this.setData({
@@ -146,24 +141,7 @@ Page({
       price: e.detail.value
     })
   },
-  bindTuanPrice: function (e) {
-    console.log('bindTuanPrice，携带值为', e.detail.value)
-    this.setData({
-      tuanPrice: e.detail.value
-    })
-  },
-  bindTuanNumber: function (e) {
-    console.log('bindTuanNumber', e.detail.value)
-    this.setData({
-      tuanNumber: e.detail.value
-    })
-  },
-  bindOnePrice: function (e) {
-    console.log('bindOnePrice', e.detail.value)
-    this.setData({
-      onePrice: e.detail.value
-    })
-  },
+
   getImages: function (goods_id) {
     var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + goods_id;
     var self = this;
@@ -207,18 +185,7 @@ Page({
     }
     // 页面初始化 options为页面跳转所带来的参数
   },
-  bindPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
-    })
-  },
-  bindPickerChangeBuy: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      indexBuy: e.detail.value
-    })
-  },
+
   storageInput: function (e) {
     console.log('storageInput携带值为', e.detail.value)
     this.setData({
@@ -226,35 +193,31 @@ Page({
     });
   },
   formSubmit: function (e) {
-    var id = e.target.id;
-    //adds = e.detail.value;
-    // adds.program_id = app.jtappid
-    // adds.openid = app._openid
-    //adds.zx_info_id = this.data.zx_info_id;
-    // adds.goods_name = this.data.goodName;
-    adds.goods_name = e.detail.value.goodName;
-    adds.cate_id = "36";
-    adds.sell_type = "0";
-    adds.goods_stock = this.data.goodCategorys[0].storageInput;
-    adds.image_url = "http://xubuju";
-    
-    // JSON.stringify(adds.image_urls);
+    if (this.data.isSubmitDisable == true)
+    {
+      wx.showToast({
+        title: '已提交,请稍等！',
+        duration: 3000
+      });
+    }
 
+    if (e.detail.value.goodName == "" || this.data.goodCategorys[0].storageInput == "" || this.data.goodCategorys[0].price == "" || this.data.goodCategorys[0].specification == "" || this.data.img_arr.length == 0) {
+      wx.showToast({
+        title: '请填写信息',
+        duration: 3000
+      });
+      return;
+    }
+
+    this.setData({ isSubmitDisable: true });
+    adds.goods_name = e.detail.value.goodName;
+    adds.goods_stock = this.data.goodCategorys[0].storageInput;
     adds.market_price = this.data.goodCategorys[0].price;
-    adds.in_selling = 0;
-    adds.group_price = this.data.tuanPrice;
-    adds.group_number = this.data.tuanNumber;
-    adds.alone_price = this.data.onePrice;
-    adds.limit_buy = 0;
-    adds.sell_count = 0;
     adds.goods_desc = e.detail.value.goodsDesc;
-    adds.goods_sort = "0";
-    adds.dosubmit = "";
     adds.goods_id = this.data.goods_id;
     adds.goodCategorys = JSON.stringify(this.data.goodCategorys);
-    // adds.goods_imgs = null;
-    var urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
 
+    var urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
     this.data.tempImages = [];
 
     var count = 0;
@@ -271,6 +234,7 @@ Page({
     {
       urls = this.baseApiUrl + "?g=Api&m=Weuser&a=upload3&token=" + this.token;
       adds.goods_imgs = JSON.stringify(this.data.img_arr);
+      var that = this;
       wx.request({
         url: urls,
         method: 'POST',
@@ -280,8 +244,19 @@ Page({
           'Accept': 'application/json'
         },
         success: function (res) {
+          if (res) {
+            wx.showToast({
+              title: '已提交发布！',
+              duration: 3000
+            });
+          }
           console.log(res);
           wx.navigateBack();
+        },
+        fail:function(res)
+        {
+          console.log(res);
+          that.data.isSubmitDisable = true;
         }
       });
     }
@@ -305,12 +280,7 @@ Page({
           goods_imgs_temp[index] = data["url"];
         }
         console.log(res)
-        if (res) {
-          wx.showToast({
-            title: '已提交发布！',
-            duration: 3000
-          });
-        }
+
       },
       fail: function (res) {
         console.log(res);
@@ -334,13 +304,24 @@ Page({
               header: { "Content-Type": "application/json" },
               formData: adds,
               success: function (res) {
+                if (res) {
+                  if (that.data.submitTimes == 0)
+                  {
+                    wx.showToast({
+                      title: '已提交发布！',
+                      duration: 3000
+                    });
+                    wx.navigateBack();
+                  }
+                  }
 
                 console.log(res)
-                wx.navigateBack();
+
               },
               fail: function (res) {
                 console.log(res);
-              },
+                that.data.isSubmitDisable = true;
+              }
 
             });
           }
@@ -361,8 +342,18 @@ Page({
                 'Accept': 'application/json'
               },
               success: function (res) {
+                if (res) {
+                  wx.showToast({
+                    title: '已提交发布！',
+                    duration: 3000
+                  });
+                }
                 console.log(res);
                 wx.navigateBack();
+              },
+              fail: function (res) {
+                console.log(res);
+                that.data.isSubmitDisable = true;
               }
           });
           }
@@ -381,7 +372,6 @@ Page({
   },
   upimg: function () {
     var that = this;
-    if (this.data.img_arr.length < 3) {
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
         success: function (res) {
@@ -389,14 +379,7 @@ Page({
             img_arr: that.data.img_arr.concat(res.tempFilePaths)
           })
         }
-      })
-    } else {
-      wx.showToast({
-        title: '最多上传三张图片',
-        icon: 'loading',
-        duration: 3000
       });
-    }
 
   }
 });

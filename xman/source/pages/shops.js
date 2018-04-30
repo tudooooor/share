@@ -1,7 +1,7 @@
 var util = require('../utils/util.js')
 Page({
   data: {
-    "address_list": [],
+    "goods_list": [],
     hidden: true,
     loaded: false
   },
@@ -29,11 +29,6 @@ Page({
     })
   },
   onLoad: function (options) {
-
-    this.is_onload = 1;
-
-    this.sell_type = options.sell_type;
-
     this.goods_id = options.goods_id;
 
     this.address_id = options.address_id;
@@ -53,7 +48,7 @@ Page({
     this.setData(data);
     this.token = wx.getStorageSync('token');
     this.baseApiUrl = util.config('baseApiUrl');
-    this.addressList();
+    this.goodsList();
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady: function () {
@@ -70,9 +65,8 @@ Page({
   },
   refresh: function () {
     util.loadding(this, 1);
-    this.addressList();
+    this.goodsList();
   },
-
   onHide: function () {
     // 页面隐藏
   },
@@ -90,76 +84,25 @@ Page({
   loaded: function () {
     util.loaded(this);
   },
-  selectedDEFAULT: function (obj) {
-    util.loadding(this, 1);
-    var self = this;
-    var index = obj.currentTarget.dataset.index;
-    var data = this.data.address_list;
-
-    //console.log('goods_id : '+ this.goods_id);
-    if (this.goods_id && this.goods_id != "undefined" && this.sell_type && this.sell_type != "undefined") {
-      wx.setStorageSync('select_address_id', data[index].address_id);
-      wx.navigateBack();
-      return;
-    }
-
-    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=addresses&token=" + this.token + "&address_id=" + data[index].address_id;
-    util.ajax({
-      "url": url,
-      "method": 　"PUT",
-      "data": { "status": "DEFAULT" },
-      "success": function (res) {
-        util.loaded(self);
-        if (res['result'] == "ok") {
-          for (var i = 0; i < data.length; i++) {
-            data[i].status = (i == index ? "DEFAULT" : "COMMON");
-          }
-          self.setData({
-            address_list: data
-          });
-        }
-      }
-    });
-  },
-  //修改地址页面
-  edit: function (e) {
-    var address_id = e.target.dataset.address_id;
-    wx.navigateTo({
-      "url": "address?address_id=" + address_id + "&goods_id=" + this.goods_id + "&sell_type=" + this.sell_type,
-    });
-  },
-  addressList: function () {
-    {
-      var self = this;
-
-      // var url = this.baseApiUrl + "?g=Api&m=Weuser&a=addresses&token=" + this.token;
+  goodsList: function () {
+  {
+      var that = this;
       var url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&token=" + this.token;
-
       util.ajax({
         "url": url,
-        // "method" :　"POST",
         "data": {
           "offset": 0,
           "size": 20
         },
         "success": function (data) {
           if (data['result'] == "ok") {
-            self.setData({
-              "address_list": data.goods
+            that.setData({
+              "goods_list": data.goods
             });
-
-            util.loaded(self);
+            util.loaded(that);
           }
-
         }
       });
-    }
-  },
-  //错误处理函数
-  error: function (data) {
-    this.setData({ page: { load: 1 } });
-    if (data['result'] == 'fail') {
-      util.toast(this, data.error_info);
     }
   },
 })
