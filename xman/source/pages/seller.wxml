@@ -16,35 +16,22 @@
   </view>
 </view>
 
-<view class='contact'>
-  <view class='standard_new'>
-    <view class='mark1'></view>
-    <view class='detail'>
-      <view class='name'>姓名</view>
-      <view class='user'>徐志华</view>
-    </view>
-  </view>
-</view>
+
 
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail'>
       <view class='name'>手机号</view>
-      <view class='user'>18657186781</view>
+      <view class='user' style='width:444rpx'>{{phoneNum}}</view>
+        <navigator class='fun_li' url="./info/info">
+        <view class='arrow'></view>
+      </navigator>
     </view>
   </view>
 </view>
 
-<view class='contact'>
-  <view class='standard_new'>
-    <view class='mark3'></view>
-    <view class='detail'>
-      <view class='name'>微信号</view>
-      <view class='user'>AH527E</view>
-    </view>
-  </view>
-</view>
+
 
 <view class='contact'>
   <view class='standard_new'>

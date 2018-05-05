@@ -5,6 +5,7 @@
     "pages/businessInfo/businessInfo",
     "pages/orderDetail/orderDetail",
     "pages/checkout/checkout",
+    "pages/info/info",
     "pages/personal",
     "pages/goods/goods",
     "pages/addresses",

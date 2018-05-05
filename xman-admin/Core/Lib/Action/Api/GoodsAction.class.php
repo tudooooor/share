@@ -16,6 +16,28 @@ class GoodsAction extends ApiAction {
     /**
      * 商品列表
      */
+    function __construct() {
+        $config = array(
+            'appid' => '1400089351',//控制台查看
+            'appkey' => 'd1010ebf524beab7b2b0c447c0f36e06',//控制台查看
+            'templId' => '29555',
+            'nationCode' => '86', //国家或地区区号,香港852，大陆86
+        );
+        $this->config = $config;
+    }
+
+    public function sendMsg($phone, $code) {
+        vendor('Qcloudsms.SmsSender');
+        $config = $this->config;
+        $singleSender = new \SmsSingleSender($config['appid'], $config['appkey']);
+        // 普通单发
+        $result = $singleSender->send(0, $config['nationCode'], $phone, "您好，您的验证码为" . $code, "", "");
+        //返回的成功示例：{"result":0,"errmsg":"OK","ext":"","sid":"2:670479-0268698729-028972-001510040916","fee":1}
+        //result为0表示发送成功
+        $rsp = json_decode($result, true);
+        return $rsp;
+    }
+
     public function del() {
         $id = $this->_get('id','intval',0);
         if(!$id)$this->error('参数错误!');

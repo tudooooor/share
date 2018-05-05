@@ -31,6 +31,15 @@ class WeuserAction extends ApiAction {
         }
         
         $this->memberInfo = $memberInfo;
+
+        $config = array(
+            'appid' => '1400089351',//控制台查看
+            'appkey' => 'd1010ebf524beab7b2b0c447c0f36e06',//控制台查看
+            'templId' => '29555',
+            'nationCode' => '86', //国家或地区区号,香港852，大陆86
+        );
+        $this->config = $config;
+
     }
     
     /**
@@ -216,6 +225,7 @@ class WeuserAction extends ApiAction {
         $size = I('get.size');
         
         $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
+        $good = $GoodsDb->where(array('goods_id' => '8595'))->select();
         if(!$list) {
             $ret['goods'] = array();
         } else {
@@ -237,6 +247,7 @@ class WeuserAction extends ApiAction {
                     }
                 }
             }
+            $listTemp[$listTempLenght] = $good[0];
             $serialTemp = serialize($goodsSerialize);
             $this->MemberDb->__set('goods', $serialTemp);
             $result = $this->MemberDb->save();
@@ -245,6 +256,68 @@ class WeuserAction extends ApiAction {
         }
         $ret['result'] = 'ok';
         echo json_encode($ret);
+    }
+
+    public function sendMsg($phone, $code) {
+        vendor('Qcloudsms.SmsSender');
+        $config = $this->config;
+        $singleSender = new \SmsSingleSender($config['appid'], $config['appkey']);
+        // 普通单发
+        $result = $singleSender->send(0, $config['nationCode'], $phone, $code . "为您的登录验证码，请于60分钟内填写。如非本人操作，请忽略本短信。" , "", "");
+        //返回的成功示例：{"result":0,"errmsg":"OK","ext":"","sid":"2:670479-0268698729-028972-001510040916","fee":1}
+        //result为0表示发送成功
+        $rsp = json_decode($result, true);
+        return $rsp;
+    }
+
+    public function mobile()
+    {
+        $code = rand(1000, 9999); 
+        $ret = $this->sendMsg($_GET['phoneNum'], $code);
+
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $result = $this->MemberDb->where($map)->__set('code', $code);
+        $result = $this->MemberDb->where($map)->__set('codeTime', time());
+        $result = $this->MemberDb->save();
+        echo json_encode($ret); 
+    }
+    
+    public function saveMobile()
+    {
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $timeTemp = $this->MemberDb->where($map)->field('codeTime')->select();
+        $time = (int)$timeTemp[0]['codeTime'];
+        $codeTemp = $this->MemberDb->where($map)->field('code')->select();
+        $code = (int)$timeTemp[0]['code'];
+        if ((time() - $time) > 60)
+        {
+            $ret['time'] = $time;
+            $ret['statusCode'] = 200;
+            return json_encode($ret);
+        }
+
+        if ($_GET['code'] != $code)
+        {
+            $ret['code'] = $code;
+            $ret['statusCode'] = 200;
+            return json_encode($ret);
+        }
+
+        $ret['statusCode'] = 200;
+        $result = $this->MemberDb->where($map)->__set('mobile', $_GET['phoneNum']);
+        $result = $this->MemberDb->save();
+        
+        echo json_encode($ret); 
+    }
+
+    public function getPersonInfo()
+    {
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $phoneNumTemp = $this->MemberDb->where($map)->field('mobile')->select();
+        $ret['phoneNum'] = $phoneNumTemp[0]['mobile'];
+        $ret['result'] = 0;
+
+        echo json_encode($ret); 
     }
 
     public function lists() {
