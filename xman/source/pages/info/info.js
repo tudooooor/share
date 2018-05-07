@@ -146,11 +146,12 @@ Page({
     util.ajax({
       "url": url,
       data: {
-        phoneNum: this.data.phoneNum
+        phoneNum: this.data.phoneNum,
+        code:this.data.code,
       },
       success: function (res) {
         console.log(res)
-        if (parseInt(res.statusCode) === 200) {
+        if (parseInt(res.statusCode) === 0) {
           wx.showToast({
             title: '验证成功',
             icon: 'success'

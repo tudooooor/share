@@ -288,22 +288,22 @@ class WeuserAction extends ApiAction {
         $timeTemp = $this->MemberDb->where($map)->field('codeTime')->select();
         $time = (int)$timeTemp[0]['codeTime'];
         $codeTemp = $this->MemberDb->where($map)->field('code')->select();
-        $code = (int)$timeTemp[0]['code'];
+        $code = (int)$codeTemp[0]['code'];
         if ((time() - $time) > 60)
         {
             $ret['time'] = $time;
-            $ret['statusCode'] = 200;
+            $ret['statusCode'] = 1;
             return json_encode($ret);
         }
 
         if ($_GET['code'] != $code)
         {
             $ret['code'] = $code;
-            $ret['statusCode'] = 200;
+            $ret['statusCode'] = 2;
             return json_encode($ret);
         }
 
-        $ret['statusCode'] = 200;
+        $ret['statusCode'] = 0;
         $result = $this->MemberDb->where($map)->__set('mobile', $_GET['phoneNum']);
         $result = $this->MemberDb->save();
         
