@@ -38,19 +38,7 @@
             <view class="goods-out-pic div" wx:if="{{isShow_out}}"></view>
             <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
             <view class='buy_now'>立即购买</view>
-          </navigator>>
-
-          <!--   <view class="div goods-group-btn" data-reactid="72" wx:if="{{!isShow_out && (goods.sell_type == 0 || goods.sell_type == 1)}}">              
-                <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
-                <view class="span goods-buy-price" data-reactid="73">
-                    <!-- <view class="i" data-reactid="74">{{fenshu * goods.market_price}}</view> -->
-                    <!-- <view class='buy_now'>立即购买</view> -->
-                    <!-- <view class="span" data-reactid="76">立即购买</view> -->
-                   <!--  </view>
-                 </navigator>
-                </view> -->
-
- -->
+          </navigator>
 
         </view>
             <view class="image-text goods-white goods-details" hidden="{{!goods_banner.height}}">
