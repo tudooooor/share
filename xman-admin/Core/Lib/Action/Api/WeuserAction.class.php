@@ -637,6 +637,16 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
     
+    public function orderDel()
+    {
+        $order_id = I('get.id');
+        $map = array('order_id' => $order_id);
+        $OrderDb = D('Orders');
+        $del = 1;
+        $result = $OrderDb->where($map)->__set('del', $del);
+        $result = $OrderDb->save();
+        echo json_encode($result);
+    }
     /**
      * 订单详情
      */
@@ -676,7 +686,7 @@ class WeuserAction extends ApiAction {
         
         $OrdersDb  =  D('Orders');
         $map['buyer_id'] = $this->memberInfo['member_id'];
- 
+        $map['del'] = 0;
         $list = $OrdersDb->where($map)->order('order_time desc')->limit($offset,$size)->select();
         
         if(!$list) {

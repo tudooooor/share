@@ -23,7 +23,7 @@ Page({
     if (event.currentTarget.dataset.order_id == "") {
       return;
     }
-    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orderDel&id=" + event.currentTarget.dataset.order_id;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orderDel&id=" + event.currentTarget.dataset.order_id + "&token=" + this.token;;
     wx.showModal({
       title: '提示',
       content: '确定删除？',
@@ -41,6 +41,8 @@ Page({
     })
   },
   onLoad:function(options) {
+    this.baseApiUrl = util.config('baseApiUrl');
+    this.token = wx.getStorageSync('token');
     this.is_onload = 1;
     
     this.options = options;
