@@ -8,10 +8,9 @@
     <view class='detail'>
       <view class='name'>昵称</view>
       <view class='user'>{{nickname}}</view>
-    <navigator class='fun_li' url="sellers?userImage={{userImage}}">
+   <!-- <navigator class='fun_li' url="sellers?userImage={{userImage}}">
         <view class="edit"></view>        
-    </navigator>
-    <!--<view class="edit" catchtap='edit'></view>-->
+    </navigator>-->
     </view>
   </view>
 </view>
@@ -21,7 +20,7 @@
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
-    <view class='detail'>
+    <view class='detail1'>
       <view class='name'>手机号</view>
       <view class='user' style='width:444rpx'>{{phoneNum}}</view>
         <navigator class='fun_li' url="./info/info">
