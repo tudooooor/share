@@ -227,7 +227,10 @@ class WeuserAction extends ApiAction {
         $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
         $good = $GoodsDb->where(array('goods_id' => '8595'))->select();
         if(!$list) {
-            $ret['goods'] = array();
+            $listTemp;
+            $listTemp[0] = $good[0];
+            $ret['goods'] = $listTemp;
+	    // $ret['goods'] = array();
         } else {
             $listTemp;  
             $listTempLenght = 0;
