@@ -17,6 +17,29 @@ Page({
       "orders" : false
     // text:"这是一个页面"
   },
+  deleteOrder: function (event) {
+    var that = this;
+    console.log(event);
+    if (event.currentTarget.dataset.order_id == "") {
+      return;
+    }
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orderDel&id=" + event.currentTarget.dataset.order_id;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除？',
+      success: function (res) {
+        if (res.confirm) {
+          util.ajax({
+            url: url,
+            method: "GET",
+            success: function (data) {
+              that.refresh();
+            }
+          });
+        }
+      }
+    })
+  },
   onLoad:function(options) {
     this.is_onload = 1;
     

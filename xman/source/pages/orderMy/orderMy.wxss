@@ -71,8 +71,8 @@ page{
   width: 78%;
 }
 .info_right{
-  height: 180rpx;
-  line-height: 180rpx;
+  height: 30rpx;
+  line-height: 30rpx;
 }
 .vip_price{
   height: 80rpx;
@@ -92,4 +92,9 @@ page{
 }
 .delivery{
   line-height: 30rpx;
+}
+.delete{
+  width:10%;
+  height: 25rpx;
+  margin-top: 5rpx;
 }

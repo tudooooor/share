@@ -33,11 +33,16 @@
           <view class='date'>{{order.order_time}}</view>
           <view class='delivery'>由商家提供配送服务</view>
         </view>
-<!--         <view class='info_right'></view> -->
+<!--        <view class='info_right'>
+            <image class = 'delete' bindtap="deleteOrder" src='/images/Delete.png' data-order_id='{{order.order_id}}'></image>
+        </view>-->
        </view>
       </view>
     </view>
     </navigator>
+    <view class='info_right'>
+        <image class = 'delete' bindtap="deleteOrder" src='/images/Delete.png' data-order_id='{{order.order_id}}'></image>
+    </view>
   </view>
 </view>
 </block>    
