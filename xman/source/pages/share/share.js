@@ -15,7 +15,7 @@ Page({
     var bgImgPath = '../../images/home.png';
     var basicprofile = '../../images/home.png';
     // var xcxcode = options.goods_imgs;
-    var xcxcode = QRcodeImagePath;
+    // var xcxcode = QRcodeImagePath;
     //填充背景
     ctx.setFillStyle('#cccccc');
     ctx.fillRect(0, 0, 340, 460);
@@ -53,9 +53,17 @@ Page({
     ctx.setFillStyle('#aaaaaa');
     ctx.fillText('长按扫码查看详情', 47, 318);
     ctx.fillText('分享商品', 47, 338);
-    ctx.drawImage(xcxcode, 2, 2, 236, 236);
+    wx.downloadFile({
+      url: QRcodeImagePath, //仅为示例，并非真实的资源
+      success: function (res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        if (res.statusCode === 200) {
+          ctx.drawImage(res.tempFilePath, 2, 2, 236, 236);
+          ctx.draw();
+        }
+      }
+    });
 
-    ctx.draw();
   },
 
   getwxacode: function (goods_id, image_url, goods_name, goods_desc)
