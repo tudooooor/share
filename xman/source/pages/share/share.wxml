@@ -1,0 +1,9 @@
+<!--info.wxml-->
+<view>
+  <canvas style="margin:0 auto;margin-bottom:30px;width: 240px; height: 360px;box-shadow:1px 2px 2px #ccc;border-raidus:1px;" canvas-id="myCanvas"></canvas>
+
+  <view class='ft'>保存图片到手机相册，分享到朋友圈</view>
+  <view style="text-align:center;padding-bottom:20px">
+    <button bindtap='savetup' type="primary" size='mini'>保存到相册</button>
+  </view>
+</view>

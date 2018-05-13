@@ -43,7 +43,7 @@ page {
   line-height: 200rpx;
 }
 .edit{
-  margin-top: 70rpx;
+  /* margin-top: 70rpx; */
   width: 120rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -52,9 +52,20 @@ page {
   font-size: 30rpx;
 }
 
+.share{
+    color: #5bbc04;
+  border: 1px solid #5bbc04;
+  margin-top: 10rpx; 
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  
+  font-size: 30rpx;
+}
 .out{
-  margin-top: 20rpx;
-  margin-bottom: 50rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
   width: 120rpx;
   height: 60rpx;
   line-height: 60rpx;

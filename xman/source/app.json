@@ -6,6 +6,7 @@
     "pages/orderDetail/orderDetail",
     "pages/checkout/checkout",
     "pages/info/info",
+    "pages/share/share",
     "pages/personal",
     "pages/goods/goods",
     "pages/addresses",

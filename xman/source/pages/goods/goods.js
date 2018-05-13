@@ -15,9 +15,14 @@ Page({
     flexDir: 'flex-end'     //只有一个+按钮时，默认右对齐
   },
   onLoad:function(options){
+    
      this.is_onload = 1;
      wx.hideShareMenu();
      this.goods_id = options.goods_id;
+     if (options.scene != undefined)
+     {
+       this.goods_id = options.scene;
+     }
     //  wx.showNavigationBarLoading();
      this.baseApiUrl = util.config('baseApiUrl'); 
 
@@ -25,8 +30,8 @@ Page({
      util.checkNet({
        success : function() {
           util.succNetCon(self);
-          self.goodsDetail(options.goods_id);
-          self.goodsGroups(options.goods_id);
+          self.goodsDetail(self.goods_id);
+          self.goodsGroups(self.goods_id);
        },
        error : function() {
           util.notNetCon(self);
@@ -35,7 +40,7 @@ Page({
      this.token = wx.getStorageSync('token'); 
      // 页面初始化 options为页面跳转所带来的参数
      this.imgLoader = new ImgLoader(this)
-     this.addGood(options.goods_id);
+     this.addGood(this.goods_id);
      //this.doneOrderBanner();
       //console.log(options);
     // 页面初始化 options为页面跳转所带来的参数
