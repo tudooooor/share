@@ -35,10 +35,10 @@
       <view class='shop_name' bindtap='look'>{{item.goods_name}}</view>
       <!--店铺简介  -->
           
-      <view class='fresh'>
+      <!-- <view class='fresh'>
 
         当季水果，新鲜采摘，特甜口感好
-      </view>
+      </view> -->
       <!-- <view class='vip'  bindtap='viewMenu'> -->
         <view class='vip'>
           <view class='vip_price'>

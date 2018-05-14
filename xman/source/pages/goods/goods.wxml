@@ -6,10 +6,10 @@
             <!--图片详情图片轮播-->
             <!--style='height:{{imageheight}}px;background-color:#fff;'-->
             <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24"  indicator-dots="{{indicatorDots}}"
-            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{goods_banner.height || '750rpx'}}" >
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'564rpx'}}" >
             <block wx:key="item" wx:for="{{gallery}}" wx:for-index="idx">
                 <swiper-item>
-                <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}"  src="{{item.img_url}}"  class="slide-image" style='height:{{goods_banner.height || "750rpx"}};width:{{goods_banner.width}}'/>
+                <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}"  src="{{item.img_url}}"  class="slide-image" style='height:{{/*goods_banner.height || */"564rpx"}};width:{{goods_banner.width}}'/>
                 </swiper-item>
             </block>
             </swiper>

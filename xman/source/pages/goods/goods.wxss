@@ -87,7 +87,7 @@
 
 swiper,swiper image{
   width: 100%;
-  height: 400rpx;
+  height: 240rpx;
 }
 .information{
   width: 100%;
