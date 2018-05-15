@@ -1,58 +1,58 @@
 <view class="container" hidden="{{!page.load && !page.operate || notNetCon.error == 1 && notNetCon.show == 1}}">
-    <view class="main-view">
+  <view class="main-view">
 
-        <view class="goods-banner" id="banner">
-            <view class="div banner-index" hidden="{{gallery.length <= 1}}">{{current}} / {{gallery.length}}</view>
-            <!--图片详情图片轮播-->
-            <!--style='height:{{imageheight}}px;background-color:#fff;'-->
-            <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24"  indicator-dots="{{indicatorDots}}"
-            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'564rpx'}}" >
-            <block wx:key="item" wx:for="{{gallery}}" wx:for-index="idx">
-                <swiper-item>
-                <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}"  src="{{item.img_url}}"  class="slide-image" style='height:{{/*goods_banner.height || */"564rpx"}};width:{{goods_banner.width}}'/>
-                </swiper-item>
-            </block>
-            </swiper>
-        </view>
-
-        <view class="goods-info goods-white div">
-            <view class="goods-name div">{{goods.goods_name}}</view>
-             <view class="p tuan_goods_cx">
-                <view class="span"></view>
-            </view> 
-
-            <view class="goods_price div">
-                <view class="red span" style="{{goods.sell_type == 2 ? 'display:none;' : ''}}">
-                    <view class="red-padding span">单价：  ￥</view>
-                    {{goods.market_price}} 
-                </view>
-            </view>
-
-            <view class="goods-sold div">数量：
-            <view class='count'  style='justify-content:{{flexDir}}'>
-              <view class='sub' bindtap='sub' style='display:{{subDisplay}};'> -</view>
-              <view class='number'  style='display:{{subDisplay}};'>{{fenshu}}</view>
-            <view class='plus' bindtap='plus' style='color:red'>+</view>
-            </view>                                 
-            </view>
-            <view class="goods-out-pic div" wx:if="{{isShow_out}}"></view>
-            <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
-            <view class='buy_now'>立即购买</view>
-          </navigator>
-
-        </view>
-            <view class="image-text goods-white goods-details" hidden="{{!goods_banner.height}}">
-                <view class="text-title">商品详情</view>
-                <view class='goods-detail'>
-                   <import src="../../utils/wxParse/wxParse.wxml" />                
-                    <template is="wxParse" data="{{wxParseData:goods_desc.nodes}}"  wx:if="{{!isShow_out}}"/>
-                </view>
-           </view>
+    <view class="goods-banner" id="banner">
+      <view class="div banner-index" hidden="{{gallery.length <= 1}}">{{current}} / {{gallery.length}}</view>
+      <!--图片详情图片轮播-->
+      <!--style='height:{{imageheight}}px;background-color:#fff;'-->
+      <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'564rpx'}}">
+        <block wx:key="item" wx:for="{{gallery}}" wx:for-index="idx">
+          <swiper-item>
+            <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}" src="{{item.img_url}}" class="slide-image" style='height:{{/*goods_banner.height || */"564rpx"}};width:{{goods_banner.width}}' />
+          </swiper-item>
+        </block>
+      </swiper>
     </view>
+
+    <view class="goods-info goods-white div">
+      <view class="goods-name div">{{goods.goods_name}}</view>
+      <view class="p tuan_goods_cx">
+        <view class="span"></view>
+      </view>
+
+      <view class="goods_price div">
+        <view class="red span" style="{{goods.sell_type == 2 ? 'display:none;' : ''}}">
+          <view class="red-padding span">单价： ￥</view>
+          {{goods.market_price}}
+        </view>
+      </view>
+
+      <view class="goods-sold div">数量：
+        <view class='count' style='justify-content:{{flexDir}}'>
+          <view class='sub' bindtap='sub' style='display:{{subDisplay}};'> -</view>
+          <view class='number' style='display:{{subDisplay}};'>{{fenshu}}</view>
+          <view class='plus' bindtap='plus' style='color:red'>+</view>
+        </view>
+      </view>
+      <view class="goods-out-pic div" wx:if="{{isShow_out}}"></view>
+      <navigator url="../checkout/checkout?goods_id={{goods.goods_id}}&sell_type=1" class="white">
+        <view class='buy_now'>立即购买</view>
+      </navigator>
+
+    </view>
+    <view class="image-text goods-white goods-details" hidden="{{!goods_banner.height}}">
+      <view class="text-title">商品详情</view>
+      <navigator url='../otherShop/otherShop?good_id={{goods.goods_id}}'>店家其他商品</navigator> 
+      <view class='goods-detail'>
+        <import src="../../utils/wxParse/wxParse.wxml" />
+        <template is="wxParse" data="{{wxParseData:goods_desc.nodes}}" wx:if="{{!isShow_out}}" />
+      </view>
+    </view>
+  </view>
 </view>
 
-<include src="./common/footer.wxml"/>
+<include src="./common/footer.wxml" />
 
 <!-- 引入图片预加载组件 -->
-<import src="../../utils/img-loader/img-loader.wxml"/>
+<import src="../../utils/img-loader/img-loader.wxml" />
 <template is="img-loader" data="{{ imgLoadList }}"></template>
