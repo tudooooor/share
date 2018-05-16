@@ -8,7 +8,7 @@
     <view class='detail'>
       <view class='name'>昵称</view>
       <view class='user'>{{nickname}}</view>
-   <!-- <navigator class='fun_li' url="sellers?userImage={{userImage}}">
+      <!-- <navigator class='fun_li' url="sellers?userImage={{userImage}}">
         <view class="edit"></view>        
     </navigator>-->
     </view>
@@ -23,7 +23,7 @@
     <view class='detail1'>
       <view class='name'>手机号</view>
       <view class='user' style='width:444rpx'>{{phoneNum}}</view>
-        <navigator class='fun_li' url="./info/info">
+      <navigator class='fun_li' url="./info/info">
         <view class='arrow'></view>
       </navigator>
     </view>
@@ -38,6 +38,19 @@
     <view class='detail1'>
       <view class='name'>我的地址</view>
       <navigator class='fun_li' url="addresses">
+        <view class='arrow'></view>
+      </navigator>
+    </view>
+  </view>
+</view>
+
+
+<view class='contact'>
+  <view class='standard_new'>
+    <view class='mark2'></view>
+    <view class='detail1'>
+      <view class='name'>店铺二维码</view>
+      <navigator class='fun_li' url="./share/share">
         <view class='arrow'></view>
       </navigator>
     </view>

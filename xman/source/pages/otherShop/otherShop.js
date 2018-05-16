@@ -7,7 +7,16 @@ Page({
   },
  
   onLoad: function (options) {
-    this.good_id = options.good_id;
+
+    if (options.good_id != undefined)
+    {
+      this.good_id = options.good_id;
+    }
+    else  if (options.scene != undefined) {
+      var str = options.scene;
+      str = str.substring(4);
+      this.member_id = str;
+    }
 
     this.token = wx.getStorageSync('token');
     this.baseApiUrl = util.config('baseApiUrl');
@@ -50,7 +59,16 @@ Page({
   goodsList: function () {
   {
       var that = this;
-      var url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&good_id=" + this.good_id + "&token=" + this.token;
+      var url;
+      if (this.good_id == undefined)
+      {
+        url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&member_id=" + this.member_id + "&token=" + this.token;
+      }
+      else
+      {
+        url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&good_id=" + this.good_id + "&token=" + this.token;
+      }
+      
       util.ajax({
         "url": url,
         "data": {

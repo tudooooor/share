@@ -21,7 +21,9 @@ Page({
      this.goods_id = options.goods_id;
      if (options.scene != undefined)
      {
-       this.goods_id = options.scene;
+       var str = options.scene;
+       str = str.substring(4);
+       this.goods_id = str;
      }
     //  wx.showNavigationBarLoading();
      this.baseApiUrl = util.config('baseApiUrl'); 

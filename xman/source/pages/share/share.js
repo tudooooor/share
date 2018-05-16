@@ -7,11 +7,10 @@ Page({
     image:'',
     goodId:'',
   },
-  drawPic: function (QRcodeImagePath, image_url, goods_name, goods_desc)
+  drawPic: function (QRcodeImagePath, goods_name, goods_desc)
   {
     //2. canvas绘制文字和图片
     const ctx = wx.createCanvasContext('myCanvas');
-    var imgPath = image_url;
     var bgImgPath = '../../images/home.png';
     var basicprofile = '../../images/home.png';
     // var xcxcode = options.goods_imgs;
@@ -26,6 +25,7 @@ Page({
    //ctx.drawImage(imgPath, 2, 2, 236, 200);
 
     //绘制标题
+
     ctx.setFontSize(16);
     ctx.setFillStyle('#000000');
     ctx.fillText(goods_name, 10, 225);
@@ -34,6 +34,7 @@ Page({
     ctx.setFontSize(12);
     ctx.setFillStyle('#6F6F6F');
     ctx.fillText(goods_desc, 10, 250);
+    
 
     //绘制一条虚线
 
@@ -66,10 +67,19 @@ Page({
 
   },
 
-  getwxacode: function (goods_id, image_url, goods_name, goods_desc)
+  getwxacode: function (goods_id='', image_url='', goods_name='', goods_desc='')
   {
     var that = this;
-    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=getwxacode&good_id=" + goods_id + "&token=" + this.token;
+    var url;
+    if (goods_id == "")
+    {
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=getwxacode&token=" + this.token;
+    }
+    else
+    {
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=getwxacode&good_id=" + goods_id + "&token=" + this.token;
+    }
+
     util.ajax({
       "url": url,
       "data": {
@@ -80,7 +90,7 @@ Page({
       },
       "success": function (res) {
         if (res['result'] == 0) {
-          that.drawPic(res.filePath, image_url, goods_name, goods_desc);
+          that.drawPic(res.filePath, goods_name, goods_desc);
         }
       }
     });
@@ -91,7 +101,15 @@ Page({
     this.token = wx.getStorageSync('token');
     var that = this;
     //1. 请求后端API生成小程序码
-    that.getwxacode(options.goods_id, options.image_url, options.goods_name, options.goods_desc);
+    if (options.goods_id != undefined)
+    {
+      that.getwxacode(options.goods_id, options.image_url, options.goods_name, options.goods_desc);
+    }
+    else
+    {
+      that.getwxacode();
+    }
+  
 
   },
   savetup: function () {

@@ -211,8 +211,20 @@ class WeuserAction extends ApiAction {
     }
 
     public function goodslists() {
-        $id = I('get.id');
-        $map = array('member_id' => $this->memberInfo['member_id']);
+        $good_id = I('get.good_id');
+        $GoodsDb = D('Goods');
+
+        if ($good_id != NULL)
+        {
+            $good = $GoodsDb->where(array('goods_id' => $good_id))->select();
+            $member_id = $good[0]['member_id'];            
+        }
+        else
+        {
+            $member_id = $this->memberInfo['member_id'];
+        }
+
+        $map = array('member_id' => $member_id);
         $goods = $this->MemberDb->where($map)->field('goods')->select();
         $goodsArray = unserialize($goods[0]['goods']);
 
@@ -411,19 +423,23 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         $access_token = $this->_getAccessToken();
 
         $url = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='.$access_token;
-        $scene = 'share';
-        $page = 'pages\homePage\homePage';
-        $good_id = I('get.good_id');
-        $savePath = C('upload_config.savePath');
-        // $data = array(
-        //     'scene'			=> $good_id,
-        //     'page'			=> $page,
-        //     'width'			=> 200,
-        //     'auto_color'	=> true 
-        // );
+
         $data = array();  
-        $data['scene'] = $good_id;//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
-         $data['page'] = 'pages/goods/goods';//扫描后对应的path  
+        $good_id = I('get.good_id');
+        if ($good_id == NULL)
+        {
+            $data['scene'] = 'shop:'.$this->memberInfo['member_id'];//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
+            $data['page'] = 'pages/otherShop/otherShop';//扫描后对应的path  
+            $fileName = 'shop'.$this->memberInfo['member_id'];
+        }
+        else
+        {
+            $data['scene'] = 'good:'.$good_id;//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
+            $data['page'] = 'pages/goods/goods';//扫描后对应的path  
+            $fileName = 'good'.$good_id;
+        }
+        $savePath = C('upload_config.savePath');
+   
         $data['width'] = 400;//自定义的尺寸  
         $data['auto_color'] = false;//是否自定义颜色  
         $color = array(  
@@ -435,7 +451,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         $data = json_encode($data); 
         $result = $this->_requestPost($url,$data);  
  
-        $QRcodePath = $savePath."QRcode/".$good_id.".jpg";
+        $QRcodePath = $savePath."QRcode/".$fileName.".jpg";
         
         $ret['result'] = file_put_contents($QRcodePath,$result);			//	将获取到的二维码图片流保存成图片文件
         if ($ret['result'] != false)
@@ -446,7 +462,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         {
             $ret['result'] = 1;
         }
-        $QRcodePath = C('web_url').  'Uploads/'."QRcode/".$good_id.".jpg";
+        $QRcodePath = C('web_url').  'Uploads/'."QRcode/".$fileName.".jpg";
         $ret['filePath'] = $QRcodePath;
 
         echo json_encode($ret);
