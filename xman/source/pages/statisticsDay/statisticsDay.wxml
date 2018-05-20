@@ -1,0 +1,25 @@
+<view  class='history-table-wrap'>
+  <view class="tr">
+    <view class="th th1">
+      <picker mode="date" fields="year" start="订单号" bindchange="bindYearChange">
+        <view class="picker">
+          {{date}}
+        </view>
+      </picker>
+    </view>
+    <view class="th th2">状态</view>
+    <view class="th th3">金额</view>
+  </view>
+
+  <scroll-view class="table" scroll-y="true" style="height: 1100rpx">
+    <view  wx:key="item" wx:for="{{orders}}">
+      <navigator class="tr" url="../orderDetail/orderDetail?id={{item.order_id}}&isSeller={{1}}">
+        <view class="td td1">{{item.order_sn}}</view>
+        <view class="td td2">{{item.order_status}}</view>
+        <view class="td td3">100000</view>
+      </navigator>
+    </view>
+
+  </scroll-view>
+
+</view>

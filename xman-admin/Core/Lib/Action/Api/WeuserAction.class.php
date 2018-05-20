@@ -17,6 +17,7 @@ class WeuserAction extends ApiAction {
     public $memberInfo;
     public function _initialize() {
         parent::_initialize();
+
         $token = I('get.token');
         $this->MemberDb = D('Member');
         $MemberTokenDB  = D('MemberToken');
@@ -185,7 +186,84 @@ class WeuserAction extends ApiAction {
         $ret['result'] = 'ok';
         echo json_encode($ret);
     }
+
+    public function getStatDataYear()
+    {
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+        for ($month = 0; $month < 12; $month++)
+        {
+            $startTime = mktime(0,0,0, $month + 1, 1,2018);
+            $tttt = date("Y-m-d", $startTime);
+            $endTime = mktime(0,0,0, $month + 2, 1,2018);
+            $tttt = date("Y-m-d", $endTime);
+            $array[$month] = $endTime - $startTime;
+            $map['order_time'] = array('between',array($startTime,$endTime));
+            $groupBuyCount[$month] = $OrdersDb->where($map)->count();
+        }
+
+        $ret['statistic_list'] = $groupBuyCount;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
+
+    
+    public function getStatDataMonth()
+    {
+        $year = I('get.year');
+        $month = I('get.month');
+        $count = I('get.count');
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+        for ($index = 0; $index < $count; $index++)
+        {
+            $startTime = mktime(0,0,0, $month, $index + 1,$year);
+            $tttt = date("Y-m-d", $startTime);
+            $endTime = mktime(0,0,0, $month, $index + 2,$year);
+            $tttt = date("Y-m-d", $endTime);
+            $array[$index] = $endTime - $startTime;
+            $map['order_time'] = array('between',array($startTime,$endTime));
+            $groupBuyCount[$index] = $OrdersDb->where($map)->count();
+        }
+
+        $ret['statistic_list'] = $groupBuyCount;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
    
+    public function getStatDataDay()
+    {
+        $year = I('get.year');
+        $month = I('get.month');
+        $day = I('get.day');
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+
+        $startTime = mktime(0,0,0, $month, $day,$year);
+        $tttt = date("Y-m-d", $startTime);
+        $endTime = mktime(0,0,0, $month, $day + 1,$year);
+        $tttt = date("Y-m-d", $endTime);
+        
+        $map['order_time'] = array('between',array($startTime,$endTime));
+        $groupBuyCount = array();
+        $groupBuyCount = $OrdersDb->where($map)->select();
+        
+        $orders = array();
+  
+        for ($i = 0; $i < count($groupBuyCount); $i++)
+        {
+            $orders[$i]['order_sn'] = $groupBuyCount[$i]['order_sn'];
+            $orders[$i]['order_status'] = $groupBuyCount[$i]['order_status'];
+            $orders[$i]['order_id'] = $groupBuyCount[$i]['order_id'];
+
+        }
+        $ret['orders'] = $orders;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
     public function addGood() {
         $goods_id = I('get.goods_id');
         $map = array('member_id' => $this->memberInfo['member_id']);
@@ -417,6 +495,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         return $result_obj->access_token;
     }
 
+
     public function getwxacode()
     {
         
@@ -583,6 +662,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             }
             
             $input['buyer_id'] = $this->memberInfo['member_id'];
+            $input['seller_id'] = $goodsInfo['member_id'];
             $input['order_sn'] = date('YmdHis').rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
             $input['goods_id'] = $data['goods_id'];
             $input['group_order_id'] = (int)$data['group_order_id'] ? (int)$data['group_order_id'] : 0;
@@ -857,10 +937,18 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
      */
     public function getorder() {
         $order_id = I('get.order_id');
-        
+        $isSeller = I('get.isSeller');
         $OrdersDb = D('Orders');
         
-        $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
+        if ($isSeller == TRUE)
+        {
+            $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id));
+        }
+        else
+        {
+            $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
+        }
+
         if (!$orderInfo) {
             echo json_encode(array('result'=>'fail','error_code'=>41001,'error_info'=>'订单不存在'));
             return;
@@ -1014,7 +1102,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         }
     }
     
-    
+
     
     
 }

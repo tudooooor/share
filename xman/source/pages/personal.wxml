@@ -27,8 +27,10 @@
 
 <view class='fun2'>
   <view class='fun_li1'>
-    <view class='mark fifth'></view>
-    <view class='txt'>流量统计</view>
+    <navigator url="statistics/statistics">
+      <view class='mark fifth'></view>
+      <view class='txt'>流量统计</view>
+    </navigator>
   </view>
   <view class='fun_li1'>
     <view class='mark sixth'></view>

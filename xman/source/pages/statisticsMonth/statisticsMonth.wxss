@@ -1,0 +1,35 @@
+.history-table-wrap{
+  width: 100%;
+  height: auto;
+  left: 50%;
+}
+/* 表格代码   */
+.table{
+  border:1px solid #dadada;
+  width: 100%;
+  flex-direction: column;
+}
+.tr{
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  height:95rpx;
+}
+.th,.td{
+  padding: 10px;
+  border-bottom: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  text-align: center;
+  width: 100%;
+}
+
+.th{
+  font-weight: 800;
+  background-color: #b66242;
+  font-size: 35rpx;
+  color: #330e0e;
+}
+.td{
+  font-size: 30rpx;
+  color: #ec9480;
+}

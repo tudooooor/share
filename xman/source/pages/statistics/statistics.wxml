@@ -1,0 +1,26 @@
+<view class='history-table-wrap'>
+  <view class="tr">
+    <view class="th th1">
+      <picker mode="date" fields="year" start="2018" bindchange="bindYearChange">
+        <view class="picker">
+          {{year}}
+        </view>
+      </picker>
+    </view>
+    <view class="th th2">订单数</view>
+    <view class="th th3">金额</view>
+  </view>
+
+  <scroll-view class="table" scroll-y="true" style="height: 1100rpx">
+    <view  wx:key="item" wx:for="{{orderCountsMonth}}">
+      <navigator class="tr" url="../statisticsMonth/statisticsMonth?selectedMonth={{index}}&selectedYear={{year}}">
+        <view class="td td1">{{year}}/{{index + 1}}</view>
+        <view class="td td2">{{item}}</view>
+        <view class="td td3">100000</view>
+      </navigator>
+    </view>
+
+  </scroll-view>
+
+</view>
+

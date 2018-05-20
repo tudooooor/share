@@ -11,12 +11,17 @@ Page({
     timeF:'2017-12 - 22 09: 07:10',
     "order" : [],
     "URL" :　3,
-    "modalHidden" : true
+    "modalHidden" : true,
+    isSeller: 0,
   },
   onLoad:function(options){
       this.is_onload = 1;
       this.loadding();
       this.id = options.id;
+      if (true == options.isSeller)
+      {
+        this.isSeller = true;
+      }
       var self = this;
 
       this.getConfig();
@@ -77,7 +82,8 @@ Page({
     var token = this.token;
     var data = {
       "token" : token,
-      "order_id" : this.id
+      "order_id" : this.id,
+      "isSeller": this.isSeller,
     };
 
     var self = this;
