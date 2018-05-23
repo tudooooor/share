@@ -8,7 +8,7 @@
 <view class='func'>
   <navigator class='fun_li' bindtap="toOrder" href="orderMy.html">
     <view class='mark first'></view>
-    <view class='txt'>我的订单</view>
+    <view class='txt'>我卖的</view>
   </navigator>
 
   <navigator class='fun_li' url="addresses">
@@ -33,7 +33,9 @@
     </navigator>
   </view>
   <view class='fun_li1'>
+      <navigator url="goodsDetail/goodsDetail">
     <view class='mark sixth'></view>
     <view class='txt'>售后服务</view>
+    </navigator>
   </view>
 </view>

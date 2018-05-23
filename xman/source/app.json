@@ -9,6 +9,7 @@
     "pages/share/share",
     "pages/personal",
     "pages/goods/goods",
+    "pages/goodsDetail/goodsDetail",
     "pages/otherShop/otherShop",
     "pages/statistics/statistics",
     "pages/statisticsMonth/statisticsMonth",
@@ -40,7 +41,7 @@
     
      {
       "pagePath": "pages/orderMy/orderMy",
-      "text": "订单",
+      "text": "我买的",
       "iconPath" : "./utils/images/orders.png",
       "selectedIconPath" : "./utils/images/select_orders.png"
     }, 
