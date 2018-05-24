@@ -1,4 +1,4 @@
-<swiper bindchange="intervalChange" indicator-dots="true"  duration="500" indicator-color="#999" indicator-active-color="#fff" circular="true" previous-margin="50px" next-margin="50px" display-multiple-items="1">
+<!-- <swiper bindchange="intervalChange" indicator-dots="true"  duration="500" indicator-color="#999" indicator-active-color="#fff" circular="true" previous-margin="50px" next-margin="50px" display-multiple-items="1">
       <swiper-item >
         <scroll-view style="{{auto_style_0}};">
 
@@ -15,7 +15,21 @@
         <image style='height:100%;width:100%' src="/images/pic.png" class="slide-image" width="355" height="150"/>
         </scroll-view>
       </swiper-item>
+  </swiper> -->
+
+<view class="goods-banner" id="banner">
+  <view class="div banner-index" hidden="{{gallery.length <= 1}}">{{current}} / {{gallery.length}}</view>
+  <!--图片详情图片轮播-->
+  <!--style='height:{{imageheight}}px;background-color:#fff;'-->
+  <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'564rpx'}}">
+    <block wx:key="item" wx:for="{{gallery}}" wx:for-index="idx">
+      <swiper-item>
+        <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}" src="{{item.img_url}}" class="slide-image" style='height:{{/*goods_banner.height || */"564rpx"}};width:{{goods_banner.width}}' />
+      </swiper-item>
+    </block>
   </swiper>
+</view>
+
 <view style="padding:20rpx;" class="item">
  <view style='display:flex;flex-flow:row nowrap;width:94%;margin:0 auto;justify-content:space-between'>
   </view>

@@ -1,23 +1,78 @@
-// pages/goods/detail.js
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    auto_style_0:'height:100%',
-    auto_style_1:'height:80%;margin-top:7%',
-    auto_style_2:'height:80%;margin-top:7%',
     maskShow:'none',
-    numberGoods:10
+    numberGoods:10,
+    goods:[],
+    current: 1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  bindchange:function(e) {
+    var current = e.detail.current + 1;
+    this.setData({current : current});
   },
+  goodsDetail: function (goods_id){
+    var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + goods_id;
+    var self = this;
+    util.ajax({
+       url : url,
+       success : function(data){
+           if(data.result == 'ok') {
+             self.setData({
+               goods : data.goods,
+               isShow_out: 0 >= parseInt(data.goods.goods_stock),
+               gallery : data.gallery,
+             });
+
+           } else {
+             self.error(data);
+           }
+       }
+    });
+
+ },
+  onLoad: function (options) {
+    this.is_onload = 1;
+    wx.hideShareMenu();
+    this.goods_id = options.goods_id;
+    this.goods_name = options.goods_name;
+    if (options.scene != undefined)
+    {
+      var str = options.scene;
+      str = str.substring(4);
+      this.goods_id = str;
+    }
+   //  wx.showNavigationBarLoading();
+    this.baseApiUrl = util.config('baseApiUrl'); 
+    this.token = wx.getStorageSync('token'); 
+    this.goodsDetail(this.goods_id);
+    wx.setNavigationBarTitle({
+      title: this.goods_name//页面标题为路由参数
+    });
+    // var self = this;
+    // util.checkNet({
+    //   success : function() {
+    //      util.succNetCon(self);
+    //      self.goodsDetail(self.goods_id);
+    //      self.goodsGroups(self.goods_id);
+    //   },
+    //   error : function() {
+    //      util.notNetCon(self);
+    //   }
+    // });
+
+    // 页面初始化 options为页面跳转所带来的参数
+    // this.imgLoader = new ImgLoader(this)
+    // this.addGood(this.goods_id);
+  },
+
   maskHide:function(){
     var that = this;
     that.setData({
@@ -99,26 +154,7 @@ Page({
   
   },
   intervalChange:function(e){
-    console.log(e.detail.current);
-    if (e.detail.current==0){
-      this.setData({
-        auto_style_0: 'height:100%',
-        auto_style_1: 'height:80%;margin-top:7%',
-        auto_style_2: 'height:80%;margin-top:7%'
-      })
-    } else if (e.detail.current == 1){
-      this.setData({
-        auto_style_0: 'height:80%;margin-top:7%',
-        auto_style_1: 'height:100%',
-        auto_style_2: 'height:80%;margin-top:7%'
-      })
-    }else{
-      this.setData({
-        auto_style_0: 'height:80%;margin-top:7%',
-        auto_style_1: 'height:80%;margin-top:7%',
-        auto_style_2: 'height:100%'
-      })
-    }
+    
     
   }
 })

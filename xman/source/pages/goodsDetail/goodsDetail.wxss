@@ -216,3 +216,277 @@
   flex-direction: row;
   justify-content: flex-start;
 }
+
+
+
+@import "/lib/style/stylesheet.wxss";
+
+.buy_now{
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #5bbc04;
+  font-size: 32rpx;
+  position: fixed;
+  right: 0;
+  bottom:0;
+  letter-spacing: 2px;
+}
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 0 0 56px;
+    overflow-x: hidden;
+    background-color: #eceded;
+    display: block;
+}
+.standard{
+  width: 94%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.standard{
+  justify-content: space-between;
+}
+
+.banner-index, .goods-banner:after {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.goods-banner:after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: .06rem;
+    bottom: 0;
+    background-image: url(http://cdn.yangkeduo.com/assets/img/banner_shadow-6b35717b62.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 10001;
+}
+
+.banner-index, .goods-banner:after {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+}
+
+
+swiper image{
+  width: 100%;
+  height: 240rpx;
+}
+
+.info_top{
+  height: 100rpx;
+  line-height: 120rpx;
+}
+.shop_name{
+  width: 100%;
+  
+  font-size: 32rpx;
+  font-weight: 300 ;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.price{
+  font-size: 30rpx;
+  color: #333;
+  line-height: 120rpx;
+}
+.weight{
+  font-size: 28rpx;
+  color: #999;
+  height: 40rpx;
+  line-height: 10rpx;
+}
+.num_left{
+  font-size:30rpx;
+  color: #999;
+}
+.num_right{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.sub::after{
+  font-family: 'iconfont';
+  content: "\e66b";
+  color: #5bbc04;
+  font-size: 45rpx;
+}
+.count{
+  font-size: 24rpx;
+  color: #333;
+  padding: 0 14rpx;
+}
+.plus::after{
+  font-family: 'iconfont';
+  content: "\e718";
+  color: #5bbc04;
+  font-size: 45rpx;
+}
+
+.scroll-view_H{
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+}
+.scroll_item {
+  position: relative;
+  width: 84%;
+  margin: 0 1%;
+  left: -2%;
+  display: inline-block;
+  border-radius: 20rpx !important ;
+  overflow: hidden;
+  transform: scale(0.9);
+  box-shadow: 0 0 10px #ccc;
+  vertical-align: top;
+  top: 5%;
+  height: 72%;
+  background-color: #fff;
+ }
+.scroll_item:first-child{
+    margin-left: 8%;
+    left: 0;
+}
+.scroll_item:last-child{
+    margin-right: 8%;
+     left: 0;
+}
+.scroll_item.selected{
+     transform: scale(1);
+     border: solid 1px #ffcd54;
+}
+.scroll_item .proImg{
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+    width: 100%;
+    max-height: 200rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+.scroll_item image {
+    width: 100%;
+    float: left;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+
+.image-text .img-info {
+    padding: 10px 0;
+}
+
+.image-text .img-info .li {
+    width: 100%;
+}
+
+.image-text .img-info .img {
+    width:308px;
+    height:394px;
+}
+
+.img {
+    border: 0 none;
+    vertical-align: top;
+}
+
+.goods-white {
+    background-color: #fff;
+}
+
+.image-text .text-title {
+    height:40px;
+    line-height:40px;
+    margin:0 10px 10px;
+    font-size:14px;
+    color:#151516;
+    text-align:left;
+    border-bottom:1px solid #f2f2f2;
+}
+
+.img_list {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.fade_in {
+    animation: fadeIn 1s both;
+}
+
+.banner-index {
+      position: absolute;
+    width: 90rpx;
+    padding-left:18rpx;
+    height: 30rpx;
+    padding-right: 18rpx;
+    line-height: 26rpx;
+    color: #FFFFFF;
+    font-size: 26rpx;
+    margin-left: 650rpx;
+    bottom: 28rpx;
+    z-index: 10000;
+    background-color: #666;
+    opacity: 0.5;
+    border-radius: 16rpx;
+}
+
+.goods-banner:after {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.goods-banner:after {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: .06rem;
+    bottom: 0;
+    background-image: url(http://cdn.yangkeduo.com/assets/img/banner_shadow-6b35717b62.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 10001;
+}
+
+#banner {
+    position: relative;
+}
+
+

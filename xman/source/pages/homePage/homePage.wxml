@@ -12,7 +12,7 @@
 <!--店铺列表  -->
 <view class="container" wx:if="{{banners != 'undefined'}}">
 <block wx:key="{{item}}" wx:for="{{goods}}" wx:if="{{current_index == undefine || current_index == -1}}">
-<navigator style="" class="goods_list"  url="../goods/goods?goods_id={{item.goods_id}}">
+<navigator style="" class="goods_list"  url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}">
 <!-- <block wx:key="{{item}}" wx:for="{{shopList}}"> -->
 <view bindtap='selectFruits'>
 <view class='shop'>
