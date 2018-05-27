@@ -28,13 +28,37 @@ page{
 .standard{
   justify-content: space-between;
 }
-.info_right::after,.right_bot::after{
+.delete::after{
+  font-family: 'iconfont';
+  content: '\e66a';
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #5bbc04;
+  text-align: right;
+}
+.info_right{
+  display: flex;
+  flex-direction: column;
+}
+.arrow::after,.right_bot::after{
   font-family: 'iconfont';
   content: '\e645';
   font-size: 40rpx;
   font-weight: bold;
   color: #999;
   text-align: right;
+}
+.arrow::after{
+  line-height: 160rpx;
+}
+.intro_title{
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.intro_detail{
+  font-size: 28rpx;
+  color: #999;
 }
 .evaluation,.evaluation1{
    font-size: 26rpx;
@@ -61,7 +85,7 @@ page{
 }
 .info_right{
   height: 180rpx;
-  line-height: 260rpx;
+  margin-top: 20rpx;
 }
 .info_right1{
   height: 180rpx;

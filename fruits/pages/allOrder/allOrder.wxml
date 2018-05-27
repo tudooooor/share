@@ -19,13 +19,16 @@
         <view class='order_info'>
         <view class='standard' style='justify-content:space-between;'>
           <view class='info_left'>
+            <view class='intro_title'>百果园水果（杭州滨江）</view>
+            <view class='intro_detail'>当季水果，新鲜采摘，特甜口感好</view>
             <view class='vip_price'>
               会员价<span style="font-size:32rpx;font-weight:590;">￥15.9</span>
             </view>
-            <view class='date'>2017-01-08  17:05:24</view>
-            <view class='delivery'>由商家提供配送服务</view>
           </view>
-          <view class='info_right'></view>
+          <view class='info_right'>
+            <view class='delete'></view>
+            <view class='arrow'></view>
+          </view>
         </view>
       </view>
     </view>

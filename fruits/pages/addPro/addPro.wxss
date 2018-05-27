@@ -1,3 +1,4 @@
+@import '/lib/style/stylesheet.wxss';
 .standard{
   justify-content: flex-start;
   height: 80rpx;
@@ -15,7 +16,18 @@
 .pr{
   width: 78%;
 }
-
+.prev::after{
+  font-family: 'iconfont';
+  content: '\e6b5';
+  font-size:14px;
+  color: #999;
+}
+.next::after{
+  font-family: 'iconfont';
+  content: '\e6a8';
+  font-size:14px;
+  color: #5bbc04;
+}
 .right,.desc_right{
   width: 82%;
 }

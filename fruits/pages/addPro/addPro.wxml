@@ -26,6 +26,10 @@
   </view>
 </view>
 
+<view class='standard' style='height:40rpx;line-height:40rpx;justify-content:flex-end'>
+   <view class='prev'></view>
+   <view class='next'></view>
+</view>
 <view class='standard'>
   <view class='desc'>商品描述:</view>
   <view class='desc_right '>
