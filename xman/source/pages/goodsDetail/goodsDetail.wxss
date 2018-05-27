@@ -1,26 +1,27 @@
-@import "/lib/style/stylesheet.wxss";
+@import "/lib/style/stylesheetnew.wxss";
 
 .information{
   width: 100%;
+  background-color: white;
 }
-.shop_name{
+/* .shop_name{
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   height: 50rpx;
   line-height: 50rpx;
-}
+} */
 .type{
   font-size: 30rpx;
   color: #333;
   line-height: 50rpx;
   margin-left: 15rpx;
 }
-.shop_name,.type{
+/* .shop_name,.type{
   font-size: 32rpx;
   font-weight: 400 ;
   color: #333;
-}
+} */
 .weight{
   font-size: 28rpx;
   color: #999;
@@ -30,11 +31,7 @@
   font-size:28rpx;
   color: #666;
 }
-.price{
-  font-size:30rpx;
-  color: #fa3137;
-  line-height: 40rpx;
-}
+
 .rules{
   color: #333;
   font-size: 22rpx;
@@ -59,11 +56,18 @@
   font-size: 22rpx;
 }
 .std_right1{
-  margin-left: 10rpx;
+  margin: 20rpx 30rpx;
   color: #5bbc04;
   font-size: 28rpx;
 }
 
+.arrow::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  color: #999;
+  font-size: 40rpx;
+  line-height: 80rpx;
+}
 
 .num_right{
   display: flex;
@@ -89,19 +93,7 @@
   font-size: 45rpx;
 }
 
-.buy_now{
-  width: 100%;
-  height: 100rpx;
-  line-height: 100rpx;
-  text-align: center;
-  color: #fff;
-  background-color: #5bbc04;
-  font-size: 32rpx;
-  position: fixed;
-  right: 0;
-  bottom:0;
-  letter-spacing: 2px;
-}
+
 
 .scroll-view_H{
     width: 100%;
@@ -151,7 +143,16 @@
     border-top-left-radius: 20rpx;
     border-top-right-radius: 20rpx;
 }
-
+.good_specifications
+{
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:28rpx;
+  color:#333;
+  width: 500rpx;
+  margin-top:20rpx;
+  margin-right: 10rpx;
+}
 .mask{
   width: 100%;
   height: 100%;
@@ -159,6 +160,7 @@
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100;
 }
 .shopcar{
   width: 100%;
@@ -166,8 +168,9 @@
   bottom: 100rpx;
   left: 0;
   background-color: #fff;
-  height: 500rpx;
+  height: 900rpx;
   overflow: scroll;
+  z-index: 11000;
 }
 .goods{
   width: 100%;
@@ -193,8 +196,8 @@
   line-height: 50rpx;
 }
 .close{
-  width: 20rpx;
-  height: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
   position: absolute;
   top: 20rpx;
   right:40rpx;
@@ -226,13 +229,48 @@
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
-  color: #fff;
-  background-color: #5bbc04;
+  background-color: white;
   font-size: 32rpx;
   position: fixed;
   right: 0;
   bottom:0;
   letter-spacing: 2px;
+  z-index: 110;
+  display: flex;
+    border: 1px solid #5bbc04;
+}
+
+.share{
+    color: #5bbc04;
+  margin-top: 20rpx; 
+  width: 120rpx;
+  line-height: 60rpx;
+}
+
+.index{
+    color: #5bbc04;
+  margin-top: 20rpx; 
+  width: 120rpx;
+  line-height: 60rpx;
+}
+
+.shop{
+    color: #5bbc04;
+  margin-top: 20rpx; 
+  width: 120rpx;
+  line-height: 60rpx;
+}
+
+.buy{
+color:white;
+margin-top:10rpx;
+width:340rpx;
+line-height:60rpx;
+background-color:#FF0066;
+border-radius:10rpx;
+margin-bottom:10rpx;
+padding-top:8rpx;
+
 }
 .container {
     position: relative;
@@ -246,14 +284,13 @@
     display: block;
 }
 .standard{
-  width: 94%;
-  margin: 0 auto;
+  background-color: white;
   display: flex;
   flex-direction: row;
 }
-.standard{
+/* .standard{
   justify-content: space-between;
-}
+} */
 
 .banner-index, .goods-banner:after {
     position: absolute;
@@ -292,18 +329,15 @@ swiper image{
 }
 .shop_name{
   width: 100%;
-  
   font-size: 32rpx;
-  font-weight: 300 ;
+  font-weight: bold ;
   color: #333;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 .price{
-  font-size: 30rpx;
-  color: #333;
+  color: red;
   line-height: 120rpx;
+  background: white;
+
 }
 .weight{
   font-size: 28rpx;
@@ -452,8 +486,8 @@ img {
 
 .banner-index {
       position: absolute;
-    width: 90rpx;
-    padding-left:18rpx;
+    width: 98rpx;
+    padding-left:24rpx;
     height: 30rpx;
     padding-right: 18rpx;
     line-height: 26rpx;
@@ -461,10 +495,10 @@ img {
     font-size: 26rpx;
     margin-left: 650rpx;
     bottom: 28rpx;
-    z-index: 10000;
-    background-color: #666;
-    opacity: 0.5;
+    z-index: 100;
+    background:rgba(66,66,66,0.6);
     border-radius: 16rpx;
+    display: flex;
 }
 
 .goods-banner:after {

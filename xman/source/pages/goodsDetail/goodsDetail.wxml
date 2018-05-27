@@ -1,24 +1,9 @@
-<!-- <swiper bindchange="intervalChange" indicator-dots="true"  duration="500" indicator-color="#999" indicator-active-color="#fff" circular="true" previous-margin="50px" next-margin="50px" display-multiple-items="1">
-      <swiper-item >
-        <scroll-view style="{{auto_style_0}};">
-
-        <image style='height:100%;width:100%' src="/images/pic.png" class="slide-image" width="355" height="150"/>
-        </scroll-view>
-      </swiper-item>
-      <swiper-item>
-      <scroll-view style="{{auto_style_1}}">
-        <image style='height:100%;width:100%' src="/images/pic.png" class="slide-image" width="355" height="150"/>
-        </scroll-view>
-      </swiper-item>  
-      <swiper-item>
-      <scroll-view style="{{auto_style_2}}">
-        <image style='height:100%;width:100%' src="/images/pic.png" class="slide-image" width="355" height="150"/>
-        </scroll-view>
-      </swiper-item>
-  </swiper> -->
-
+<scroll-view scroll-y="true" style="height: 1110rpx">
 <view class="goods-banner" id="banner">
-  <view class="div banner-index" hidden="{{gallery.length <= 1}}">{{current}} / {{gallery.length}}</view>
+  <view class="div banner-index" hidden="{{gallery.length <= 1}}">
+    <view style='color:white;font-size:34rpx'>{{current}}</view>
+    <view style='margin-left:4rpx;opacity:0.7'>/{{gallery.length}}</view>
+  </view>
   <!--图片详情图片轮播-->
   <!--style='height:{{imageheight}}px;background-color:#fff;'-->
   <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'564rpx'}}">
@@ -30,114 +15,79 @@
   </swiper>
 </view>
 
-<view style="padding:20rpx;" class="item">
- <view style='display:flex;flex-flow:row nowrap;width:94%;margin:0 auto;justify-content:space-between'>
-  </view>
-  </view>
+<view class='price' style='font-size: 60rpx;'>
+  <view class='standard'>￥
+    <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
+</view>
 <!--商品简介  -->
 <view class='information'>
-    <view class='info_top'> 
-    <view class='standard line1' style='justify-content:flex-start;'>
-      <view class='shop_name'>鲜活小龙虾4-8钱/只</view>
-      <view class='type'>称重</view>
-    </view>
-    <view class='weight'>
-      <view class='standard'>新鲜美味，肉质细腻</view>
-    </view>
-    <view class='price'>
-      <view class='standard'>￥3.50~6.90<span style="font-size:28rpx;color:#999;">/个</span></view>
-    </view>
-    <view class='rules'>
-      <view class='standard'>
-      满49元免运费
-      </view>
-    </view>
-    
-  </view>
-</view>
-<!--库存  --> 
-<view class='standard' style='justify-content:flex-start;margin-top:20rpx;'>
-  <view class='std_left'>
-    【4钱】￥3.50/个
-  </view>
-  <view class='std_right'>库存：208个</view>
-</view>
-
-<view class='standard' style='justify-content:flex-start;margin-top:20rpx;'>
-  <view class='std_left'>
-    【8钱】￥6.90/个
-  </view>
-  <view class='std_right'>库存：307个</view>
-  <view class='std_right1' bindtap='maskDisplay'>更多规格</view>
-</view>
-<!--数量  -->
-<view class='standard'  style='justify-content:space-between;height:100rpx;line-height:100rpx;'>
-  <view class='num_left'>
-  购买数量
-  </view>
-  <view class='num_right'>
-     <view class='sub' bindtap='sub'></view>
-     <view class='count'>{{numberGoods}}</view>
-     <view class='plus' bindtap='plus'></view>
+  <view style='margin-left:30rpx;margin-right:30rpx'>
+    <text class='shop_name'>{{good_name}}</text>
   </view>
 </view>
 
+
+<view class='standard' style='margin:14rpx 0;'>
+  <view class='std_right1'>商品类型</view>
+  <view class='good_specifications'>{{goodSpecifications}}</view>
+  <navigator class='fun_li' bindtap='maskDisplay'>
+    <view class='arrow'></view>
+  </navigator>
+</view>
+
+<view style='background-color:white'><view style='padding:20rpx'>商品详情</view></view>
+<view wx:for="{{gallery}}" wx:key="item">
+  <image src="{{item.img_url}}" style='width:100%'></image>
+</view>
 
 <!--展示购物车  -->
 <view class='mask' style='display:{{maskShow}}'>
- <view class='shopcar'>
-  <view class='goods'>
-    <view class='standard' style='justify-content:flex-start;'>
-      <image src='/images/pic.png'></image>
-      <view class='goods_info'>
-      <view class='price'>
-        <view class='standard'>￥3.50~6.90<span style="font-size:28rpx;color:#999;">/个</span></view>
+  <view class='shopcar'>
+    <view class='goods'>
+      <view class='standard' style='justify-content:flex-start;'>
+        <image src="{{gallery[0].img_url}}"></image>
+        <view class='goods_info'>
+          <view class='price' style='font-size: 60rpx;'>
+            <view class='standard'>￥
+              <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
+          </view>
+          <view class='close' bindtap='maskHide'></view>
+        </view>
       </view>
-      <view class='storage'>
-        <view class='standard'>库存：2046个</view>
+      <!--规格选择  -->
+      <view class='standard' style='font-size:28rpx;color:#333;line-height:50rpx;margin:0 30rpx'>
+        规格选择
       </view>
-      <view class='close' bindtap='maskHide'></view>
 
-    </view>
-    
-
-    </view>
-    <!--规格选择  -->
-    <view class='standard' style='font-size:28rpx;color:#333;line-height:50rpx;'>
-       规格选择 
-    </view>
-
-   <view class='standard' style='justify-content:space-between;;margin-top:20rpx;'>
-      <view class='num_left'>
-        <view class='std_left'>【4钱】￥3.50/个</view>
-        <view class='std_right'>库存：208个</view>
-        <view class='fee'>￥35.00</view>
-       </view> 
-      <view class='num_right'>
-        <view class='sub'></view>
-        <view class='count' style='margin-top:8rpx;'>10</view>
-        <view class='plus'></view>
+      <view wx:for="{{goodCategorys}}" wx:key="item" wx:index="index" style='margin:0 30rpx'>
+        <view wx:if="{{item.storageInput != ''}}" class='standard' style='justify-content:space-between;;margin-top:20rpx;'>
+          <view class='num_left'>
+            <view class='std_left'>【{{item.specifications}}】</view>
+            <view class='std_right'>库存：{{item.storageInput}}</view>
+            <view class='fee'>￥{{item.price}}</view>
+          </view>
+          <view class='num_right'>
+            <view class='sub' bindtap='sub' data-id="{{index}}"></view>
+            <view class='count' style='margin-top:8rpx;'>{{count[index]}}</view>
+            <view class='plus' bindtap='plus' data-id="{{index}}"></view>
+          </view>
+        </view>
       </view>
-    </view>
-    <view class='standard' style='justify-content:space-between;;margin-top:20rpx;'>
-      <view class='num_left'>
-        <view class='std_left'>【4钱】￥3.50/个</view>
-        <view class='std_right'>库存：208个</view>
-        <view class='fee'>￥35.00</view>
-       </view> 
-      <view class='num_right'>
-        <view class='sub'></view>
-        <view class='count' style='margin-top:8rpx;'>10</view>
-        <view class='plus'></view>
+      <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
+        总价：￥{{totalPrice}}
       </view>
-    </view>
-    <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;'>
-      总价：￥35.00
-    </view>
 
 
-  </view>
+    </view>
   </view>
 </view>
+</scroll-view>
 
-<view class='buy_now' bindtap='showcar'>立即购买</view>
+<view class='buy_now'>
+<navigator url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' class='share'>分享</navigator>
+<view>|</view>
+<navigator class="shop" url='../otherShop/otherShop?good_id={{good_id}}'>进店</navigator> 
+<view>|</view>
+<navigator class="index" bindtap='swithToIndex'>主页</navigator> 
+<view class="buy">立即购买</view>
+</view>

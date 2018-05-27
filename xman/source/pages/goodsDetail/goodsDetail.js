@@ -8,18 +8,23 @@ Page({
     maskShow:'none',
     numberGoods:10,
     goods:[],
+    goodCategorys:[],
+    count:[0, 0, 0, 0, 0, 0, 0 , 0, 0, 0],
     current: 1,
+    minPrice: 0,
+    maxPrice: 0,
+    good_name: '',
+    totalPrice:0,
+    goodSpecifications:'',
+    good_id:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  bindchange:function(e) {
-    var current = e.detail.current + 1;
-    this.setData({current : current});
-  },
-  goodsDetail: function (goods_id){
-    var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + goods_id;
+
+  goodsDetail: function (good_id){
+    var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + good_id;
     var self = this;
     util.ajax({
        url : url,
@@ -27,8 +32,43 @@ Page({
            if(data.result == 'ok') {
              self.setData({
                goods : data.goods,
+               goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
                gallery : data.gallery,
+             });
+
+             var goodPrice = [];
+             for (var i = 0; i < 10; i++)
+             {
+               if (self.data.goodCategorys[i].price != '')
+               {
+                 goodPrice[i] = parseInt(self.data.goodCategorys[i].price);
+               }
+               else
+               {
+                 goodPrice[i] = 0;
+               }
+             }
+             var minPrice = goodPrice[0];
+             var maxPrice = goodPrice[0];
+             for (var i = 0; i < 10; i++)
+             {
+               if (goodPrice[i] < minPrice && goodPrice[i] != 0)
+               {
+                 minPrice = goodPrice[i];
+               }
+               else if (goodPrice[i] > maxPrice)
+               {
+                 maxPrice = goodPrice[i];
+               }
+             }
+
+             self.setData({
+               goods: data.goods,
+               isShow_out: 0 >= parseInt(data.goods.goods_stock),
+               gallery: data.gallery,
+               minPrice: parseInt(minPrice),
+               maxPrice: parseInt(maxPrice),
              });
 
            } else {
@@ -41,21 +81,26 @@ Page({
   onLoad: function (options) {
     this.is_onload = 1;
     wx.hideShareMenu();
-    this.goods_id = options.goods_id;
+    this.data.good_id = options.goods_id;
     this.goods_name = options.goods_name;
     if (options.scene != undefined)
     {
       var str = options.scene;
       str = str.substring(4);
-      this.goods_id = str;
+      this.data.good_id = str;
     }
    //  wx.showNavigationBarLoading();
     this.baseApiUrl = util.config('baseApiUrl'); 
     this.token = wx.getStorageSync('token'); 
-    this.goodsDetail(this.goods_id);
+
     wx.setNavigationBarTitle({
       title: this.goods_name//页面标题为路由参数
     });
+    this.setData({
+      good_name: this.goods_name
+    });
+    this.goodsDetail(this.data.good_id);
+
     // var self = this;
     // util.checkNet({
     //   success : function() {
@@ -72,39 +117,84 @@ Page({
     // this.imgLoader = new ImgLoader(this)
     // this.addGood(this.goods_id);
   },
-
+  swithToIndex:function()
+  {
+    wx.switchTab({
+      url: '../homePage/homePage'
+    })
+  },
   maskHide:function(){
-    var that = this;
-    that.setData({
-      maskShow:'none'
+    for (var index = 0; index < 10; index++)
+    {
+      if (this.data.count[index] != 0)
+      {
+        this.data.goodSpecifications += ('规格:' + this.data.goodCategorys[index].specifications + ' ' + this.data.count[index] + '件') + ' ';
+      }
+    }
+    this.setData({
+      maskShow:'none',
+      goodSpecifications: this.data.goodSpecifications
     });
+    this.data.goodSpecifications = '';
   },
   
   maskDisplay:function() {
-    var that = this;
-    that.setData({
+
+    this.setData({
       maskShow: 'flex'
     });
   },
-  sub:function(){
-    var that = this;
-    if (numberGoods>0){
-      that.setData({
-        numberGoods: --numberGoods
+  sub:function(e){
+    console.log(e);
+    var index = e.currentTarget.dataset.id;
+    var count = this.data.count[index];
+    if (count > 0)
+    {
+      this.data.count[index]--;
+      this.setData({
+        count: this.data.count,
+        totalPrice: this.data.totalPrice - parseInt(this.data.goodCategorys[index].price)
       })
-    }else{
-      return false;
     }
+
+    // var index = e.currentTarget.dataset.id;
+    // var numberGoods = this.data.goodCategorys[index].storageInput;
+    // if (numberGoods > 0){
+    //   this.data.goodCategorys[index].storageInput--;
+    //   this.setData({
+    //     goodCategorys: goodCategorys
+    //   })
+    // }else{
+    //   return false;
+    // }
   },
-  plus: function () {
-    var that = this;
-    if (numberGoods > 0) {
-      that.setData({
-        numberGoods: ++numberGoods
+  plus: function (e) {
+    console.log(e);
+    var index = e.currentTarget.dataset.id;
+    var count = this.data.count[index];
+
+    if (count < this.data.goodCategorys[index].storageInput)
+    {
+      this.data.count[index]++;
+      this.setData({
+        count: this.data.count,
+        totalPrice: this.data.totalPrice + parseInt(this.data.goodCategorys[index].price)
       })
-    } else {
+
+    }
+    else
+    {
       return false;
     }
+
+    
+    // if (numberGoods > 0) {
+    //   that.setData({
+    //     numberGoods: ++numberGoods
+    //   })
+    // } else {
+    //   return false;
+    // }
   },
  /**
    * 生命周期函数--监听页面初次渲染完成
