@@ -11,6 +11,16 @@
   height: 50rpx;
   line-height: 50rpx;
 } */
+
+.goods-details {
+    position:relative;
+    width:100%;
+    max-width:640px;
+    margin:8px auto 0;
+    background-color:#fff;
+    overflow-x:hidden;
+}
+
 .type{
   font-size: 30rpx;
   color: #333;
@@ -22,10 +32,10 @@
   font-weight: 400 ;
   color: #333;
 } */
-.weight{
+.weight{information
   font-size: 28rpx;
   color: #999;
-  line-height: 36rpx;
+  line-height: 72rpx;
 }
 .num_left{
   font-size:28rpx;
