@@ -1,7 +1,4 @@
 var util = require('../../utils/util.js');
-var WxParse = require('../../utils/wxParse/wxParse.js');
-const ImgLoader = require('../../utils/img-loader/img-loader.js')
-
 Page({
 
   /**
@@ -12,33 +9,36 @@ Page({
     numberGoods:10,
     goods:[],
     goodCategorys:[],
+    galleryPreImage:[],
+    gallery:[],
     count:[0, 0, 0, 0, 0, 0, 0 , 0, 0, 0],
-    current: 1,
-<<<<<<< .mine
-    indicatorDots: false,
-    autoplay: false,
-    interval: 3500,
-    duration: 800,
-    loaded: false,
-    current : 1,
-    fenshu: '0',               //商品信息中的数量显示
-    subDisplay: 'none',        //商品数量减少为1时隐藏该按钮
-    flexDir: 'flex-end'     //只有一个+按钮时，默认右对齐
-||||||| .r163
-=======
+    swiperCurrent: 1,
     minPrice: 0,
     maxPrice: 0,
     good_name: '',
     totalPrice:0,
     goodSpecifications:'',
     good_id:'',
->>>>>>> .r164
+    good_desc:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-
+  previewImage:function(e)
+  {
+    wx.previewImage({
+      current: (this.data.swiperCurrent - 1), // 当前显示图片的http链接
+      urls: this.data.galleryPreImage // 需要预览的图片http链接列表
+    })
+  },
+  bindchange:function (e)
+  {
+    console.log(e);
+    this.setData({
+      swiperCurrent: ++e.detail.current
+    });
+  },
   goodsDetail: function (good_id){
     var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + good_id;
     var self = this;
@@ -78,13 +78,23 @@ Page({
                  maxPrice = goodPrice[i];
                }
              }
+             if (minPrice == maxPrice)
+             {
+               minPrice = 0;
+             }
+
+             for (var i = 0; i < data.gallery.length; i++) {
+               self.data.galleryPreImage[i] = data.gallery[i].img_url;
+             }
 
              self.setData({
                goods: data.goods,
+               goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
                gallery: data.gallery,
                minPrice: parseInt(minPrice),
                maxPrice: parseInt(maxPrice),
+
              });
 
            } else {
@@ -99,6 +109,7 @@ Page({
     wx.hideShareMenu();
     this.data.good_id = options.goods_id;
     this.goods_name = options.goods_name;
+    this.data.good_desc = options.good_desc;
     if (options.scene != undefined)
     {
       var str = options.scene;
@@ -113,7 +124,8 @@ Page({
       title: this.goods_name//页面标题为路由参数
     });
     this.setData({
-      good_name: this.goods_name
+      good_name: this.goods_name,
+      good_desc: this.data.good_desc
     });
     this.goodsDetail(this.data.good_id);
 
@@ -139,51 +151,6 @@ Page({
       url: '../homePage/homePage'
     })
   },
-   goodsDetail: function (goods_id, obj = {}){
-
-     
-     var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + goods_id;
-     var self = this;
-     util.ajax({
-        url : url,
-        success : function(data){
-            if(data.result == 'ok') {
-              self.setData({
-                goods : data.goods,
-                isShow_out: 0 >= parseInt(data.goods.goods_stock),
-                gallery : data.gallery,
-                wxParseData : WxParse.wxParse('goods_desc', 'html', data.goods.goods_desc, self, 0)
-              });
-
-              var goods_image_cache = wx.getStorageSync('goods_banner_' + data.goods.goods_id + "_windowHeight_" + self.data.windowHeight + "_windowWidth_" + self.data.windowWidth);
-              if (goods_image_cache) {
-                self.setData({ 'goods_banner': { "width": goods_image_cache.width + "px", "height": goods_image_cache.height + "px", "onload": 1 }, });
-                util.loaded(self);
-
-                obj.success != undefined ? obj.success() : '';
-              } else {
-                util.loadding(self, 1);
-                self.imgLoader.load(data.gallery[0].img_url, function (err, imgs) {
-                  var goods_banner = util.wxAutoImageCal(imgs.ev);
-                  self.setData({ 'goods_banner': { "width": goods_banner.imageWidth + "px", "height": goods_banner.imageheight + "px", "onload": 1 }, });
-                  wx.setStorageSync('goods_banner_' + data.goods.goods_id + "_windowHeight_" + self.data.windowHeight + "_windowWidth_" + self.data.windowWidth, { width: goods_banner.imageWidth, height: goods_banner.imageheight });
-
-                  util.loaded(self);
-
-                  obj.success != undefined ? obj.success() : '';
-                });
-              }
-                
-              wx.showShareMenu({withShareTicket: true});
-              
-            } else {
-              util.notNetCon(self,1,1);
-              self.error(data);
-            }
-        }
-     });
-  },
-
   maskHide:function(){
     for (var index = 0; index < 10; index++)
     {
