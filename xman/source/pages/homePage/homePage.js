@@ -40,7 +40,7 @@ Page({
   },
   selectFruits:function(){
     wx.setNavigationBarTitle({
-      title:'获取该ID下的店名'
+      title:'门庭集市'
     })
   },
   viewMenu:function(){
