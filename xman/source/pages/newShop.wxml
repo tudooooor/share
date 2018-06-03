@@ -1,4 +1,6 @@
+
 <form bindsubmit="formSubmit">
+<scroll-view scroll-y="true" style="height: 1110rpx">
   <view class='standardnew'>
     <view class='left'>商品名：</view>
     <view class='right' wx:if="{{edit=='false'}}">
@@ -8,19 +10,14 @@
       <input name="goodName" placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput" value='{{goodName}}'></input>
     </view>
   </view>
-<!-- <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
-  <view style="background: red; width: 200px; height: 100px; display: inline-block" ></view>
-  <view style="background: green; width: 200px; height: 100px; display: inline-block"></view>
-  <view style="background: blue; width: 200px; height: 100px; display: inline-block"></view>
-  <view style="background: yellow; width: 200px; height: 100px; display: inline-block"></view>
-</scroll-view> -->
+
 <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex" >
    <view wx:key="item" wx:for="{{goodCategorys}}" style="display: inline-block; width:750rpx"> 
 
   <view class='standardnew' >
     <view class='left'>库存：</view>
     <view class='right' wx:if="{{edit=='false'}}">
-      <input name="storageInput" placeholder='请输入商品库存' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" ></input>
+      <input name="storageInput" placeholder='请输入商品库存:如 100' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" ></input>
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
@@ -31,7 +28,7 @@
   <view class='standardnew'>
     <view class='left'>单价：</view>
     <view class='right' wx:if="{{edit=='false'}}">
-      <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" type="number"></input>
+      <input name="price" placeholder='请输入商品单价:如 50' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" type="number"></input>
     </view>
 
     <view class='right' wx:if="{{edit=='true'}}">
@@ -46,7 +43,7 @@
   </view>
 
     <view class='right pr' wx:if="{{edit=='false'}}">
-     <input placeholder='请输入商品规格' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindSpecificationsInput" ></input>
+     <input placeholder='请输入商品规格:如 斤' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindSpecificationsInput" ></input>
   </view>
 </view>
 
@@ -64,12 +61,9 @@
     </view>
   </view>
 
-
-
   <view class='standardnew1' >
-    <view class='upload'>上传商品照片:</view>
+    <view class='upload'>上传商品展示照片:</view>
     <image bindtap="upimg" src='/images/add.png'></image>
-
   </view>
 
   <swiper indicator-dots="true" bindchange="swiperChange" >
@@ -79,6 +73,23 @@
       </swiper-item>
     </block>
   </swiper>
- 
-  <button id="button" disabled='{{isSubmitDisable}}' class='submit' formType="submit">提交</button>
+
+
+    <view class='standardnew1' >
+    <view class='upload'>上传商品详情照片:</view>
+    <image bindtap="upimgdetail" src='/images/add.png'></image>
+  </view>
+
+  <swiper indicator-dots="true" bindchange="swiperChangeDetail" >
+    <block wx:for="{{img_arr_detail}}">
+      <swiper-item>
+        <image bindtouchend="handletouchenddetail"  bindtouchstart ="handletouchstartdetail" src='{{item}}' class="img" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  </scroll-view>
+  <button id="button"  class='submit' formType="submit">提交</button>
 </form>
+
+

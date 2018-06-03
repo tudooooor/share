@@ -20,6 +20,7 @@ Page({
     goodSpecifications:'',
     good_id:'',
     good_desc:'',
+    garreryDetail:[],
   },
 
   /**
@@ -28,7 +29,7 @@ Page({
   previewImage:function(e)
   {
     wx.previewImage({
-      current: (this.data.swiperCurrent - 1), // 当前显示图片的http链接
+      current: this.data.galleryPreImage[this.data.swiperCurrent - 1], // 当前显示图片的http链接
       urls: this.data.galleryPreImage // 需要预览的图片http链接列表
     })
   },
@@ -51,6 +52,7 @@ Page({
                goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
                gallery : data.gallery,
+               garreryDetail: data.galleryDetail,
              });
 
              var goodPrice = [];
@@ -92,6 +94,7 @@ Page({
                goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
                gallery: data.gallery,
+               garreryDetail: data.galleryDetail,
                minPrice: parseInt(minPrice),
                maxPrice: parseInt(maxPrice),
 
