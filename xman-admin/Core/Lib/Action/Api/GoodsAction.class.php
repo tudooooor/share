@@ -102,11 +102,16 @@ class GoodsAction extends ApiAction {
         }
         
         $imgs = unserialize($detail['goods_imgs']);
-        
+        $imgsDetail = unserialize($detail['goods_imgs_detail']);
         foreach($imgs as $v) {
             $gallery[]['img_url'] =  $v;
         }
-        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery));   
+
+        foreach($imgsDetail as $v) {
+            $galleryDetail[]['img_url'] =  $v;
+        }
+
+        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail));   
     }
 
     /**

@@ -29,11 +29,15 @@ class CmsAction extends Action{
         global $info_img;
         $this->data['image_url'] = $info_img;
         $temp = json_decode($_POST['goods_imgs']);
+        $tempDetail = json_decode($_POST['goods_imgs_detail']);
+
         $serialTemp = serialize($temp);
+        $serialTempDetail = serialize($tempDetail);
         $GoodsDb = D('Goods');
         if($GoodsDb->create()) {
             $GoodsDb->__set('image_url', $temp[0]);
             $GoodsDb->__set('goods_imgs', $serialTemp);
+            $GoodsDb->__set('goods_imgs_detail', $serialTempDetail);
             $GoodsDb->__set('member_id', $this->memberInfo['member_id']);
             $goodId = $GoodsDb->save();
             // if($goodId) {
@@ -78,12 +82,15 @@ class CmsAction extends Action{
         global $info_img;
         $this->data['image_url'] = $info_img;
         $temp = json_decode($_POST['goods_imgs']);
+        $tempDetail = json_decode($_POST['goods_imgs_detail']);
         $serialTemp = serialize($temp);
+        $serialTempDetail = serialize($tempDetail);
         $GoodsDb = D('Goods');
         
         if($GoodsDb->create()) {
             $GoodsDb->__set('image_url', $temp[0]);
             $GoodsDb->__set('goods_imgs', $serialTemp);
+            $GoodsDb->__set('goods_imgs_detail', $serialTempDetail);
             $GoodsDb->__set('member_id', $this->memberInfo['member_id']);
             $goodId = $GoodsDb->add();
             // if($goodId) {
