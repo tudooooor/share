@@ -21,9 +21,13 @@
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail1'>
+    <navigator class='fun_li' url="./info/info">
       <view class='name'>手机号</view>
+    </navigator>
+     <navigator class='fun_li' url="./info/info">
       <view class='user' style='width:444rpx'>{{phoneNum}}</view>
-      <navigator class='fun_li' url="./info/info">
+       </navigator>
+       <navigator class='fun_li' url="./info/info">
         <view class='arrow'></view>
       </navigator>
     </view>
@@ -36,7 +40,9 @@
   <view class='standard_new'>
     <view class='mark4'></view>
     <view class='detail1'>
-      <view class='name'>我的地址</view>
+      <navigator class='fun_li' url="addresses">
+      <view class='name' style='=length: 1000rpx;padding-right: 410rpx'>我的地址</view>
+      </navigator>
       <navigator class='fun_li' url="addresses">
         <view class='arrow'></view>
       </navigator>
@@ -49,7 +55,9 @@
   <view class='standard_new'>
     <view class='mark2'></view>
     <view class='detail1'>
-      <view class='name'>店铺二维码</view>
+    <navigator class='fun_li' url="./share/share">
+      <view class='name' style='length: 1000rpx;padding-right: 380rpx'>店铺二维码</view>
+      </navigator>
       <navigator class='fun_li' url="./share/share">
         <view class='arrow'></view>
       </navigator>
