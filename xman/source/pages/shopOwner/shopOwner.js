@@ -3,7 +3,9 @@ Page({
   data: {
     "goods_list": [],
     hidden: true,
-    loaded: false
+    loaded: false,
+    shopOwnerImg:"",
+    nickName:"",
   },
  
   onLoad: function (options) {
@@ -20,7 +22,8 @@ Page({
 
     this.token = wx.getStorageSync('token');
     this.baseApiUrl = util.config('baseApiUrl');
-    this.goodsList();
+    this.getGoodsFromOwner();
+
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady: function () {
@@ -37,7 +40,7 @@ Page({
   },
   refresh: function () {
     util.loadding(this, 1);
-    this.goodsList();
+    this.getGoodsFromOwner();
   },
   onHide: function () {
     // 页面隐藏
@@ -56,19 +59,11 @@ Page({
   loaded: function () {
     util.loaded(this);
   },
-  goodsList: function () {
+  getGoodsFromOwner: function () {
   {
       var that = this;
       var url;
-      if (this.good_id == undefined)
-      {
-        url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&member_id=" + this.member_id + "&token=" + this.token;
-      }
-      else
-      {
-        url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&good_id=" + this.good_id + "&token=" + this.token;
-      }
-      
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&good_id=" + this.good_id + "&token=" + this.token;
       util.ajax({
         "url": url,
         "data": {
@@ -78,7 +73,9 @@ Page({
         "success": function (data) {
           if (data['result'] == "ok") {
             that.setData({
-              "goods_list": data.goods
+              "goods_list": data.goods,
+              nickName: data.nickName,
+              shopOwnerImg: data.shopOwnerImg
             });
             util.loaded(that);
           }

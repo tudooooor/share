@@ -1,7 +1,0 @@
-{
-    "enablePullDownRefresh": true,
-    "navigationBarTitleText" : "商品详情",
-    "backgroundTextStyle" : "dark",
-    "navigationBarBackgroundColor" : "#fff",
-    "navigationBarTextStyle": "black"
-}

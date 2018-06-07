@@ -43,7 +43,7 @@
   </view>
 </view>
 <view wx:for="{{garreryDetail}}" wx:key="item">
-  <image src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
+  <image src="{{item.img_url}}" style='width:100%; height:100%' ></image>
 </view>
 
 <!--展示购物车  -->
@@ -92,7 +92,7 @@
 <view class='buy_now'>
 <navigator url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' class='share'>分享</navigator>
 <view style='color:#5bbc04'>|</view>
-<navigator class="shop" url='../otherShop/otherShop?good_id={{good_id}}'>进店</navigator> 
+<navigator class="shop" url='../shopOwner/shopOwner?good_id={{good_id}}'>进店</navigator> 
 <view style='color:#5bbc04'>|</view>
 <view class="index" bindtap='swithToIndex'>主页</view> 
 <view class="buy">立即购买</view>

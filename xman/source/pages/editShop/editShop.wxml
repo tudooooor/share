@@ -1,0 +1,30 @@
+<form bindsubmit="formSubmit">
+
+  <view class='standardnew' style='margin:10rpx'>
+    <view class='left'>店铺名称:</view>
+    <view class='right'>
+      <input name="goodName" placeholder='请输入店铺名' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="goodNameInput"></input>
+    </view>
+  </view>
+
+  <view class='standardnew'>
+    <view class='desc' style='margin-bottom:70rpx'>商品描述:</view>
+    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
+      <textarea name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc "></textarea>
+    </view>
+  </view>
+
+
+  <view class='standardnew1'>
+    <view style="display:flex;flex-direction:row; ">
+      <view class='upload'>上传店铺LOGO照片:</view>
+      <image bindtap="upimg" src='/images/add.png'></image>
+    </view>
+    <view>
+    </view>
+  </view>
+
+  <image src="{{img_arr}}" mode="widthFix"></image>
+
+  <button id="button " class='submit' formType="submit ">提交</button>
+</form>

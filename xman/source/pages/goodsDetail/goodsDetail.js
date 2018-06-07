@@ -119,6 +119,8 @@ Page({
       str = str.substring(4);
       this.data.good_id = str;
     }
+
+    this.setData({ good_id: this.data.good_id});
    //  wx.showNavigationBarLoading();
     this.baseApiUrl = util.config('baseApiUrl'); 
     this.token = wx.getStorageSync('token'); 

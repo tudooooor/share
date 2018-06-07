@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/homePage/homePage",
+    "pages/editShop/editShop",
     "pages/orderMy/orderMy",
     "pages/businessInfo/businessInfo",
     "pages/orderDetail/orderDetail",
@@ -10,7 +11,7 @@
     "pages/personal",
     "pages/goods/goods",
     "pages/goodsDetail/goodsDetail",
-    "pages/otherShop/otherShop",
+    "pages/shopOwner/shopOwner",
     "pages/statistics/statistics",
     "pages/statisticsMonth/statisticsMonth",
     "pages/statisticsDay/statisticsDay",

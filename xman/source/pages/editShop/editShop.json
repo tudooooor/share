@@ -1,0 +1,8 @@
+{
+    "enablePullDownRefresh": false,
+  "navigationBarTextStyle": "#fff",
+  "navigationBarBackgroundColor": "#5bbc04",
+    "navigationBarTitleText": "店铺编辑",
+  "backgroundTextStyle": "light",
+    "disableScroll" : true
+}

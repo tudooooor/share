@@ -64,3 +64,16 @@
     </view>
   </view>
 </view>
+
+
+<view class='contact'>
+  <view class='standard_new'>
+    <view class='mark2'></view>
+    <view class='detail1'>
+      <view class='name'>我的店铺编辑</view>
+      <navigator class='fun_li' url="./editShop/editShop">
+        <view class='arrow'></view>
+      </navigator>
+    </view>
+  </view>
+</view>
