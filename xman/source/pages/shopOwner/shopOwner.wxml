@@ -5,7 +5,7 @@
 
 <view class='information'>
   <view style='margin-left:30rpx;margin-right:30rpx'>
-    <text class='shop_name'>腾讯云—腾讯倾力打造的云计算品牌，以卓越科技能力助力各行各业数字化转型，为全球客户提供领先的云计算、大数据、人工智能服务，以及定制化行业解决方案。腾讯云提供可靠的企业上云服务，支持5天无理由退款</text>
+    <text class='shop_name'>{{shopDesc}}</text>
   </view>
 </view>
 

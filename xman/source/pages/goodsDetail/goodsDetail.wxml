@@ -43,7 +43,7 @@
   </view>
 </view>
 <view wx:for="{{garreryDetail}}" wx:key="item">
-  <image src="{{item.img_url}}" style='width:100%; height:100%' ></image>
+  <image src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
 </view>
 
 <!--展示购物车  -->

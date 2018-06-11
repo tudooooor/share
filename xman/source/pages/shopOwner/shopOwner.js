@@ -6,6 +6,9 @@ Page({
     loaded: false,
     shopOwnerImg:"",
     nickName:"",
+    shopName:"",
+    shopDesc:"",
+    shopImg:"",
   },
  
   onLoad: function (options) {
@@ -75,7 +78,10 @@ Page({
             that.setData({
               "goods_list": data.goods,
               nickName: data.nickName,
-              shopOwnerImg: data.shopOwnerImg
+              shopOwnerImg: data.shopOwnerImg,
+              shopName:data.shopName,
+              shopDesc:data.shopDesc,
+              shopImg:data.shopImg,
             });
             util.loaded(that);
           }
