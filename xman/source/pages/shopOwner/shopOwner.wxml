@@ -1,6 +1,6 @@
 <view class='header'>
     <image class="image_header" src="{{shopOwnerImg}}"></image>
-    <view class='nickname'>{{nickName}}的店铺</view>
+    <view class='nickname'>{{nickName}}</view>
 </view>
 
 <view class='information'>

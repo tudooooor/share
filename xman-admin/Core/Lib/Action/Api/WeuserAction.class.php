@@ -291,17 +291,28 @@ class WeuserAction extends ApiAction {
     public function goodslists() {
         $good_id = I('get.good_id');
         $GoodsDb = D('Goods');
+        $MemberDbOther = D('Member');
 
         if ($good_id != NULL)
         {
             $good = $GoodsDb->where(array('goods_id' => $good_id))->select();
-            $member_id = $good[0]['member_id'];            
+            $member_id = $good[0]['member_id'];    
+            $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
+            $nickName = $otherMember[0]['nickname'];
+            $shopOwnerImg = $otherMember[0]['headimgurl'];
+            
+            $ret['nickName'] = $nickName;
+            $ret['shopOwnerImg'] = $shopOwnerImg;
         }
         else
         {
             $member_id = $this->memberInfo['member_id'];
+            $ret['nickName'] = $this->memberInfo['nickName'];
         }
 
+        $ret['shopName'] = $this->memberInfo['shop_name'];
+        $ret['shopDesc'] = $this->memberInfo['shop_desc'];
+        $ret['shopImg'] = $this->memberInfo['shop_logo'];
         $map = array('member_id' => $member_id);
         $goods = $this->MemberDb->where($map)->field('goods')->select();
         $goodsArray = unserialize($goods[0]['goods']);
@@ -361,6 +372,21 @@ class WeuserAction extends ApiAction {
         //result为0表示发送成功
         $rsp = json_decode($result, true);
         return $rsp;
+    }
+
+
+    public function shopEdit() {
+        $shop_name = $_GET['shopName'];
+        $shop_logo = $_GET['shopImg'];
+        $shop_desc = $_GET['shopDesc'];
+        $map = array('member_id' => $this->memberInfo['member_id']);
+
+        $result = $this->MemberDb->where($map)->__set('shop_name', $shop_name);
+        $result = $this->MemberDb->where($map)->__set('shop_logo', $shop_logo);
+        $result = $this->MemberDb->where($map)->__set('shop_desc', $shop_desc);
+        $result = $this->MemberDb->save();
+        $ret['statusCode'] = 0;
+        echo json_encode($ret); 
     }
 
     public function mobile()
@@ -549,25 +575,50 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
     
 
     public function lists() {
+        $good_id = I('get.good_id');
+        if ($good_id != NULL)
+         {           
+            $GoodsDb = D('Goods');
+             $MemberDbOther = D('Member');
+             $good = $GoodsDb->where(array('goods_id' => $good_id))->select();
+             $member_id = $good[0]['member_id'];
+             $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
+             $nickName = $otherMember[0]['nickname'];
+             $shopOwnerImg = $otherMember[0]['headimgurl'];
+ 
+             $ret['shopName'] = $otherMember[0]['shop_name'];
+             $ret['shopDesc'] = $otherMember[0]['shop_desc'];
+             $ret['shopImg'] =  $otherMember[0]['shop_logo'];
+             $ret['nickName'] = $nickName;
+             $ret['shopOwnerImg'] = $shopOwnerImg;
+         }
+ 
+         else
+         {
+             $member_id = $this->memberInfo['member_id'];
+         }
+         $map = array('member_id' => $member_id);
+ 
+         $GoodsDb = D('Goods');
+         $GoodCateDb = D('GoodsCate');
+ 
+         $offset = I('get.offset');
+         $size = I('get.size');
+ 
+         $cate_id = I('get.cate_id',0,'intval');
+ 
+         $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
+         if(!$list) {
+             $ret['goods'] = array();
+         } else {
+             $ret['goods'] = $list;
+         }
+         $ret['result'] = 'ok';
+         $ret['shopName'] = $this->memberInfo['shop_name'];
+         echo json_encode($ret);
+     }
+ 
 
-        $map = array('member_id' => $this->memberInfo['member_id']);
-        $GoodsDb = D('Goods');
-        $GoodCateDb = D('GoodsCate');
-                
-        $offset = I('get.offset');
-        $size = I('get.size');
-
-        $cate_id = I('get.cate_id',0,'intval');
-        
-        $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
-        if(!$list) {
-            $ret['goods'] = array();
-        } else {
-            $ret['goods'] = $list;
-        }
-        $ret['result'] = 'ok';
-        echo json_encode($ret);
-    }
 
         /**
      * 地址列表

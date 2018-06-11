@@ -48,7 +48,7 @@ Page({
           "url": url,
           "data": adds,
           "success": function (data) {
-            if (data['result'] == "ok") {
+            if (data['statusCode'] == 0) {
               wx.navigateBack();
             }
           }

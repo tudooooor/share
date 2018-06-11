@@ -66,7 +66,7 @@ Page({
   {
       var that = this;
       var url;
-      url = this.baseApiUrl + "?g=Api&m=Weuser&a=goodslists&good_id=" + this.good_id + "&token=" + this.token;
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&good_id=" + this.good_id + "&token=" + this.token;
       util.ajax({
         "url": url,
         "data": {
@@ -82,6 +82,10 @@ Page({
               shopName:data.shopName,
               shopDesc:data.shopDesc,
               shopImg:data.shopImg,
+            });
+
+            wx.setNavigationBarTitle({
+              title: data.shopName//页面标题为路由参数
             });
             util.loaded(that);
           }
