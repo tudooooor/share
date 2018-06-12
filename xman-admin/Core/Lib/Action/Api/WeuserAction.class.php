@@ -542,13 +542,13 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         if ($good_id == NULL)
         {
             $data['scene'] = 'shop:'.$this->memberInfo['member_id'];//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
-            $data['page'] = 'pages/otherShop/otherShop';//扫描后对应的path  
+            $data['page'] = 'pages/shopOwner/shopOwner';//扫描后对应的path  
             $fileName = 'shop'.$this->memberInfo['member_id'];
         }
         else
         {
             $data['scene'] = 'good:'.$good_id;//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
-            $data['page'] = 'pages/goods/goods';//扫描后对应的path  
+            $data['page'] = 'pages/goodsDetail/goodsDetail';//扫描后对应的path  
             $fileName = 'good'.$good_id;
         }
         $savePath = C('upload_config.savePath');
