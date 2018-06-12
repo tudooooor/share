@@ -374,6 +374,14 @@ class WeuserAction extends ApiAction {
         return $rsp;
     }
 
+    public function getShopData() {
+
+        $ret['shopName'] = $this->memberInfo['shop_name'];
+        $ret['shopImg'] = $this->memberInfo['shop_logo'];
+        $ret['shopDesc'] = $this->memberInfo['shop_desc'];
+        $ret['statusCode'] = 0;
+        echo json_encode($ret); 
+    }
 
     public function shopEdit() {
         $shop_name = $_GET['shopName'];

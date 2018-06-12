@@ -8,9 +8,6 @@
     <view class='detail'>
       <view class='name'>昵称</view>
       <view class='user'>{{nickname}}</view>
-      <!-- <navigator class='fun_li' url="sellers?userImage={{userImage}}">
-        <view class="edit"></view>        
-    </navigator>-->
     </view>
   </view>
 </view>
@@ -20,17 +17,17 @@
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
-    <view class='detail1'>
-    <navigator class='fun_li' url="./info/info">
-      <view class='name'>手机号</view>
-    </navigator>
-     <navigator class='fun_li' url="./info/info">
-      <view class='user' style='width:444rpx'>{{phoneNum}}</view>
-       </navigator>
-       <navigator class='fun_li' url="./info/info">
+    <navigator class='detail1' url="./info/info">
+      <view class='fun_li' >
+        <view class='name'>手机号</view>
+      </view>
+      <view class='fun_li' >
+        <view class='user' style='width:444rpx'>{{phoneNum}}</view>
+      </view>
+      <view class='fun_li' >
         <view class='arrow'></view>
-      </navigator>
-    </view>
+      </view>
+    </navigator>
   </view>
 </view>
 
@@ -39,14 +36,14 @@
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark4'></view>
-    <view class='detail1'>
-      <navigator class='fun_li' url="addresses">
-      <view class='name' style='=length: 1000rpx;padding-right: 410rpx'>我的地址</view>
-      </navigator>
-      <navigator class='fun_li' url="addresses">
+    <navigator class='detail1' url="addresses">
+      <view class='fun_li'>
+        <view class='name'>我的地址</view>
+      </view>
+      <view class='fun_li'>
         <view class='arrow'></view>
-      </navigator>
-    </view>
+      </view>
+    </navigator>
   </view>
 </view>
 
@@ -54,26 +51,25 @@
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
-    <view class='detail1'>
-    <navigator class='fun_li' url="./share/share">
-      <view class='name' style='length: 1000rpx;padding-right: 380rpx'>店铺二维码</view>
-      </navigator>
-      <navigator class='fun_li' url="./share/share">
+    <navigator class='detail1' url="./share/share">
+      <view class='fun_li'>
+        <view class='name'>店铺二维码</view>
+      </view>
+      <view class='fun_li'>
         <view class='arrow'></view>
-      </navigator>
-    </view>
-  </view>
+      </view>
+  </navigator>
 </view>
-
+</view>
 
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
-    <view class='detail1'>
+    <navigator class='detail1' url="./editShop/editShop">
       <view class='name'>我的店铺编辑</view>
-      <navigator class='fun_li' url="./editShop/editShop">
+      <view class='fun_li'>
         <view class='arrow'></view>
-      </navigator>
-    </view>
+      </view>
+    </navigator>
   </view>
 </view>
