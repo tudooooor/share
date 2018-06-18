@@ -1,8 +1,7 @@
 {
+  "enablePullDownRefresh": true,
   "navigationBarBackgroundColor": "#5bbc04",
   "navigationBarTextStyle": "#fff",
   "navigationBarTitleText": "门庭集市",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light",
-  "enablePullDownRefresh": true
+  "backgroundTextStyle": "light"
 }

@@ -1,5 +1,3 @@
-<view id="main" hidden="{{!page.load && !page.operate || notNetCon.error == 1 && notNetCon.show == 1 || notServerCon.error == 1 && notServerCon.show == 1 || image_load == 0}}">
-<!--轮播图 -->
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" 
   indicator-color="{{colorSel}}">
@@ -9,60 +7,34 @@
     </swiper-item>
   </block>
 </swiper>
-<!--店铺列表  -->
-<view class="container" wx:if="{{banners != 'undefined'}}">
-<block wx:key="{{item}}" wx:for="{{goods}}" wx:if="{{current_index == undefine || current_index == -1}}">
-<navigator style="" class="goods_list"  url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&good_desc={{item.goods_desc}}">
-<!-- <block wx:key="{{item}}" wx:for="{{shopList}}"> -->
-<view bindtap='selectFruits'>
-<view class='shop'>
-  <view class='standard'>
-    <view class='cover'>
-<!--       <image src='../goods/goods?goods_id={{item.goods_id}}'></image> -->
-      <view class="tuan_g_img div">
-      <image  data-id="goods_img" class=" loadThumb img" mode="widthFix" src="{{item.image_url}}" data-id="goods_img" style='width:100%;height:100%;'></image> </view>
-      <!-- <view class='discount'></view>
-      <view class='percent'>{{discount}}<span style="font-size:20rpx;">折</span></view> -->
-    </view>
-    <!--店铺信息  -->
-    <view class='information'>
-      <!-- <view class="tuan_goods_info div">
-        <view class="p tuan_goods_name">{{item.goods_name}}</view>
-          <view class="p tuan_goods_cx">
-            <view class="span"></view>
-            </view>
-        </view> -->
-      <view class='shop_name' bindtap='look'>{{item.goods_name}}</view>
-      <!--店铺简介  -->
-          
-      <!-- <view class='fresh'>
 
-        当季水果，新鲜采摘，特甜口感好
+<view class='header'>
+    <image class="image_header" src="{{shopImg}}"></image>
+    <view class='nickname'>{{nickName}}的店铺</view>
+</view>
+
+<view class='information'>
+  <view style='margin-left:30rpx;margin-right:30rpx'>
+    <text class='shop_name'>{{shopDesc}}</text>
+  </view>
+</view>
+
+<!-- <view style='background-color:white'><view style='padding:20rpx'>全部商品:</view></view> -->
+<view style="height: 1070rpx" class='box'>
+  <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
+    <view class='left box'>
+      <!-- <navigator url="../goods/goods?goods_id={{item.goods_id}}"> -->
+        <navigator style="" class="goods_list"  url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&good_desc={{item.goods_desc}}">
+        <image src='{{item.image_url}}'></image>
+      </navigator>
+     <!--  <view class='left_txt'>
+        <view><text class='tit'>{{item.goods_name}}</text></view>
+        <view class='stora'>库存:<text >{{item.goods_stock}}</text></view>
+        <view class='price'>单价:¥<text >{{item.market_price}}</text></view>
       </view> -->
-      <!-- <view class='vip'  bindtap='viewMenu'> -->
-        <view class='vip'>
-          <view class='vip_price'>
-            ￥{{item.market_price}}
-          </view>
-        <view class='buy'>
-          立即购买
-          </view>
-        </view>
     </view>
   </view>
 </view>
-</view>
-</navigator>
-</block>
-</view>
 
 
-<view bindtap="goTop" class="div go-top {{goTopClass}}" data-reactid="485"><view class="span" data-reactid="486">顶部</view></view>
 
-<include src="common/footer.wxml"/>
-
-
-<!-- 引入图片预加载组件 -->
-<import src="../../utils/img-loader/img-loader.wxml"/>
-<template is="img-loader" data="{{ imgLoadList }}"></template>
-</view>
