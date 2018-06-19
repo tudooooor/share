@@ -3,24 +3,27 @@ page {
 }
 .box{
   width: 100%;
+  height: 100%;
 
 }
 .standard{
   justify-content: space-between;
 }
-.left{
+/*.left{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 220rpx;
 }
+.middle{
 
+}
 .right{
   display: flex;
   flex-direction: column;
   height: 220rpx;
 }
 .left{
-  width: 80%;
+  width: 32%;
 }
 .right{
   width: 20%;
@@ -29,6 +32,12 @@ page {
   width:240rpx;
   height: 210rpx;
 }
+
+.right image{
+  width:240rpx;
+  height: 210rpx;
+}
+
 .left_txt{
   display: flex;
   flex-direction: column;
@@ -41,7 +50,7 @@ page {
 .right{
   justify-content: flex-end;
   line-height: 200rpx;
-}
+}*/
 .edit{
   /* margin-top: 70rpx; */
   width: 120rpx;
@@ -133,7 +142,7 @@ page {
 
 
 .img {
-  width:240rpx;
+  width:30%;
   height:200rpx;
 }
 .image_shop
@@ -166,6 +175,14 @@ page {
 }
 .standard_new{
   margin: 8px;
+<<<<<<< .mine
+  display: flex;
+/*  flex-direction: column;*/
+||||||| .r194
+  display: flex;
+  flex-direction: row;
+=======
+>>>>>>> .r195
   align-items: center;
     border-bottom: 1px solid #e8e8e8;
 }
@@ -196,4 +213,40 @@ page {
   margin-left: 20rpx;
   color: black;
   padding-top: 30rpx;
+}
+
+.box-head-img{
+  width:100%;
+  height: 180rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.box{
+  margin-top: 15rpx;
+}
+
+.goods_list{
+  float: left;
+  margin-left:15rpx;
+  margin-top:15rpx;
+  position: relative; 
+}
+
+.goods_list-image{
+  width:25%;
+  height: 250rpx;
+}
+.price-display{
+  display: block;
+  background-color:#000;
+  color: #fff;
+  position: absolute;
+  bottom: 3%;
+  left: 0;
+  width: 94%;
+  text-align: center;
+  font-size: 25rpx;
+  opacity: 0.7;
+
 }
