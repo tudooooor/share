@@ -288,6 +288,22 @@ class WeuserAction extends ApiAction {
         echo json_encode($result);
     }
 
+    public function shoplist() {
+        $member_id = $this->memberInfo['member_id'];
+        $ret[0]['nickName'] = $this->memberInfo['nickname'];
+        $ret[0]['shopName'] = $this->memberInfo['shop_name'];
+        $ret[0]['shopDesc'] = $this->memberInfo['shop_desc'];
+        $ret[0]['shopImg'] = $this->memberInfo['shop_logo'];
+        $map = array('member_id' => $member_id);
+        $GoodsDb = D('Goods');
+        $good = $GoodsDb->where($map)->select();
+
+        $ret[0]['goods'] = $good;
+
+        echo json_encode($ret);
+    }
+
+
     public function goodslists() {
         $good_id = I('get.good_id');
         $GoodsDb = D('Goods');

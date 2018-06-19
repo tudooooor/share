@@ -1,40 +1,40 @@
-<swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" 
-  indicator-color="{{colorSel}}">
-  <block wx:key="{{item}}" wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150"/>
-    </swiper-item>
-  </block>
-</swiper>
-
-<view class='header'>
-    <image class="image_header" src="{{shopImg}}"></image>
-    <view class='nickname'>{{nickName}}的店铺</view>
-</view>
-
-<view class='information'>
-  <view style='margin-left:30rpx;margin-right:30rpx'>
-    <text class='shop_name'>{{shopDesc}}</text>
-  </view>
-</view>
-
-<!-- <view style='background-color:white'><view style='padding:20rpx'>全部商品:</view></view> -->
-<view style="height: 1070rpx" class='box'>
-  <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
-    <view class='left box'>
-      <!-- <navigator url="../goods/goods?goods_id={{item.goods_id}}"> -->
-        <navigator style="" class="goods_list"  url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}&goods_name={{item.goods_name}}&good_desc={{item.goods_desc}}">
-        <image src='{{item.image_url}}'></image>
-      </navigator>
-     <!--  <view class='left_txt'>
-        <view><text class='tit'>{{item.goods_name}}</text></view>
-        <view class='stora'>库存:<text >{{item.goods_stock}}</text></view>
-        <view class='price'>单价:¥<text >{{item.market_price}}</text></view>
-      </view> -->
+<scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
+  <view wx:key="item" wx:for="{{shopData}}" class='standard_new'>
+    <view class='header'>
+        <image class="image_header" src="{{item.shopImg}}"></image>
+        <view class='nickname'>{{item.shopName}}</view>
     </view>
+    <navigator url='../shopOwner/shopOwner?good_id={{item.goods[0].goods_id}}' style='display:flex'>
+      <view> 
+        <image class="image_shop" src="{{item.goods[0].image_url}}">        </image>
+        <view class="goods-banner" id='banner'>
+        <view class="div banner-index">
+          <view class="img_text">￥{{item.goods[0].alone_price}}</view>
+        </view>
+        </view>
+      
+      </view>
+      <view> 
+        <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
+        <view class="goods-banner" id='banner'>
+        <view class="div banner-index">
+          <view class="img_text">￥{{item.goods[1].alone_price}}</view>
+        </view>
+        </view>
+      
+      </view>
+      <view> 
+        <image class="image_shop" src="{{item.shopImg}}"></image>
+        <view class="goods-banner" id='banner'>
+        <view class="div banner-index">
+          <view class="img_text">￥1344</view>
+        </view>
+        </view>
+      
+      </view>
+      <!-- <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
+      
+      <image class="image_shop" src="{{item.shopImg}}"></image> -->
+    </navigator>
   </view>
-</view>
-
-
-
+</scroll-view>

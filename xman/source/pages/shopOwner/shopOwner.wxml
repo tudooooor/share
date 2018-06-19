@@ -13,7 +13,7 @@
 <view style="height: 1070rpx" class='box'>
   <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
-      <navigator url="../goods/goods?goods_id={{item.goods_id}}">
+      <navigator url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}">
         <image src='{{item.image_url}}'></image>
       </navigator>
       <view class='left_txt'>

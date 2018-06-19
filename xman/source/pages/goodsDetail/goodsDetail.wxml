@@ -27,13 +27,13 @@
 </view>
 
 
-<view class='standard' style='margin:14rpx 0;'>
+<navigator class='standard' style='margin:14rpx 0;' bindtap='maskDisplay'>
   <view class='std_right1'>商品类型</view>
   <view class='good_specifications'>{{goodSpecifications}}</view>
-  <navigator class='fun_li' bindtap='maskDisplay'>
+  <view class='fun_li' >
     <view class='arrow'></view>
-  </navigator>
-</view>
+  </view>
+</navigator>
 
 <view style='background-color:white'><view style='padding:20rpx'>商品详情</view></view>
 
