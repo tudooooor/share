@@ -264,10 +264,49 @@ class WeuserAction extends ApiAction {
         $ret['result'] = 0;
         echo json_encode($ret);
     }
+
+
+       /**
+     * 商品详情
+     */
+    public function detail() {
+        $GoodsDb = D('Goods');
+        $goods_id = $this->_get('goods_id','intval',0);
+        
+        if(!$goods_id) {
+            echo json_encode(array('result'=>'fail','error_info'=>'错误的请求地址或方法'));
+            return;
+        }
+        
+        $detail = $GoodsDb->getGoods('goods_id = ' . $goods_id);
+        
+        if(!$detail){
+            echo json_encode(array('result'=>'fail','error_code'=>41002,'error_info'=>'商品已下架或不存在'));
+            return;
+        }
+        
+        $imgs = unserialize($detail['goods_imgs']);
+        $imgsDetail = unserialize($detail['goods_imgs_detail']);
+        foreach($imgs as $v) {
+            $gallery[]['img_url'] =  $v;
+        }
+
+        foreach($imgsDetail as $v) {
+            $galleryDetail[]['img_url'] =  $v;
+        }
+
+        $this->addGood();
+        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail));   
+    }
+
     public function addGood() {
+        $GoodsDb = D('Goods');
         $goods_id = I('get.goods_id');
         $map = array('member_id' => $this->memberInfo['member_id']);
         $goods = $this->MemberDb->where($map)->field('goods')->select();
+        
+        $good = $GoodsDb->where(array('goods_id' => $goods_id))->select();
+        $member_id = $good[0]['member_id'];  
         
         $goodsArray;
         if ($goods[0]['goods'] == "")
@@ -279,27 +318,55 @@ class WeuserAction extends ApiAction {
             $goodsArray = unserialize($goods[0]['goods']);           
         }
 
-        $temp = array_push($goodsArray, $goods_id);
+        $temp = array_push($goodsArray, $member_id);
         $goodsArray = array_unique($goodsArray);
         
         $serialTemp = serialize($goodsArray);
         $this->MemberDb->__set('goods', $serialTemp);
         $result = $this->MemberDb->save();
-        echo json_encode($result);
+
     }
 
     public function shoplist() {
+        $map = array('member_id' => $this->memberInfo['member_id']);
+        $members = $this->MemberDb->where($map)->field('goods')->select();
+        $membersArray;
+        $GoodsDb = D('Goods');
+        $MemberDbOther = D('Member');
+        $ret = array();
+        if ($members[0]['goods'] == "")
+        {
+            $membersArray = array();
+        }
+        else
+        {
+            $membersArray = unserialize($members[0]['goods']);           
+        }
+
+        for ($i = 0; $i < count($membersArray); $i++)
+        {
+            $members = $MemberDbOther->where(array('member_id' => $membersArray[$i]))->select();
+        
+            $ret[$i]['nickName'] = $members[0]['nickname'];
+            $ret[$i]['shopName'] = $members[0]['shop_name'];
+            $ret[$i]['shopDesc'] = $members[0]['shop_desc'];
+            $ret[$i]['shopImg'] = $members[0]['shop_logo'];
+            $good = $GoodsDb->where(array('member_id' => $members[0]['member_id']))->select();
+            $ret[$i]['goods'] = $good;
+        }
+
         $member_id = $this->memberInfo['member_id'];
-        $ret[0]['nickName'] = $this->memberInfo['nickname'];
-        $ret[0]['shopName'] = $this->memberInfo['shop_name'];
-        $ret[0]['shopDesc'] = $this->memberInfo['shop_desc'];
-        $ret[0]['shopImg'] = $this->memberInfo['shop_logo'];
+        $default['nickName'] = $this->memberInfo['nickname'];
+        $default['shopName'] = $this->memberInfo['shop_name'];
+        $default['shopDesc'] = $this->memberInfo['shop_desc'];
+        $default['shopImg'] = $this->memberInfo['shop_logo'];
         $map = array('member_id' => $member_id);
         $GoodsDb = D('Goods');
         $good = $GoodsDb->where($map)->select();
 
-        $ret[0]['goods'] = $good;
+        $default['goods'] = $good;
 
+        array_push($ret, $default);
         echo json_encode($ret);
     }
 
@@ -307,73 +374,20 @@ class WeuserAction extends ApiAction {
     public function goodslists() {
         $good_id = I('get.good_id');
         $GoodsDb = D('Goods');
-        $MemberDbOther = D('Member');
 
-        if ($good_id != NULL)
-        {
-            $good = $GoodsDb->where(array('goods_id' => $good_id))->select();
-            $member_id = $good[0]['member_id'];    
-            $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
-            $nickName = $otherMember[0]['nickname'];
-            $shopOwnerImg = $otherMember[0]['headimgurl'];
-            
-            $ret['nickName'] = $nickName;
-            $ret['shopOwnerImg'] = $shopOwnerImg;
-        }
-        else
-        {
-            $member_id = $this->memberInfo['member_id'];
-            $ret['nickName'] = $this->memberInfo['nickName'];
-        }
-
+        $ret['nickName'] = $this->memberInfo['nickName'];
         $ret['shopName'] = $this->memberInfo['shop_name'];
         $ret['shopDesc'] = $this->memberInfo['shop_desc'];
         $ret['shopImg'] = $this->memberInfo['shop_logo'];
-        $map = array('member_id' => $member_id);
-        $goods = $this->MemberDb->where($map)->field('goods')->select();
-        $goodsArray = unserialize($goods[0]['goods']);
-
-        $map = array();
-        $map['goods_id'] = array('in', $goodsArray);
-
+       
         $GoodsDb = D('Goods');
                 
         $offset = I('get.offset');
         $size = I('get.size');
         
-        $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
-        $good = $GoodsDb->where(array('goods_id' => '8595'))->select();
-        if(!$list) {
-            $listTemp;
-            $listTemp[0] = $good[0];
-            $ret['goods'] = $listTemp;
-	    // $ret['goods'] = array();
-        } else {
-            $listTemp;  
-            $listTempLenght = 0;
-            $listLenght = count($list);
-            $goodsLenght = count($goodsArray);
-            $goodsSerialize = array();
-            for($i = 0; $i < $listLenght; $i++)
-            {
-                $temp = array_push($goodsSerialize, $list[$i]['goods_id']);
-                
-                for($j = 0; $j < $goodsLenght; $j++)
-                {
-                    if ($list[$i]['goods_id'] == $goodsArray[$j])
-                    {
-                        $listTemp[$listTempLenght++] = $list[$i];
-                        break;
-                    }
-                }
-            }
-            $listTemp[$listTempLenght] = $good[0];
-            $serialTemp = serialize($goodsSerialize);
-            $this->MemberDb->__set('goods', $serialTemp);
-            $result = $this->MemberDb->save();
-
-            $ret['goods'] = $listTemp;
-        }
+        $list = $GoodsDb->where(array('member_id' => $this->memberInfo['member_id']))->order('goods_sort ASC')->limit($offset,$size)->select();
+        $ret['goods'] = $list;
+ 
         $ret['result'] = 'ok';
         echo json_encode($ret);
     }
@@ -597,7 +611,6 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         echo json_encode($ret);
     }
     
-
     public function lists() {
         $good_id = I('get.good_id');
         if ($good_id != NULL)

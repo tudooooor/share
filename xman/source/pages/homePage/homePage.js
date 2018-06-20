@@ -7,48 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-<<<<<<< .mine
-    imgUrls: [
-      '../../utils/images/1.jpg',
-      '../../utils/images/2.jpg',
-      '../../utils/images/3.jpg'
-    ],
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
-    goods_list:[{}],
-    // hidden: true,
-    // loaded: false,
-    shopOwnerImg:"",
-    userImage:"",
-    nickName:"",
-    shopName:"",
-    shopDesc:"",
-    shopImg:"",
-||||||| .r194
-    imgUrls: [
-      '../../utils/images/1.jpg',
-      '../../utils/images/2.jpg',
-      '../../utils/images/3.jpg'
-    ],
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
-    "goods_list": [3],
-    // hidden: true,
-    // loaded: false,
-    shopOwnerImg:"",
-    userImage:"",
-    nickName:"",
-    shopName:"",
-    shopDesc:"",
-    shopImg:"",
-=======
   shopData:[],
 
->>>>>>> .r195
   },
 
 

@@ -22,7 +22,7 @@
 <!--商品简介  -->
 <view class='information'>
   <view style='margin-left:30rpx;margin-right:30rpx;padding-bottom:20rpx'>
-    <text class='shop_name'>{{good_name}}</text>
+    <text class='shop_name'>{{goods_name}}</text>
   </view>
 </view>
 
@@ -39,7 +39,7 @@
 
 <view class='information'>
   <view style='margin-left:30rpx;margin-right:30rpx'>
-    <text class='shop_name'>{{good_desc}}</text>
+    <text class='shop_name'>{{goods_desc}}</text>
   </view>
 </view>
 <view wx:for="{{garreryDetail}}" wx:key="item">

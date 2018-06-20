@@ -15,11 +15,11 @@ Page({
     swiperCurrent: 1,
     minPrice: 0,
     maxPrice: 0,
-    good_name: '',
+    goods_name: '',
     totalPrice:0,
     goodSpecifications:'',
     good_id:'',
-    good_desc:'',
+    goods_desc:'',
     garreryDetail:[],
   },
 
@@ -41,7 +41,7 @@ Page({
     });
   },
   goodsDetail: function (good_id){
-    var url = this.baseApiUrl + "?g=Api&m=Goods&a=detail&goods_id=" + good_id;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=detail&goods_id=" + good_id + '&token=' + this.token;
     var self = this;
     util.ajax({
        url : url,
@@ -90,7 +90,8 @@ Page({
              }
 
              self.setData({
-               goods: data.goods,
+               goods_name: data.goods.goods_name,
+               goods_desc: data.goods.goods_desc,
                goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
                gallery: data.gallery,
@@ -99,7 +100,9 @@ Page({
                maxPrice: parseInt(maxPrice),
 
              });
-
+             wx.setNavigationBarTitle({
+               title: data.goods.goods_name//页面标题为路由参数
+             });
            } else {
              self.error(data);
            }
@@ -108,11 +111,7 @@ Page({
 
  },
   onLoad: function (options) {
-    this.is_onload = 1;
-    wx.hideShareMenu();
     this.data.good_id = options.goods_id;
-    this.goods_name = options.goods_name;
-    this.data.good_desc = options.good_desc;
     if (options.scene != undefined)
     {
       var str = options.scene;
@@ -120,35 +119,11 @@ Page({
       this.data.good_id = str;
     }
 
-    this.setData({ good_id: this.data.good_id});
    //  wx.showNavigationBarLoading();
     this.baseApiUrl = util.config('baseApiUrl'); 
     this.token = wx.getStorageSync('token'); 
 
-    wx.setNavigationBarTitle({
-      title: this.goods_name//页面标题为路由参数
-    });
-    this.setData({
-      good_name: this.goods_name,
-      good_desc: this.data.good_desc
-    });
     this.goodsDetail(this.data.good_id);
-
-    // var self = this;
-    // util.checkNet({
-    //   success : function() {
-    //      util.succNetCon(self);
-    //      self.goodsDetail(self.goods_id);
-    //      self.goodsGroups(self.goods_id);
-    //   },
-    //   error : function() {
-    //      util.notNetCon(self);
-    //   }
-    // });
-
-    // 页面初始化 options为页面跳转所带来的参数
-    // this.imgLoader = new ImgLoader(this)
-    // this.addGood(this.goods_id);
   },
   swithToIndex:function()
   {
