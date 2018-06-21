@@ -98,7 +98,7 @@ Page({
                garreryDetail: data.galleryDetail,
                minPrice: parseInt(minPrice),
                maxPrice: parseInt(maxPrice),
-
+               good_id: self.data.good_id
              });
              wx.setNavigationBarTitle({
                title: data.goods.goods_name//页面标题为路由参数

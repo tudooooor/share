@@ -3,6 +3,6 @@
   "navigationBarTextStyle": "#fff",
   "navigationBarTitleText": "门庭集市",
   "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light",
+  "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true
 }

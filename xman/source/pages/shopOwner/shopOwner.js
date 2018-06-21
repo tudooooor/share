@@ -9,10 +9,11 @@ Page({
     shopName:"",
     shopDesc:"",
     shopImg:"",
+    good_id:'',
   },
  
   onLoad: function (options) {
-
+    this.data.good_id = options.good_id;
     if (options.good_id != undefined)
     {
       this.good_id = options.good_id;

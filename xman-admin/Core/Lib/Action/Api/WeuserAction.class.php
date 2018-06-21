@@ -345,21 +345,25 @@ class WeuserAction extends ApiAction {
 
         for ($i = 0; $i < count($membersArray); $i++)
         {
-            $members = $MemberDbOther->where(array('member_id' => $membersArray[$i]))->select();
+            if ($membersArray[$i] != '7')
+            {
+                $members = $MemberDbOther->where(array('member_id' => $membersArray[$i]))->select();
         
-            $ret[$i]['nickName'] = $members[0]['nickname'];
-            $ret[$i]['shopName'] = $members[0]['shop_name'];
-            $ret[$i]['shopDesc'] = $members[0]['shop_desc'];
-            $ret[$i]['shopImg'] = $members[0]['shop_logo'];
-            $good = $GoodsDb->where(array('member_id' => $members[0]['member_id']))->select();
-            $ret[$i]['goods'] = $good;
+                $ret[$i]['nickName'] = $members[0]['nickname'];
+                $ret[$i]['shopName'] = $members[0]['shop_name'];
+                $ret[$i]['shopDesc'] = $members[0]['shop_desc'];
+                $ret[$i]['shopImg'] = $members[0]['shop_logo'];
+                $good = $GoodsDb->where(array('member_id' => $members[0]['member_id']))->select();
+                $ret[$i]['goods'] = $good;
+            }
         }
 
-        $member_id = $this->memberInfo['member_id'];
-        $default['nickName'] = $this->memberInfo['nickname'];
-        $default['shopName'] = $this->memberInfo['shop_name'];
-        $default['shopDesc'] = $this->memberInfo['shop_desc'];
-        $default['shopImg'] = $this->memberInfo['shop_logo'];
+        $members = $MemberDbOther->where(array('member_id' => '7'))->select();
+        $member_id = $members[0]['member_id'];
+        $default['nickName'] = $members[0]['nickname'];
+        $default['shopName'] = $members[0]['shop_name'];
+        $default['shopDesc'] = $members[0]['shop_desc'];
+        $default['shopImg'] = $members[0]['shop_logo'];
         $map = array('member_id' => $member_id);
         $GoodsDb = D('Goods');
         $good = $GoodsDb->where($map)->select();
