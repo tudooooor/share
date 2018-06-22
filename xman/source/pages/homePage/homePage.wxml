@@ -1,40 +1,38 @@
-<scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
+<!-- <scroll-view scroll-y="true" style="height: 1070rpx" class='box'> -->
+<view style="height: 1070rpx" class='box'>
   <view wx:key="item" wx:for="{{shopData}}" class='standard_new'>
     <view class='header'>
-        <image class="image_header" src="{{item.shopImg}}"></image>
-        <view class='nickname'>{{item.shopName}}</view>
+      <image class="image_header" src="{{item.shopImg}}"></image>
+      <view class='nickname'>{{item.shopName}}</view>
     </view>
     <navigator url='../shopOwner/shopOwner?good_id={{item.goods[0].goods_id}}' style='display:flex'>
-      <view> 
-        <image class="image_shop" src="{{item.goods[0].image_url}}">        </image>
+      <view>
+        <image class="image_shop" src="{{item.goods[0].image_url}}"> </image>
         <view class="goods-banner" id='banner'>
-        <view class="div banner-index">
-          <view class="img_text">￥{{item.goods[0].market_price}}</view>
+          <view class="div banner-index">
+            <view class="img_text">￥{{item.goods[0].market_price}}</view>
+          </view>
         </view>
-        </view>
-      
+
       </view>
-      <view> 
+      <view>
         <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
         <view class="goods-banner" id='banner'>
-        <view class="div banner-index">
-          <view class="img_text">￥{{item.goods[1].market_price}}</view>
+          <view class="div banner-index">
+            <view class="img_text">￥{{item.goods[1].market_price}}</view>
+          </view>
         </view>
-        </view>
-      
+
       </view>
-      <view> 
+      <view>
         <image class="image_shop" src="{{item.goods[2].image_url}}"></image>
         <view class="goods-banner" id='banner'>
-        <view class="div banner-index">
-          <view class="img_text">￥{{item.goods[2].market_price}}</view>
+          <view class="div banner-index">
+            <view class="img_text">￥{{item.goods[2].market_price}}</view>
+          </view>
         </view>
-        </view>
-      
       </view>
-      <!-- <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
-      
-      <image class="image_shop" src="{{item.shopImg}}"></image> -->
     </navigator>
   </view>
-</scroll-view>
+</view>
+<!-- </scroll-view> -->

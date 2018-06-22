@@ -108,7 +108,6 @@ Page({
            }
        }
     });
-
  },
   onLoad: function (options) {
     this.data.good_id = options.goods_id;
@@ -164,17 +163,6 @@ Page({
         totalPrice: this.data.totalPrice - parseInt(this.data.goodCategorys[index].price)
       })
     }
-
-    // var index = e.currentTarget.dataset.id;
-    // var numberGoods = this.data.goodCategorys[index].storageInput;
-    // if (numberGoods > 0){
-    //   this.data.goodCategorys[index].storageInput--;
-    //   this.setData({
-    //     goodCategorys: goodCategorys
-    //   })
-    // }else{
-    //   return false;
-    // }
   },
   plus: function (e) {
     console.log(e);
@@ -188,21 +176,11 @@ Page({
         count: this.data.count,
         totalPrice: this.data.totalPrice + parseInt(this.data.goodCategorys[index].price)
       })
-
     }
     else
     {
       return false;
     }
-
-    
-    // if (numberGoods > 0) {
-    //   that.setData({
-    //     numberGoods: ++numberGoods
-    //   })
-    // } else {
-    //   return false;
-    // }
   },
  /**
    * 生命周期函数--监听页面初次渲染完成
@@ -249,7 +227,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: goods_name,
+      path: '/pages/doodsDetail/goodsDetail?good_id=' + good_id,
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }  
   },
   intervalChange:function(e){
     
