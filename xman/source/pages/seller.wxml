@@ -65,6 +65,20 @@
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
+    <navigator class='detail1' src='{{img_arr}}'>
+      <view class='fun_li'>
+        <view class='name'>店铺收款二维码</view>
+      </view>
+      <view class='fun_li'>
+        <view class='arrow'></view>
+      </view>
+      </navigator>
+</view>
+</view>
+
+<view class='contact'>
+  <view class='standard_new'>
+    <view class='mark2'></view>
     <navigator class='detail1' url="./editShop/editShop">
       <view class='name'>我的店铺编辑</view>
       <view class='fun_li'>
