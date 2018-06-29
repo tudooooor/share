@@ -1,7 +1,5 @@
 {
-    "enablePullDownRefresh": false,
-     "navigationBarTitleText" : " ",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black",
-    "disableScroll" : true
+  "navigationBarTitleText": "店家收款码",
+  "navigationBarTextStyle": "#fff",
+  "navigationBarBackgroundColor": "#5bbc04"
 }
