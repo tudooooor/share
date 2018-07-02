@@ -95,5 +95,6 @@
 <navigator class="shop" url='../shopOwner/shopOwner?good_id={{good_id}}'>进店</navigator> 
 <view style='color:#5bbc04'>|</view>
 <view class="index" bindtap='swithToIndex'>主页</view> 
-<view class="buy">立即购买</view>
+<!--<view class="buy">立即购买</view>-->
+<button type="primary" bindtap="buyNow">立即购买</button>
 </view>
