@@ -243,12 +243,12 @@ Page({
     
   },
   buyNow:function(){
-    wx.navigateTo({
+   /* wx.navigateTo({
       url: '../sellers',
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
-    })
+    })*/
 
   }
 })
