@@ -1,6 +1,7 @@
 var util = require('../utils/util.js')
 var app = getApp();
-var tempFilePaths = '../../images/incoming_code.jpg';
+var tempFilePaths = new Array(1)
+tempFilePaths[0] = '../../images/incoming_code.jpg';
 
 Page({
   data: {
