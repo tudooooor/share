@@ -2,6 +2,7 @@ var util = require('../utils/util.js')
 Page({
   data: {
     "goods_list": [],
+    title: "",
     hidden: true,
     loaded: false
   },
@@ -97,7 +98,10 @@ Page({
         "success": function (data) {
           if (data['result'] == "ok") {
             that.setData({
-              "goods_list": data.goods
+              "goods_list": data.goods,
+            });
+            wx.setNavigationBarTitle({
+              title: data.shopName//页面标题为路由参数
             });
             util.loaded(that);
           }

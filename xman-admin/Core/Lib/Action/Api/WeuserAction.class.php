@@ -408,11 +408,26 @@ class WeuserAction extends ApiAction {
         return $rsp;
     }
 
+    public function getQCode() {
+        $good_id = I('get.good_id');
+         
+        $GoodsDb = D('Goods');
+        $MemberDbOther = D('Member');
+        $good = $GoodsDb->where(array('goods_id' => $good_id))->select();
+        $member_id = $good[0]['member_id'];
+        $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
+        $ret['shop_qcode'] = $otherMember[0]['shop_qcode'];
+
+        $ret['result'] = 0;
+        echo json_encode($ret); 
+    }
+    
     public function getShopData() {
 
         $ret['shopName'] = $this->memberInfo['shop_name'];
         $ret['shopImg'] = $this->memberInfo['shop_logo'];
         $ret['shopDesc'] = $this->memberInfo['shop_desc'];
+        $ret['shopQCode'] = $this->memberInfo['shop_qcode'];
         $ret['statusCode'] = 0;
         echo json_encode($ret); 
     }
@@ -421,10 +436,12 @@ class WeuserAction extends ApiAction {
         $shop_name = $_GET['shopName'];
         $shop_logo = $_GET['shopImg'];
         $shop_desc = $_GET['shopDesc'];
+        $shop_qcode = $_GET['shopQCode'];
         $map = array('member_id' => $this->memberInfo['member_id']);
 
         $result = $this->MemberDb->where($map)->__set('shop_name', $shop_name);
         $result = $this->MemberDb->where($map)->__set('shop_logo', $shop_logo);
+        $result = $this->MemberDb->where($map)->__set('shop_qcode', $shop_qcode);
         $result = $this->MemberDb->where($map)->__set('shop_desc', $shop_desc);
         $result = $this->MemberDb->save();
         $ret['statusCode'] = 0;

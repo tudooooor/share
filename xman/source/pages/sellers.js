@@ -5,7 +5,8 @@ tempFilePaths[0] = '../../images/incoming_code.jpg';
 
 Page({
   data: {
-    imageUrl: ''
+    imageUrl: '',
+    good_id:'',
   },
 
   chooseImg: function () {//调用  
@@ -26,17 +27,39 @@ Page({
   },
 
   preview_img: function () {//预览tupia  
+  var image_arr = [];
+  image_arr[0] = this.data.imageUrl;
     wx.previewImage({
-      current: this.data.imageUrl, // 当前显示图片的http链接  
-      urls: this.data.imageUrl // 需要预览的图片http链接列表  
+      current: image_arr, // 当前显示图片的http链接  
+      urls: image_arr // 需要预览的图片http链接列表  
     })
   },
+  getQCode:function()
+  {
+    var that = this;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=getQCode&good_id=" + this.data.good_id + "&token=" + this.token;
+    util.ajax({
+      "url": url,
+      success: function (res) {
+        console.log(res)
+        if (res['result'] == 0) {
+          that.setData({
+            imageUrl: res.shop_qcode
+          });
+        }
+      },
+      fail: function (res) {
+        console.log(res)
+      },
+      error: function (res) {
+      }
 
+    });
+  },
   onLoad:function (options){
-
-    var _this = this;
-    _this.setData({
-      imageUrl: tempFilePaths
-    })
+    this.token = wx.getStorageSync('token');
+    this.baseApiUrl = util.config('baseApiUrl'); 
+    this.setData({good_id: options.good_id});
+    this.getQCode();
   }
 })  

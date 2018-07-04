@@ -50,22 +50,18 @@ class CmsAction extends Action{
             $this->error($GoodsDb->getError());
         }
 
-
     }
 
     public function addGoodWhenAdd($goods_id) {
-        
-        $map = array('member_id' => $this->memberInfo['member_id']);
-        $goods = $this->MemberDb->where($map)->field('goods')->select();
-        
+
         $goodsArray;
-        if ($goods[0]['goods'] == "")
+        if ($this->memberInfo['goods'] == "")
         {
             $goodsArray = array();
         }
         else
         {
-            $goodsArray = unserialize($goods[0]['goods']);           
+            $goodsArray = unserialize($$this->memberInfo['goods']);           
         }
 
         $temp = array_push($goodsArray, $goods_id);
@@ -99,7 +95,7 @@ class CmsAction extends Action{
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
             $ret['goods_id'] = $goodId;
-            $this->addGoodWhenAdd($goodId);
+            $this->addGoodWhenAdd($this->memberInfo['member_id']);
             echo json_encode($ret);  
         } else {
             $this->error($GoodsDb->getError());
