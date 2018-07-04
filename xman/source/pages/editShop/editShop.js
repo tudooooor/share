@@ -1,4 +1,4 @@
-var adds = { shopName: "", shopDesc: "", shopImg: "" };
+var adds = { shopName: "", shopDesc: "", shopImg: "" , shopImg_QCode:""};
 var util = require('../../utils/util.js');
 Page({
 
@@ -7,6 +7,7 @@ Page({
    */
   data: {
     img_arr: [],
+    img_arr_QCode:[],
     shopNameInput: '',
     shopName: "",
     shopImg: "",
@@ -15,10 +16,10 @@ Page({
     lastY: 0,
   },
   deleteImage: function (e) {
-    var tempImage = [];
-    this.setData({
-      img_arr: tempImage
-    });
+    // var tempImage = [];
+    // this.setData({
+    //   img_arr: tempImage
+    // });
 
   },
   handletouchend: function (event) {
@@ -50,7 +51,8 @@ Page({
           that.setData({
             shopName: data.shopName,
             img_arr: data.shopImg,
-            shopDesc: data.shopDesc
+            shopDesc: data.shopDesc,
+            img_arr_QCode: data.shopQCode,
           });
         }
       }
@@ -79,11 +81,95 @@ Page({
       }
     });
   },
+  uploadImgOne: function (url) {
+    var img;
+    if (this.data.img_arr.indexOf("Uploads") == -1)
+    {
+      img = this.data.img_arr[0];
+      adds.shopImg_QCode = this.data.img_arr_QCode;
+    }
+    else
+    {
+      img = this.data.img_arr_QCode[0];
+      adds.shopImg = this.data.img_arr;
+    }
+    var that = this;
+    wx.uploadFile({
+      url: url,
+      filePath: img,//that.data.img_arr[0],
+      name: 'file',
+      header: { "Content-Type": "application/json" },
+      // formData: adds,
+      success: function (res) {
+        var data = JSON.parse(res.data);
+
+        if (that.data.img_arr.indexOf("Uploads") == -1) {
+          adds.shopImg = data["url"];
+        }
+        else {
+          adds.shopImg_QCode = data["url"];
+        }
+
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        that.shopEditCompelete();
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+
+    });
+  },
+  uploadImg: function (url, img, counter)
+  {
+    var that = this;
+    wx.uploadFile({
+      url: url,
+      filePath: img,//that.data.img_arr[0],
+      name: 'file',
+      header: { "Content-Type": "application/json" },
+      // formData: adds,
+      success: function (res) {
+        counter++;
+        var data = JSON.parse(res.data);
+        if (counter == 1)
+        {
+          adds.shopImg = data["url"];
+          that.uploadImg(url, that.data.img_arr_QCode[0], counter);
+        }
+        else
+        {
+          adds.shopImg_QCode = data["url"];
+        }
+
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        if (counter == 2)
+        {
+          that.shopEditCompelete();
+        }
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+
+    });
+  },
   formSubmit: function (e) {
     var that = this;
     adds.shopName = e.detail.value.shopName;
     adds.shopDesc = e.detail.value.shopDesc;
-    if (e.detail.value.shopName == "" || e.detail.value.shopDesc == "" || this.data.img_arr.length == 0) {
+    if (e.detail.value.shopName == "" || e.detail.value.shopDesc == "" || this.data.img_arr.length == 0 || this.data.img_arr_QCode.length == 0) {
       wx.showToast({
         title: '请填写信息',
         duration: 3000
@@ -92,34 +178,18 @@ Page({
     }
 
     var url = this.baseApiUrl + "?g=Api&m=Weuser&a=upload1&token=" + this.token;
-
-    if (this.data.img_arr[0].indexOf("Uploads") == -1) {
-      wx.uploadFile({
-        url: url,
-        filePath: that.data.img_arr[0],
-        name: 'file',
-        header: { "Content-Type": "application/json" },
-        // formData: adds,
-        success: function (res) {
-          var data = JSON.parse(res.data);
-
-          adds.shopImg = data["url"];
-          console.log(res)
-        },
-        fail: function (res) {
-          console.log(res);
-        },
-        complete: function (res) {
-          that.shopEditCompelete();
-          console.log(res)
-        },
-        fail: function (res) {
-          console.log(res);
-        }
-
-      });
+    var ttt = (this.data.img_arr.indexOf("Uploads") == -1);
+    if (this.data.img_arr.indexOf("Uploads") == -1 && this.data.img_arr_QCode.indexOf("Uploads") == -1) {
+      var counter = 0;
+      that.uploadImg(url, this.data.img_arr[0], counter);
+    }
+    else if (this.data.img_arr.indexOf("Uploads") == -1 || this.data.img_arr_QCode.indexOf("Uploads") == -1)
+    {
+      that.uploadImgOne(url)
     }
     else {
+      adds.shopImg = this.data.img_arr;
+      adds.shopImg_QCode = this.data.img_arr_QCode;
       this.shopEditCompelete();
     }
 
@@ -135,9 +205,19 @@ Page({
       }
     });
   },
+  upimg_QCode: function () {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      success: function (res) {
+        that.setData({
+          img_arr_QCode: res.tempFilePaths
+        })
+      }
+    });
+  },
   bindGoodsDesc: function () {
-    var xxx;
-    xxx++;
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

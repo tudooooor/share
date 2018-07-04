@@ -1,5 +1,6 @@
-<form bindsubmit="formSubmit">
 
+<form bindsubmit="formSubmit">
+<scroll-view scroll-y style="height: 1070rpx" class='box'>
   <view wx:if="{{shopName != null}}" class='standardnew' style='margin:10rpx'>
     <view class='left'>店铺名称:</view>
     <view class='right'>
@@ -30,15 +31,7 @@
 
   <view class='standardnew1'>
     <view style="display:flex;flex-direction:row; ">
-      <view class='upload'>上传店铺LOGO照片:</view>
-      <image bindtap="upimg" src='/images/add.png'></image>
-    </view>
-    <view>
-    </view>
-  </view>
-    <view class='standardnew1'>
-    <view style="display:flex;flex-direction:row; ">
-      <view class='upload'>上传店铺收款二维码:</view>
+      <view class='upload'>上传店铺LOGO:</view>
       <image bindtap="upimg" src='/images/add.png'></image>
     </view>
     <view>
@@ -48,7 +41,17 @@
   <image src="{{img_arr}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
 
 
-  <image src="{{img_2d_arr}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
+  <view class='standardnew1'>
+    <view style="display:flex;flex-direction:row; ">
+      <view class='upload'>上传店铺收款二维码:</view>
+      <image bindtap="upimg_QCode" src='/images/add.png'></image>
+    </view>
+    <view>
+    </view>
+  </view>
 
+  <image src="{{img_arr_QCode}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
+</scroll-view>
   <button id="button" class='submit' formType="submit">提交</button>
 </form>
+
