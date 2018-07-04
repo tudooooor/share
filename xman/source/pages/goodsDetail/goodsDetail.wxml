@@ -96,7 +96,7 @@
 <view style='color:#5bbc04'>|</view>
 <view class="index" bindtap='swithToIndex'>主页</view> 
 <!--<view class="buy">立即购买</view>-->
-<navigator url='../sellers'>
+<navigator url='../sellers?good_id={{good_id}}'>
 <button type="primary" bindtap="buyNow">立即购买</button>
 </navigator>
 </view>
