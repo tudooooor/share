@@ -61,7 +61,7 @@
   </navigator>
 </view>
 </view>
-
+<!--
 <view class='contact'>
   <view class='standard_new'>
     <view class='mark2'></view>
@@ -75,6 +75,7 @@
       </navigator>
 </view>
 </view>
+-->
 
 <view class='contact'>
   <view class='standard_new'>

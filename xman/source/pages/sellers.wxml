@@ -1,4 +1,7 @@
 <view class="container" style="padding:1rem;">
   <image class="image_frame" src="{{imageUrl}}" mode="aspectFill" style="width: 100%; height: 370px;margin:1rem 0;" bindtap='preview_img'></image>
+ <!--
   <button type="primary" bindtap="chooseImg">重新获取</button>
+  -->  
 </view>
+<view class="notes">点击预览，发送二维码到个人微信进行付款</view>
