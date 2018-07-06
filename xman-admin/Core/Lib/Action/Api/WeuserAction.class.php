@@ -1041,6 +1041,25 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         echo json_encode($ret);exit;
     }
     
+    public function getSellerOrder()
+    {
+        $OrdersDb  =  D('Orders');
+        $map['seller_id'] = $this->memberInfo['member_id'];
+        $list = $OrdersDb->where($map)->order('order_time desc')->select();
+        if(!$list) {
+            $ret['order_list'] = array();
+        } else {
+            foreach ($list as $k => $v) {
+                $v['order_goods'] = unserialize($v['order_goods']);   
+                $ret['order_list'][] = $v;
+            }
+        }
+
+        $ret['result'] = 'ok';
+
+        echo json_encode($ret);
+    }
+
     /**
      * 根据获取订单详情
      */
