@@ -118,9 +118,9 @@ Page({
   scroll : function(data) {
     
   },
-  toOrder : function(e) {
+  toMySells : function(e) {
     wx.setStorageSync('order_type',e.currentTarget.dataset.type);  
-    wx.switchTab({url : "/pages/orderMy/orderMy"});
+    wx.switchTab({url : "/pages/MySells/MySells"});
   },
   toGroup : function(e) {
     wx.setStorageSync('groups_type',1);  

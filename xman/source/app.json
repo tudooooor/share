@@ -9,6 +9,7 @@
     "pages/info/info",
     "pages/share/share",
     "pages/personal",
+    "pages/MySells/MySells",
 
     "pages/goodsDetail/goodsDetail",
     "pages/shopOwner/shopOwner",

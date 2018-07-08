@@ -6,7 +6,7 @@
 </view>
 
 <view class='func'>
-  <navigator class='fun_li' bindtap="toOrder" href="orderMy.html">
+  <navigator class='fun_li' bindtap="toMySells" url="MySells/MySells">
     <view class='mark first'></view>
     <view class='txt'>我卖的</view>
   </navigator>
