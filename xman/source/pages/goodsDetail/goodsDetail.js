@@ -21,6 +21,7 @@ Page({
     good_id:'',
     goods_desc:'',
     garreryDetail:[],
+    btn_order_done : false,
   },
 
   /**
@@ -188,6 +189,61 @@ Page({
   onReady: function () {
   
   },
+// 我要下单
+btnOrderDone:function(e){
+    if(!this.data.address) return false;
+    if(this.data.btn_order_done) return true;
+    var self = this;
+    this.setData({
+      "btn_order_done" : true
+    });
+
+
+    if(this.data.order_id) {
+        self.order_id = this.data.order_id;
+        return util.wxpay(self);
+    }
+
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orders&token=" + this.token;
+
+    //默认是单独购买
+    var data = {
+      "goods_id" : this.goods_id,
+      "address_id" : this.address_id,
+      "groupbuy" : this.sell_type == 1 ? 1 : 0,
+      "group_order_id" : this.group_order_id ? this.group_order_id : 0
+    };
+
+    util.ajax({
+        "url" :  url,
+        "method" :　"POST",
+        "data" : data,
+        "success" : function(data) {
+            if(data['result'] == "ok") {
+                //服务端生成订单成功
+                //  self.setData({
+                //   "btn_order_done" : false
+                // });
+                //微信支付
+                self.order_id = data.order_id;
+                util.wxpay(self);
+                self.setData({"order_id" : self.order_id});
+                //self.wxpay();
+            } else if(data['result'] == "fail") {
+
+              self.setData({"order_id" : 0});
+
+              util.toast(self,data.error_info);
+            } else {
+
+              self.setData({"order_id" : 0});
+
+              util.toast(self,util.config('error_text')[0]);
+            }
+        }
+      });
+  },
+
 
   /**
    * 生命周期函数--监听页面显示
