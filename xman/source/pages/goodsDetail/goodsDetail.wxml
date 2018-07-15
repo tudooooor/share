@@ -27,9 +27,17 @@
 </view>
 
 
-<navigator class='standard' style='margin:14rpx 0;' bindtap='maskDisplay'>
+<navigator class='standard' style='margin:8rpx 0;' bindtap='maskDisplay'>
   <view class='std_right1'>商品类型</view>
   <view class='good_specifications'>{{goodSpecifications}}</view>
+  <view class='fun_li' >
+    <view class='arrow'></view>
+  </view>
+</navigator>
+
+<navigator class='standard' style='margin:8rpx 0;' url='../addresses'>
+  <view class='std_right1'>收货地址</view>
+  <view class='good_specifications'>{{address}}</view>
   <view class='fun_li' >
     <view class='arrow'></view>
   </view>
@@ -79,53 +87,10 @@
           </view>
         </view>
       </view>
-      
-
-<form bindsubmit="btnOrderDone" name="theForm" id="theForm" class="form" report-submit="true">
-    <view class=" div wx_wrap">
-      <view class="address_new">
-
-
-        <view class="p">
-                    <label for="name"><view class="span tit"></view>
-                        <input id="name" name="receive_name" value="{{address.receive_name}}" placeholder="名字" type="text" bindblur='receive_function'/>
-                        <view class="span" id="updateTip1" style="color: #F43530; {{!receive_name_tip ? 'display: none;' : ''}}">请填写姓名</view>
-                    </label>
-                </view>
-        <view class="p">
-                    <label for="mobile"><view class="span tit">手机号码</view>
-                        <input id="mobile" name="mobile" value="{{address.mobile}}" placeholder="手机号码" type="number" bindblur='mobile_function'/>
-                        <view class="span" id="updateTip2" style="color: #F43530; {{!mobile_tip ? 'display: none;' : ''}}">请填写正确的手机号</view>
-                    </label>
-                </view>
-             
-<view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
+      <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
         总价：￥{{totalPrice}}
       </view>
-      
-     <view class="p action">
-                    <button class="pay2_btn" id="btn_order_done" style="{{btn_order_done || !address ? 'opacity: 0.4;' : ''}}" formType="submit">
-                    <block wx:if="{{btn_order_done}}">正在支付 请稍候</block>
-                    <block wx:elif="{{cancel_pay}}">继续支付</block>
-                    <block wx:else>提交订单</block>
-                    </button>
-                    <!-- <block wx:if="{{address.address_id}}">  
-                        <button class="submit hidden" style="background-color: #F43530;" id="deletes" bindtap="deletes" data-address_id="{{address.address_id}}">删除</button>
-                    </block> -->
-                </view>
-              </view>
-            </view>
-        </form>
 
-     <!--  <form name="theForm" id="theForm" class="form" report-submit="true" bindsubmit="btnOrderDone">
-          <view><button formType="submit" class="pay2_btn" loading="{{btn_order_done ? true : false}}"  id="btn_order_done" style="{{btn_order_done || !address ? 'opacity: 0.4;' : ''}}" >
-            <block wx:if="{{btn_order_done}}">正在支付 请稍候</block>
-              <block wx:elif="{{cancel_pay}}">继续支付</block>
-                <block wx:else>提交订单</block>
-                  </button>
-          </view>
-      </form>
- -->
 
     </view>
   </view>
@@ -138,9 +103,8 @@
 <navigator class="shop" url='../shopOwner/shopOwner?good_id={{good_id}}'>进店</navigator> 
 <view style='color:#5bbc04'>|</view>
 <view class="index" bindtap='swithToIndex'>主页</view> 
-<!-- <view class="buy">立即购买</view> -->
-<navigator url='../sellers?good_id={{good_id}}'>
-<!-- <navigator url='../checkout/checkout?goods={{goods}}'> -->
+<!--<view class="buy">立即购买</view>-->
+<view style='margin-top:6rpx;width:350rpx'>
 <button type="primary" bindtap="buyNow">立即购买</button>
-</navigator>
+</view>
 </view>

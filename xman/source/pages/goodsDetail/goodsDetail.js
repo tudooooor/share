@@ -21,7 +21,9 @@ Page({
     good_id:'',
     goods_desc:'',
     garreryDetail:[],
-    btn_order_done : false,
+    address:'',
+    address_id:'',
+    failInfo:'',
   },
 
   /**
@@ -40,6 +42,108 @@ Page({
     this.setData({
       swiperCurrent: ++e.detail.current
     });
+  },
+  buyNowCheck:function ()
+  {
+    if (this.data.address_id == '') {
+      this.data.failInfo = '请填写地址';
+    }
+    else if (this.data.goodSpecifications == '')
+    {
+      this.data.failInfo = '请填写商品类型';
+    }
+
+    if (this.data.failInfo != '')
+    {
+      wx.showToast({
+        title: this.data.failInfo,
+        duration: 2000,
+        icon:'none',
+      });
+      this.data.failInfo = '';
+      return false;
+    }
+
+    return true;
+  },
+  buyNowConfirm:function()
+  {
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orders&token=" + this.token;
+    //默认是单独购买
+    var data = {
+      "goods_id": this.data.good_id,
+      "address_id": this.data.address_id,
+      "groupbuy": this.sell_type == 1 ? 1 : 0,
+      "group_order_id": this.group_order_id ? this.group_order_id : 0
+    };
+
+    var self = this;
+    util.ajax({
+      "url": url,
+      "method": "POST",
+      "data": data,
+      "success": function (data) {
+        if (data['result'] == "ok") {
+          //服务端生成订单成功
+          //  self.setData({
+          //   "btn_order_done" : false
+          // });
+          //微信支付
+          self.order_id = data.order_id;
+          // util.wxpay(self);
+          self.setData({ "order_id": self.order_id });
+          wx.navigateTo({
+            url: '../sellers?good_id=' + self.data.good_id,
+          });
+          //self.wxpay();
+        } else if (data['result'] == "fail") {
+
+          self.setData({ "order_id": 0 });
+
+          util.toast(self, data.error_info);
+        } else {
+
+          self.setData({ "order_id": 0 });
+
+          util.toast(self, util.config('error_text')[0]);
+        }
+      }
+    });
+  },
+  error: function (data) {
+    util.loaded(this);
+    if (data['result'] == 'fail') {
+      util.toast(this, data.error_info);
+    }
+  },
+  buyNow:function(e)
+  {
+    if (this.buyNowCheck() == false)
+    {
+      return ;
+    }
+    else
+    {
+      var that = this;
+      wx.showModal({
+        title: '是否确定下单',
+        content:'下单后，下载商家二维码进行支付',
+        success: function (res) {
+          if (res.confirm) {
+            that.buyNowConfirm();
+          } else if (res.cancel) {
+          }
+        }
+        
+      });
+    }
+   
+  },
+  error: function (data) {
+    util.loaded(this);
+    if (data['result'] == 'fail') {
+      util.toast(this, data.error_info);
+    }
   },
   goodsDetail: function (good_id){
     var url = this.baseApiUrl + "?g=Api&m=Weuser&a=detail&goods_id=" + good_id + '&token=' + this.token;
@@ -143,7 +247,7 @@ Page({
       maskShow:'none',
       goodSpecifications: this.data.goodSpecifications
     });
-    this.data.goodSpecifications = '';
+
   },
   
   maskDisplay:function() {
@@ -189,61 +293,6 @@ Page({
   onReady: function () {
   
   },
-// 我要下单
-btnOrderDone:function(e){
-    if(!this.data.address) return false;
-    if(this.data.btn_order_done) return true;
-    var self = this;
-    this.setData({
-      "btn_order_done" : true
-    });
-
-
-    if(this.data.order_id) {
-        self.order_id = this.data.order_id;
-        return util.wxpay(self);
-    }
-
-    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=orders&token=" + this.token;
-
-    //默认是单独购买
-    var data = {
-      "goods_id" : this.goods_id,
-      "address_id" : this.address_id,
-      "groupbuy" : this.sell_type == 1 ? 1 : 0,
-      "group_order_id" : this.group_order_id ? this.group_order_id : 0
-    };
-
-    util.ajax({
-        "url" :  url,
-        "method" :　"POST",
-        "data" : data,
-        "success" : function(data) {
-            if(data['result'] == "ok") {
-                //服务端生成订单成功
-                //  self.setData({
-                //   "btn_order_done" : false
-                // });
-                //微信支付
-                self.order_id = data.order_id;
-                util.wxpay(self);
-                self.setData({"order_id" : self.order_id});
-                //self.wxpay();
-            } else if(data['result'] == "fail") {
-
-              self.setData({"order_id" : 0});
-
-              util.toast(self,data.error_info);
-            } else {
-
-              self.setData({"order_id" : 0});
-
-              util.toast(self,util.config('error_text')[0]);
-            }
-        }
-      });
-  },
-
 
   /**
    * 生命周期函数--监听页面显示

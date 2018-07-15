@@ -1,8 +1,9 @@
 var util = require('../utils/util.js')
 Page({
   data:{
-    "address_list": [],
-    loaded: false
+    "address_list": [],       
+    loaded: false,
+    defaultAddressIndex:0,
   },
   onLoad:function(options){
      
@@ -55,7 +56,17 @@ Page({
     // 页面隐藏
   },
   onUnload:function(){
-    // 页面关闭
+    var pages = getCurrentPages();
+    var Page = pages[pages.length - 1];//当前页
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    // var info = prevPage.data //取上页data里的数据也可以修改
+    if (prevPage.data.address != undefined)
+    {
+      prevPage.setData({
+        address: this.data.address_list[this.data.defaultAddressIndex].full_address,
+        address_id: this.data.address_list[this.data.defaultAddressIndex].address_id
+      });
+    }
   },
   //监听用户下拉动作
   onPullDownRefresh:function() {
@@ -75,7 +86,7 @@ Page({
       var data = this.data.address_list;
 
       //console.log('goods_id : '+ this.goods_id);
-      if(this.goods_id && this.goods_id != "undefined" && this.sell_type && this.sell_type != "undefined") {
+      if(this.goods_id && this.goods_id != "undefined") {
           wx.setStorageSync('select_address_id',data[index].address_id);
           wx.navigateBack();
           return;
@@ -93,7 +104,8 @@ Page({
                   data[i].status = (i == index ? "DEFAULT" : "COMMON");
                 }
                 self.setData({
-                  address_list : data
+                  address_list : data,
+                  defaultAddressIndex: index
                 });
               }
           }
@@ -115,9 +127,15 @@ Page({
           "method" :　"POST",
           "success" : function(data) {
               if(data['result'] == "ok") {
-                  self.setData({
-                      "address_list" : data.address_list
-                  });  
+                var index = 0;
+                for (; index < data.address_list.length; index++) {
+                  if (data.address_list[index].status == 'DEFAULT')
+                      break;
+                }
+                self.setData({
+                  address_list: data.address_list,
+                  defaultAddressIndex: index
+                });
 
                   util.loaded(self);
               }
