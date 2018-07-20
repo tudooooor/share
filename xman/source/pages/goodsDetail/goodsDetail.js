@@ -74,7 +74,9 @@ Page({
       "goods_id": this.data.good_id,
       "address_id": this.data.address_id,
       "groupbuy": this.sell_type == 1 ? 1 : 0,
-      "group_order_id": this.group_order_id ? this.group_order_id : 0
+      "group_order_id": this.group_order_id ? this.group_order_id : 0,
+      "goodCategorys": this.data.goodCategorys,
+      "totalPrice": this.data.totalPrice,
     };
 
     var self = this;
@@ -127,7 +129,7 @@ Page({
       var that = this;
       wx.showModal({
         title: '是否确定下单',
-        content:'下单后，下载商家二维码进行支付',
+        // content:'下单后，下载商家二维码进行支付',
         success: function (res) {
           if (res.confirm) {
             that.buyNowConfirm();

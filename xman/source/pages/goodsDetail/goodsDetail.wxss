@@ -337,7 +337,8 @@ swiper image{
   color: red;
   line-height: 120rpx;
   background: white;
-
+  width:100%;
+  display: flex;
 }
 .weight{
   font-size: 28rpx;

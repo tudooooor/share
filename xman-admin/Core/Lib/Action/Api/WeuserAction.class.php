@@ -777,48 +777,6 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $input['group_order_id'] = (int)$data['group_order_id'] ? (int)$data['group_order_id'] : 0;
             $input['group_buy'] = $data['groupbuy'];
             
-            if($input['group_buy'] == 1) {
-                $groupBuyCount = $OrdersDb->where(array('buyer_id'=>$this->memberInfo['member_id'],'group_buy'=>1,'order_status'=>array('not in',array(1,5))))->count();
-                if($groupBuyCount >= $goodsInfo['limit_buy'] && $goodsInfo['limit_buy'] != 0){
-                    echo json_encode(array('result'=>'fail','error_code'=>41002,'error_info'=>'该商品一人限购'.$goodsInfo['limit_buy'].'件'));
-                    return;
-                }
-            }
-            
-            if($input['group_buy'] == 1 && $input['group_order_id'] == 0){
-                $input['group_header'] = 1;
-            }
-            
-            if($input['group_buy'] == 1 && $input['group_order_id'] > 0) {
-                //加入团操作。。判断该团是否可以进行
-                $GroupDb = D('Group');
-                $groupInfo = $GroupDb->getGroup(array('group_order_id'=>$input['group_order_id']));
-                
-                if(!$groupInfo) {
-                    echo json_encode(array('result'=>'fail','error_code'=>41003,'error_info'=>'该团不存在'));
-                    return;
-                }
-                
-                if($groupInfo['status'] == 1) {
-                    echo json_encode(array('result'=>'fail','error_code'=>41003,'error_info'=>'该团已满员'));
-                    return;
-                }
-                
-                if($goodsInfo['status'] == 2) {
-                    echo json_encode(array('result'=>'fail','error_code'=>41003,'error_info'=>'该团已关闭'));
-                    return;
-                }
-                
-                $orderMap['group_order_id'] = $groupInfo['group_order_id'];
-                $orderMap['pay_sn'] = array('gt',0);
-                $orderMap['pay_time'] = array('gt',0);
-                $orderMap['buyer_id'] = $this->memberInfo['member_id'];
-                if($OrdersDb->where($orderMap)->find()){
-                    echo json_encode(array('result'=>'fail','error_code'=>41003,'error_info'=>'您已加入过此团'));
-                    return;
-                }
-                
-            }
             
             $input['province_id'] = $address['province_id'];
             $input['city_id'] = $address['city_id'];
@@ -831,20 +789,15 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $input['mobile'] = $address['mobile'];
             
             $input['receive_name'] = $address['receive_name'];
-            
             $input['nickname'] = $this->memberInfo['nickname'];
             
             $input['order_goods'] = serialize($goodsInfo);
             
-            if($data['groupbuy'] == 1) {
-                $input['goods_amount'] = $goodsInfo['group_price'];
-                $input['order_amount'] = $goodsInfo['group_price'];
-                $input['pay_amount'] = $goodsInfo['group_price'];
-            } else {
-                $input['goods_amount'] = $goodsInfo['alone_price'];
-                $input['order_amount'] = $goodsInfo['alone_price'];
-                $input['pay_amount'] = $goodsInfo['alone_price'];
-            }
+
+            $input['goods_amount'] = $goodsInfo['alone_price'];
+            $input['order_amount'] = $goodsInfo['alone_price'];
+            $input['pay_amount'] = $data['totalPrice'];
+            
             $input['shipping_address'] = $address['full_address'];
             $input['shipping_amount'] = 0.00;
             $input['order_status'] = 0;
