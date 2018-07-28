@@ -296,7 +296,24 @@ class WeuserAction extends ApiAction {
         }
 
         $this->addGood();
-        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail));   
+
+
+        $AddressDb = D('Address');
+        $map['status'] = 'DEFAULT';
+        $map['member_id'] = $this->memberInfo['member_id'];
+        $address = $AddressDb->getAddr($map);
+        
+        $ret = array('result'=>'ok', 'goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail);
+        $ret['address_id'] = $address['address_id'];
+        $ret['full_address'] = $address['full_address'];
+
+        $map = array('member_id' => $detail['member_id']);
+        $MemberDbOther = D('Member');
+        $members = $MemberDbOther->where($map)->find();
+        
+        $ret['phoneNumber'] = $members['mobile'];
+
+        echo json_encode($ret);   
     }
 
     public function addGood() {
@@ -672,7 +689,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
              $ret['goods'] = $list;
          }
          $ret['result'] = 'ok';
-         $ret['shopName'] = $this->memberInfo['shop_name'];
+
          echo json_encode($ret);
      }
  

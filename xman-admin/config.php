@@ -47,8 +47,8 @@ return array (
   ),
   'weapp' => 
   array (
-    'appid' => 'wxecc34bcaf2826227',
-    'appsecret' => '504c2ca69e9425492a70cc8aa928a9c6',
+    'appid' => 'wx870067e4dfa36d32',
+    'appsecret' => 'c84697bfc1e546daa80e3497cc64534b',
     'nick_pre' => '',
     'headimgurl' => '',
     'mchid' => '',

@@ -160,17 +160,33 @@
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 100;
+  z-index: 111;
+}
+.maskPhone{
+  width:100%;
+  position:fixed;
+  top:900rpx;
+  background-color:rgba(0, 0, 0, 0.2);
 }
 .shopcar{
   width: 100%;
   position: absolute;
-  bottom: 100rpx;
-  left: 0;
+  top: 200rpx;
+  height:1005rpx;
   background-color: #fff;
-  height: 900rpx;
-  overflow: scroll;
-  z-index: 11000;
+
+}
+.shopPhone{
+  width:100%;
+  position:200rpx;
+  height:200rpx;
+  background-color:#fff;
+  text-align:center;
+}
+.classPhone{
+  height:80rpx;
+  border:1px solid #5bbc04;
+  padding-top:25rpx;
 }
 .goods{
   width: 100%;

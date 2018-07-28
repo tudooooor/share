@@ -6,6 +6,7 @@ Page({
    */
   data: {
     maskShow:'none',
+    showPhoneNumber:'none',
     numberGoods:10,
     goods:[],
     goodCategorys:[],
@@ -21,9 +22,11 @@ Page({
     good_id:'',
     goods_desc:'',
     garreryDetail:[],
+    garreryDetailPreImage: [],
     address:'',
     address_id:'',
     failInfo:'',
+    phoneNumber:'',
   },
 
   /**
@@ -32,8 +35,14 @@ Page({
   previewImage:function(e)
   {
     wx.previewImage({
-      current: this.data.galleryPreImage[this.data.swiperCurrent - 1], // 当前显示图片的http链接
+      current: this.data.galleryPreImage[e.currentTarget.dataset.index], // 当前显示图片的http链接
       urls: this.data.galleryPreImage // 需要预览的图片http链接列表
+    })
+  },
+  previewImageDetail: function (e) {
+    wx.previewImage({
+      current: this.data.garreryDetailPreImage[e.currentTarget.dataset.index], // 当前显示图片的http链接
+      urls: this.data.garreryDetailPreImage // 需要预览的图片http链接列表
     })
   },
   bindchange:function (e)
@@ -45,10 +54,10 @@ Page({
   },
   buyNowCheck:function ()
   {
-    if (this.data.address_id == '') {
-      this.data.failInfo = '请填写地址';
-    }
-    else if (this.data.goodSpecifications == '')
+    // if (this.data.address_id == '') {
+    //   this.data.failInfo = '请填写地址';
+    // }
+    if (this.data.goodSpecifications == '')
     {
       this.data.failInfo = '请填写商品类型';
     }
@@ -153,13 +162,14 @@ Page({
     util.ajax({
        url : url,
        success : function(data){
+         console.log('goodsDetail', data);
            if(data.result == 'ok') {
              self.setData({
                goods : data.goods,
                goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
-               gallery : data.gallery,
-               garreryDetail: data.galleryDetail,
+               address_id:data.address_id,
+               address:data.full_address
              });
 
              var goodPrice = [];
@@ -196,6 +206,10 @@ Page({
                self.data.galleryPreImage[i] = data.gallery[i].img_url;
              }
 
+             for (var i = 0; i < data.galleryDetail.length; i++) {
+               self.data.garreryDetailPreImage[i] = data.galleryDetail[i].img_url;
+             }
+
              self.setData({
                goods_name: data.goods.goods_name,
                goods_desc: data.goods.goods_desc,
@@ -205,7 +219,8 @@ Page({
                garreryDetail: data.galleryDetail,
                minPrice: parseInt(minPrice),
                maxPrice: parseInt(maxPrice),
-               good_id: self.data.good_id
+               good_id: self.data.good_id,
+               phoneNumber: data.phoneNumber
              });
              wx.setNavigationBarTitle({
                title: data.goods.goods_name//页面标题为路由参数
@@ -251,12 +266,29 @@ Page({
     });
 
   },
-  
   maskDisplay:function() {
-
     this.setData({
       maskShow: 'flex'
     });
+  },
+  phoneNumberDisplay: function () {
+    this.setData({
+      showPhoneNumber: 'flex'
+    });
+  },
+  phoneNumberHide: function () {
+    this.setData({
+      showPhoneNumber: 'none'
+    });
+  },
+  telPhone:function(){
+    var that = this
+    wx.makePhoneCall({
+      phoneNumber: this.data.phoneNumber,
+      success: function () {
+        console.log("成功拨打电话")
+      }
+    })
   },
   sub:function(e){
     console.log(e);

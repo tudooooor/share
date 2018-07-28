@@ -7,18 +7,18 @@
   <!--图片详情图片轮播-->
   <!--style='height:{{imageheight}}px;background-color:#fff;'-->
   <swiper bindchange="bindchange" indicator-color="#eceded" indicator-active-color="#e02e24" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" wx:if="{{gallery}}" circular="true" style="height:{{/*goods_banner.height || */'750rpx'}}">
-    <block wx:key="item" wx:for="{{gallery}}" wx:for-index="idx">
+    <block wx:key="item" wx:for="{{gallery}}">
       <swiper-item>
-        <image lazyload="true" bindtap="previewImage" data-idx="{{idx}}" src="{{item.img_url}}" class="slide-image"  />
+        <image lazyload="true" bindtap="previewImage" data-index="{{index}}" src="{{item.img_url}}" class="slide-image"  />
       </swiper-item>
     </block>
   </swiper>
 </view>
 
-<view class='price' style='font-size: 60rpx;'>
-  <view class='standard'>￥
+<view class='price' style='font-size: 60rpx'>
+  <view style='width:650rpx' class='standard'>￥
     <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
-  <navigator url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' style='margin-left:500rpx;font-size:40rpx;color:#888888'>分享</navigator>
+  <navigator url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' style='font-size:40rpx;color:#888888'>分享</navigator>
 </view>
 <!--商品简介  -->
 <view class='information'>
@@ -52,9 +52,16 @@
   </view>
 </view>
 <view wx:for="{{garreryDetail}}" wx:key="item">
-  <image src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
+  <image bindtap="previewImageDetail" data-index="{{index}}" src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
 </view>
 
+<!--展示客服电话  -->
+<view class='maskPhone' style='display:{{showPhoneNumber}}'>
+    <view class='shopPhone'>
+      <view class='classPhone' bindtap='telPhone'>客服电话:{{phoneNumber}}</view>
+      <view class='classPhone' bindtap='phoneNumberHide'>取消</view>
+    </view>
+</view>
 <!--展示购物车  -->
 <view class='mask' style='display:{{maskShow}}'>
   <view class='shopcar'>
@@ -91,8 +98,6 @@
       <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
         总价：￥{{totalPrice}}
       </view>
-
-
     </view>
   </view>
 </view>
@@ -103,7 +108,7 @@
 <view style='color:#5bbc04'>|</view>
 <navigator class="shop" url='../shopOwner/shopOwner?good_id={{good_id}}'>进店</navigator> 
 <view style='color:#5bbc04'>|</view>
-<navigator class='share'>商家</navigator>
+<view class='share' bindtap='phoneNumberDisplay'>客服</view>
 
 <!--<view class="buy">立即购买</view>-->
 <view style='margin-top:6rpx;width:350rpx'>
