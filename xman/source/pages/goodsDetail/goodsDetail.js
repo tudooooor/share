@@ -7,6 +7,7 @@ Page({
   data: {
     maskShow:'none',
     showPhoneNumber:'none',
+    showShare:'none',
     numberGoods:10,
     goods:[],
     goodCategorys:[],
@@ -27,6 +28,9 @@ Page({
     address_id:'',
     failInfo:'',
     phoneNumber:'',
+    QCodeDisplay:'none',
+    strPrice:'',
+    downloadFristPic:'',
   },
 
   /**
@@ -197,11 +201,18 @@ Page({
                  maxPrice = goodPrice[i];
                }
              }
+
+             var strPrice;
              if (minPrice == maxPrice)
              {
+               strPrice = '￥' + minPrice;
                minPrice = 0;
              }
-
+             else
+             {
+               strPrice = '￥' + minPrice + '~' + maxPrice;
+             }
+             
              for (var i = 0; i < data.gallery.length; i++) {
                self.data.galleryPreImage[i] = data.gallery[i].img_url;
              }
@@ -220,10 +231,23 @@ Page({
                minPrice: parseInt(minPrice),
                maxPrice: parseInt(maxPrice),
                good_id: self.data.good_id,
-               phoneNumber: data.phoneNumber
+               phoneNumber: data.phoneNumber,
+               strPrice: strPrice
              });
              wx.setNavigationBarTitle({
                title: data.goods.goods_name//页面标题为路由参数
+             });
+             var that = self;
+             wx.downloadFile({
+               url: self.data.galleryPreImage[0], //仅为示例，并非真实的资源
+               success: function (res) {
+                 // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+                 if (res.statusCode === 200) {
+                   that.setData({
+                     downloadFristPic:res.tempFilePath
+                   });
+                 }
+               }
              });
            } else {
              self.error(data);
@@ -245,6 +269,8 @@ Page({
     this.token = wx.getStorageSync('token'); 
 
     this.goodsDetail(this.data.good_id);
+
+
   },
   swithToIndex:function()
   {
@@ -279,6 +305,16 @@ Page({
   phoneNumberHide: function () {
     this.setData({
       showPhoneNumber: 'none'
+    });
+  },
+  shareDisplay: function () {
+    this.setData({
+      showShare: 'flex'
+    });
+  },
+  shareHide: function () {
+    this.setData({
+      showShare: 'none'
     });
   },
   telPhone:function(){
@@ -361,14 +397,27 @@ Page({
   onReachBottom: function () {
   
   },
-
+  shareQCode:function()
+  {
+    // wx.navigateTo({
+    //   url: '../share/share?good_id=' + this.data.good_id + '&image_url=' + this.data.gallery[0].img_url + '&goods_name=' + this.data.good_name + '&goods_desc=' + this.data.good_name,
+    // });
+    //1. 请求后端API生成小程序码
+    if (this.data.good_id != undefined) {
+      this.getwxacode(this.data.good_id, this.data.galleryPreImage[0], this.data.goods_name, this.data.goods_desc);
+    }
+    else {
+      this.getwxacode();
+    }
+    this.shareHide();
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
     return {
-      title: goods_name,
-      path: '/pages/doodsDetail/goodsDetail?good_id=' + good_id,
+      title: this.data.goods_name,
+      path: '/pages/doodsDetail/goodsDetail?good_id=' + this.data.good_id,
       success: (res) => {
         console.log("转发成功", res);
       },
@@ -380,6 +429,161 @@ Page({
   intervalChange:function(e){
     
     
+  },
+
+
+  drawPic: function (QRcodeImagePath, goods_name, goods_desc) {
+    //2. canvas绘制文字和图片
+    const ctx = wx.createCanvasContext('myCanvas');
+    var bgImgPath = '../../images/home.png';
+    var basicprofile = '../../images/home.png';
+    // var xcxcode = options.goods_imgs;
+    // var xcxcode = QRcodeImagePath;
+    //填充背景
+    // ctx.setFillStyle('#cccccc');
+    // ctx.fillRect(0, 0, 650, 800);
+    ctx.setFillStyle('#ffffff');
+    ctx.fillRect(1, 1, 650, 800);
+
+    ctx.setFontSize(16);
+    ctx.setFillStyle('#000000');
+    ctx.fillText('门庭', 150, 30);
+    //绘制产品图
+    
+    ctx.drawImage(this.data.downloadFristPic, 70, 60, 180, 180);
+
+    //绘制标题
+
+    ctx.setFontSize(16);
+    ctx.setFillStyle('#000000');
+    ctx.fillText(goods_name, 20, 270);
+
+    //绘制介绍价格
+    ctx.setFontSize(16);
+    ctx.setFillStyle('#FF0000');
+    ctx.fillText(this.data.strPrice, 230, 270);
+
+
+    //绘制一条虚线
+
+    ctx.strokeStyle = 'blue';
+    ctx.beginPath();
+    ctx.setLineWidth(1);
+    ctx.setLineDash([2, 4]);
+    ctx.moveTo(10, 300);
+    ctx.lineTo(320, 300);
+    ctx.stroke();
+
+
+    //绘制介绍
+    ctx.setFontSize(11);
+    ctx.setFillStyle('#aaaaaa');
+    ctx.fillText('长按识别小程序二维码查看详情', 130, 380);
+
+    var that = this;
+    wx.downloadFile({
+      url: QRcodeImagePath, //仅为示例，并非真实的资源
+      success: function (res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        if (res.statusCode === 200) {
+          
+         // ctx.drawImage(res.tempFilePath, 50, 50, 200, 200);
+          ctx.drawImage(res.tempFilePath, 10, 330, 100, 100);
+          ctx.draw();
+          that.setData({
+            QCodeDisplay:"flex"
+          });
+        }
+      }
+    });
+
+  },
+  QCodeHide:function()
+  {
+    this.setData({
+      QCodeDisplay: "none"
+    });
+  },
+  getwxacode: function (goods_id = '', image_url = '', goods_name = '', goods_desc = '') {
+    var that = this;
+    var url;
+    if (goods_id == "") {
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=getwxacode&token=" + this.token;
+    }
+    else {
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=getwxacode&good_id=" + goods_id + "&token=" + this.token;
+    }
+
+    util.ajax({
+      "url": url,
+      "data": {
+        "offset": 0,
+        "size": 20
+      },
+      error: function (res) {
+      },
+      "success": function (res) {
+        if (res['result'] == 0) {
+          that.drawPic(res.filePath, goods_name, goods_desc);
+        }
+      }
+    });
+
+    
+  },
+  // onLoad: function (options) {
+  //   var that = this;
+  //   //1. 请求后端API生成小程序码
+  //   if (options.goods_id != undefined) {
+  //     that.getwxacode(options.goods_id, options.image_url, options.goods_name, options.goods_desc);
+  //   }
+  //   else {
+  //     that.getwxacode();
+  //   }
+  // },
+  savetup: function () {
+    var that = this;
+    wx.canvasToTempFilePath({
+      // x: 0,
+      // y: 0,
+      // width: 240,
+      // height: 360,
+      // destWidth: 240,
+      // destHeight: 360,
+      canvasId: 'myCanvas',
+      success: function (res) {
+        //调取小程序当中获取图片
+        console.log(res.tempFilePath);
+        var img = res.tempFilePath;
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            wx.showModal({
+              title: '存图成功',
+              content: '图片成功保存到相册了，去发圈噻~',
+              showCancel: false,
+              confirmText: '好哒',
+              confirmColor: '#72B9C3',
+              success: function (res) {
+                if (res.confirm) {
+                  console.log('用户点击确定', res);
+                }
+
+                wx.previewImage({
+                  current: '', // 当前显示图片的http链接
+                  urls: [img] // 需要预览的图片http链接列表
+                });
+              }
+            })
+          }
+        })
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+
+    this.QCodeHide();
   },
   
 })

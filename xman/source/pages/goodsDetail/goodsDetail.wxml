@@ -18,7 +18,8 @@
 <view class='price' style='font-size: 60rpx'>
   <view style='width:650rpx' class='standard'>￥
     <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
-  <navigator url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' style='font-size:40rpx;color:#888888'>分享</navigator>
+    <!-- url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' -->
+  <view  bindtap='shareDisplay' style='font-size:40rpx;color:#888888'>分享</view>
 </view>
 <!--商品简介  -->
 <view class='information'>
@@ -55,13 +56,6 @@
   <image bindtap="previewImageDetail" data-index="{{index}}" src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
 </view>
 
-<!--展示客服电话  -->
-<view class='maskPhone' style='display:{{showPhoneNumber}}'>
-    <view class='shopPhone'>
-      <view class='classPhone' bindtap='telPhone'>客服电话:{{phoneNumber}}</view>
-      <view class='classPhone' bindtap='phoneNumberHide'>取消</view>
-    </view>
-</view>
 <!--展示购物车  -->
 <view class='mask' style='display:{{maskShow}}'>
   <view class='shopcar'>
@@ -102,6 +96,34 @@
   </view>
 </view>
 </scroll-view>
+
+<!--展示二维码  -->
+<view class="classShowQCode" style='display:{{QCodeDisplay}}'>
+  <view class='closeQCode' bindtap='QCodeHide'></view>
+  <canvas class="classCanvas"  canvas-id="myCanvas"></canvas>
+  <view style="text-align:center;padding-bottom:20px;width:500rpx;margin-left:130rpx;margin-top:70rpx;">
+    <button bindtap='savetup' type="primary" >保存到相册</button>
+  </view>
+</view>
+
+<!--展示分享  -->
+<view class='maskShare' style='display:{{showShare}}'>
+    <view class='classShareAll'>
+      <view style='height:830rpx' bindtap='shareHide'></view>
+      <button class='classShare' style='height:110rpx;padding-top:15rpx;' open-type='share' >分享小程序</button>
+      <view class='classShare' bindtap='shareQCode'>分享小程序二维码</view>
+      <view class='classShare' bindtap='shareHide'>取消</view>
+    </view>
+</view>
+
+<!--展示客服电话  -->
+<view class='maskPhone' style='display:{{showPhoneNumber}}'>
+    <view class='shopPhone'>
+      <view style='height:950rpx' bindtap='phoneNumberHide'></view>
+      <view class='classPhone' bindtap='telPhone'>客服电话:{{phoneNumber}}</view>
+      <view class='classPhone' bindtap='phoneNumberHide'>取消</view>
+    </view>
+</view>
 
 <view class='buy_now'>
 <view class="index" bindtap='swithToIndex'>主页</view>

@@ -37,6 +37,7 @@ Page({
         "size": 20
       },
       "success": function (data) {
+        console.log('goodslists success', data);
         that.setData({
           "shopData": data,
         });
@@ -59,5 +60,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  error:function(res)
+  {
+    console.log("homePage error", res);
   }
 })
