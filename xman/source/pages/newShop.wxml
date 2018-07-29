@@ -27,11 +27,11 @@
       <view class='standardnew'>
         <view class='left'>单价：</view>
         <view class='right' wx:if="{{edit=='false'}}">
-          <input name="price" placeholder='请输入商品单价:如 50' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" type="number"></input>
+          <input name="price" placeholder='请输入商品单价:如 50' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" type="number" maxlength="6"> </input>
         </view>
 
         <view class='right' wx:if="{{edit=='true'}}">
-          <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{item.price}}' type="number"></input>
+          <input name="price" placeholder='请输入商品单价' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindPrice" value='{{item.price}}' type="number" maxlength="6"></input>
         </view>
       </view>
 
