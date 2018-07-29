@@ -8,9 +8,9 @@
     "pages/checkout/checkout",
     "pages/info/info",
     "pages/share/share",
+
     "pages/personal",
     "pages/MySells/MySells",
-
     "pages/goodsDetail/goodsDetail",
     "pages/shopOwner/shopOwner",
     "pages/statistics/statistics",
@@ -37,8 +37,8 @@
     "list": [{
       "pagePath": "pages/homePage/homePage",
       "text": "首页",
-      "iconPath": "./utils/images/homePage.png",
-      "selectedIconPath": "./utils/images/homePageSel.png"
+      "iconPath": "./utils/images/home.png",
+      "selectedIconPath": "./utils/images/select_home.png"
     },
     
      {
