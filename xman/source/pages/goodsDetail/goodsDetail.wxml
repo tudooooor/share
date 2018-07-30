@@ -55,6 +55,7 @@
 <view wx:for="{{garreryDetail}}" wx:key="item">
   <image bindtap="previewImageDetail" data-index="{{index}}" src="{{item.img_url}}" style='width:100%; height:100%' mode="widthFix"></image>
 </view>
+</scroll-view>
 
 <!--展示购物车  -->
 <view class='mask' style='display:{{maskShow}}'>
@@ -95,7 +96,6 @@
     </view>
   </view>
 </view>
-</scroll-view>
 
 <!--展示二维码  -->
 <view class="classShowQCode" style='display:{{QCodeDisplay}}'>
@@ -109,8 +109,8 @@
 <!--展示分享  -->
 <view class='maskShare' style='display:{{showShare}}'>
     <view class='classShareAll'>
-      <view style='height:830rpx' bindtap='shareHide'></view>
-      <button class='classShare' style='height:110rpx;padding-top:15rpx;' open-type='share' >分享小程序</button>
+      <view style='height:70%' bindtap='shareHide'></view>
+      <button class='classShare' style='height:9%;padding-top:10rpx;' open-type='share' >分享小程序</button>
       <view class='classShare' bindtap='shareQCode'>分享小程序二维码</view>
       <view class='classShare' bindtap='shareHide'>取消</view>
     </view>
@@ -119,7 +119,7 @@
 <!--展示客服电话  -->
 <view class='maskPhone' style='display:{{showPhoneNumber}}'>
     <view class='shopPhone'>
-      <view style='height:950rpx' bindtap='phoneNumberHide'></view>
+      <view style='height:80%' bindtap='phoneNumberHide'>xubuju</view>
       <view class='classPhone' bindtap='telPhone'>客服电话:{{phoneNumber}}</view>
       <view class='classPhone' bindtap='phoneNumberHide'>取消</view>
     </view>

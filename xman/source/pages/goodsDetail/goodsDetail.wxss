@@ -164,14 +164,17 @@
 }
 .maskPhone {
   width:100%;
+  height: 100%;
   position:fixed;
   top:0;
   background-color:rgba(0, 0, 0, 0.2);
   z-index:120;
+  text-align:center;
 }
 
 .maskShare{
   width:100%;
+  height: 100%;
   position:fixed;
   top:0;
   background-color:rgba(0, 0, 0, 0.2);
@@ -187,16 +190,18 @@
 }
 .shopPhone {
   width:100%;
+  height: 100%;
   text-align:center;
 }
 
 .classShareAll{
     width:100%;
+    height: 100%;
   text-align:center;
 }
 
 .classPhone {
-  height:80rpx;
+  height:6%;
   border:1px solid #5bbc04;
   padding-top:25rpx;
   background-color:#5bbc04;
@@ -206,7 +211,7 @@
 }
 
 .classShare{
-  height:80rpx;
+  height:6%;
   border:1px solid #5bbc04;
   padding-top:25rpx;
   background-color:#5bbc04;
@@ -621,7 +626,7 @@ text {
   margin:0 auto;
   margin-bottom:30px;
   width: 650rpx; 
-  height: 900rpx;
+  height: 920rpx;
   top:100rpx;
   box-shadow:1px 2px 2px #ccc;
 }

@@ -237,20 +237,6 @@ Page({
              wx.setNavigationBarTitle({
                title: data.goods.goods_name//页面标题为路由参数
              });
-             var that = self;
-             wx.downloadFile({
-               url: self.data.galleryPreImage[0], //仅为示例，并非真实的资源
-               success: function (res) {
-                 // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-                 if (res.statusCode === 200) {
-                   that.setData({
-                     downloadFristPic:res.tempFilePath
-                   });
-                 }
-               }
-             });
-           } else {
-             self.error(data);
            }
        }
     });
@@ -443,14 +429,14 @@ Page({
     // ctx.setFillStyle('#cccccc');
     // ctx.fillRect(0, 0, 650, 800);
     ctx.setFillStyle('#ffffff');
-    ctx.fillRect(1, 1, 650, 800);
+    ctx.fillRect(1, 1, 650, 500);
 
     ctx.setFontSize(16);
     ctx.setFillStyle('#000000');
-    ctx.fillText('门庭', 150, 30);
+    ctx.fillText('门庭集市', 130, 30);
     //绘制产品图
     
-    ctx.drawImage(this.data.downloadFristPic, 70, 60, 180, 180);
+    // ctx.drawImage(this.data.downloadFristPic, 70, 50, 180, 190);
 
     //绘制标题
 
@@ -470,30 +456,47 @@ Page({
     ctx.beginPath();
     ctx.setLineWidth(1);
     ctx.setLineDash([2, 4]);
-    ctx.moveTo(10, 300);
-    ctx.lineTo(320, 300);
+    ctx.moveTo(10, 290);
+    ctx.lineTo(320, 290);
     ctx.stroke();
 
 
     //绘制介绍
     ctx.setFontSize(11);
     ctx.setFillStyle('#aaaaaa');
-    ctx.fillText('长按识别小程序二维码查看详情', 130, 380);
+    ctx.fillText('长按识别小程序二维码查看详情', 130, 350);
 
     var that = this;
     wx.downloadFile({
       url: QRcodeImagePath, //仅为示例，并非真实的资源
       success: function (res) {
+        var that1 = that;
         // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
         if (res.statusCode === 200) {
-          
-         // ctx.drawImage(res.tempFilePath, 50, 50, 200, 200);
-          ctx.drawImage(res.tempFilePath, 10, 330, 100, 100);
-          ctx.draw();
-          that.setData({
-            QCodeDisplay:"flex"
+          var QRcodeFilePath = res.tempFilePath;
+          wx.downloadFile({
+            url: that.data.galleryPreImage[0], //仅为示例，并非真实的资源
+            success: function (res) {
+              // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+              if (res.statusCode === 200) {
+                // that1.setData({
+                //   downloadFristPic: res.tempFilePath
+                // });
+                ctx.drawImage(res.tempFilePath, 70, 50, 180, 190);
+                // ctx.drawImage(res.tempFilePath, 50, 50, 200, 200);
+                ctx.drawImage(QRcodeFilePath, 10, 300, 100, 100);
+                ctx.draw();
+                that1.setData({
+                  QCodeDisplay: "flex"
+                });
+              }
+            }
           });
+        } else {
+          that.error(data);
         }
+
+        
       }
     });
 
