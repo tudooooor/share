@@ -27,10 +27,6 @@
   color: #999;
   line-height: 36rpx;
 }
-.num_left{
-  font-size:28rpx;
-  color: #666;
-}
 
 .rules{
   color: #333;
@@ -69,11 +65,6 @@
   line-height: 80rpx;
 }
 
-.num_right{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
 
 .sub::after{
   font-family: 'iconfont';

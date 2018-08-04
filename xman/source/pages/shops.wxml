@@ -1,4 +1,32 @@
 <scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
+
+<view class='contact'>
+  <view class='standard_new'>
+    <navigator class='detail1' url="./share/share">
+      <view class='fun_li'>
+        <view class='name'>店铺二维码</view>
+      </view>
+      <view class='fun_li'>
+        <view class='arrow'></view>
+      </view>
+  </navigator>
+</view>
+</view>
+
+
+<view class='contact'>
+  <view class='standard_new'>
+    <navigator class='detail1' url="./editShop/editShop">
+      <view class='name'>我的店铺信息编辑</view>
+      <view class='fun_li'>
+        <view class='arrow'></view>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<view class="name" style='margin-left:17rpx'>店铺商品:</view>
+
   <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
       <navigator url="./goodsDetail/goodsDetail?goods_id={{item.goods_id}}">

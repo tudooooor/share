@@ -84,11 +84,11 @@
             <view class='fee'>￥{{item.price}}</view>
           </view>
           <view class='num_right'>
-            <view class='sub' bindtap='sub' data-id="{{index}}"></view>
+            <view class='sub' style='width:70rpx;padding-left:20rpx;' bindtap='sub' data-id="{{index}}"></view>
             <view class='count' style='margin-top:8rpx;'>{{count[index]}}</view>
-            <view class='plus' bindtap='plus' data-id="{{index}}"></view>
+            <view class='plus' style='width:70rpx;padding-left:20rpx;' bindtap='plus' data-id="{{index}}"></view>
           </view>
-        </view>
+        </view> 
       </view>
       <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
         总价：￥{{totalPrice}}

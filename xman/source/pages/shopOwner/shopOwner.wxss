@@ -1,5 +1,6 @@
 page {
   background-color: white;
+  flex-direction: column;
 }
 .box{
   width: 100%;
@@ -10,7 +11,6 @@ page {
 }
 .left{
   display: flex;
-  flex-direction: row;
   height: 220rpx;
 }
 
@@ -19,9 +19,7 @@ page {
   flex-direction: column;
   height: 220rpx;
 }
-.left{
-  width: 80%;
-}
+
 .right{
   width: 20%;
 }
@@ -87,7 +85,6 @@ page {
   line-height: 80rpx;
 }
 .stora{
-  width: 980%;
   font-size: 24rpx;
   color: #999;
   line-height: 50rpx;
@@ -138,11 +135,10 @@ page {
 }
 
 .standard_new{
+  width: 100%;
   margin: 8px;
-  display: flex;
-  flex-direction: row;
   align-items: center;
-    border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .header{

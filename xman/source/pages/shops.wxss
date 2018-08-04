@@ -1,3 +1,4 @@
+@import '/lib/style/stylesheetnew.wxss';
 page {
   background-color: white;
 }
@@ -106,7 +107,6 @@ page {
     position: fixed;
     height: 70px;
     line-height: 70px;
-    background-color: #f1f1f2;
     text-align: center;
     width: 100%;
     bottom: 0px;
@@ -138,9 +138,42 @@ page {
 }
 
 .standard_new{
-  margin: 8px;
+  margin: 14rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
     border-bottom: 1px solid #e8e8e8;
 }
+
+.standard{
+  justify-content: flex-start;
+}
+.detail,.detail1{
+  margin-left: 10rpx;
+  display: flex;
+  flex-direction: row;
+ 
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 95%;
+}
+.detail{
+   justify-content: flex-start;
+}
+.detail1{
+  justify-content: space-between;
+}
+
+.name{
+  font-size: 32rpx;
+  color:#5bbc04;
+}
+
+.arrow::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  color: #999;
+  font-size: 40rpx;
+  line-height: 80rpx;
+}
+

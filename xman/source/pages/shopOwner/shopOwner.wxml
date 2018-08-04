@@ -1,7 +1,8 @@
+<view style="height:535px;width:750rpx;">
 <view class='header'>
     <image class="image_header" src="{{shopOwnerImg}}"></image>
     <view class='nickname'>{{nickName}}</view>
-</view>
+</view> 
 
 <view class='information'>
   <view style='margin-left:30rpx;margin-right:30rpx'>
@@ -9,8 +10,8 @@
   </view>
 </view>
 
-<view style='background-color:white'><view style='padding:20rpx'>全部商品:</view></view>
-<view style="height: 1070rpx" class='box'>
+<view style='margin:20rpx'>全部商品:</view>
+<scroll-view scroll-x="true" style="white-space: nowrap;width: 100%;display: flex">
   <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
       <navigator url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}">
@@ -23,7 +24,5 @@
       </view>
     </view>
   </view>
+</scroll-view>
 </view>
-
-
-

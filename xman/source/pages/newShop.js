@@ -67,7 +67,7 @@ Page({
   swiperChangeDetail: function (e) {
     if (this.data.currentImgDetail > 0) {
       var tempImage = this.data.img_arr_detail;
-      tempImage.splice(this.data.currentImg, 1);
+      tempImage.splice(this.data.currentImgDetail, 1);
       this.setData({
         img_arr_detail: tempImage,
         currentImgDetail: 0,
@@ -244,7 +244,7 @@ Page({
     if (this.data.edit == 'true') {
       this.getImages(this.data.goods_id);
       this.setData({ goodCategorys: JSON.parse(options.goodCategorys) });
-      this.setData({ img_arr_detail: options.imagesDetail})
+      // this.setData({ img_arr_detail: options.imagesDetail})
     }
     // 页面初始化 options为页面跳转所带来的参数
   },

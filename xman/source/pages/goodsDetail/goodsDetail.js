@@ -265,6 +265,7 @@ Page({
     })
   },
   maskHide:function(){
+    this.data.goodSpecifications = '';
     for (var index = 0; index < 10; index++)
     {
       if (this.data.count[index] != 0)

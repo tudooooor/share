@@ -1,5 +1,5 @@
 <form bindsubmit="formSubmit">
-
+  <scroll-view scroll-y="true" style=" white-space: nowrap; display: flex;height:1120rpx">
   <view class='standardnew'>
     <view class='left'>商品名：</view>
     <view class='right' wx:if="{{edit=='false'}}">
@@ -50,45 +50,47 @@
   </scroll-view>
 
   <view class='standardnew'>
-    <view class='desc' style='margin-bottom:70rpx'>商品描述:</view>
-    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px" wx:if="{{edit=='false'}}">
-      <textarea name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc"></textarea>
+    <view class='desc'>商品描述:</view>
+    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px;height:300rpx;" wx:if="{{edit=='false'}}">
+      <textarea name="goodsDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" ></textarea>
     </view>
 
-    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px" wx:if="{{edit=='true'}}">
+    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px;height:300rpx;" wx:if="{{edit=='true'}}">
       <textarea name="goodsDesc" placeholder='请输入商品简介' fixed="true" placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindGoodsDesc" value='{{goodsDesc}}'></textarea>
     </view>
   </view>
 
-  <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex">
-    <view style="display: inline-block; width:750rpx">
+
+    <view style="width:750rpx">
       <view class='standardnew1'>
         <view style="display:flex;flex-direction:row;">
           <view class='upload'>上传商品展示照片:</view>
           <image bindtap="upimg" src='/images/add.png'></image>
+          <view bindtap="deleteImage">删除当前页</view>
         </view>
         <view>
           <swiper indicator-dots="true" bindchange="swiperChange">
             <block wx:for="{{img_arr}}">
               <swiper-item>
-                <image style="width:740rpx;height:550rpx;margin:0" bindtouchend="handletouchend" bindtouchstart="handletouchstart" src='{{item}}' class="img" mode="aspectFill"></image>
+                <image style="width:740rpx;height:550rpx;margin:0" src='{{item}}' class="img" mode="aspectFill"></image>
               </swiper-item>
             </block>
           </swiper>
         </view>
       </view>
     </view>
-    <view style="display: inline-block; width:750rpx">
+    <view style="width:750rpx">
       <view class='standardnew1'>
         <view style="display:flex;flex-direction:row;">
           <view class='upload'>上传商品详情照片:</view>
           <image bindtap="upimgdetail" src='/images/add.png'></image>
+          <view bindtap="deleteImageDetail">删除当前页</view>
         </view>
         <view>
           <swiper indicator-dots="true" bindchange="swiperChangeDetail">
             <block wx:for="{{img_arr_detail}}">
               <swiper-item>
-                <image style="width:740rpx;height:550rpx;margin:0" bindtouchend="handletouchenddetail" bindtouchstart="handletouchstartdetail" src='{{item}}' class="img" mode="aspectFill"></image>
+                <image style="width:740rpx;height:550rpx;margin:0"  src='{{item}}' class="img" mode="aspectFill"></image>
               </swiper-item>
             </block>
           </swiper>

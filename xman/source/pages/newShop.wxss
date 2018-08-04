@@ -31,7 +31,7 @@ swiper {
   width: 78%;
 }
 
-.right,.desc_right{
+.right{
   width: 82%;
 }
 .right input{
@@ -47,7 +47,14 @@ swiper {
   font-size: 32rpx;
   color: #333;
   font-weight: bold;
+  height: 300rpx;
 }
+
+.desc_right{
+  width: 82%;
+  height: 300rpx;
+}
+
 .desc_right input{
   width: 97%;
   height: 120rpx;
@@ -205,8 +212,8 @@ span
   	background-color: #f1f1f2;
 }
 
-textarea
+.textarea
 {
-  height: 100rpx;
+  height: 300rpx;
   width: 560rpx;
 }
