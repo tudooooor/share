@@ -2,20 +2,6 @@
 
 <view class='contact'>
   <view class='standard_new'>
-    <navigator class='detail1' url="./share/share">
-      <view class='fun_li'>
-        <view class='name'>店铺二维码</view>
-      </view>
-      <view class='fun_li'>
-        <view class='arrow'></view>
-      </view>
-  </navigator>
-</view>
-</view>
-
-
-<view class='contact'>
-  <view class='standard_new'>
     <navigator class='detail1' url="./editShop/editShop">
       <view class='name'>我的店铺信息编辑</view>
       <view class='fun_li'>
@@ -24,6 +10,20 @@
     </navigator>
   </view>
 </view>
+
+<view class='contact'>
+  <view class='standard_new'>
+    <view class='detail1' bindtap='shareQCode'>
+      <view class='fun_li'>
+        <view class='name'>店铺二维码</view>
+      </view>
+      <view class='fun_li'>
+        <view class='arrow'></view>
+      </view>
+  </view>
+</view>
+</view>
+
 
 <view class="name" style='margin-left:17rpx'>店铺商品:</view>
 
@@ -52,5 +52,14 @@
 <view class="add_shop_red">
   <view class="inner_red">
     <navigator url="./newShop?edit={{false}}" class="a add_text_red" style="color:white">新增商品</navigator>
+  </view>
+</view>
+
+<!--展示二维码  -->
+<view class="classShowQCode" style='display:{{QCodeDisplay}}'>
+  <view class='closeQCode' bindtap='QCodeHide'></view>
+  <canvas class="classCanvas"  canvas-id="myCanvas"></canvas>
+  <view style="text-align:center;padding-bottom:20px;width:500rpx;margin-left:130rpx;margin-top:70rpx;">
+    <button bindtap='savetup' type="primary" >保存到相册</button>
   </view>
 </view>

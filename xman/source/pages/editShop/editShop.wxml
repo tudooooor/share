@@ -23,7 +23,7 @@
   </view>
 
   <view wx:if="{{shopDesc != null}}" class='standardnew'>
-    <view class='desc' style='margin-bottom:70rpx'>商品描述:</view>
+    <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view>
     <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
       <textarea name="shopDesc" value='{{shopDesc}}' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' ></textarea>
     </view>

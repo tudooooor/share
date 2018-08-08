@@ -73,14 +73,17 @@ Page({
         phoneNum: this.data.phoneNum
       },
       success: function (res) {
+        console.log('sendMsg success', res);
         if (res['result'] == "ok") {
           var xx = 21;
         }
 
       },
       fail: function (res) {
+        console.log('sendMsg fail', res);
       },
       error: function (res) {
+        console.log('sendMsg err', res);
       }
     });
    
@@ -150,7 +153,7 @@ Page({
         code:this.data.code,
       },
       success: function (res) {
-        console.log(res)
+        console.log('onSubmit success', res);
         if (parseInt(res.statusCode) === 0) {
           wx.showToast({
             title: '验证成功',
@@ -161,7 +164,9 @@ Page({
           prevPage.setData({
             phoneNum: that.data.phoneNum
           });
-            
+          wx.navigateBack({
+            delta: 1,
+          });
         } else if (res.statusCode == 1){
           wx.showToast({
             title: '验证超时',

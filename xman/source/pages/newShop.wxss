@@ -32,7 +32,7 @@ swiper {
 }
 
 .right{
-  width: 82%;
+  /* width: 82%; */
 }
 .right input{
   width: 97%;

@@ -13,6 +13,6 @@
     <input placeholder="短信验证码" type="number" bindinput="addCode" />
   </view>
 
-  <button type="{{buttonType}}" disabled="{{disabled}}" bindtap="onSubmit">保存</button>
+  <button type="{{buttonType}}" disabled="{{disabled}}" bindtap="onSubmit">确定</button>
 
 </view>
