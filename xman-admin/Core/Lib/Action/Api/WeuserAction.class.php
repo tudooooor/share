@@ -671,6 +671,8 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
          else
          {
              $member_id = $this->memberInfo['member_id'];
+             $ret['shopName'] = $this->memberInfo['shop_name'];
+             $ret['shopImg'] =  $this->memberInfo['shop_logo'];
          }
          $map = array('member_id' => $member_id);
  
