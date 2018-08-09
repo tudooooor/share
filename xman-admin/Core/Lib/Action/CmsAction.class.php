@@ -52,6 +52,23 @@ class CmsAction extends Action{
 
     }
 
+    public function uploadOrderImg()
+    {
+        global $info_img;
+        $this->data['image_url'] = $info_img;
+        $temp = json_decode($_POST['order_imgs']);
+       
+        $serialTemp = serialize($temp);
+        $OrdersDb = D('Orders');
+
+        if($OrdersDb->create()) {
+            $OrdersDb->__set('order_imgs', $serialTemp);
+            $result = $OrdersDb->save();
+        } else {
+            $this->error($OrdersDb->getError());
+        }
+    }
+
     public function addGoodWhenAdd($goods_id) {
 
         $goodsArray;

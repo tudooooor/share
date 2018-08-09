@@ -237,3 +237,29 @@
   color: #666;
   padding-left: 7%;
 }
+
+.standardnew1{
+  margin: 3px;
+}
+
+.upload{
+  width:40%;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  height: 100rpx;
+}
+
+.submit{
+  position: absolute;
+  bottom: 10rpx;
+  width: 80%;
+  margin-left: 10%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #5bbc04;
+  border-radius: 6rpx;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 2px;
+}
