@@ -80,42 +80,6 @@ Page({
 
     
   },
-
-  statusChange:function(e){
-    var self = this;
-
-    self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
-    console.log()
-    var check_id = e.target.dataset.id;
-    self.setData({
-      check_id:check_id
-    })
-    
-    util.checkNet({
-     success : function() {
-       util.succNetCon(self);
-       util.loadding(self,1);
-       self.setData({
-         'orders' : [],
-         'is_over' : 0,
-         'no_order' : 0,
-         'pullUpLoad' : 0
-       });
-       self.order_status = e.currentTarget.dataset.all_status == '3' ? undefined : e.currentTarget.dataset.all_status;
-       self.page = 1;
-       self.getData();      
-     },
-     error : function() {
-       util.notNetCon(self,0);
-     }
-   });
-   //util.loaded(this);
- },
-  viewOrder:function(){
-    wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail',
-    })
-  },
   //配置方法
   getConfig:function() {
      var token = wx.getStorageSync('token');
@@ -149,6 +113,7 @@ Page({
             console.log({all_status});
          } else {
             var all_status = wx.getStorageSync('order_type') == "0" ? 0 : 1;
+            console.log({all_status});
             this.setData({"all_status" : all_status});
             this.order_status = all_status; 
          }
@@ -256,13 +221,14 @@ Page({
   },
   statusChange:function(e){
      var self = this;
-
+     console.log('1');
+     console.log({e});
      self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
      var check_id = e.target.dataset.id;
      self.setData({
         check_id:check_id
      })
-
+     console.log(check_id)
      util.checkNet({
       success : function() {
         util.succNetCon(self);
@@ -297,10 +263,6 @@ Page({
     this.order_id = e.currentTarget.dataset.order_id;
     
     var self = this;
-    // this.setData({
-    //   'modalHidden' : false,
-    //   'titleModel' : '确定“取消订单”吗？'
-    // });
 
     wx.showModal({
       title: '确定“取消订单”吗？',
@@ -407,14 +369,7 @@ Page({
       }
     });
   },  
-  // onShareAppMessage: function () {
-  //   var share_text = util.config('share_text');
-  //   return {
-  //     title : share_text.title,
-  //     desc  : share_text.desc,
-  //     path: 'pages/index'
-  //   }
-  // },
+
   close_express: function () {
      this.setData( {
         'expressOpen' : 0,

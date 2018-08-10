@@ -1,19 +1,9 @@
 <!--买家与卖家tab  -->
-  <scroll-view scroll-y="true" style=" white-space: nowrap; display: flex;height:100%">
-<view class='roles'>
-  <view class='standard'>
-    <view class='diancai' bindtap='selected' data-id='1' style='{{rolesId==1?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>订单状态</view>
-    <view class='business' bindtap='selected' data-id='2' style='{{rolesId==2?"color:#5bbc04;border-bottom:2px solid #5bbc04":"color:#999;border-bottom:none;"}}'>订单详情</view>
-  </view>
-</view>
-<view class='container1' style='display:{{detaiilShow}}'>
-  <view class='order_h1'>
-    <view class='standard'>订单详情</view>
-  </view>
-
+<scroll-view scroll-y="true" style=" white-space: nowrap; display: flex;height:100%">
+<view class='container1'>
   <!--订单信息  -->
   <view class='order'>
-    <navigator url="/pages/goods/goods?goods_id={{order.goods_id}}" >
+    <navigator url="/pages/goodsDetail/goodsDetail?goods_id={{order.goods_id}}" >
       <view class='standard'>
         <view class='shop_logal'>
          <view class='shop_logal_bg'>
@@ -26,19 +16,12 @@
     </navigator>
   </view>
 
-
-<!--   <view class='new'>
-  </view> -->
-  <!--总计  -->
   <view class='sum'>
-
     <view class='fee'>
- <!--     <view class='fee_left'>实付{{order.order_amount}}</view>-->
       <view>总计：
         <span style="color:#fa3d34">{{order.pay_amount}}</span>
       </view>
     </view>
-
   </view>
 
   <!--配送信息  -->
@@ -47,10 +30,6 @@
   </view>
 
   <view class='deliv_info'>
- <!--    <view class='standard info'>
-      <view class='title_left'>期望信息:</view>
-      <view class='title_right'>立即配送</view>
-    </view>-->
     <view class='standard info'>
       <view class='title_left'>配送地址:</view>
       <view class='title_right'>
@@ -59,10 +38,6 @@
         <br/>收货地址:{{order.shipping_address}}
       </view>
     </view>
- <!--    <view class='standard info' style='border:none;'>
-      <view class='title_left'>期望信息:</view>
-      <view class='title_right'>由商家提供配送服务</view>
-    </view>-->
   </view>
 
   <!--订单信息  -->
@@ -83,106 +58,24 @@
       <view class='title_left'>下单时间:</view>
       <view class='title_right'>{{order.order_time}}</view>
     </view>
- <!--    <view class='standard info' style='border:none;'>
-      <view class='title_left'>发票信息:</view>
-      <view class='title_right'>不需要发票</view>
-    </view>-->
   </view>
 </view>
 
-
-
-<!--订单状态  -->
-<view class='container2' style='display:{{statusDisplay}}'>
-  <view class='order_h1'>
-    <view class='standard'>订单跟踪</view>
-  </view>
-  <!--订单追踪部分   请根据后台接口传入的参数确定完成步骤 并控制该步骤下的状态（颜色）    data-id='1' style='{{statusId==1?"color:#fa3d34;":"color:#5bbc04"}}' -->
-  <view class='followOrder'>
-    <view class='step1'>
-       <view class='standard step' style='height:70rpx;line-height:90rpx;'> 
-      <view class='deal_logal'>
-       <view class='deal_mark'></view>
-       <view class='deal_text'>订单状态{{order.order_status_lang}}</view>
-      </view>
-       <view class='deal_time'>下单时间{{order.order_time}}</view>
-      </view>
-    </view>
-    <view class="view_hide{{order.order_status>=1?'line':''}}"></view>
-    <view class="view_hide{{order.order_status>=1?'step1':''}}">
-      <view class='standard step'>
-        <view class='deal_logal'>
-          <view class='deal_mark1'></view>
-          <view class='deal_text'>订单已提交</view>
-        </view>
-  <!--      <view class='deal_time'>支付时间{{order.pay_time}}</view>-->
-      </view>
-    </view>
-    <view class="view_hide{{order.order_status>=2?'line':''}}">请耐心等待商家确认</view>
-  <!--  <view class="view_hide{{order.order_status>=2?'step1':''}}">
-      <view class='standard step' >
-        <view class='deal_logal'>
-          <view class='deal_mark2'></view>
-          <view class='deal_text'>支付成功</view>
-        </view>
-        <view class='deal_time'>支付时间{{order.pay_time}}</view>
-      </view>
-    </view>-->
-    <view class="view_hide{{order.order_status>=2?'line':''}}"></view>
-    <view class="view_hide{{order.order_status>=2?'step1':''}}">
-      <view class='standard step'>
-      <view class='deal_logal'>
-       <view class='deal_mark3'></view>
-       <view class='deal_text'>商家已接单</view>
-      </view>
-       <view class='deal_time'>接单时间{{timeF}}</view>
-      </view>
-    </view>
-    <view class="view_hide{{order.order_status>=3?'line':''}}">商品准备中，由商家配送，配送进度请咨询商家：
-                       <span style='color:#53c2dc;' bindtap='call'>{{telNo}}</span></view>
-    <view class="view_hide{{order.order_status>=3?'line':''}}"></view>
-    <view class="view_hide{{order.order_status>=3?'step1':''}}">
-      <view class='standard step'>
-      <view class='deal_logal'>
-       <view class='deal_mark3'></view>
-       <view class='deal_text'>商家已发货</view>
-      </view>
-       <view class='deal_time'>发货时间{{order.shipping_time}}</view>
-      </view>
-    <view class="view_hide{{order.order_status>=4?'line':''}}">快递单号：
-                       <span style='color:#53c2dc;' bindtap='checkCode'>{{order.shipping_code}}</span></view> 
-    </view>
-    <view class="view_hide{{order.order_status>=4?'line':''}}"></view>
-    <view class="view_hide{{order.order_status>=4?'step1':''}}">
-      <view class='standard step'>
-      <view class='deal_logal'>
-       <view class='deal_mark4'></view>
-       <view class='deal_text'>订单完成</view>
-      </view>
-       <view class='deal_time'>完成时间{{order.receive_time}}</view>
-      </view>
-    </view>
-
-
-
-  </view>
-</view>
-<form bindsubmit="formSubmit" style='display:{{detaiilShow}}'> 
+<form bindsubmit="formSubmit" > 
   <view style="width:100%;height:750rpx;">
 
       <view style="display:flex;flex-direction:row;">
-        <view class='upload'>上传商品展示照片:</view>
+        <view class='upload'>上传物流照片:</view>
         <image bindtap="upimg" style='  width: 100rpx;height: 100rpx;margin-left: 50rpx;' src='/images/add.png'></image>
         <view bindtap="deleteImage">删除当前页</view>
       </view>
-
-        <swiper indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
-          <block wx:for="{{img_arr}}">
-            <swiper-item>
-              <image style="width:740rpx;height:550rpx;margin:0" src='{{item}}' mode="aspectFill"></image>
-            </swiper-item>
-          </block>
-        </swiper>
+      <swiper indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
+        <block wx:for="{{img_arr}}">
+          <swiper-item>
+            <image style="width:740rpx;height:550rpx;margin:0" src='{{item}}' mode="aspectFill"></image>
+          </swiper-item>
+        </block>
+      </swiper>
   </view>
   <button id="button" class='submit' formType="submit">提交</button>
 </form>

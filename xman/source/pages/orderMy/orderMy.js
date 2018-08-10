@@ -85,7 +85,7 @@ Page({
     var self = this;
 
     self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
-    console.log()
+    console.log({e});
     var check_id = e.target.dataset.id;
     self.setData({
       check_id:check_id
@@ -256,7 +256,7 @@ Page({
   },
   statusChange:function(e){
      var self = this;
-
+     console.log({e});
      self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
      var check_id = e.target.dataset.id;
      self.setData({
