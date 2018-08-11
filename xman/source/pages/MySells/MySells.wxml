@@ -18,7 +18,7 @@
 <view class='order_list'>
   <!--点击跳转到订单列表页  -->
   <view class='order_bottom'  >
-    <navigator url="/pages/orderDetail/orderDetail?id={{order.order_id}}" >
+    <navigator url="/pages/orderDetail/orderDetail?id={{order.order_id}}&isSeller={{true}}" >
     <view class='standard' style='justify-content:flex-start;'>
       <view class='cover'>
         <image src='{{order.order_goods.image_url}}'></image>

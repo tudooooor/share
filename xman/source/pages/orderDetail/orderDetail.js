@@ -19,17 +19,17 @@ Page({
     tempImages: [],
     currentImg: 0,
     isSubmitDisable: false,
-    submitTimes: 0
+    submitTimes: 0,
+    order_type:'',
   },
   
   onLoad:function(options){
       this.is_onload = 1;
       this.loadding();
       this.id = options.id;
-      if (true == options.isSeller)
-      {
-        this.isSeller = true;
-      }
+      this.setData({
+        isSeller: options.isSeller,
+      });
       var self = this;
 
       this.getConfig();
@@ -194,7 +194,7 @@ Page({
           }
 
           adds.order_imgs = JSON.stringify(order_imgs_temp);
-
+          order_imgs_temp = [];
           wx.request({
             url: urls,
             method: 'POST',
@@ -220,7 +220,7 @@ Page({
         }
 
         // adds.order_imgs = [];
-        // order_imgs_temp = [];
+
         
         console.log(res);
       }
@@ -271,7 +271,7 @@ Page({
     var data = {
       "token" : token,
       "order_id" : this.id,
-      "isSeller": this.isSeller,
+      "isSeller": this.data.isSeller,
     };
 
     var self = this;
@@ -283,6 +283,7 @@ Page({
             self.loaded();
             if(data.result == 'ok') {
                 var order = data.order;
+              console.log("getData success", data);
                 order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
                 order.order_time = util.formatTime(new Date(order.order_time * 1000));
                 order.order_status_lang = self.order_status[order.order_status];
@@ -294,7 +295,20 @@ Page({
                 } else if(order.order_status == '4') {
                    order.state_class = "state_3";
                 }
-                self.setData({"order" : order});
+
+                if (data.order_imgs != '')
+                {
+                  self.setData({
+                    "order": order,
+                    img_arr: data.order_imgs
+                  });
+                }
+                else
+                {
+                  self.setData({ "order": order });
+                }
+
+
             } else {
                util.notNetCon(self,1,1);
                self.error(data);

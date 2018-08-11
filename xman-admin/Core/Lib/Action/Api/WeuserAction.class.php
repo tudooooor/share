@@ -1040,7 +1040,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         $isSeller = I('get.isSeller');
         $OrdersDb = D('Orders');
         
-        if ($isSeller == TRUE)
+        if ($isSeller == 'true')
         {
             $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id));
         }
@@ -1053,6 +1053,11 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             echo json_encode(array('result'=>'fail','error_code'=>41001,'error_info'=>'订单不存在'));
             return;
         }
+
+        $imgs = unserialize($orderInfo['order_imgs']);
+
+
+        $ret['order_imgs'] = $imgs;
         $orderInfo['order_goods'] = unserialize($orderInfo['order_goods']);
         
         $ret['order'] = $orderInfo;

@@ -197,6 +197,7 @@ Page({
         data : data,
         method : "GET",
         success : function(data){
+          console.log("getData success", data);
             self.loaded();
             if(data.result == 'ok') {
               
