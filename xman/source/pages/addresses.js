@@ -62,9 +62,22 @@ Page({
     // var info = prevPage.data //取上页data里的数据也可以修改
     if (prevPage.data.address != undefined)
     {
+      var address;
+      var address_id;
+      if (this.data.address_list.length == 0)
+      {
+        address = '请编辑地址';
+        address_id = 0;
+      }
+      else
+      {
+        address = this.data.address_list[this.data.defaultAddressIndex].full_address;   
+        address_id = this.data.address_list[this.data.defaultAddressIndex].address_id;
+      }
+      
       prevPage.setData({
-        address: this.data.address_list[this.data.defaultAddressIndex].full_address,
-        address_id: this.data.address_list[this.data.defaultAddressIndex].address_id
+        address: address,
+        address_id: address_id
       });
     }
   },

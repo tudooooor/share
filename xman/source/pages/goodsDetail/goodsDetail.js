@@ -98,6 +98,7 @@ Page({
       "method": "POST",
       "data": data,
       "success": function (data) {
+        console.log('buyNowConfirm success', data);
         if (data['result'] == "ok") {
           //服务端生成订单成功
           //  self.setData({
@@ -115,7 +116,11 @@ Page({
 
           self.setData({ "order_id": 0 });
 
-          util.toast(self, data.error_info);
+          wx.showToast({
+            title: data.error_info,
+            duration: 3000,
+            icon: 'none',
+          });
         } else {
 
           self.setData({ "order_id": 0 });
@@ -168,12 +173,20 @@ Page({
        success : function(data){
          console.log('goodsDetail', data);
            if(data.result == 'ok') {
+
+             var address = data.full_address;
+             var address_id = data.address_id;
+             if (data.full_address == null)
+             {
+               address = '请编辑地址';
+               address_id = 0;
+             }
              self.setData({
                goods : data.goods,
                goodCategorys: JSON.parse(data.goods.goodCategorys),
                isShow_out: 0 >= parseInt(data.goods.goods_stock),
-               address_id:data.address_id,
-               address:data.full_address
+               address_id: address_id,
+               address: address
              });
 
              var goodPrice = [];

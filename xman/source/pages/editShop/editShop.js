@@ -197,8 +197,18 @@ Page({
   upimg: function () {
     var that = this;
     wx.chooseImage({
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       success: function (res) {
+        for (var index = 0; index < res.tempFiles.length; index++) {
+          if (res.tempFiles[index].size >= 2000000) {
+            wx.showToast({
+              title: '上传图片不能大于2M!: 第' + (index + 1) + '张',  //标题
+              icon: 'none',       //图标 none不使用图标，详情看官方文档
+              duration: 3000,
+            });
+            return;
+          }
+        }
         that.setData({
           img_arr: res.tempFilePaths
         })
@@ -208,8 +218,18 @@ Page({
   upimg_QCode: function () {
     var that = this;
     wx.chooseImage({
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       success: function (res) {
+        for (var index = 0; index < res.tempFiles.length; index++) {
+          if (res.tempFiles[index].size >= 2000000) {
+            wx.showToast({
+              title: '上传图片不能大于2M!: 第' + (index + 1) + '张',  //标题
+              icon: 'none',       //图标 none不使用图标，详情看官方文档
+              duration: 3000,
+            });
+            return;
+          }
+        }
         that.setData({
           img_arr_QCode: res.tempFilePaths
         })

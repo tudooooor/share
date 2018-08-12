@@ -20,10 +20,20 @@ Page({
     var that=this;
     wx.chooseImage({
       count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        for (var index = 0; index < res.tempFiles.length; index++) {
+          if (res.tempFiles[index].size >= 2000000) {
+            wx.showToast({
+              title: '上传图片不能大于2M!: 第' + (index + 1) + '张',  //标题
+              icon: 'none',       //图标 none不使用图标，详情看官方文档
+              duration: 3000,
+            });
+            return;
+          }
+        }
         var tempFilePaths = res.tempFilePaths
         that.setData({
           tempFilePath: tempFilePaths

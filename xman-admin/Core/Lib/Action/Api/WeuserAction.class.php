@@ -762,6 +762,11 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
      */
     public function orders() {
         if($this->isPost()) {
+            if ($this->memberInfo['mobile'] == NULL)
+            {
+                echo json_encode(array('result'=>'fail', 'error_code'=>41002,'error_info'=>'请在个人信息处认证手机号'));
+                return;
+            }
             $data = file_get_contents("php://input");
             $data = json_decode($data,true);
             

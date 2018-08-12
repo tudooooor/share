@@ -1,31 +1,31 @@
 <scroll-view scroll-y="true" style="height: 1070rpx" class='box'>
 
-<view class='contact'>
-  <view class='standard_new'>
-    <navigator class='detail1' url="./editShop/editShop">
-      <view class='name'>我的店铺信息编辑</view>
-      <view class='fun_li'>
-        <view class='arrow'></view>
-      </view>
+  <view class='contact'>
+    <view class='standard_new'>
+      <navigator class='detail1' url="./editShop/editShop">
+        <view class='name'>我的店铺信息编辑</view>
+        <view class='fun_li'>
+          <view class='arrow'></view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+
+  <view class='contact'>
+    <navigator class='standard_new'>
+      <view class='detail1' bindtap='shareQCode'>
+        <view class='fun_li'>
+          <view class='name'>店铺二维码</view>
+        </view>
+        <view class='fun_li'>
+          <view class='arrow'></view>
+        </view>
+    </view>
     </navigator>
   </view>
-</view>
-
-<view class='contact'>
-  <view class='standard_new'>
-    <view class='detail1' bindtap='shareQCode'>
-      <view class='fun_li'>
-        <view class='name'>店铺二维码</view>
-      </view>
-      <view class='fun_li'>
-        <view class='arrow'></view>
-      </view>
-  </view>
-</view>
-</view>
 
 
-<view class="name" style='margin-left:17rpx'>店铺商品:</view>
+  <view class="name" style='margin-left:17rpx'>店铺商品:</view>
 
   <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
@@ -33,13 +33,20 @@
         <image src='{{item.image_url}}'></image>
       </navigator>
       <view class='left_txt'>
-        <view><text class='tit'>{{item.goods_name}}</text></view>
-        <view class='stora'>库存:<text >{{item.goods_stock}}</text></view>
-        <view class='price'>单价:¥<text >{{item.market_price}}</text></view>
+        <view>
+          <text class='tit'>{{item.goods_name}}</text>
+        </view>
+        <view class='stora'>库存:
+          <text>{{item.goods_stock}}</text>
+        </view>
+        <view class='price'>单价:¥
+          <text>{{item.market_price}}</text>
+        </view>
       </view>
     </view>
     <view class='right'>
-      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}&goodCategorys={{item.goodCategorys}}&images={{item.goods_imgs}}' class='edit' bindtap='bindEditGood'>编辑</navigator>
+      <navigator url='newShop?edit={{true}}&goods_id={{item.goods_id}}&price={{item.market_price}}&goodsDesc={{item.goods_desc}}&goodName={{item.goods_name}}&storageInput={{item.goods_stock}}&goodCategorys={{item.goodCategorys}}&images={{item.goods_imgs}}'
+        class='edit' bindtap='bindEditGood'>编辑</navigator>
       <navigator url='./share/share?goods_id={{item.goods_id}}&image_url={{item.image_url}}&goods_name={{item.goods_name}}&goods_desc={{item.goods_desc}}' class='share'>分享</navigator>
       <view class='out' bindtap='bindDeleteGood' data-goods_id='{{item.goods_id}}'>下架</view>
     </view>
@@ -58,8 +65,8 @@
 <!--展示二维码  -->
 <view class="classShowQCode" style='display:{{QCodeDisplay}}'>
   <view class='closeQCode' bindtap='QCodeHide'></view>
-  <canvas class="classCanvas"  canvas-id="myCanvas"></canvas>
+  <canvas class="classCanvas" canvas-id="myCanvas"></canvas>
   <view style="text-align:center;padding-bottom:20px;width:500rpx;margin-left:130rpx;margin-top:70rpx;">
-    <button bindtap='savetup' type="primary" >保存到相册</button>
+    <button bindtap='savetup' type="primary">保存到相册</button>
   </view>
 </view>
