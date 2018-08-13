@@ -21,17 +21,28 @@ Page({
     isSubmitDisable: false,
     submitTimes: 0,
     order_type:'',
+    goods_id:'',
   },
   
   onLoad:function(options){
       this.is_onload = 1;
       this.loadding();
       this.id = options.id;
-      this.setData({
-        isSeller: options.isSeller,
-      });
-      var self = this;
 
+      if (options.isSeller == undefined)
+      {
+        this.setData({
+          isSeller: 'false',
+        });
+      }
+      else
+      {
+        this.setData({
+          isSeller: options.isSeller,
+        });
+      }
+
+      var self = this;
       this.getConfig();
 
       if(this.id == undefined) {
@@ -49,6 +60,12 @@ Page({
         }
      });
     // 页面初始化 options为页面跳转所带来的参数
+  },
+  pay:function()
+  {
+    wx.navigateTo({
+      url: '../sellers?good_id=' + this.data.goods_id,
+    });
   },
   swiperChange: function (e) {
     if (this.data.currentImg > 0) {
@@ -310,12 +327,14 @@ Page({
                 {
                   self.setData({
                     "order": order,
+                    goods_id: data.order.goods_id,
                     img_arr: data.order_imgs
                   });
                 }
                 else
                 {
-                  self.setData({ "order": order });
+                  self.setData({ "order": order,
+                    goods_id: data.order.goods_id, });
                 }
 
 

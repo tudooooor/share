@@ -108,8 +108,12 @@ Page({
           self.order_id = data.order_id;
           // util.wxpay(self);
           self.setData({ "order_id": self.order_id });
+          // wx.navigateTo({
+          //   url: '../sellers?good_id=' + self.data.good_id,
+          // });
+
           wx.navigateTo({
-            url: '../sellers?good_id=' + self.data.good_id,
+            url: '../orderDetail/orderDetail?id=' + data.order_id,
           });
           //self.wxpay();
         } else if (data['result'] == "fail") {
@@ -144,20 +148,8 @@ Page({
     }
     else
     {
-      var that = this;
-      wx.showModal({
-        title: '是否确定下单',
-        // content:'下单后，下载商家二维码进行支付',
-        success: function (res) {
-          if (res.confirm) {
-            that.buyNowConfirm();
-          } else if (res.cancel) {
-          }
-        }
-        
-      });
+      this.buyNowConfirm();
     }
-   
   },
   error: function (data) {
     util.loaded(this);
@@ -263,13 +255,9 @@ Page({
       this.data.good_id = str;
     }
 
-   //  wx.showNavigationBarLoading();
     this.baseApiUrl = util.config('baseApiUrl'); 
     this.token = wx.getStorageSync('token'); 
-
     this.goodsDetail(this.data.good_id);
-
-
   },
   swithToIndex:function()
   {
@@ -427,10 +415,9 @@ Page({
     }  
   },
   intervalChange:function(e){
-    
+  
     
   },
-
 
   drawPic: function (QRcodeImagePath, goods_name, goods_desc) {
     //2. canvas绘制文字和图片

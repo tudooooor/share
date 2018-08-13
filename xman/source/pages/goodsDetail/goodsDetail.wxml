@@ -68,7 +68,6 @@
             <view class='standard'>￥
               <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
           </view>
-          <view class='close' bindtap='maskHide'></view>
         </view>
       </view>
       <!--规格选择  -->
@@ -93,6 +92,7 @@
       <view class='standard' style='justify-content:flex-end;font-size:32rpx;color:#fa3137;line-height:80rpx;margin:0 30rpx'>
         总价：￥{{totalPrice}}
       </view>
+      <view style='margin-left:80%; color: #5bbc04;font-size: 28rpx;' bindtap='maskHide'>确定</view>
     </view>
   </view>
 </view>

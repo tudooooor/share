@@ -651,6 +651,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
     
     public function lists() {
         $good_id = I('get.good_id');
+        $member_id = I('get.member_id');
         if ($good_id != NULL)
          {           
             $GoodsDb = D('Goods');
@@ -667,7 +668,15 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
              $ret['nickName'] = $nickName;
              $ret['shopOwnerImg'] = $shopOwnerImg;
          }
- 
+         else if ($member_id != NULL)
+         {
+            $MemberDbOther = D('Member');
+            $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
+
+             $ret['shopName'] = $otherMember[0]['shop_name'];
+             $ret['shopImg'] =  $otherMember[0]['shop_logo'];
+
+         }
          else
          {
              $member_id = $this->memberInfo['member_id'];
@@ -1064,10 +1073,12 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
 
         $ret['order_imgs'] = $imgs;
         $orderInfo['order_goods'] = unserialize($orderInfo['order_goods']);
-        
+
+        $ret['goodCategorys'] = json_decode($orderInfo['order_goods']['goodCategorys'], true);
         $ret['order'] = $orderInfo;
         $ret['result'] = 'ok';
-        echo json_encode($ret);exit;
+
+        echo json_encode($ret);
     }
     
     public function group_orders() {

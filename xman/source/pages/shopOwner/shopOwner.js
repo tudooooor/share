@@ -10,18 +10,19 @@ Page({
     shopDesc:"",
     shopImg:"",
     good_id:'',
+    member_id:'',
   },
  
   onLoad: function (options) {
     this.data.good_id = options.good_id;
     if (options.good_id != undefined)
     {
-      this.good_id = options.good_id;
+      this.data.good_id = options.good_id;
     }
     else  if (options.scene != undefined) {
       var str = options.scene;
       str = str.substring(4);
-      this.member_id = str;
+      this.data.member_id = str;
     }
 
     this.token = wx.getStorageSync('token');
@@ -63,11 +64,28 @@ Page({
   loaded: function () {
     util.loaded(this);
   },
+  onShareAppMessage: function () {
+    return {
+      title: this.data.goods_name,
+      path: '/pages/shopOwner/shopOwner?good_id=' + this.data.good_id,
+      success: (res) => {
+        console.log("转发成功", res);
+      },
+      fail: (res) => {
+        console.log("转发失败", res);
+      }
+    }
+  },
   getGoodsFromOwner: function () {
   {
       var that = this;
       var url;
-      url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&good_id=" + this.good_id + "&token=" + this.token;
+      url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&good_id=" + this.data.good_id + "&token=" + this.token;
+      if (this.data.member_id != '')
+      {
+        url = this.baseApiUrl + "?g=Api&m=Weuser&a=lists&member_id=" + this.data.member_id + "&token=" + this.token;
+      }
+
       util.ajax({
         "url": url,
         "data": {
