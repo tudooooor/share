@@ -28,9 +28,8 @@
        <view class='standard' style='justify-content:space-between;'>
         <view class='info_left'>
           <view class='vip_price'>
-            会员价<span style="font-size:32rpx;font-weight:590;">{{order.order_amount}}</span>
+            <span style="font-size:32rpx;font-weight:590;">￥{{order.order_amount}}{{order.order_status_lang}}</span>
           </view>
-          订单状态<view class = 'delivery'>{{order.order_status}}</view>
           <view class='date'>{{order.order_time}}</view>
           <view class='delivery'>由商家提供配送服务</view>
           <view class='delivery'>{{order.goodSpecifications}}</view>

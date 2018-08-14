@@ -202,6 +202,9 @@ Page({
             if(data.result == 'ok') {
               
               var order_list = data.order_list; 
+              console.log({order_list});
+              var length = order_list.length;
+              console.log({length});
               var order_status = util.config('order_status');
               var orders =  order_list.map(function (order) {
                     order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
@@ -257,6 +260,7 @@ Page({
   },
   statusChange:function(e){
      var self = this;
+     console.log('statusChange');
      console.log({e});
      self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
      var check_id = e.target.dataset.id;

@@ -2,19 +2,19 @@ var util = require('../../utils/util.js')
 Page({
   data:{
       hadEva:1, //处理后台传来的参数，待评价为1，其他情况则视为已评价
-      check_id:'1',
-      "URL" : 3,
-      "is_over" : false,
-      "no_order" : false,
-      "modalHidden" : true,
-      "expressOpen" : 0,
-      "modalHidden1" : true,
-      "express" : {
-        'error' : false,
-        'info' : '',
-        'load' : true
+      check_id: 1,
+      URL : 3,
+      is_over : false,
+      no_order : false,
+      modalHidden : true,
+      expressOpen : 0,
+      modalHidden1 : true,
+      express : {
+        error : false,
+        info : '',
+        load : true
       },
-      "orders" : false
+      orders : false
     // text:"这是一个页面"
   },
   deleteOrder: function (event) {
@@ -165,15 +165,39 @@ Page({
             self.loaded();
             if(data.result == 'ok') {
               
-              var order_list = data.order_list; 
-              var order_status = util.config('order_status');
-              var orders =  order_list.map(function (order) {
+              var order_list = data.order_list;
+              console.log({order_list}); 
+              var length = order_list.length;
+              console.log({length});
+              var orders = [];
+              if(self.data.check_id == 1)
+              {
+                var order_status = util.config('order_status');
+                    orders =  order_list.map(function (order) {
                     order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
                     order.order_time = util.formatTime(new Date(order.order_time * 1000));
                     order.order_status_lang = order_status[order.order_status];
                     return order;
-                });
-
+                  });                
+              }
+              else
+              {
+                for(var i = 0,j =0;i < length;i++)
+                {
+                  if(self.data.check_id == order_list[i].order_status)
+                  {
+                    var order_status = util.config('order_status');
+                        orders[j] =  order_list[i].map(function (order) {
+                        order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
+                        order.order_time = util.formatTime(new Date(order.order_time * 1000));
+                        order.order_status_lang = order_status[order.order_status];
+                        return order;
+                    });
+                    j = j+1;                      
+                  }
+                }                
+              }
+              console.log({orders});
               var allData = '';
               var agoData = isclear ? false : self.data.orders;
               
@@ -239,6 +263,7 @@ Page({
           'no_order' : 0,
           'pullUpLoad' : 0
         });
+
         self.order_status = e.currentTarget.dataset.all_status == '3' ? undefined : e.currentTarget.dataset.all_status;
         self.page = 1;
         self.getData();      
