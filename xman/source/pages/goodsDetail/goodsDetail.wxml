@@ -19,7 +19,7 @@
   <view style='width:650rpx' class='standard'>￥
     <view wx:if="{{minPrice != 0}}">{{minPrice}}~</view>{{maxPrice}}</view>
     <!-- url='../share/share?goods_id={{good_id}}&image_url={{gallery[0].img_url}}&goods_name={{good_name}}&goods_desc={{good_name}}' -->
-  <view  bindtap='shareDisplay' style='font-size:40rpx;color:#888888'>分享</view>
+  <image src='/images/share.png' bindtap='shareDisplay' style='width:80rpx;height:80rpx;margin-top:14rpx;'></image>
 </view>
 <!--商品简介  -->
 <view class='information'>

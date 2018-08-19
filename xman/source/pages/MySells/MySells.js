@@ -472,5 +472,51 @@ Page({
             }  
         }
       });
+  },
+  orderConfirmDeliverFun: function () {
+    var order_id = this.order_id;
+    var token = this.token;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=confirmDeliverOrder&token=" + token + "&order_id=" + 　order_id;
+    var self = this;
+    var data = {
+    };
+
+    this.loadding();
+    util.ajax({
+      "url": url,
+      "method": 　"POST",
+      "data": data,
+      "success": function (data) {
+        if (data['result'] == "ok") {
+          self.loaded();
+          self.refresh();
+        } else {
+          self.error(data);
+        }
+      }
+    });
+  },
+  orderConfirmPayFun: function () {
+    var order_id = this.order_id;
+    var token = this.token;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=confirmPayOrder&token=" + token + "&order_id=" + 　order_id;
+    var self = this;
+    var data = {
+    };
+
+    this.loadding();
+    util.ajax({
+      "url": url,
+      "method": 　"POST",
+      "data": data,
+      "success": function (data) {
+        if (data['result'] == "ok") {
+          self.loaded();
+          self.refresh();
+        } else {
+          self.error(data);
+        }
+      }
+    });
   }
 })

@@ -63,9 +63,32 @@ Page({
   },
   pay:function()
   {
-    wx.navigateTo({
-      url: '../sellers?good_id=' + this.data.goods_id,
-    });
+      var order_id = this.id;
+      var token = this.token;
+      var url = this.baseApiUrl + "?g=Api&m=Weuser&a=confirmPayOrder&token=" + token + "&order_id=" + order_id;
+      var self = this;
+      var data = {
+      };
+
+      this.loadding();
+      util.ajax({
+        "url": url,
+        "method": "POST",
+        "data": data,
+        "success": function (data) {
+          if (data['result'] == "ok") {
+            self.loaded();
+            self.refresh();
+
+            wx.navigateTo({
+              url: '../sellers?good_id=' + this.data.goods_id,
+            });
+          } else {
+            self.error(data);
+          }
+        }
+      });
+
   },
   swiperChange: function (e) {
     if (this.data.currentImg > 0) {
@@ -99,17 +122,28 @@ Page({
 
   },
   formSubmit: function (e) {
+    if (this.order_status != '1') {
+      wx.showToast({
+        title: '用户还未支付',
+        duration: 3000,
+        icon: 'none',
+      });
+      return;
+    }
     if (this.data.isSubmitDisable == true) {
       wx.showToast({
         title: '已提交,请稍等！',
-        duration: 3000
+        duration: 3000,
+        icon: 'none',
       });
+      return;
     }
 
     if (this.data.img_arr.length == 0) {
       wx.showToast({
         title: '请选择图片',
-        duration: 3000
+        duration: 3000,
+        icon: 'none',
       });
       return;
     }
@@ -136,6 +170,35 @@ Page({
         that.setData({
           img_arr: that.data.img_arr.concat(res.tempFilePaths)
         })
+      }
+    });
+  },
+  orderConfirmDeliverFun: function () {
+    var order_id = this.id;
+    var token = this.token;
+    var url = this.baseApiUrl + "?g=Api&m=Weuser&a=confirmDeliverOrder&token=" + token + "&order_id=" + order_id;
+    var self = this;
+    var data = {
+    };
+
+    this.loadding();
+    util.ajax({
+      "url": url,
+      "method": "POST",
+      "data": data,
+      "success": function (data) {
+        if (data['result'] == "ok") {
+          self.loaded();
+          self.refresh();
+          if (data) {
+            wx.showToast({
+              title: '已提交发布！',
+              duration: 3000
+            });
+          }
+        } else {
+          self.error(data);
+        }
       }
     });
   },
@@ -166,12 +229,7 @@ Page({
           'Accept': 'application/json'
         },
         success: function (res) {
-          if (res) {
-            wx.showToast({
-              title: '已提交发布！',
-              duration: 3000
-            });
-          }
+          that.orderConfirmDeliverFun();
           console.log(res);
         },
         fail: function (res) {
@@ -231,12 +289,7 @@ Page({
               'Accept': 'application/json'
             },
             success: function (res) {
-              if (res) {
-                wx.showToast({
-                  title: '已提交发布！',
-                  duration: 3000
-                });
-              }
+              that.orderConfirmDeliverFun();
               console.log(res);
             },
             fail: function (res) {
@@ -314,7 +367,7 @@ Page({
                 order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
                 order.order_time = util.formatTime(new Date(order.order_time * 1000));
                 order.order_status_lang = self.order_status[order.order_status];
-                
+                self.order_status = order.order_status;
                 if(order.order_status == '0' || order.order_status == '1' || order.order_status == '2'  ) {
                     order.state_class = "state_1";
                 } else if(order.order_status == '3') {

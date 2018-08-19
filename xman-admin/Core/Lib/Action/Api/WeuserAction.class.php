@@ -810,7 +810,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $input['group_order_id'] = (int)$data['group_order_id'] ? (int)$data['group_order_id'] : 0;
             $input['group_buy'] = $data['groupbuy'];
             
-            
+            $input['good_specifications'] = $data['goodSpecifications'];
             $input['province_id'] = $address['province_id'];
             $input['city_id'] = $address['city_id'];
             $input['district_id'] = $address['district_id'];
@@ -1074,9 +1074,10 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         $ret['order_imgs'] = $imgs;
         $orderInfo['order_goods'] = unserialize($orderInfo['order_goods']);
 
-        $ret['goodCategorys'] = json_decode($orderInfo['order_goods']['goodCategorys'], true);
+        //$ret['goodCategorys'] = json_decode($orderInfo['order_goods']['goodCategorys'], true);
         $ret['order'] = $orderInfo;
         $ret['result'] = 'ok';
+        $ret['goodSpecifications'] = $orderInfo['good_specifications'];
 
         echo json_encode($ret);
     }
@@ -1223,7 +1224,28 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         }
     }
     
-
+    public function confirmPayOrder() {
+        if($this->isPost()) {
+            $order_id = I('get.order_id');
+            
+            D('Orders')->where(array('order_id' => $order_id))->save(array('order_status' => 1,'received_time' => time()));
+            
+            $ret['result'] = 'ok';
+            echo json_encode($ret);
+            exit;
+        }
+    }
     
+    public function confirmDeliverOrder() {
+        if($this->isPost()) {
+            $order_id = I('get.order_id');
+            
+            D('Orders')->where(array('order_id' => $order_id))->save(array('order_status' => 2,'received_time' => time()));
+            
+            $ret['result'] = 'ok';
+            echo json_encode($ret);
+            exit;
+        }
+    }
     
 }

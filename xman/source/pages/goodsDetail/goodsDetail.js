@@ -90,6 +90,7 @@ Page({
       "group_order_id": this.group_order_id ? this.group_order_id : 0,
       "goodCategorys": this.data.goodCategorys,
       "totalPrice": this.data.totalPrice,
+      "goodSpecifications": this.data.goodSpecifications,
     };
 
     var self = this;
