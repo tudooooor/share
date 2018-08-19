@@ -1077,7 +1077,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         //$ret['goodCategorys'] = json_decode($orderInfo['order_goods']['goodCategorys'], true);
         $ret['order'] = $orderInfo;
         $ret['result'] = 'ok';
-        $ret['goodSpecifications'] = $orderInfo['good_specifications'];
+        // $ret['goodSpecifications'] = $orderInfo['good_specifications'];
 
         echo json_encode($ret);
     }
