@@ -37,7 +37,7 @@ page {background-color: #fff;}
     position: fixed;
     height: 70px;
     /* line-height: 70px; */
-    background-color: #cc6600; 
+   /* background-color: #cc6600; */
     text-align: center;
     width: 100%;
     bottom: 0rpx;
@@ -208,7 +208,7 @@ page {background-color: #fff;}
     /* height: 50px; */
     line-height: 50px;
     border-radius: 3px;
-    background-color: #e02e24;
+    background-color: #5bbc04;
 }
 
 /* .add_text_red {
