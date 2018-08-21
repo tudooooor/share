@@ -1,15 +1,15 @@
 <view class='navbar'>
   <view class="standard">
-    <view class="all {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-id='1' data-all_status="3"bindtap="statusChange"
-    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>全部</view>
- <!--   <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
+    <view class="all {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-id='0' data-all_status="3"bindtap="statusChange"
+    style='{{check_id==0?"border-bottom:1px solid #5bbc04;":""}}'>全部</view>
+ <!--     <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
     style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>待付款</view>-->
-    <view class="delive {{all_status == 1 ? 'nav_cur' : ''}}" data-id='3' data-all_status="1" bindtap="statusChange"
-    style='{{check_id==3||check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>待收货</view>
-    <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='4' data-all_status="2" bindtap="statusChange"
-    style='{{check_id==4?"border-bottom:1px solid #5bbc04;":""}}'>已收货</view>
-    <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='5' data-all_status="4" bindtap="statusChange"
-    style='{{check_id==5?"border-bottom:1px solid #5bbc04;":""}}'>已取消</view>
+    <view class="delive {{all_status == 1 ? 'nav_cur' : ''}}" data-id='1' data-all_status="1" bindtap="statusChange"
+    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>待发货</view>
+    <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='2' data-all_status="2" bindtap="statusChange"
+    style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>已发货</view>
+    <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='4' data-all_status="4" bindtap="statusChange"
+    style='{{check_id==4?"border-bottom:1px solid #5bbc04;":""}}'>已取消</view>
   </view>
 </view>
 
@@ -28,7 +28,7 @@
        <view class='standard' style='justify-content:space-between;'>
         <view class='info_left'>
           <view class='vip_price'>
-            <span style="font-size:32rpx;font-weight:590;">￥{{order.order_amount}}{{order.order_status_lang}}</span>
+            <span style="font-size:32rpx;font-weight:590;">￥{{order.pay_amount}}{{order.order_status_lang}}</span>
           </view>
           <view class='date'>{{order.order_time}}</view>
           <view class='delivery'>由商家提供配送服务</view>

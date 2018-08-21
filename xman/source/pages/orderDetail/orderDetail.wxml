@@ -51,8 +51,13 @@
       <view class='title_right'>{{order.order_sn}}</view>
     </view>
     <view class='standard info'>
+      <view class='title_left'>订单规格:</view>
+      <view class='title_right'>{{order.good_specifications}}</view>
+    </view>
+    <view class='standard info'>
       <view class='title_left'>支付方式:</view>
       <view class='title_right'>微信二维码</view>
+
     </view>
     <view class='standard info'>
       <view class='title_left'>下单时间:</view>

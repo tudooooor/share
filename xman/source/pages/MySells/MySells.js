@@ -2,7 +2,7 @@ var util = require('../../utils/util.js')
 Page({
   data:{
       hadEva:1, //处理后台传来的参数，待评价为1，其他情况则视为已评价
-      check_id: 1,
+      check_id: 0,
       URL : 3,
       is_over : false,
       no_order : false,
@@ -14,7 +14,12 @@ Page({
         info : '',
         load : true
       },
-      orders : false
+      orders : false,
+      statusAll:[],
+      status1:[],
+      status2:[],
+      status3:[],
+      status4:[],
     // text:"这是一个页面"
   },
   deleteOrder: function (event) {
@@ -75,6 +80,26 @@ Page({
       },
       error : function() {
         util.notNetCon(self);
+      }
+    });
+     
+    util.checkNet({
+      success : function() {
+        util.succNetCon(self);
+        util.loadding(self,1);
+        self.setData({
+          'orders' : [],
+          'is_over' : 0,
+          'no_order' : 0,
+          'pullUpLoad' : 0
+        });
+
+        // self.order_status = e.currentTarget.dataset.all_status == '3' ? undefined : e.currentTarget.dataset.all_status;
+        self.page = 1;
+        self.getData();      
+      },
+      error : function() {
+        util.notNetCon(self,0);
       }
     });
 
@@ -165,71 +190,70 @@ Page({
             self.loaded();
             if(data.result == 'ok') {
               
-              var order_list = data.order_list;
-              console.log({order_list}); 
+              var order_list = data.order_list; 
+              console.log({order_list});
               var length = order_list.length;
               console.log({length});
-              var orders = [];
-              if(self.data.check_id == 1)
-              {
-                var order_status = util.config('order_status');
-                    orders =  order_list.map(function (order) {
+              var order_status = util.config('order_status');
+              var orders_temp =  order_list.map(function (order) {
                     order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
                     order.order_time = util.formatTime(new Date(order.order_time * 1000));
                     order.order_status_lang = order_status[order.order_status];
                     return order;
-                  });                
+                });
+              var orders = [];
+              self.data.statusAll = [];
+              self.data.status1 = [];
+              self.data.status2 = [];
+              self.data.status4 = [];
+              for(var i =0,j =0;i<orders_temp.length;i++)
+              {
+                if (orders_temp[i].order_status != '3')
+                {
+                  self.data.statusAll.push(orders_temp[i]);
+                }
+
+               if (orders_temp[i].order_status == '1')
+                {
+                  self.data.status1.push(orders_temp[i]);
+                }
+
+                if (orders_temp[i].order_status == '2')
+                {
+                  self.data.status2.push(orders_temp[i]);
+                }
+
+                if (orders_temp[i].order_status == '4')
+                {
+                  self.data.status3.push(orders_temp[i]);
+                }
+              }
+
+              var orders = [];
+              if (self.data.check_id == 0)
+              {
+                orders = self.data.statusAll;
+              }
+              else if (self.data.check_id == 1)
+              {
+                orders = self.data.status1;
+              }
+              else if (self.data.check_id == 2)
+              {
+                orders = self.data.status2;
               }
               else
               {
-                for(var i = 0,j =0;i < length;i++)
-                {
-                  if(self.data.check_id == order_list[i].order_status)
-                  {
-                    var order_status = util.config('order_status');
-                        orders[j] =  order_list[i].map(function (order) {
-                        order.pay_time = util.formatTime(new Date(order.pay_time * 1000));
-                        order.order_time = util.formatTime(new Date(order.order_time * 1000));
-                        order.order_status_lang = order_status[order.order_status];
-                        return order;
-                    });
-                    j = j+1;                      
-                  }
-                }                
+                orders = self.data.status4;
               }
-              console.log({orders});
-              var allData = '';
-              var agoData = isclear ? false : self.data.orders;
-              
-              if(orders.length != 0) {
-                  
-                 if(agoData) {
-                      allData = agoData;
-                      orders.map(function(order) {
-                        allData.push(order);
-                      });
-                 } else {
-                   allData = orders;
-                 }
-                self.setData({
-                  "orders" : allData
-                });
 
-                
-                if(orders.length < self.size) {
-                  self.setData({
-                    "is_over" : 1,
-                    "no_order" : 1
-                  });
-                }
-                
-              }  else {
-                if(self.data.orders == false || isclear) self.setData({orders : []});
-                self.setData({
-                  "is_over" : 1,
-                  "no_order" : 1
-                });
-              }               
+              self.setData({
+                // statusAll:self.data.statusAll,
+                // status1:self.data.status1,
+                // status2:self.data.status2,
+                // status4:self.data.status4,
+                orders:orders
+              });              
             } else {
                self.error(data);
                return false;
@@ -245,34 +269,34 @@ Page({
   },
   statusChange:function(e){
      var self = this;
-     console.log('1');
+     console.log('statusChange');
      console.log({e});
      self.setData({ "all_status": e.currentTarget.dataset.all_status,pullDown: 0});
      var check_id = e.target.dataset.id;
-     self.setData({
-        check_id:check_id
-     })
-     console.log(check_id)
-     util.checkNet({
-      success : function() {
-        util.succNetCon(self);
-        util.loadding(self,1);
-        self.setData({
-          'orders' : [],
-          'is_over' : 0,
-          'no_order' : 0,
-          'pullUpLoad' : 0
-        });
 
-        self.order_status = e.currentTarget.dataset.all_status == '3' ? undefined : e.currentTarget.dataset.all_status;
-        self.page = 1;
-        self.getData();      
-      },
-      error : function() {
-        util.notNetCon(self,0);
-      }
-    });
-    //util.loaded(this);
+    var orders = [];
+    if (check_id == 0)
+    {
+      orders = self.data.statusAll;
+    }
+    else if (check_id == 1)
+    {
+      orders = self.data.status1;
+    }
+    else if (check_id == 2)
+    {
+      orders = self.data.status2;
+    }
+    else
+    {
+      orders = self.data.status4;
+    }
+
+     self.setData({
+        check_id:check_id,
+        orders:orders
+     })
+     console.log(check_id);
   },
   orderBuy:function(e) {
     if(this.data.btn_order_done) return true;
