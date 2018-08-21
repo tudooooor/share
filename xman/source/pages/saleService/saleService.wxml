@@ -1,0 +1,73 @@
+<view class="page"></view>
+<!--分类 -->
+<view class="li" data-index="0" bindtap='changeToggle'>
+<view class="left">商品问题</view>
+<view class="right"><text class="iconfont {{selectedFlag[0]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+      </view>
+  </view>
+
+  <view hidden="{{!selectedFlag[0]}}">
+
+      <navigator class="li bg-gray" bindtap='maskDisplay'>
+        <view>1. 支付成功后，商品缺货怎么办？</view>
+        <view class='arrow'></view>
+      </navigator>
+      <view class="li bg-gray">
+        <view>2. 拍错商品，如何修改？</view>
+      </view>
+      <view class="li bg-gray">
+        <view>3. 收到货后 ，不是我想要的，怎么办？</view>
+      </view>
+
+  </view>
+
+  <view class='mask' style='display:{{maskShow}}'></view>
+
+  <view class="li" data-index="1" bindtap='changeToggle'>
+    <view class="left">配送问题</view>
+    <view class="right">
+      <text class="iconfont {{selectedFlag[1]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+  <view hidden="{{!selectedFlag[1]}}">
+    <view class="li bg-gray">
+        <view>1. 支付成功后，商品缺货怎么办？</view>
+      </view>
+      <view class="li bg-gray">
+        <view>2. 拍错商品，如何修改？</view>
+      </view>
+  </view>
+
+  <view class="li" data-index="2" bindtap='changeToggle'>
+    <view class="left">订单信息修改</view>
+    <view class="right red">
+      <text class="iconfont {{selectedFlag[2]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+  <view hidden="{{!selectedFlag[2]}}">
+    <view class="li bg-gray">
+        <view>1. 支付成功后，商品缺货怎么办？</view>
+      </view>
+      <view class="li bg-gray">
+        <view>2. 拍错商品，如何修改？</view>
+      </view>
+      <view class="li bg-gray">
+        <view>3. 收到货后 ，不是我想要的，怎么办？</view>
+      </view>
+  </view>
+
+
+  <view class="li" data-index="3" bindtap='changeToggle'>
+    <view class="left">商家免费入驻</view>
+    <view class="right red">
+      <text class="iconfont {{selectedFlag[3]?'icon-shangjiantou':'icon-xiala'}}"> </text>
+    </view>
+  </view>
+ <view hidden="{{!selectedFlag[3]}}">
+      <view class="li bg-gray">
+        <view>2. 拍错商品，如何修改？</view>
+      </view>
+      <view class="li bg-gray">
+        <view>3. 收到货后 ，不是我想要的，怎么办？</view>
+      </view>
+  </view>
