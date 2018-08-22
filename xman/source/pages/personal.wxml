@@ -33,7 +33,7 @@
     </navigator>
   </view>
   <view class='fun_li1'>
-      <navigator url="goodsDetail/goodsDetail">
+      <navigator url="saleService/saleService">
     <view class='mark sixth'></view>
     <view class='txt'>售后服务</view>
     </navigator>

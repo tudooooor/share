@@ -69,7 +69,7 @@ Page({
   onLoad:function (options){
     this.token = wx.getStorageSync('token');
     this.baseApiUrl = util.config('baseApiUrl'); 
-    this.setData({good_id: options.good_id});
+    this.data.good_id =  options.good_id;
     this.getQCode();
   }
 })  

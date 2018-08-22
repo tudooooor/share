@@ -114,7 +114,7 @@ Page({
           // });
 
           wx.navigateTo({
-            url: '../orderDetail/orderDetail?id=' + data.order_id,
+            url: '../orderDetail/orderDetail?id=' + data.order_id + '&good_id=' + self.data.good_id,
           });
           //self.wxpay();
         } else if (data['result'] == "fail") {

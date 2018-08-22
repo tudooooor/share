@@ -28,7 +28,7 @@ Page({
       this.is_onload = 1;
       this.loadding();
       this.id = options.id;
-
+      this.data.goods_id = options.good_id;
       if (options.isSeller == undefined)
       {
         this.setData({
@@ -81,7 +81,7 @@ Page({
             self.refresh();
 
             wx.navigateTo({
-              url: '../sellers?good_id=' + this.data.goods_id,
+              url: '../sellers?good_id=' + self.data.goods_id,
             });
           } else {
             self.error(data);
