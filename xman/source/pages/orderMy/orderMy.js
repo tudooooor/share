@@ -84,7 +84,7 @@ Page({
           'pullUpLoad' : 0
         });
         self.page = 1;
-        self.getData();      
+        var orders =self.getData();      
       },
       error : function() {
         util.notNetCon(self,0);
@@ -92,16 +92,16 @@ Page({
     })
 
 
-      util.checkNet({
-        success : function() {
-        util.succNetCon(self);
+    //   util.checkNet({
+    //     success : function() {
+    //     util.succNetCon(self);
       
-        var orders = self.getData();//token,this.offset,this.size
-      },
-      error : function() {
-        util.notNetCon(self);
-      }
-    });
+    //     var orders = self.getData();//token,this.offset,this.size
+    //   },
+    //   error : function() {
+    //     util.notNetCon(self);
+    //   }
+    // });
 
     
   },

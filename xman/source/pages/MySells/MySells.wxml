@@ -4,9 +4,9 @@
  <!--     <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
     style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>待付款</view>-->
     <view class="delive {{all_status == 1 ? 'nav_cur' : ''}}" data-id='1' data-all_status="1" bindtap="statusChange"
-    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>待收货</view>
+    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>待发货</view>
     <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='2' data-all_status="2" bindtap="statusChange"
-    style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>已收货</view>
+    style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>已发货</view>
     <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='3' data-all_status="4" bindtap="statusChange"
     style='{{check_id==4?"border-bottom:1px solid #5bbc04;":""}}'>已取消</view>
   </view>

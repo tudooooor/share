@@ -75,7 +75,14 @@ Page({
       util.checkNet({
         success : function() {
         util.succNetCon(self);
-      
+        util.loadding(self,1);
+        self.setData({
+          'orders' : [],
+          'is_over' : 0,
+          'no_order' : 0,
+          'pullUpLoad' : 0
+        }); 
+        self.page = 1;     
         var orders = self.getData();//token,this.offset,this.size
       },
       error : function() {
@@ -83,25 +90,23 @@ Page({
       }
     });
      
-    util.checkNet({
-      success : function() {
-        util.succNetCon(self);
-        util.loadding(self,1);
-        self.setData({
-          'orders' : [],
-          'is_over' : 0,
-          'no_order' : 0,
-          'pullUpLoad' : 0
-        });
-
-        // self.order_status = e.currentTarget.dataset.all_status == '3' ? undefined : e.currentTarget.dataset.all_status;
-        self.page = 1;
-        self.getData();      
-      },
-      error : function() {
-        util.notNetCon(self,0);
-      }
-    });
+    // util.checkNet({
+    //   success : function() {
+    //     util.succNetCon(self);
+    //     util.loadding(self,1);
+    //     self.setData({
+    //       'orders' : [],
+    //       'is_over' : 0,
+    //       'no_order' : 0,
+    //       'pullUpLoad' : 0
+    //     });
+    //     self.page = 1;
+    //     self.getData();      
+    //   },
+    //   error : function() {
+    //     util.notNetCon(self,0);
+    //   }
+    // });
 
     
   },
