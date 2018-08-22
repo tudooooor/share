@@ -963,13 +963,21 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
     
     public function orderDel()
     {
+        // $order_id = I('get.id');
+        // $map = array('order_id' => $order_id);
+        // $OrderDb = D('Orders');
+        // $del = 1;
+        // $result = $OrderDb->where($map)->__set('del', $del);
+        // $result = $OrderDb->save();
+        // echo json_encode($result);
+
         $order_id = I('get.id');
-        $map = array('order_id' => $order_id);
-        $OrderDb = D('Orders');
-        $del = 1;
-        $result = $OrderDb->where($map)->__set('del', $del);
-        $result = $OrderDb->save();
-        echo json_encode($result);
+        $OrdersDb  = D('Orders');
+        $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
+        $OrdersDb->where(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']))->save(array('order_status' => 3));
+        $ret['result'] = 'ok';
+        
+        echo json_encode($ret);
     }
     /**
      * 订单详情
@@ -1179,12 +1187,9 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
      */
     public function cancelOrder() {
         $order_id = I('get.order_id');
-        
         $OrdersDb  = D('Orders');
-        
         $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
-        
-        $OrdersDb->where(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']))->save(array('order_status' => 5));
+        $OrdersDb->where(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']))->save(array('order_status' => 4));
         
         $ret['result'] = 'ok';
         
