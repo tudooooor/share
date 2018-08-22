@@ -1,10 +1,9 @@
-<view class="body" hidden="{{!page.load && !page.operate}}">
+<view class="body" style='height:100%' hidden="{{!page.load && !page.operate}}">
 	<view class="div mod_container">
 		<view class="div wx_bar">
             <view class="div wx_bar_back">
                 <navigator id="back" url="javascript:void(0);"></navigator>
             </view>
-            <view class="div wx_bar_tit">收货地址</view>
         </view>
 		<form bindsubmit="listenFormSubmit" bindreser="listenFormReser" report-submit="true">
 		<view class=" div wx_wrap">
@@ -46,7 +45,7 @@
                 </view>
                 
 
-                <view class="p" id="adType">
+                <!-- <view class="p" id="adType">
                     <view class="label" for="adType"><view class="span tit">地址类别</view>
                         <picker bindchange="adTypesChange" value="{{adTypeIndex}}" range="{{adTypes}}">
                             <view class="picker">
@@ -56,7 +55,7 @@
                         </picker>
                         <view class="span" id="updateTip7" style="color: #F43530; {{!adType_tip ? 'display: none;' : ''}}">请选择家庭/公司</view>
                     </view>
-                </view>
+                </view> -->
 
 
 
@@ -68,8 +67,8 @@
                 </view>
 
 
-                <view class="p action">
-                    <button class="submit" id="add" formType="submit">确认</button>
+                <view class="add_address_red">
+                    <button class="inner_red" id="add" formType="submit">确认</button>
                     <block wx:if="{{address.address_id}}">  
                         <button class="submit hidden" style="background-color: #F43530;" id="deletes" bindtap="deletes" data-address_id="{{address.address_id}}">删除</button>
                     </block>
