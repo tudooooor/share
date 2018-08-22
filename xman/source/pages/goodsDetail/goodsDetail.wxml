@@ -126,7 +126,7 @@
 </view>
 
 <view class='buy_now'>
-<view class="index" bindtap='swithToIndex'>主页</view>
+<view class="index" bindtap='swithToIndex'>首页</view>
 <view style='color:#5bbc04'>|</view>
 <navigator class="shop" url='../shopOwner/shopOwner?good_id={{good_id}}'>进店</navigator> 
 <view style='color:#5bbc04'>|</view>
