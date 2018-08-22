@@ -158,12 +158,12 @@ Page({
       this.setData({'mobile_tip' : false});
     }
 
-    if(!formData.address_name.trim()) {
+    // if(!formData.address_name.trim()) {
   
-       this.setData({'adType_tip' : true});
-    } else {
-      this.setData({'adType_tip' : false});
-    }
+    //    this.setData({'adType_tip' : true});
+    // } else {
+    //   this.setData({'adType_tip' : false});
+    // }
 
     if(!formData.province.trim()) {
        this.setData({'province_tip' : true});
@@ -294,7 +294,9 @@ Page({
                if(regions) {
                  self.setData({
                    //regions :　regions,
-                   provinces : regions[1]
+                   provinces : regions[1],
+                   citys:regions[2],
+                   areas:regions[3]
                  });
                  self.regions_data = regions;
                  self.editHtml(regions);
@@ -734,18 +736,18 @@ Page({
   finish: function(e) {
      var id = this.data.areaIndex;
      var city = this.data.citys;
-     var cityName = '';
+     var cityName = '安庆';
      var cityPid = '';
 
 
 
     var province = this.data.provinces;
-    var provinceName = '';
+    var provinceName = '安徽';
     var provinceId = '';
 
     var area = this.data.areas;
     var areaPid = '';
-    var areaName = '';
+    var areaName = '迎江区';
 
 
     for(var iiii = 0 ; iiii < area.length; iiii++) {

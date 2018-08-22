@@ -24,11 +24,11 @@
                     
                     <block wx:key="item" wx:for="{{address_list}}">
                     
-                    <view class="div wrap_address">
+                    <!-- <view class="div wrap_address">
                         <view class="span address_name">{{item.address_name == "HOME" ? "家庭" : "公司"}}</view>
                         <view class="span none" wx:if="{{item.status == 'DEFAULT'}}">默认</view>
                
-                    </view>
+                    </view> -->
                     <view class=" ul {{goods_id != 'undefined' && goods_id && address_id == item.address_id ? 'marginleft bg_color' : ''}}" adid="4" rgid="330108" level="undefined" addetail="世界包装中心1号楼402乐其" type="0" bindtap="selectedDEFAULT" data-index="{{index}}">
                         <view class="li add_li"><view class="strong">{{item.receive_name}}</view></view>
                         <view class="li">{{item.mobile}}</view>
