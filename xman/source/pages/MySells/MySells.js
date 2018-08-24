@@ -213,7 +213,7 @@ Page({
               self.data.status4 = [];
               for(var i =0,j =0;i<orders_temp.length;i++)
               {
-                if (orders_temp[i].order_status != '3')
+                if ((orders_temp[i].order_status != '3')&&(orders_temp[i].order_status != '4'))
                 {
                   self.data.statusAll.push(orders_temp[i]);
                 }
@@ -230,7 +230,7 @@ Page({
 
                 if (orders_temp[i].order_status == '4')
                 {
-                  self.data.status3.push(orders_temp[i]);
+                  self.data.status4.push(orders_temp[i]);
                 }
               }
 

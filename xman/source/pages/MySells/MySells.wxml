@@ -38,6 +38,7 @@
     <view class='info_right'>
         <image class = 'delete' bindtap="deleteOrder" src='/images/Delete.png' data-order_id='{{order.order_id}}'></image>
     </view>
+    <button class='info_left' bindtap="orderCancel" data-order_id='{{order.order_id}}'>取消订单</button>
   </view>
 </view>
 </block>    
