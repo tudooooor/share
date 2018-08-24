@@ -70,7 +70,7 @@
                 <view class="add_address_red">
                     <button class="inner_red" id="add" formType="submit">确认</button>
                     <block wx:if="{{address.address_id}}">  
-                        <button class="submit hidden" style="background-color: #F43530;" id="deletes" bindtap="deletes" data-address_id="{{address.address_id}}">删除</button>
+                        <button class="inner_red" id="deletes" bindtap="deletes" data-address_id="{{address.address_id}}">删除</button>
                     </block>
                 </view>
 
