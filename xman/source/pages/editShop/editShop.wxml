@@ -1,57 +1,84 @@
-
 <form bindsubmit="formSubmit">
-<scroll-view scroll-y style="height: 1070rpx" class='box'>
-  <view wx:if="{{shopName != null}}" class='standardnew' style='margin:10rpx'>
-    <view class='left'>店铺名称:</view>
-    <view class='right'>
-      <input name="shopName" value='{{shopName}}' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+  <scroll-view scroll-y style="height: 1070rpx" class='box'>
+    <view wx:if="{{shopName != null}}" class='standardnew' style='margin:10rpx'>
+      <view class='left'>店铺名称:</view>
+      <view class='right'>
+        <input name="shopName" value='{{shopName}}' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+      </view>
     </view>
-  </view>
 
     <view wx:if="{{shopName == null}}" class='standardnew' style='margin:10rpx'>
-    <view class='left'>店铺名称:</view>
-    <view class='right'>
-      <input name="shopName" placeholder='请输入店铺名' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+      <view class='left'>店铺名称:</view>
+      <view class='right'>
+        <input name="shopName" placeholder='请输入店铺名' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;'></input>
+      </view>
     </view>
-  </view>
 
-  <view wx:if="{{shopDesc == null}}" class='standardnew'>
-    <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view>
-    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
-      <textarea name="shopDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' ></textarea>
+    <view wx:if="{{shopDesc != null}}" class='standard' style='margin:8rpx 0;' bindtap='maskDisplay'>
+      <view class='desc' >店铺描述:</view>
+      <input class='good_specifications' value='{{shopDesc}}'  style='border-bottom:1px solid #e8e8e8;'>{{shopDesc}}</input>
+      <view class='fun_li'>
+        <view class='arrow'> </view>
+      </view>
     </view>
-  </view>
 
-  <view wx:if="{{shopDesc != null}}" class='standardnew'>
-    <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view>
-    <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
-      <textarea name="shopDesc" value='{{shopDesc}}' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' ></textarea>
+    <view wx:if="{{shopDesc == null}}" class='standard' style='margin:8rpx 0;' bindtap='maskDisplay'>
+      <view class='desc' >店铺描述:</view>
+      <input class='good_specifications' placeholder='请输入店铺名' style='border-bottom:1px solid #e8e8e8;'>{{shopDesc}}</input>
+      <view class='fun_li'>
+        <view class='arrow'> </view>
+      </view>
     </view>
-  </view>
-
-  <view class='standardnew1'>
-    <view style="display:flex;flex-direction:row; ">
-      <view class='upload'>上传店铺LOGO:</view>
-      <image bindtap="upimg" src='/images/add.png'></image>
+    <!-- <view wx:if="{{shopDesc == null}}" class='standardnew'>
+      <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view>
+      <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
+        <view name="shopDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' fixed='true'></view>
+      </view>
     </view>
-    <view>
+
+    <view wx:if="{{shopDesc != null}}" class='standardnew'>
+      <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view>
+      <view class='desc_right' style="border:1px solid #e8e8e8;border-radius:4px">
+        <textarea name="shopDesc" value='{{shopDesc}}' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' fixed='true'></textarea>
+      </view>
+    </view> -->
+
+    <view class='standardnew1'>
+      <view style="display:flex;flex-direction:row; ">
+        <view class='upload'>上传店铺LOGO:</view>
+        <image bindtap="upimg" src='/images/add.png'></image>
+      </view>
+      <view>
+      </view>
     </view>
-  </view>
 
-  <image src="{{img_arr}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
+    <image src="{{img_arr}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
 
 
-  <view class='standardnew1'>
-    <view style="display:flex;flex-direction:row; ">
-      <view class='upload'>上传店铺收款二维码:</view>
-      <image bindtap="upimg_QCode" src='/images/add.png'></image>
+    <view class='standardnew1'>
+      <view style="display:flex;flex-direction:row; ">
+        <view class='upload'>上传店铺收款二维码:</view>
+        <image bindtap="upimg_QCode" src='/images/add.png'></image>
+      </view>
+      <view>
+      </view>
     </view>
-    <view>
-    </view>
-  </view>
 
-  <image src="{{img_arr_QCode}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
-</scroll-view>
+    <image src="{{img_arr_QCode}}" style='margin-left:54rpx' bindtouchend="handletouchend" bindtouchstart="handletouchstart" mode="widthFix"></image>
+  </scroll-view>
   <button id="button" class='submit' formType="submit">提交</button>
 </form>
 
+<view class='ShowBackground' style='display:{{showTextare}}'>
+  <view class='ShowTextarea'>
+    <!-- <view class='desc' style='margin-bottom:70rpx'>店铺描述:</view> -->
+    <view style='height:5rpx'></view>
+    <view class='textareaOrder' style="border:1px solid #e8e8e8;border-radius:4px">
+      <textarea name="shopDesc" placeholder='请输入商品简介' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput='textareaInput' value='{{shopDesc}}'></textarea>
+    </view>
+    <view style='display'>
+      <view style='margin-left:15%; color: #5bbc04;font-size: 40rpx;margin-top:20rpx' bindtap='textareaConfirm'>确定</view>
+      <view style='margin-left:48%; color: #5bbc04;font-size: 40rpx;margin-top:20rpx' bindtap='textareaCancel'>取消</view>
+    </view>
+  </view>
+</view>

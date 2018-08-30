@@ -1,3 +1,4 @@
+@import "/lib/style/stylesheetnew.wxss";
 page {
   background-color: white;
 }
@@ -43,13 +44,15 @@ swiper {
   border-radius: 4px;
 }
 .desc{
-   width: 22%;
   font-size: 32rpx;
   color: #333;
   font-weight: bold;
-  height: 300rpx;
 }
-
+.standard{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+}
 .desc_right{
   width: 82%;
   height: 300rpx;
@@ -186,7 +189,23 @@ swiper {
   display: flex;
   align-items: center;
 }
-
+.good_specifications
+{
+  overflow:hidden;
+  white-space:nowrap;
+  font-size:28rpx;
+  color:#333;
+  width: 500rpx;
+  margin-top:20rpx;
+  margin-right: 10rpx;
+}
+.arrow::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  color: #999;
+  font-size: 40rpx;
+  line-height: 80rpx;
+}
 .itemViewTextarea{
   margin-top: 10px;
   margin-left: 10px;
@@ -216,4 +235,34 @@ span
 {
   height: 300rpx;
   width: 560rpx;
+}
+
+
+.ShowBackground
+{
+  width:100%;
+  height:100%;
+  position:fixed;
+  left:0;
+  top:0;
+  background-color:rgba(0, 0, 0, 0.2);
+  z-index:111;
+  flex-direction:column;
+}
+.textareaOrder
+{
+  border:1px solid #e8e8e8;
+  border-radius:4px;
+  height:85%;
+  width:90%;
+  margin-top:5%;
+  margin-left:5%;
+}
+.ShowTextarea
+{
+  background:#fff;
+  height:80%;
+  margin-top:10%;
+  margin-left:5%;
+  width:90%;
 }

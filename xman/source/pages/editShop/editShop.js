@@ -14,6 +14,8 @@ Page({
     shopDesc: "",
     lastX: 0,
     lastY: 0,
+    showTextare:'none',
+    valueTextarea:'',
   },
   deleteImage: function (e) {
     // var tempImage = [];
@@ -21,6 +23,32 @@ Page({
     //   img_arr: tempImage
     // });
 
+  },
+  textareaConfirm:function(e)
+  {
+    var value = this.data.valueTextarea;
+    if (this.data.valueTextarea == '')
+    {
+      value = this.data.shopDesc;
+    }
+    this.setData({
+      shopDesc: value,
+      showTextare:'none'
+    });
+  },
+  textareaCancel: function (e) {
+    this.setData({
+      showTextare: 'none'
+    });
+  },
+  textareaInput:function(e)
+  { 
+    this.data.valueTextarea = e.detail.value;
+  },
+  maskDisplay: function () {
+    this.setData({
+      showTextare: 'flex'
+    });
   },
   handletouchend: function (event) {
     console.log(event);
@@ -168,8 +196,8 @@ Page({
   formSubmit: function (e) {
     var that = this;
     adds.shopName = e.detail.value.shopName;
-    adds.shopDesc = e.detail.value.shopDesc;
-    if (e.detail.value.shopName == "" || e.detail.value.shopDesc == "" || this.data.img_arr.length == 0 || this.data.img_arr_QCode.length == 0) {
+    adds.shopDesc = this.data.shopDesc;
+    if (e.detail.value.shopName == "" || this.data.shopDesc == "" || this.data.img_arr.length == 0 || this.data.img_arr_QCode.length == 0) {
       wx.showToast({
         title: '请填写信息',
         duration: 3000

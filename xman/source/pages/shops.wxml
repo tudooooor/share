@@ -3,7 +3,7 @@
   <view class='contact'>
     <view class='standard_new'>
       <navigator class='detail1' url="./editShop/editShop">
-        <view class='name'>我的店铺信息编辑</view>
+        <view class='name'>店铺信息编辑</view>
         <view class='fun_li'>
           <view class='arrow'></view>
         </view>

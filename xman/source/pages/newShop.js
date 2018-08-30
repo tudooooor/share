@@ -48,7 +48,9 @@ Page({
       { 'storageInput': "", 'price': "", 'specifications': "" },
       { 'storageInput': "", 'price': "", 'specifications': "" },],
     isSubmitDisable: false,
-    submitTimes:0
+    submitTimes:0,
+    showTextarea:'none',
+    valueTextarea:'',
   },
   
   swiperChange: function (e) {
@@ -169,6 +171,30 @@ Page({
     this.setData({
       goodsDesc: e.detail.value
     })
+  },
+  textareaInput: function (e) {
+    this.data.valueTextarea = e.detail.value;
+  },
+  showGoodsDesc:function()
+  {
+    this.setData({
+      showTextarea: 'flex'
+    })
+  },
+  textareaConfirm: function (e) {
+    var value = this.data.valueTextarea;
+    if (this.data.valueTextarea == '') {
+      value = this.data.goodsDesc;
+    }
+    this.setData({
+      goodsDesc: value,
+      showTextarea: 'none'
+    });
+  },
+  textareaCancel: function (e) {
+    this.setData({
+      showTextarea: 'none'
+    });
   },
   bindSpecificationsInput: function(e)
   {
@@ -461,7 +487,7 @@ Page({
     adds.goods_name = e.detail.value.goodName;
     adds.goods_stock = this.data.goodCategorys[0].storageInput;
     adds.market_price = this.data.goodCategorys[0].price;
-    adds.goods_desc = e.detail.value.goodsDesc;
+    adds.goods_desc = this.data.goodsDesc;
     adds.goods_id = this.data.goods_id;
     adds.goodCategorys = JSON.stringify(this.data.goodCategorys);
 
