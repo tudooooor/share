@@ -86,7 +86,7 @@
 </form>
 
   <view wx:if="{{isSeller=='false'}}" style="width:100%;height:750rpx;">
-      <view bindtap='pay'>确认支付</view>
+      <view bindtap='payConfirm'>确认支付</view>
       <view style="display:flex;flex-direction:row;">
         <view class='upload'>物流照片:</view>
       </view>

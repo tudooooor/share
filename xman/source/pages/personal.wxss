@@ -82,7 +82,7 @@ image{
   line-height: 40rpx;
 }
 .fun2{
-  width: 50%;
+  width: 75%;
 }
 
 

@@ -40,6 +40,7 @@ Page({
           "success" : function(data) {
               util.loaded(self);
               if(data['result'] == "ok") {
+                 wx.setStorageSync('headimgurl', data.user_info.headimgurl);
                   self.getOrderCount(token);
                   self.setData({
                     "userInfo" : {

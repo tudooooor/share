@@ -33,6 +33,19 @@
         </view>
       </view>
     </navigator>
+    </view>
+
+  <view  wx:key="item" wx:for="{{instruction}}" class='standard_new'>
+    <view class='header'>
+      <image class="image_header" src="{{item.shopImg}}"></image>
+      <view class='nickname'>{{item.shopName}}</view>
+    </view>
+    <navigator url='../instruction/instruction' style='display:flex'>
+      <view>
+        <image class="image_shop" src="{{item.goods[0].image_url}}"> </image>
+      </view>
+    </navigator>
+    </view>
+
   </view>
-</view>
-<!-- </scroll-view> -->
+  <!-- </scroll-view> -->

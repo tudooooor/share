@@ -61,6 +61,17 @@ Page({
      });
     // 页面初始化 options为页面跳转所带来的参数
   },
+  payConfirm:function()
+  {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定支付?',
+      success: function (res) {
+        that.pay();
+      }
+    })
+  },
   pay:function()
   {
       var order_id = this.id;

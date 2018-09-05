@@ -8,7 +8,8 @@ Page({
    */
   data: {
     shopData: [],
-
+    isInstruction: 'false',
+    instruction:[],
   },
 
 
@@ -38,8 +39,21 @@ Page({
       },
       "success": function (data) {
         console.log('goodslists success', data);
+        var instruction = [];
+        if (data[0]['needInstruction'] == 1)
+        {
+          var temp = {};
+          temp['nickName'] = data[0]['ownerNickname'];
+          temp['shopImg'] = data[0]['ownerHeadimgurl'];
+          temp['shopName'] = '店铺创建说明';
+          temp['isInstruction'] = 'true';
+          temp['goods'] = [{image_url: data[0]['ownerHeadimgurl']}];
+          instruction.push(temp);
+        }
         that.setData({
           "shopData": data,
+          isInstruction: that.data.isInstruction,
+          "instruction": instruction
         });
         wx.stopPullDownRefresh();
       }

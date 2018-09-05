@@ -113,7 +113,7 @@ Page({
           //   url: '../sellers?good_id=' + self.data.good_id,
           // });
 
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../orderDetail/orderDetail?id=' + data.order_id + '&good_id=' + self.data.good_id,
           });
           //self.wxpay();
@@ -406,7 +406,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: this.data.goods_name,
-      path: '/pages/doodsDetail/goodsDetail?good_id=' + this.data.good_id,
+      path: '/pages/goodsDetail/goodsDetail?goods_id=' + this.data.good_id,
       success: (res) => {
         console.log("转发成功", res);
       },
@@ -464,9 +464,9 @@ Page({
 
 
     //绘制介绍
-    ctx.setFontSize(11);
-    ctx.setFillStyle('#aaaaaa');
-    ctx.fillText('长按识别小程序二维码查看详情', 130, 350);
+    ctx.setFontSize(12);
+    ctx.setFillStyle('#000000');
+    ctx.fillText('<--长按识别小程序二维码查看详情', 130, 350);
 
     var that = this;
     wx.downloadFile({

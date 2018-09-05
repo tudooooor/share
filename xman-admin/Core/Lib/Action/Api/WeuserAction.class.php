@@ -350,7 +350,10 @@ class WeuserAction extends ApiAction {
         $membersArray;
         $GoodsDb = D('Goods');
         $MemberDbOther = D('Member');
+        $needInstruction = 1;
         $ret = array();
+        
+
         if ($members[0]['goods'] == "")
         {
             $membersArray = array();
@@ -359,6 +362,25 @@ class WeuserAction extends ApiAction {
         {
             $membersArray = unserialize($members[0]['goods']);           
         }
+
+        $members = $MemberDbOther->where(array('member_id' => '7'))->select();
+        $member_id = $members[0]['member_id'];
+        $map = array('member_id' => $member_id);
+        $GoodsDb = D('Goods');
+
+        $default['nickName'] = $members[0]['nickname'];
+        $default['shopName'] = $members[0]['shop_name'];
+        $default['shopDesc'] = $members[0]['shop_desc'];
+        $default['shopImg'] = $members[0]['shop_logo'];
+        $default['ownerNickname'] = $this->memberInfo['nickname'];
+        $default['ownerHeadimgurl'] = $this->memberInfo['headimgurl'];
+        $default['needInstruction'] = $needInstruction;
+        $good = $GoodsDb->where($map)->select();
+
+        $default['goods'] = $good;
+
+        array_push($ret, $default);
+
 
         for ($i = 0; $i < count($membersArray); $i++)
         {
@@ -373,21 +395,14 @@ class WeuserAction extends ApiAction {
                 $good = $GoodsDb->where(array('member_id' => $members[0]['member_id']))->select();
                 $ret[$i]['goods'] = $good;
             }
+
+            if ($membersArray[$i] == $this->memberInfo['member_id'])
+            {
+                $ret[0]['needInstruction'] = 0;
+            }
         }
 
-        $members = $MemberDbOther->where(array('member_id' => '7'))->select();
-        $member_id = $members[0]['member_id'];
-        $default['nickName'] = $members[0]['nickname'];
-        $default['shopName'] = $members[0]['shop_name'];
-        $default['shopDesc'] = $members[0]['shop_desc'];
-        $default['shopImg'] = $members[0]['shop_logo'];
-        $map = array('member_id' => $member_id);
-        $GoodsDb = D('Goods');
-        $good = $GoodsDb->where($map)->select();
-
-        $default['goods'] = $good;
-
-        array_push($ret, $default);
+ 
         echo json_encode($ret);
     }
 

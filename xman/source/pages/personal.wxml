@@ -1,7 +1,7 @@
 <view class='header'>
   <view class='standard_new'>
     <image src="{{userInfo.avatarUrl}}"></image>
-    <view class='nickname'>{{userInfo.nickName}}</view>    
+    <view class='nickname'>{{userInfo.nickName}}</view>
   </view>
 </view>
 
@@ -26,16 +26,23 @@
 </view>
 
 <view class='fun2'>
-  <view class='fun_li1'>
-    <navigator url="statistics/statistics">
-      <view class='mark fifth'></view>
-      <view class='txt'>流量统计</view>
-    </navigator>
-  </view>
-  <view class='fun_li1'>
-      <navigator url="saleService/saleService">
+  <navigator class='fun_li1' url="statistics/statistics">
+    <view class='mark fifth'></view>
+    <view class='txt'>流量统计</view>
+  </navigator>
+
+
+
+  <navigator class='fun_li1' url="instruction/instruction">
+    <view class='mark fifth'></view>
+    <view class='txt'>店铺说明</view>
+  </navigator>
+
+
+
+  <navigator class='fun_li1' url="saleService/saleService">
     <view class='mark sixth'></view>
     <view class='txt'>售后服务</view>
-    </navigator>
-  </view>
+  </navigator>
+
 </view>

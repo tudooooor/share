@@ -22,7 +22,8 @@
     "pages/shops",
     "pages/newShop",
     "pages/seller",
-    "pages/sellers"
+    "pages/sellers",
+    "pages/instruction/instruction"
   ],
   "window":{
     "backgroundColor": "#fff",
