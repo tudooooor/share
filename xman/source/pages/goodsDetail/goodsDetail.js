@@ -88,7 +88,7 @@ Page({
       "address_id": this.data.address_id,
       "groupbuy": this.sell_type == 1 ? 1 : 0,
       "group_order_id": this.group_order_id ? this.group_order_id : 0,
-      "goodCategorys": this.data.goodCategorys,
+      "goodCount": this.data.count,
       "totalPrice": this.data.totalPrice,
       "goodSpecifications": this.data.goodSpecifications,
     };
@@ -149,7 +149,14 @@ Page({
     }
     else
     {
-      this.buyNowConfirm();
+      var that = this;
+      wx.showModal({
+        title: '提示',
+        content: '是否确定购买?',
+        success: function (res) {
+          that.buyNowConfirm();
+        }
+      })
     }
   },
   error: function (data) {

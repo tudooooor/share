@@ -826,6 +826,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $input['group_buy'] = $data['groupbuy'];
             
             $input['good_specifications'] = $data['goodSpecifications'];
+            $input['good_count'] = serialize($data['goodCount']);
             $input['province_id'] = $address['province_id'];
             $input['city_id'] = $address['city_id'];
             $input['district_id'] = $address['district_id'];
@@ -1247,9 +1248,26 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
     public function confirmPayOrder() {
         if($this->isPost()) {
             $order_id = I('get.order_id');
-            
-            D('Orders')->where(array('order_id' => $order_id))->save(array('order_status' => 1,'received_time' => time()));
-            
+            $orderDb = D('Orders');
+            $orderDb->where(array('order_id' => $order_id))->save(array('order_status' => 1,'received_time' => time()));
+
+            $order = $orderDb->where(array('order_id' => $order_id))->find();
+            $GoodsDb = D('Goods');
+            $good = $GoodsDb->getGoods(array('goods_id' => $order['goods_id']));
+
+            $orderGoodCount = unserialize($order['good_count']);
+            $goodCategorys = json_decode($good['goodCategorys'], true);
+
+            $lenght = count($orderGoodCount);
+            for ($index = 0; $index < $lenght; $index++)
+            {
+                $goodCategorys[$index]['storageInput'] -= $orderGoodCount[$index];
+            } 
+
+            $goodCategorys = json_encode($goodCategorys, true);
+            $result = $GoodsDb->where(array('goods_id' => $order['goods_id']))->__set('goodCategorys', $goodCategorys);
+            $result = $GoodsDb->where(array('goods_id' => $order['goods_id']))->save();
+
             $ret['result'] = 'ok';
             echo json_encode($ret);
             exit;

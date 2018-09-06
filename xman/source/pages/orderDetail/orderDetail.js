@@ -91,7 +91,7 @@ Page({
             self.loaded();
             self.refresh();
 
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../sellers?good_id=' + self.data.goods_id,
             });
           } else {

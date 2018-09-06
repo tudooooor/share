@@ -1,0 +1,5 @@
+<scroll-view scroll-y="true" style="height: 1110rpx">
+<view wx:for="{{garreryDetailPreImage}}" wx:key="item" >
+  <image bindtap="previewImageDetail" data-index="{{index}}" src="{{item}}" style='width:100%; height:100%' mode="widthFix"></image>
+</view>
+</scroll-view>
