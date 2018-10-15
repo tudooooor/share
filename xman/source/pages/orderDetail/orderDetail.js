@@ -68,7 +68,11 @@ Page({
       title: '提示',
       content: '确定支付?',
       success: function (res) {
-        that.pay();
+        if (res.confirm) {
+          that.pay();
+        } else if (res.cancel) {
+
+        }
       }
     })
   },

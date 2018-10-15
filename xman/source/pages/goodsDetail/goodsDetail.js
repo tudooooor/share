@@ -19,7 +19,7 @@ Page({
     maxPrice: 0,
     goods_name: '',
     totalPrice:0,
-    goodSpecifications:'',
+    goodSpecifications:'重量, 数量, 库存',
     good_id:'',
     goods_desc:'',
     garreryDetail:[],
@@ -31,8 +31,14 @@ Page({
     QCodeDisplay:'none',
     strPrice:'',
     downloadFristPic:'',
+    imageDisplay:'none',
   },
-
+  checkMoreImage:function()
+  {
+    this.setData({
+      imageDisplay:"block"
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -154,7 +160,10 @@ Page({
         title: '提示',
         content: '是否确定购买?',
         success: function (res) {
-          that.buyNowConfirm();
+          if (res.confirm) {
+            that.buyNowConfirm();
+          } else if (res.cancel) {
+          }
         }
       })
     }

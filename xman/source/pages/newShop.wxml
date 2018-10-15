@@ -16,7 +16,7 @@
       <view class='standardnew'>
         <view class='left'>库存：</view>
         <view class='right' wx:if="{{edit=='false'}}">
-          <input name="storageInput" placeholder='请输入商品库存:如 100' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput"></input>
+          <input name="storageInput" placeholder='请输入商品库存:如 100' placeholder-style='font-size:32rpx;color:#999;padding-left:3%;font-weight:350;' bindinput="bindStorageInput" type="number"></input>
         </view>
 
         <view class='right' wx:if="{{edit=='true'}}">
