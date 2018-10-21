@@ -64,6 +64,10 @@ Page({
   loaded: function () {
     util.loaded(this);
   },
+  shareShop:function()
+  {
+    this.onShareAppMessage();
+  },
   onShareAppMessage: function () {
     return {
       title: this.data.goods_name,

@@ -1,6 +1,7 @@
 page {
   background-color: white;
-  flex-direction: column;
+  /* flex-direction: column; */
+  display: fixed;
 }
 .box{
   width: 100%;
@@ -26,6 +27,7 @@ page {
 .left image{
   width:240rpx;
   height: 210rpx;
+  border-radius: 10rpx;
 }
 .left_txt{
   display: flex;
@@ -50,7 +52,7 @@ page {
   font-size: 30rpx;
 }
 
-.share{
+/* .share{
     color: #5bbc04;
   border: 1px solid #5bbc04;
   margin-top: 10rpx; 
@@ -60,7 +62,7 @@ page {
   text-align: center;
   
   font-size: 30rpx;
-}
+} */
 .out{
   margin-top: 10rpx;
   margin-bottom: 10rpx;
@@ -144,32 +146,47 @@ page {
 .header{
   width: 100%;
   height: 140rpx;
-  background-color: white;
+  background-color: #334150;
   display: flex;
 }
 
 .information{
   width: 100%;
   background-color: white;
+  padding-bottom:20rpx;
+  border-bottom:1px solid #e8e8e8;
 }
 
 .shop_name{
   width: 100%;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: bold ;
   color: #333;
 }
 .image_header{
-  width: 90rpx;
-  height: 90rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 100%;
   margin-left:30rpx;
-margin-top:30rpx;
-
+  margin-top:10rpx;
 }
 .nickname{
-  margin-left: 20rpx;
   font-size: 35rpx;
-  color: black;
-  padding-top: 50rpx;
+  color: white;
+  padding: 50rpx;
+
+}
+
+.share{
+  position:absolute;
+  width:100rpx;
+  height:100rpx;
+  margin-left:630rpx;
+  /* bottom:-50rpx; */
+  z-index:100;
+  top:90rpx;
+  background:white;
+  border-radius:60rpx;
+  border:1px solid #D3D3D3;
+  padding-left:0;
 }

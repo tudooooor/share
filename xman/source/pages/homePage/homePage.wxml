@@ -1,40 +1,59 @@
 <!-- <scroll-view scroll-y="true" style="height: 1070rpx" class='box'> -->
 <view style="height: 1070rpx" class='box'>
+
   <view wx:key="item" wx:for="{{shopData}}" class='standard_new'>
+    
+    <navigator url='../shopOwner/shopOwner?good_id={{item.goods[0].goods_id}}'>
     <view class='header'>
       <image class="image_header" src="{{item.shopImg}}"></image>
       <view class='nickname'>{{item.shopName}}</view>
+      <view class="arrow"></view>
     </view>
-    <navigator url='../shopOwner/shopOwner?good_id={{item.goods[0].goods_id}}' style='display:flex'>
+    <view style='display:flex'>
+
       <view>
         <image class="image_shop" src="{{item.goods[0].image_url}}"> </image>
         <view wx:if="{{item.goods[0].image_url}}" class="goods-banner" id='banner'>
           <view class="div banner-index">
-            <view wx:if="{{item.goods[0].image_url}}"class="img_text">￥{{item.goods[0].market_price}}</view>
+            <view wx:if="{{item.goods[0].image_url}}" class="img_text">￥{{item.goods[0].market_price}}</view>
           </view>
+        </view>
+        <view class="good_name">{{item.goods[0].goods_name}}</view>
+      </view>
+        <!-- <view wx:if="{{item.isInstruction != ''}}">
+          <image class="image_shop" src="{{item.goods[0].image_url}}"> </image>
+          <view wx:if="{{item.goods[0].image_url}}" class="goods-banner" id='banner'>
+            <view class="div banner-index">
+              <view wx:if="{{item.goods[0].image_url}}" class="img_text">￥{{item.goods[0].market_price}}</view>
+            </view>
+          </view>
+        </view> -->
+
+        <view>
+          <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
+          <view wx:if="{{item.goods[1].image_url}}" class="goods-banner" id='banner'>
+            <view class="div banner-index">
+              <view wx:if="{{item.goods[1].image_url}}" class="img_text">￥{{item.goods[1].market_price}}</view>
+            </view>
+            
+          </view>
+
+        <view class="good_name">{{item.goods[1].goods_name}}</view>
+        </view>
+        <view>
+          <image class="image_shop" src="{{item.goods[2].image_url}}"></image>
+          <view wx:if="{{item.goods[2].image_url}}" class="goods-banner" id='banner'>
+            <view class="div banner-index">
+              <view wx:if="{{item.goods[2].image_url}}" class="img_text">￥{{item.goods[2].market_price}}</view>
+            </view>
+          </view>
+          
+        <view class="good_name">{{item.goods[2].goods_name}}</view>
         </view>
 
-      </view>
-      <view>
-        <image class="image_shop" src="{{item.goods[1].image_url}}"></image>
-        <view wx:if="{{item.goods[1].image_url}}"class="goods-banner" id='banner'>
-          <view class="div banner-index">
-            <view wx:if="{{item.goods[1].image_url}}" class="img_text">￥{{item.goods[1].market_price}}</view>
-          </view>
-        </view>
-
-      </view>
-      <view>
-        <image class="image_shop" src="{{item.goods[2].image_url}}"></image>
-        <view wx:if="{{item.goods[2].image_url}}"class="goods-banner" id='banner'>
-          <view class="div banner-index">
-            <view wx:if="{{item.goods[2].image_url}}" class="img_text">￥{{item.goods[2].market_price}}</view>
-          </view>
-        </view>
       </view>
     </navigator>
-    </view>
-
+  </view>
   <view  wx:key="item" wx:for="{{instruction}}" class='standard_new'>
     <view class='header'>
       <image class="image_header" src="{{item.shopImg}}"></image>

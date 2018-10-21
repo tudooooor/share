@@ -1,3 +1,4 @@
+@import '/lib/style/stylesheetnew.wxss';
 page {
   background-color: white;
 }
@@ -141,6 +142,7 @@ page {
   height: 230rpx;
   width: 230rpx;
   margin-right: 8rpx;
+  border-radius: 10rpx;
 }
 
 .banner-index {
@@ -153,6 +155,14 @@ page {
     z-index: 100;
     background:rgba(66,66,66,0.2);
     display: flex;
+}
+
+.good_name{
+  width:220rpx;
+  overflow:hidden;
+  white-space: nowrap;
+  font-weight: bold;
+  text-align: center  
 }
 
 .img_text
@@ -191,9 +201,20 @@ page {
 .image_header{
   width: 90rpx;
   height: 90rpx;
+  border-radius: 40rpx;
 }
 .nickname{
-  margin-left: 20rpx;
+  font-size: 35rpx;
+  font-weight: bold;
   color: black;
-  padding-top: 30rpx;
+  margin:25rpx;
+  width:530rpx;
+}
+
+.arrow::after{
+  font-family: 'iconfont';
+  content: '\e645';
+  color: #999;
+  font-size: 40rpx;
+  line-height: 80rpx;
 }

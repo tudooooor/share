@@ -1,17 +1,22 @@
-<view style="height:535px;width:750rpx;">
+<!-- <view style="height:535px;width:750rpx;"> -->
+<scroll-view scroll-y="true" style="height: 100%">
 <view class='header'>
+  <button class="share"  open-type='share'>
+    <image src='/images/share.png' bindtap='shareShop' style='width:60rpx;height:60rpx;margin-top:20rpx;margin-left:20rpx;'></image>
+  </button>
     <image class="image_header" src="{{shopOwnerImg}}"></image>
     <view class='nickname'>{{nickName}}</view>
 </view> 
 
 <view class='information'>
-  <view style='margin-left:30rpx;margin-right:30rpx'>
-    <text class='shop_name'>{{shopDesc}}</text>
+  <view style='margin:30rpx'>
+    <text class='shop_name' style="font-size:40rpx;font-weight:bold">{{shopName}}</text>
   </view>
+  <view style='margin:0 30rpx'><text class='shop_name'>{{shopDesc}}</text></view>
 </view>
 
-<view style='margin:20rpx'>全部商品:</view>
-<scroll-view scroll-x="true" style="white-space: nowrap;width: 100%;display: flex">
+<view style='margin:20rpx;font-size:20px;font-weight:bold;'>所有商品</view>
+
   <view wx:key="item" wx:for="{{goods_list}}" class='standard_new'>
     <view class='left box'>
       <navigator url="../goodsDetail/goodsDetail?goods_id={{item.goods_id}}">
@@ -24,5 +29,5 @@
       </view>
     </view>
   </view>
+
 </scroll-view>
-</view>

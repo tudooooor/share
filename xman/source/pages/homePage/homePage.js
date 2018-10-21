@@ -31,6 +31,7 @@ Page({
   goodslists: function () {
     var that = this;
     var url = this.baseApiUrl + "?g=Api&m=Weuser&a=shoplist&token=" + this.token;
+
     util.ajax({
       "url": url,
       "data": {

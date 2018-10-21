@@ -32,6 +32,19 @@ Page({
     strPrice:'',
     downloadFristPic:'',
     imageDisplay:'none',
+    systemInfo:{},
+  },
+  getSystemInfo: function(){
+    var that = this;
+    wx.getSystemInfo({
+      success:function(res){
+        that.setData({
+          systemInfo:res,
+        })
+        
+        console.log('system info', res);
+      }
+    })
   },
   checkMoreImage:function()
   {
@@ -264,6 +277,7 @@ Page({
     });
  },
   onLoad: function (options) {
+    this.getSystemInfo();
     this.data.good_id = options.goods_id;
     if (options.scene != undefined)
     {
