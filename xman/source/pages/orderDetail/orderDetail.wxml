@@ -1,31 +1,53 @@
 <!--买家与卖家tab  -->
 <scroll-view scroll-y="true" style=" white-space: nowrap; display: flex;height:100%">
 <view class='container1'>
-  <!--订单信息  -->
-  <view class='order'>
-    <navigator url="/pages/goodsDetail/goodsDetail?goods_id={{order.goods_id}}" >
-      <view class='standard'>
-        <view class='shop_logal'>
-         <view class='shop_logal_bg'>
-          <image src='{{order.order_goods.image_url}}'></image>
-        </view>
-        </view>       
-          <view class='shop_name'>{{order.order_goods.goods_name}}</view>
-          <view class='service'>由商家提供配送服务</view>       
-      </view>
-    </navigator>
-  </view>
-
-  <view class='sum'>
-    <view class='fee'>
-      <view>总计：
-        <span style="color:#fa3d34">{{order.pay_amount}}</span>
-      </view>
-    </view>
-  </view>
-
   <!--配送信息  -->
   <view class='order_h1'>
+    <view class='standard' style="padding-left:20rpx">配送信息</view>
+    <!-- <view class='service'>由商家提供配送服务</view>  -->
+  </view>
+  
+  <view class='deliv_info'>
+    <view class='standard info'>
+      <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">{{order.receive_name}}</text>
+      <text class='title_right' style="width:50%;text-align:right">{{order.mobile}}</text>
+    </view>
+    <view class='standard info'>
+        <text class='title_left' style="font-size:26rpx;font-weight:600">{{order.shipping_address}}</text>
+      </view>
+  </view>
+
+  <!--订单信息  -->
+  <view class='order_h1' style="margin-top: 25rpx;">
+      <view class='standard' style="padding-left:20rpx">商品信息</view>
+      <!-- <view class='service'>{{order.order_sn}}</view>  -->
+    </view>
+    
+    <view class='deliv_info'>
+      <view class='standard info'>
+        <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">{{order.order_goods.goods_name}}</text>
+        <text class='title_right' style="width:50%;text-align:right;color:red">{{order.order_status_lang}}</text>
+      </view>
+      <navigator style="flex-direction:row;display:flex">
+          <image src="{{order.order_goods.image_url}}" style="height:200rpx;width:200rpx;margin-left:20rpx;padding-bottom:20rpx"></image>
+          <text style="height:200rpx;width:500rpx;margin-left:20rpx;overflow: hidden;white-space: normal;font-size: 22rpx"> {{order.order_goods.goods_desc}} </text>
+      </navigator>
+      <view class='standard info'>
+        <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">订单总价</text>
+        <text class='title_right' style="width:50%;text-align:right;color:red">{{order.pay_amount}}</text>
+      </view>
+    </view>
+
+  <!-- <view class='sum'>
+    <view class='fee'>
+      <view>订单总价：
+        <text style="color:#fa3d34">{{order.pay_amount}}</text>
+      </view>
+    </view>
+  </view> -->
+
+
+  <!-- <view class='order_h1'>
     <view class='standard'>配送信息</view>
   </view>
 
@@ -38,10 +60,10 @@
         <br/>收货地址:{{order.shipping_address}}
       </view>
     </view>
-  </view>
+  </view> -->
 
   <!--订单信息  -->
-  <view class='order_h1'>
+  <view class='order_h1' style="margin-top:25rpx">
     <view class='standard'>订单信息</view>
   </view>
 
@@ -57,7 +79,6 @@
     <view class='standard info'>
       <view class='title_left'>支付方式:</view>
       <view class='title_right'>微信二维码</view>
-
     </view>
     <view class='standard info'>
       <view class='title_left'>下单时间:</view>
@@ -85,10 +106,9 @@
   <button id="button" class='submit' formType="submit">提交</button>
 </form>
 
-  <view wx:if="{{isSeller=='false'}}" style="width:100%;height:750rpx;">
-      <view bindtap='payConfirm'>确认支付</view>
+  <view wx:if="{{isSeller=='false' && img_arr.length!=0}}" style="width:100%;height:750rpx;">
       <view style="display:flex;flex-direction:row;">
-        <view class='upload'>物流照片:</view>
+        <view class='order_h1' style="margin-top: 25rpx;">物流照片:</view>
       </view>
       <swiper indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
         <block wx:for="{{img_arr}}">
@@ -100,3 +120,9 @@
   </view>
 
 </scroll-view>
+
+<view wx:if="{{isSeller=='false' && order_status=='0'}}" class="add_shop_red">
+    <view class="inner_red" bindtap='payConfirm'>
+      <navigator class="a add_text_red" style="color:white">确认支付</navigator>
+    </view>
+</view>

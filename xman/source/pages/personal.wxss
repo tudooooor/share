@@ -1,12 +1,53 @@
-@import '/lib/style/stylesheetnew.wxss';
-
-page {
-  background-color: white;
+page{
+  background-color: #f8f8f8;
+  font-family: 'Î¢ÈíÑÅºÚ';
 }
+
+
+@font-face {
+  font-family: 'iconfont';  /* project id 913117 */
+  src: url('//at.alicdn.com/t/font_913117_992ah7mr4ep.eot');
+  src: url('//at.alicdn.com/t/font_913117_992ah7mr4ep.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_913117_992ah7mr4ep.woff') format('woff'),
+  url('//at.alicdn.com/t/font_913117_992ah7mr4ep.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_913117_992ah7mr4ep.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-smile:before { content: "\e740"; }
+
+.icon-dianpu:before { content: "\e736"; }
+
+.icon-24:before { content: "\e616"; }
+
+.icon-jiantou4:before { content: "\e606"; }
+
+.icon-dizhi:before { content: "\e63c"; }
+
+.icon-liuliangtongji:before { content: "\e61f"; }
+
+.icon-jiantou:before { content: "\e64e"; }
+
+.icon-shuoming:before { content: "\e63d"; }
+
+.icon-jiantoushang:before { content: "\e62d"; }
+
+.icon-jiantouyou:before { content: "\e62e"; }
+
+.icon-weixiao:before { content: "\e60c"; }
+
+
 .header{
   width: 100%;
   height: 220rpx;
-  background-color: #5bbc04;
+  background-color: #334150;
 }
 
 image{
@@ -19,70 +60,22 @@ image{
   font-size: 35rpx;
   color: #fff;
 }
-.func,.fun2{
-  height: 179rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #e8e8e8;
-}
-.func{
-  width: 100%;
-}
-.fun_li,.fun_li1{
-  
-  height: 179rpx;
+
+
+.fun_li{
+  height: 100rpx;
   border-right: 1px solid #e8e8e8;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-}
-.fun_li{
-  width: 24.5%;
-}
-.fun_li1{
-  width: 49.5%;
-}
-.mark{
-  margin-top: 30rpx;
-}
-.first::after,.second::after,.third::after,.fourth::after,.fifth::after,.sixth::after{
-  font-family: 'iconfont';
-  font-size: 60rpx;
-}
-.first::after{
-  content: '\e60c';
-  color: #5bbc04;
-}
-.second::after{
-  content: '\e635';
-  color: #fa3d34;
-}
-.third::after{
-  content: '\e6b2';
-  color: #ffb200;
-}
-.fourth::after{
-  content: '\e63b';
-  color: #31acfb;
-}
-.fifth::after{
-  content: '\e6c3';
-  color: #b822af;
-}
-.sixth::after{
-  content: '\e7bb';
-  color: #00bc9c;
+  background-color: white;
 }
 
+
 .txt{
-  font-size:26rpx;
-  color: #333;
-  text-align: center;
-  line-height: 40rpx;
-}
-.fun2{
-  width: 75%;
+  font-size:35rpx;
+  font-weight:500;
+  margin-left:25rpx;
 }
 
 
@@ -92,4 +85,10 @@ image{
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 20rpx;
+}
+
+.icon_style{
+  font-size:15px;
+  margin-left:420rpx;
 }

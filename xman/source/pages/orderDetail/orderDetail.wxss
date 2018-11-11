@@ -1,4 +1,14 @@
-@import '/lib/style/stylesheet.wxss';
+page{
+  background-color: #f8f8f8;
+  font-family: '微软雅黑';
+}
+
+
+.deliv_info
+{
+  margin-top:5rpx;
+  background-color: white
+}
 /*订单转换处  */
 .roles{
   width: 100%;
@@ -36,9 +46,10 @@
   width: 100%;
   height: 70rpx;
   line-height: 70rpx;
-  background-color: #eef7e6;
+  background-color: white;
   font-size: 30rpx;
   font-weight: 400;
+  display:flex;
 }
 
 /*订单信息  */
@@ -85,12 +96,10 @@
   color: #999;
 }
 .service{
-  width: 40%;
   font-size: 26rpx;
   font-weight: 400;
   color: #666;
-  text-align: right;
-  
+  padding-right: 20rpx;
 }
 
 .minus,.sum{
@@ -165,8 +174,6 @@
 .info{
   min-height: 70rpx;
   line-height: 70rpx;
-  justify-content:flex-start;
-  border-bottom:1px solid #dcdcdc;
   font-size:26rpx;
 }
 .title_left{
@@ -193,40 +200,6 @@
   justify-content: space-between;
 }
 
-.deal_mark::after,.deal_mark1::after,.deal_mark2::after,.deal_mark3::after,.deal_mark4::after{
-  font-family: 'iconfont';
-  font-size: 40rpx;
-  /* color: #fa3d34; */
-  color: #5bbc04;
-}
-.deal_mark::after{
-  content: '\e61d';
-}
-.deal_mark1::after{
-  content: '\e606';
-  font-size: 45rpx;
-}
-.deal_mark2::after{
-  content: '\e64a';
-  font-size: 45rpx;
-}
-.deal_mark3::after{
-  content: '\e61d';
-  
-}
-.deal_mark4::after{
-  content: '\e694';
-  font-size: 45rpx;
-}
-.deal_text{
-  margin-left: 8%;
-  font-size: 26rpx;
-  color: #666;
-}
-.deal_time{
-  font-size: 24rpx;
-  color: #999;
-}
 .line{
   white-space:pre-line;
   width: 90%;
@@ -242,13 +215,13 @@
   margin: 3px;
 }
 
-.upload{
+/* .upload{
   width:40%;
   font-size: 32rpx;
   color: #333;
   font-weight: bold;
   height: 100rpx;
-}
+} */
 
 .submit{
   position: absolute;
@@ -262,4 +235,31 @@
   text-align: center;
   color: #fff;
   letter-spacing: 2px;
+}
+
+.add_shop_red {
+  position: fixed;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  width: 100%;
+  bottom: 0px;
+  z-index: 100;
+  max-width: 640px;
+}
+
+.inner_red {
+  margin-top: 10px;
+  font-size: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 3px;
+  background-color: #5bbc04;
+}
+
+.add_text_red {
+  display: inline-block;
+  min-width: 300px;
 }

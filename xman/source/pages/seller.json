@@ -1,7 +1,7 @@
 {
-    "enablePullDownRefresh": false,
-     "navigationBarTitleText" : "",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black",
-    "disableScroll" : true
-}
+    "navigationBarBackgroundColor": "#334150",
+    "navigationBarTextStyle": "#fff",
+    "navigationBarTitleText": "∏ˆ»À…Ë÷√",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  }
