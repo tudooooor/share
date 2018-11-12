@@ -28,7 +28,7 @@
         <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">{{order.order_goods.goods_name}}</text>
         <text class='title_right' style="width:50%;text-align:right;color:red">{{order.order_status_lang}}</text>
       </view>
-      <navigator style="flex-direction:row;display:flex">
+      <navigator style="flex-direction:row;display:flex" url='../goodsDetail/goodsDetail?goods_id={{order.order_goods.goods_id}}'>
           <image src="{{order.order_goods.image_url}}" style="height:200rpx;width:200rpx;margin-left:20rpx;padding-bottom:20rpx"></image>
           <text style="height:200rpx;width:500rpx;margin-left:20rpx;overflow: hidden;white-space: normal;font-size: 22rpx"> {{order.order_goods.goods_desc}} </text>
       </navigator>
@@ -74,7 +74,7 @@
     </view>
     <view class='standard info'>
       <view class='title_left'>订单规格:</view>
-      <view class='title_right'>{{order.good_specifications}}</view>
+      <view class='title_right' style="padding-left:20rpx">{{order.good_specifications}}</view>
     </view>
     <view class='standard info'>
       <view class='title_left'>支付方式:</view>
@@ -88,13 +88,17 @@
 </view>
 
 <form wx:if="{{isSeller=='true'}}" bindsubmit="formSubmit" > 
-  <view style="width:100%;height:750rpx;">
+  <view class='order_h1' style="margin-top: 25rpx;">
+    <view class='standard' style="padding-left:20rpx" bindtap="upimg">点击上传物流照片</view>
+    <view class='service' bindtap="deleteImage">点击删除当前图片</view> 
+  </view>
 
-      <view style="display:flex;flex-direction:row;">
+  <view style="width:100%;height:750rpx;">
+      <!-- <view style="display:flex;flex-direction:row;">
         <view class='upload'>上传物流照片:</view>
         <image bindtap="upimg" style='  width: 100rpx;height: 100rpx;margin-left: 50rpx;' src='/images/add.png'></image>
         <view bindtap="deleteImage">删除当前页</view>
-      </view>
+      </view> -->
       <swiper indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
         <block wx:for="{{img_arr}}">
           <swiper-item>
@@ -106,7 +110,7 @@
   <button id="button" class='submit' formType="submit">提交</button>
 </form>
 
-  <view wx:if="{{isSeller=='false' && img_arr.length!=0}}" style="width:100%;height:750rpx;">
+  <view wx:if="{{isSeller=='false'}}" style="width:100%;height:750rpx;">
       <view style="display:flex;flex-direction:row;">
         <view class='order_h1' style="margin-top: 25rpx;">物流照片:</view>
       </view>
@@ -121,7 +125,7 @@
 
 </scroll-view>
 
-<view wx:if="{{isSeller=='false' && order_status=='0'}}" class="add_shop_red">
+<view wx:if="{{isSeller=='false' && order.order_status==0}}" class="add_shop_red">
     <view class="inner_red" bindtap='payConfirm'>
       <navigator class="a add_text_red" style="color:white">确认支付</navigator>
     </view>

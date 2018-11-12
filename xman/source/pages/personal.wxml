@@ -13,41 +13,49 @@
     <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
   </navigator>
 
+  <navigator class='fun_li' url="MySells/MySells">
+    <text class='iconfont icon-dingdan' style="font-size:35px;margin-left: 20rpx;"></text>
+    <view class='txt'>卖家订单</view>
+    <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
+  </navigator>
+</view>
+
+<view class='func' style="margin-top:20rpx">
   <navigator class='fun_li' url="addresses">
     <text class='iconfont icon-dizhi' style="font-size:35px;margin-left: 20rpx;"></text>
     <view class='txt'>收货地址</view>
     <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx"></text>
   </navigator>
-</view>
 
-<view class='func' style="margin-top:20rpx">
-    <navigator class='fun_li' url="statistics/statistics">
-      <text class='iconfont icon-liuliangtongji' style="font-size:35px;margin-left: 20rpx;"></text>
-      <view class='txt'>流量统计</view>
-      <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
-    </navigator>
-  
+  <navigator class='fun_li' url="statistics/statistics">
+    <text class='iconfont icon-liuliangtongji' style="font-size:35px;margin-left: 20rpx;"></text>
+    <view class='txt'>流量统计</view>
+    <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
+  </navigator>
+ </view>   
+
+ <view class='func' style="margin-top:20rpx">
     <navigator class='fun_li' url="instruction/instruction">
       <text class='iconfont icon-shuoming' style="font-size:35px;margin-left: 20rpx;"></text>
       <view class='txt'>店铺说明</view>
       <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx"></text>
     </navigator>
   
-</view>
-
-<view class='func' style="margin-top:20rpx">
     <navigator class='fun_li' url="saleService/saleService">
       <text class='iconfont icon-weixiao' style="font-size:35px;margin-left: 20rpx;"></text>
       <view class='txt'>售后服务</view>
       <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
     </navigator>
+  </view>
 
+  <view class='func' style="margin-top:20rpx">
     <navigator class='fun_li' url="seller?userImage={{userInfo.avatarUrl}}&nickname={{userInfo.nickName}}">
       <text class='iconfont icon-24' style="font-size:35px;margin-left: 20rpx;"></text>
       <view class='txt'>个人设置</view>
       <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
     </navigator>
   </view>
+
 
 <!-- <view class='fun2'>
   <navigator class='fun_li1' url="statistics/statistics">

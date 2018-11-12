@@ -5,20 +5,20 @@
   <view class='standard_new'>
     <text class='name'>昵称</text>
     <text class='user'>{{nickname}}</text>
-    <text class="iconfont icon-jiantouyou" style="font-size:60rpx;margin-left:10rpx">  </text>
+    <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text>
   </view>
 
 
   <navigator class='standard_new' url="./info/info">
       <text class='name'>手机号</text>
       <text class='user'>{{phoneNum}}</text>
-      <text class="iconfont icon-jiantouyou" style="font-size:60rpx;margin-left:10rpx">  </text>
+      <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text>
   </navigator>
 
   <navigator class='standard_new' url="addresses">
     <text class='name'>我的地址</text>
     <!-- <text class='user'>{{phoneNum}}</text> -->
-    <text class="iconfont icon-jiantouyou" style="font-size:60rpx;margin-left:400rpx">  </text>
+    <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:400rpx">  </text>
 </navigator>
 <!-- 
 <view class='contact'>

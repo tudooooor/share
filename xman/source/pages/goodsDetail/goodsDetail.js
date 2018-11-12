@@ -302,7 +302,7 @@ Page({
     {
       if (this.data.count[index] != 0)
       {
-        this.data.goodSpecifications += ('规格:' + this.data.goodCategorys[index].specifications + ' ' + this.data.count[index] + '件') + ' ';
+        this.data.goodSpecifications += ('规格:' + this.data.goodCategorys[index].specifications + ' ' + '单价:' + this.data.goodCategorys[index].price + ' ' + this.data.count[index] + '件') + ' ';
       }
     }
     this.setData({

@@ -230,7 +230,7 @@ page{
   margin-left: 10%;
   height: 80rpx;
   line-height: 80rpx;
-  background-color: #5bbc04;
+  background-color: #108EE9;
   border-radius: 6rpx;
   text-align: center;
   color: #fff;
