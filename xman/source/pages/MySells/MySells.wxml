@@ -1,44 +1,43 @@
 <view class='navbar'>
   <view class="standard">
-    <view class="all {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-id='0' data-all_status="3" bindtap="statusChange" style='{{check_id==0?"border-bottom:1px solid #5bbc04;":""}}'>全部</view>
- <!--     <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
+    <view class="all {{all_status == 3 || all_status == undefined ? 'nav_cur' : ''}}" data-id='0' data-all_status="3"
+      bindtap="statusChange" style='{{check_id==0?"border-bottom:1px solid #4C87FF;color:#4C87FF;":""}}'>全部</view>
+    <!--     <view class="pay {{all_status == 0 ? 'nav_cur' : ''}}" data-id='2' data-all_status="0" bindtap="statusChange" 
     style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>待付款</view>-->
     <view class="delive {{all_status == 1 ? 'nav_cur' : ''}}" data-id='1' data-all_status="1" bindtap="statusChange"
-    style='{{check_id==1?"border-bottom:1px solid #5bbc04;":""}}'>待发货</view>
-    <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='2' data-all_status="2" bindtap="statusChange"
-    style='{{check_id==2?"border-bottom:1px solid #5bbc04;":""}}'>已发货</view>
-    <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='3' data-all_status="4" bindtap="statusChange"
-    style='{{check_id==4?"border-bottom:1px solid #5bbc04;":""}}'>已取消</view>
+      style='{{check_id==1?"border-bottom:1px solid #4C87FF;color:#4C87FF;":""}}'>待发货</view>
+    <view class="get {{all_status == 2 ? 'nav_cur' : ''}}" data-id='2' data-all_status="2" bindtap="statusChange" style='{{check_id==2?"border-bottom:1px solid #4C87FF;color:#4C87FF;":""}}'>已发货</view>
+    <view class="cancel {{all_status == 4 ? 'nav_cur' : ''}}" data-id='4' data-all_status="4" bindtap="statusChange"
+      style='{{check_id==4?"border-bottom:1px solid #4C87FF;color:#4C87FF;":""}}'>已取消</view>
   </view>
 </view>
 
 
-<block ms-repeat-order="orders" wx:key="" wx:for-item="order" wx:for="{{orders}}">
-<view class='order_list'>
-  <!--点击跳转到订单列表页  -->
-  <view class='order_bottom'  >
-    <navigator url="/pages/orderDetail/orderDetail?id={{order.order_id}}&isSeller={{true}}" >
-    <view class='standard' style='justify-content:flex-start;'>
-      <view class='cover'>
-        <image src='{{order.order_goods.image_url}}'></image>
+<view style="height: 1070rpx" style="padding-top:70rpx">
+
+  <view wx:key="" wx:for-item="order" wx:for="{{orders}}">
+
+    <!-- <view class='order_h1' style="margin-top: 12rpx;">
+      <view class='standard' style="padding-left:20rpx">商品信息</view>
+    </view> -->
+
+    <view class='deliv_info'>
+      <view class='standard info'>
+        <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">{{order.order_goods.goods_name}}</text>
+        <text class='title_right' style="width:50%;text-align:right;color:red">{{order.order_status_lang}}</text>
       </view>
-      <view class='order_info'>
-       <view class='standard' style='justify-content:space-between;'>
-        <view class='info_left'>
-          <view class='vip_price'>
-            <span style="font-size:32rpx;font-weight:590;">￥{{order.pay_amount}}{{order.order_status_lang}}</span>
-          </view>
-          <view class='date'>{{order.order_time}}</view>
-          <view class='delivery'>由商家提供配送服务</view>
+      <navigator style="flex-direction:row;display:flex" url="/pages/orderDetail/orderDetail?id={{order.order_id}}&isSeller={{true}}">
+        <image src="{{order.order_goods.image_url}}" style="height:200rpx;width:200rpx;margin-left:20rpx;padding-bottom:20rpx"></image>
+        <text style="height:200rpx;width:500rpx;margin-left:20rpx;overflow: hidden;white-space: normal;font-size: 26rpx">{{order.order_goods.goods_desc}} </text>
+      </navigator>
+      <view class='standard info'>
+        <text class='title_left' style="font-size:26rpx;font-weight: 600;width:70%;text-align:right;padding-right:5%;">{{order.good_specifications}}</text>
+        <text class='title_right' style="width:30%;text-align:right;color:red">合计{{order.pay_amount}}</text>
+      </view>
+      <view class='standard info'>
+          <text class='title_left' style="font-size:26rpx;font-weight: 600;width:70%;text-align:left;padding-right:5%;">{{order.order_time}}</text>
+          <text class='title_right' style="width:30%;text-align:right;" bindtap="deleteOrder" data-order_id='{{order.order_id}}'>删除订单</text>
         </view>
-       </view>
-      </view>
     </view>
-    </navigator>
-    <view class='info_right'>
-        <image class = 'delete' bindtap="deleteOrder" src='/images/Delete.png' data-order_id='{{order.order_id}}'></image>
-    </view>
-    <button class='info_left' bindtap="orderCancel" data-order_id='{{order.order_id}}'>取消订单</button>
   </view>
 </view>
-</block>    
