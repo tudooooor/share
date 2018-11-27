@@ -16,8 +16,6 @@ class GoodsAction extends ApiAction {
     /**
      * 商品列表
      */
-
-
     public function del() {
         $id = $this->_get('id','intval',0);
         if(!$id)$this->error('参数错误!');
@@ -102,7 +100,7 @@ class GoodsAction extends ApiAction {
         }
         
         $imgs = unserialize($detail['goods_imgs']);
-        $imgsDetail = unserialize($detail['goods_imgs_detail']);
+	$imgsDetail = unserialize($detail['goods_imgs_detail']);        
         foreach($imgs as $v) {
             $gallery[]['img_url'] =  $v;
         }
@@ -111,7 +109,7 @@ class GoodsAction extends ApiAction {
             $galleryDetail[]['img_url'] =  $v;
         }
 
-        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail));   
+        echo json_encode(array('result'=>'ok','goods'=>$detail,'gallery'=>$gallery, 'galleryDetail'=>$galleryDetail));  
     }
 
     /**

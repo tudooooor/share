@@ -30,7 +30,6 @@ class CmsAction extends Action{
         $this->data['image_url'] = $info_img;
         $temp = json_decode($_POST['goods_imgs']);
         $tempDetail = json_decode($_POST['goods_imgs_detail']);
-
         $serialTemp = serialize($temp);
         $serialTempDetail = serialize($tempDetail);
         $GoodsDb = D('Goods');
@@ -45,11 +44,9 @@ class CmsAction extends Action{
             // } else {
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
-
         } else {
             $this->error($GoodsDb->getError());
         }
-
     }
 
     public function uploadOrderImg()
@@ -68,7 +65,6 @@ class CmsAction extends Action{
             $this->error($OrdersDb->getError());
         }
     }
-
     public function addGoodWhenAdd($goods_id) {
 
         $goodsArray;
@@ -78,7 +74,7 @@ class CmsAction extends Action{
         }
         else
         {
-            $goodsArray = unserialize($$this->memberInfo['goods']);           
+            $goodsArray = unserialize($this->memberInfo['goods']);           
         }
 
         $temp = array_push($goodsArray, $goods_id);
@@ -95,30 +91,31 @@ class CmsAction extends Action{
         global $info_img;
         $this->data['image_url'] = $info_img;
         $temp = json_decode($_POST['goods_imgs']);
-        $tempDetail = json_decode($_POST['goods_imgs_detail']);
+	$tempDetail = json_decode($_POST['goods_imgs_detail']);
         $serialTemp = serialize($temp);
-        $serialTempDetail = serialize($tempDetail);
+	$serialTempDetail = serialize($tempDetail);
         $GoodsDb = D('Goods');
         
         if($GoodsDb->create()) {
             $GoodsDb->__set('image_url', $temp[0]);
             $GoodsDb->__set('goods_imgs', $serialTemp);
-            $GoodsDb->__set('goods_imgs_detail', $serialTempDetail);
+	    $GoodsDb->__set('goods_imgs_detail', $serialTempDetail);
             $GoodsDb->__set('member_id', $this->memberInfo['member_id']);
             $goodId = $GoodsDb->add();
+	    $ret['goods_id'] = $goodId;
+	    $this->addGoodWhenAdd($this->memberInfo['member_id']);
+            echo json_encode($ret);  
             // if($goodId) {
             //     $this->success('添加成功',U('Admin/Goods/index'));
             // } else {
             //     $this->error('添加失败',U('Admin/Goods/index'));
             // }
-            $ret['goods_id'] = $goodId;
-            $this->addGoodWhenAdd($this->memberInfo['member_id']);
-            echo json_encode($ret);  
         } else {
             $this->error($GoodsDb->getError());
         }
-    }
 
+        //echo json_encode($ret);
+    }
 
     /**
      * 公共上传

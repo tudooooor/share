@@ -17,7 +17,6 @@ class WeuserAction extends ApiAction {
     public $memberInfo;
     public function _initialize() {
         parent::_initialize();
-
         $token = I('get.token');
         $this->MemberDb = D('Member');
         $MemberTokenDB  = D('MemberToken');
@@ -32,7 +31,6 @@ class WeuserAction extends ApiAction {
         }
         
         $this->memberInfo = $memberInfo;
-
         $config = array(
             'appid' => '1400089351',//控制台查看
             'appkey' => 'd1010ebf524beab7b2b0c447c0f36e06',//控制台查看
@@ -40,7 +38,6 @@ class WeuserAction extends ApiAction {
             'nationCode' => '86', //国家或地区区号,香港852，大陆86
         );
         $this->config = $config;
-
     }
     
     /**
@@ -187,84 +184,6 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
 
-    public function getStatDataYear()
-    {
-        $map = array('seller_id' => $this->memberInfo['member_id']);
-        $OrdersDb = D('Orders');
-        $groupBuyCount = array();
-        for ($month = 0; $month < 12; $month++)
-        {
-            $startTime = mktime(0,0,0, $month + 1, 1,2018);
-            $tttt = date("Y-m-d", $startTime);
-            $endTime = mktime(0,0,0, $month + 2, 1,2018);
-            $tttt = date("Y-m-d", $endTime);
-            $array[$month] = $endTime - $startTime;
-            $map['order_time'] = array('between',array($startTime,$endTime));
-            $groupBuyCount[$month] = $OrdersDb->where($map)->count();
-        }
-
-        $ret['statistic_list'] = $groupBuyCount;
-        $ret['result'] = 0;
-        echo json_encode($ret);
-    }
-
-    
-    public function getStatDataMonth()
-    {
-        $year = I('get.year');
-        $month = I('get.month');
-        $count = I('get.count');
-        $map = array('seller_id' => $this->memberInfo['member_id']);
-        $OrdersDb = D('Orders');
-        $groupBuyCount = array();
-        for ($index = 0; $index < $count; $index++)
-        {
-            $startTime = mktime(0,0,0, $month, $index + 1,$year);
-            $tttt = date("Y-m-d", $startTime);
-            $endTime = mktime(0,0,0, $month, $index + 2,$year);
-            $tttt = date("Y-m-d", $endTime);
-            $array[$index] = $endTime - $startTime;
-            $map['order_time'] = array('between',array($startTime,$endTime));
-            $groupBuyCount[$index] = $OrdersDb->where($map)->count();
-        }
-
-        $ret['statistic_list'] = $groupBuyCount;
-        $ret['result'] = 0;
-        echo json_encode($ret);
-    }
-   
-    public function getStatDataDay()
-    {
-        $year = I('get.year');
-        $month = I('get.month');
-        $day = I('get.day');
-        $map = array('seller_id' => $this->memberInfo['member_id']);
-        $OrdersDb = D('Orders');
-        $groupBuyCount = array();
-
-        $startTime = mktime(0,0,0, $month, $day,$year);
-        $tttt = date("Y-m-d", $startTime);
-        $endTime = mktime(0,0,0, $month, $day + 1,$year);
-        $tttt = date("Y-m-d", $endTime);
-        
-        $map['order_time'] = array('between',array($startTime,$endTime));
-        $groupBuyCount = array();
-        $groupBuyCount = $OrdersDb->where($map)->select();
-        
-        $orders = array();
-  
-        for ($i = 0; $i < count($groupBuyCount); $i++)
-        {
-            $orders[$i]['order_sn'] = $groupBuyCount[$i]['order_sn'];
-            $orders[$i]['order_status'] = $groupBuyCount[$i]['order_status'];
-            $orders[$i]['order_id'] = $groupBuyCount[$i]['order_id'];
-
-        }
-        $ret['orders'] = $orders;
-        $ret['result'] = 0;
-        echo json_encode($ret);
-    }
-
 
        /**
      * 商品详情
@@ -296,8 +215,6 @@ class WeuserAction extends ApiAction {
         }
 
         $this->addGood();
-
-
         $AddressDb = D('Address');
         $map['status'] = 'DEFAULT';
         $map['member_id'] = $this->memberInfo['member_id'];
@@ -314,6 +231,7 @@ class WeuserAction extends ApiAction {
         $ret['phoneNumber'] = $members['mobile'];
 
         echo json_encode($ret);   
+
     }
 
     public function addGood() {
@@ -406,7 +324,6 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
 
-
     public function goodslists() {
         $good_id = I('get.good_id');
         $GoodsDb = D('Goods');
@@ -428,16 +345,14 @@ class WeuserAction extends ApiAction {
         echo json_encode($ret);
     }
 
-    public function sendMsg($phone, $code) {
-        vendor('Qcloudsms.SmsSender');
-        $config = $this->config;
-        $singleSender = new \SmsSingleSender($config['appid'], $config['appkey']);
-        // 普通单发
-        $result = $singleSender->send(0, $config['nationCode'], $phone, $code . "为您的登录验证码，请于60分钟内填写。如非本人操作，请忽略本短信。" , "", "");
-        //返回的成功示例：{"result":0,"errmsg":"OK","ext":"","sid":"2:670479-0268698729-028972-001510040916","fee":1}
-        //result为0表示发送成功
-        $rsp = json_decode($result, true);
-        return $rsp;
+    public function getShopData() {
+
+        $ret['shopName'] = $this->memberInfo['shop_name'];
+        $ret['shopImg'] = $this->memberInfo['shop_logo'];
+        $ret['shopDesc'] = $this->memberInfo['shop_desc'];
+        $ret['shopQCode'] = $this->memberInfo['shop_qcode'];
+        $ret['statusCode'] = 0;
+        echo json_encode($ret); 
     }
 
     public function getQCode() {
@@ -453,35 +368,38 @@ class WeuserAction extends ApiAction {
         $ret['result'] = 0;
         echo json_encode($ret); 
     }
-    
-    public function getShopData() {
-
-        $ret['shopName'] = $this->memberInfo['shop_name'];
-        $ret['shopImg'] = $this->memberInfo['shop_logo'];
-        $ret['shopDesc'] = $this->memberInfo['shop_desc'];
-        $ret['shopQCode'] = $this->memberInfo['shop_qcode'];
-        $ret['statusCode'] = 0;
-        echo json_encode($ret); 
-    }
-
     public function shopEdit() {
         $shop_name = $_GET['shopName'];
         $shop_logo = $_GET['shopImg'];
         $shop_desc = $_GET['shopDesc'];
-        $shop_qcode = $_GET['shopQCode'];
+        $shop_qcode = $_GET['shopImg_QCode'];
         $map = array('member_id' => $this->memberInfo['member_id']);
 
         $result = $this->MemberDb->where($map)->__set('shop_name', $shop_name);
         $result = $this->MemberDb->where($map)->__set('shop_logo', $shop_logo);
-        $result = $this->MemberDb->where($map)->__set('shop_qcode', $shop_qcode);
         $result = $this->MemberDb->where($map)->__set('shop_desc', $shop_desc);
+        $result = $this->MemberDb->where($map)->__set('shop_qcode', $shop_qcode);
         $result = $this->MemberDb->save();
         $ret['statusCode'] = 0;
         echo json_encode($ret); 
     }
 
+
+    public function sendMsg($phone, $code) {
+        vendor('Qcloudsms.SmsSender');
+        $config = $this->config;
+        $singleSender = new \SmsSingleSender($config['appid'], $config['appkey']);
+        // 普通单发
+        $result = $singleSender->send(0, $config['nationCode'], $phone, $code . "为您的登录验证码，请于60分钟内填写。如非本人操作，请忽略本短信。" , "", "");
+        //返回的成功示例：{"result":0,"errmsg":"OK","ext":"","sid":"2:670479-0268698729-028972-001510040916","fee":1}
+        //result为0表示发送成功
+        $rsp = json_decode($result, true);
+        return $rsp;
+    }
+
     public function mobile()
     {
+        trace('mobile','提示', 'DEBUG', true);
         $code = rand(1000, 9999); 
         $ret = $this->sendMsg($_GET['phoneNum'], $code);
 
@@ -495,6 +413,7 @@ class WeuserAction extends ApiAction {
     public function saveMobile()
     {
         $map = array('member_id' => $this->memberInfo['member_id']);
+        trace($map,'提示', 'DEBUG', true);
         $timeTemp = $this->MemberDb->where($map)->field('codeTime')->select();
         $time = (int)$timeTemp[0]['codeTime'];
         $codeTemp = $this->MemberDb->where($map)->field('code')->select();
@@ -516,10 +435,9 @@ class WeuserAction extends ApiAction {
         $ret['statusCode'] = 0;
         $result = $this->MemberDb->where($map)->__set('mobile', $_GET['phoneNum']);
         $result = $this->MemberDb->save();
-        
+               trace($ret,'提示', 'DEBUG', true); 
         echo json_encode($ret); 
     }
-
     public function getPersonInfo()
     {
         $map = array('member_id' => $this->memberInfo['member_id']);
@@ -529,144 +447,10 @@ class WeuserAction extends ApiAction {
 
         echo json_encode($ret); 
     }
-
-
-    protected function _requestGet($url, $ssl=true) {
-        // curl完成
-        $curl = curl_init();
-
-        //设置curl选项
-        curl_setopt($curl, CURLOPT_URL, $url);//URL
-        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '
-Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP/0.7.4';
-        curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);//user_agent，请求代理信息
-        curl_setopt($curl, CURLOPT_AUTOREFERER, true);//referer头，请求来源
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);//设置超时时间
-
-        //SSL相关
-        if ($ssl) {
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//禁用后cURL将终止从服务端进行验证
-            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);//检查服务器SSL证书中是否存在一个公用名(common name)。
-        }
-        curl_setopt($curl, CURLOPT_HEADER, false);//是否处理响应头
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);//curl_exec()是否返回响应结果
-
-        // 发出请求
-        $response = curl_exec($curl);
-        if (false === $response) {
-            echo '<br>', curl_error($curl), '<br>';
-            return false;
-        }
-        curl_close($curl);
-        return $response;
-    }
-
-     protected function _requestPost($url, $data, $ssl=true) {
-            //curl完成
-            $curl = curl_init();
-            //设置curl选项
-            curl_setopt($curl, CURLOPT_URL, $url);//URL
-            $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '
-    Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP/0.7.4';
-            curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);//user_agent，请求代理信息
-            curl_setopt($curl, CURLOPT_AUTOREFERER, true);//referer头，请求来源
-            curl_setopt($curl, CURLOPT_TIMEOUT, 30);//设置超时时间
-            //SSL相关
-            if ($ssl) {
-                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//禁用后cURL将终止从服务端进行验证
-                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);//检查服务器SSL证书中是否存在一个公用名(common name)。
-            }
-            // 处理post相关选项
-            curl_setopt($curl, CURLOPT_POST, true);// 是否为POST请求
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);// 处理请求数据
-            // 处理响应结果
-            curl_setopt($curl, CURLOPT_HEADER, false);//是否处理响应头
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);//curl_exec()是否返回响应结果
-
-            // 发出请求
-            $response = curl_exec($curl);
-            if (false === $response) {
-                echo '<br>', curl_error($curl), '<br>';
-                return false;
-            }
-            curl_close($curl);
-            return $response;
-    }
-
-    
-
-    public function _getAccessToken() {
-
-        // 考虑过期问题，将获取的access_token存储到某个文件中
-
-        // 目标URL：        
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".C('weapp.appid')."&secret=".C('weapp.appsecret');
-        //向该URL，发送GET请求
-        $result = $this->_requestGet($url);
-        if (!$result) {
-            return false;
-        }
-        // 存在返回响应结果
-        $result_obj = json_decode($result);
-
-        return $result_obj->access_token;
-    }
-
-
-    public function getwxacode()
-    {
-        
-        $access_token = $this->_getAccessToken();
-
-        $url = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='.$access_token;
-
-        $data = array();  
-        $good_id = I('get.good_id');
-        if ($good_id == NULL)
-        {
-            $data['scene'] = 'shop:'.$this->memberInfo['member_id'];//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
-            $data['page'] = 'pages/shopOwner/shopOwner';//扫描后对应的path  
-            $fileName = 'shop'.$this->memberInfo['member_id'];
-        }
-        else
-        {
-            $data['scene'] = 'good:'.$good_id;//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
-            $data['page'] = 'pages/goodsDetail/goodsDetail';//扫描后对应的path  
-            $fileName = 'good'.$good_id;
-        }
-        $savePath = C('upload_config.savePath');
-   
-        $data['width'] = 400;//自定义的尺寸  
-        $data['auto_color'] = false;//是否自定义颜色  
-        $color = array(  
-            "r"=>"221",  
-            "g"=>"0",  
-            "b"=>"0",  
-        );  
-        $data['line_color'] = $color;//自定义的颜色值  
-        $data = json_encode($data); 
-        $result = $this->_requestPost($url,$data);  
- 
-        $QRcodePath = $savePath."QRcode/".$fileName.".jpg";
-        
-        $ret['result'] = file_put_contents($QRcodePath,$result);			//	将获取到的二维码图片流保存成图片文件
-        if ($ret['result'] != false)
-        {
-            $ret['result'] = 0;
-        }
-        else
-        {
-            $ret['result'] = 1;
-        }
-        $QRcodePath = C('web_url').  'Uploads/'."QRcode/".$fileName.".jpg";
-        $ret['filePath'] = $QRcodePath;
-
-        echo json_encode($ret);
-    }
     
     public function lists() {
-        $good_id = I('get.good_id');
-        $member_id = I('get.member_id');
+	$good_id = I('get.good_id');
+	$member_id = I('get.member_id');
         if ($good_id != NULL)
          {           
             $GoodsDb = D('Goods');
@@ -687,38 +471,41 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
          {
             $MemberDbOther = D('Member');
             $otherMember = $MemberDbOther->where(array('member_id' => $member_id))->select();
-
+             $nickName = $otherMember[0]['nickname'];
+             $shopOwnerImg = $otherMember[0]['headimgurl'];
+ 
              $ret['shopName'] = $otherMember[0]['shop_name'];
+             $ret['shopDesc'] = $otherMember[0]['shop_desc'];
              $ret['shopImg'] =  $otherMember[0]['shop_logo'];
-
+             $ret['nickName'] = $nickName;
+             $ret['shopOwnerImg'] = $shopOwnerImg;
          }
-         else
-         {
+        else
+        {
              $member_id = $this->memberInfo['member_id'];
              $ret['shopName'] = $this->memberInfo['shop_name'];
              $ret['shopImg'] =  $this->memberInfo['shop_logo'];
-         }
-         $map = array('member_id' => $member_id);
- 
-         $GoodsDb = D('Goods');
-         $GoodCateDb = D('GoodsCate');
- 
-         $offset = I('get.offset');
-         $size = I('get.size');
- 
-         $cate_id = I('get.cate_id',0,'intval');
- 
-         $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
-         if(!$list) {
-             $ret['goods'] = array();
-         } else {
-             $ret['goods'] = $list;
-         }
-         $ret['result'] = 'ok';
+        }
+        $map = array('member_id' => $member_id);
 
-         echo json_encode($ret);
-     }
- 
+        $GoodsDb = D('Goods');
+        $GoodCateDb = D('GoodsCate');
+                
+        $offset = I('get.offset');
+        $size = I('get.size');
+
+        $cate_id = I('get.cate_id',0,'intval');
+        
+        $list = $GoodsDb->where($map)->order('goods_sort ASC')->limit($offset,$size)->select();
+        if(!$list) {
+            $ret['goods'] = array();
+        } else {
+            $ret['goods'] = $list;
+        }
+        $ret['result'] = 'ok';
+        echo json_encode($ret);
+    }
+
 
 
         /**
@@ -786,14 +573,14 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
      */
     public function orders() {
         if($this->isPost()) {
+            $data = file_get_contents("php://input");
+            $data = json_decode($data,true);
+            
             if ($this->memberInfo['mobile'] == NULL)
             {
                 echo json_encode(array('result'=>'fail', 'error_code'=>41002,'error_info'=>'请在个人信息处认证手机号'));
                 return;
             }
-            $data = file_get_contents("php://input");
-            $data = json_decode($data,true);
-            
             $GoodsDb = D('Goods');
             $OrdersDb = D('Orders');
             $goodsInfo = $GoodsDb->getGoods(array('goods_id' => $data['goods_id']));
@@ -825,7 +612,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $input['group_order_id'] = (int)$data['group_order_id'] ? (int)$data['group_order_id'] : 0;
             $input['group_buy'] = $data['groupbuy'];
             
-            $input['good_specifications'] = $data['goodSpecifications'];
+	    $input['good_specifications'] = $data['goodSpecifications'];
             $input['good_count'] = serialize($data['goodCount']);
             $input['province_id'] = $address['province_id'];
             $input['city_id'] = $address['city_id'];
@@ -864,8 +651,8 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             
             exit;
         }
-    }   
-    
+    }    
+ 
     public function wxpay() {
         $order_id = I('get.order_id');
         $OrdersDb = D('Orders');
@@ -976,17 +763,16 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         
         echo json_encode($ret);
     }
-    
+
     public function orderDel()
     {
-        // $order_id = I('get.id');
-        // $map = array('order_id' => $order_id);
-        // $OrderDb = D('Orders');
-        // $del = 1;
-        // $result = $OrderDb->where($map)->__set('del', $del);
-        // $result = $OrderDb->save();
-        // echo json_encode($result);
-
+        //$order_id = I('get.id');
+        //$map = array('order_id' => $order_id);
+        //$OrderDb = D('Orders');
+        //$del = 1;
+        //$result = $OrderDb->where($map)->__set('del', $del);
+        //$result = $OrderDb->save();
+        //echo json_encode($result);
         $order_id = I('get.id');
         $OrdersDb  = D('Orders');
         $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
@@ -994,7 +780,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         $ret['result'] = 'ok';
         
         echo json_encode($ret);
-    }
+    } 
     /**
      * 订单详情
      */
@@ -1034,6 +820,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         
         $OrdersDb  =  D('Orders');
         $map['buyer_id'] = $this->memberInfo['member_id'];
+ 
         $map['del'] = 0;
         $list = $OrdersDb->where($map)->order('order_time desc')->limit($offset,$size)->select();
         
@@ -1069,16 +856,16 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
 
         echo json_encode($ret);
     }
-
     /**
      * 根据获取订单详情
      */
+        
     public function getorder() {
         $order_id = I('get.order_id');
         $isSeller = I('get.isSeller');
         $OrdersDb = D('Orders');
         
-        if ($isSeller == 'true')
+        if ($isSeller == TRUE)
         {
             $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id));
         }
@@ -1087,22 +874,18 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
         }
 
-        if (!$orderInfo) {
+	if (!$orderInfo) {
             echo json_encode(array('result'=>'fail','error_code'=>41001,'error_info'=>'订单不存在'));
             return;
         }
 
         $imgs = unserialize($orderInfo['order_imgs']);
-
-
         $ret['order_imgs'] = $imgs;
         $orderInfo['order_goods'] = unserialize($orderInfo['order_goods']);
-
-        //$ret['goodCategorys'] = json_decode($orderInfo['order_goods']['goodCategorys'], true);
+       
+//	$ret['goodSpecifications'] = $orderInfo['good_specifications'];
         $ret['order'] = $orderInfo;
         $ret['result'] = 'ok';
-        // $ret['goodSpecifications'] = $orderInfo['good_specifications'];
-
         echo json_encode($ret);
     }
     
@@ -1203,8 +986,11 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
      */
     public function cancelOrder() {
         $order_id = I('get.order_id');
+        
         $OrdersDb  = D('Orders');
+        
         $orderInfo = $OrdersDb->getOrder(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']));
+        
         $OrdersDb->where(array('order_id' => $order_id,'buyer_id' => $this->memberInfo['member_id']))->save(array('order_status' => 4));
         
         $ret['result'] = 'ok';
@@ -1245,6 +1031,7 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
         }
     }
     
+    
     public function confirmPayOrder() {
         if($this->isPost()) {
             $order_id = I('get.order_id');
@@ -1272,8 +1059,8 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             echo json_encode($ret);
             exit;
         }
-    }
-    
+    }   
+ 
     public function confirmDeliverOrder() {
         if($this->isPost()) {
             $order_id = I('get.order_id');
@@ -1285,5 +1072,216 @@ Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP
             exit;
         }
     }
+  public function _getAccessToken() {
+
+        // 考虑过期问题，将获取的access_token存储到某个文件中
+
+        // 目标URL：        
+        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".C('weapp.appid')."&secret=".C('weapp.appsecret');
+        //向该URL，发送GET请求
+        $result = $this->_requestGet($url);
+        if (!$result) {
+            return false;
+        }
+        // 存在返回响应结果
+        $result_obj = json_decode($result);
+
+        return $result_obj->access_token;
+    }
     
+     protected function _requestPost($url, $data, $ssl=true) {
+            //curl完成
+            $curl = curl_init();
+            //设置curl选项
+            curl_setopt($curl, CURLOPT_URL, $url);//URL
+            $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '
+    Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP/0.7.4';
+            curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);//user_agent，请求代理信息
+            curl_setopt($curl, CURLOPT_AUTOREFERER, true);//referer头，请求来源
+            curl_setopt($curl, CURLOPT_TIMEOUT, 30);//设置超时时间
+            //SSL相关
+            if ($ssl) {
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//禁用后cURL将终止从服务端进行验证
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);//检查服务器SSL证书中是否存在一个公用名(common name)。
+            }
+            // 处理post相关选项
+            curl_setopt($curl, CURLOPT_POST, true);// 是否为POST请求
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);// 处理请求数据
+            // 处理响应结果
+            curl_setopt($curl, CURLOPT_HEADER, false);//是否处理响应头
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);//curl_exec()是否返回响应结果
+
+            // 发出请求
+            $response = curl_exec($curl);
+            if (false === $response) {
+                echo '<br>', curl_error($curl), '<br>';
+                return false;
+            }
+            curl_close($curl);
+            return $response;
+    }
+
+    
+
+    protected function _requestGet($url, $ssl=true) {
+        // curl完成
+        $curl = curl_init();
+
+        //设置curl选项
+        curl_setopt($curl, CURLOPT_URL, $url);//URL
+        $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '
+Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0 FirePHP/0.7.4';
+        curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);//user_agent，请求代理信息
+        curl_setopt($curl, CURLOPT_AUTOREFERER, true);//referer头，请求来源
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);//设置超时时间
+
+        //SSL相关
+        if ($ssl) {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);//禁用后cURL将终止从服务端进行验证
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);//检查服务器SSL证书中是否存在一个公用名(common name)。
+        }
+        curl_setopt($curl, CURLOPT_HEADER, false);//是否处理响应头
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);//curl_exec()是否返回响应结果
+
+        // 发出请求
+        $response = curl_exec($curl);
+        if (false === $response) {
+            echo '<br>', curl_error($curl), '<br>';
+            return false;
+        }
+        curl_close($curl);
+        return $response;
+    }
+
+
+    public function getwxacode()
+    {
+        
+        $access_token = $this->_getAccessToken();
+
+        $url = 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token='.$access_token;
+
+        $data = array();  
+        $good_id = I('get.good_id');
+        if ($good_id == NULL)
+        {
+            $data['scene'] = 'shop'.$this->memberInfo['member_id'];//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
+            $data['page'] = 'pages/shopOwner/shopOwner';//扫描后对应的path  
+            $fileName = 'shop'.$this->memberInfo['member_id'];
+        }
+        else
+        {
+            $data['scene'] = 'good'.$good_id;//自定义信息，可以填写诸如识别用户身份的字段，注意用中文时的情况  
+            $data['page'] = 'pages/goodsDetail/goodsDetail';//扫描后对应的path  
+            $fileName = 'good'.$good_id;
+        }
+        $savePath = C('upload_config.savePath');
+   
+        $data['width'] = 400;//自定义的尺寸  
+        $data['auto_color'] = false;//是否自定义颜色  
+        $color = array(  
+            "r"=>"221",  
+            "g"=>"0",  
+            "b"=>"0",  
+        );  
+        $data['line_color'] = $color;//自定义的颜色值  
+        $data = json_encode($data); 
+        $result = $this->_requestPost($url,$data);  
+ 
+        $QRcodePath = $savePath."QRcode/".$fileName.".jpg";
+        
+        $ret['result'] = file_put_contents($QRcodePath,$result);			//	将获取到的二维码图片流保存成图片文件
+        if ($ret['result'] != false)
+        {
+            $ret['result'] = 0;
+        }
+        else
+        {
+            $ret['result'] = 1;
+        }
+        $QRcodePath = C('web_url').  'Uploads/'."QRcode/".$fileName.".jpg";
+        $ret['filePath'] = $QRcodePath;
+
+        echo json_encode($ret);
+    }   
+
+
+    public function getStatDataYear()
+    {
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+        for ($month = 0; $month < 12; $month++)
+        {
+            $startTime = mktime(0,0,0, $month + 1, 1,2018);
+            $tttt = date("Y-m-d", $startTime);
+            $endTime = mktime(0,0,0, $month + 2, 1,2018);
+            $tttt = date("Y-m-d", $endTime);
+            $array[$month] = $endTime - $startTime;
+            $map['order_time'] = array('between',array($startTime,$endTime));
+            $groupBuyCount[$month] = $OrdersDb->where($map)->count();
+        }
+
+        $ret['statistic_list'] = $groupBuyCount;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
+
+    
+    public function getStatDataMonth()
+    {
+        $year = I('get.year');
+        $month = I('get.month');
+        $count = I('get.count');
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+        for ($index = 0; $index < $count; $index++)
+        {
+            $startTime = mktime(0,0,0, $month, $index + 1,$year);
+            $tttt = date("Y-m-d", $startTime);
+            $endTime = mktime(0,0,0, $month, $index + 2,$year);
+            $tttt = date("Y-m-d", $endTime);
+            $array[$index] = $endTime - $startTime;
+            $map['order_time'] = array('between',array($startTime,$endTime));
+            $groupBuyCount[$index] = $OrdersDb->where($map)->count();
+        }
+
+        $ret['statistic_list'] = $groupBuyCount;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
+   
+    public function getStatDataDay()
+    {
+        $year = I('get.year');
+        $month = I('get.month');
+        $day = I('get.day');
+        $map = array('seller_id' => $this->memberInfo['member_id']);
+        $OrdersDb = D('Orders');
+        $groupBuyCount = array();
+
+        $startTime = mktime(0,0,0, $month, $day,$year);
+        $tttt = date("Y-m-d", $startTime);
+        $endTime = mktime(0,0,0, $month, $day + 1,$year);
+        $tttt = date("Y-m-d", $endTime);
+        
+        $map['order_time'] = array('between',array($startTime,$endTime));
+        $groupBuyCount = array();
+        $groupBuyCount = $OrdersDb->where($map)->select();
+        
+        $orders = array();
+  
+        for ($i = 0; $i < count($groupBuyCount); $i++)
+        {
+            $orders[$i]['order_sn'] = $groupBuyCount[$i]['order_sn'];
+            $orders[$i]['order_status'] = $groupBuyCount[$i]['order_status'];
+            $orders[$i]['order_id'] = $groupBuyCount[$i]['order_id'];
+
+        }
+        $ret['orders'] = $orders;
+        $ret['result'] = 0;
+        echo json_encode($ret);
+    }
+ 
 }
