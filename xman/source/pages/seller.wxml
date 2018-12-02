@@ -2,52 +2,26 @@
   <image src="{{userImage}}"></image>
 </view>
 
-  <view class='standard_new'>
-    <text class='name'>昵称</text>
-    <text class='user'>{{nickname}}</text>
-    <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text>
-  </view>
-
-
-  <navigator class='standard_new' url="./info/info">
-      <text class='name'>手机号</text>
-      <text class='user'>{{phoneNum}}</text>
-      <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text>
-  </navigator>
-
-  <navigator class='standard_new' url="addresses">
-    <text class='name'>我的地址</text>
-    <!-- <text class='user'>{{phoneNum}}</text> -->
-    <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:400rpx">  </text>
-</navigator>
-<!-- 
-<view class='contact'>
-  <view class='standard_new'>
-    <navigator class='detail1' url="./info/info">
-      <view class='fun_li' >
-        <view class='name'>手机号</view>
-      </view>
-      <view class='fun_li' >
-        <view class='user' style='width:444rpx'>{{phoneNum}}</view>
-      </view>
-      <view class='fun_li' >
-        <view class='arrow'></view>
-      </view>
-    </navigator>
-  </view>
+<view class='standard_new'>
+  <text class='name'>昵称</text>
+  <text class='user' style="margin-right:60rpx">{{nickname}}</text>
+  <!-- <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text> -->
 </view>
 
 
+<navigator class='standard_new' url="./info/info">
+  <text class='name'>手机号</text>
+  <text class='user'>{{phoneNum}}</text>
+  <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx">  </text>
+</navigator>
 
-<view class='contact'>
-  <view class='standard_new'>
-    <navigator class='detail1' url="addresses">
-      <view class='fun_li'>
-        <view class='name'>我的地址</view>
-      </view>
-      <view class='fun_li'>
-        <view class='arrow'></view>
-      </view>
-    </navigator>
-  </view>
-</view> -->
+<navigator class='standard_new' url="addresses">
+  <text class='name'>我的地址</text>
+  <text class='user' style="overflow:hidden;white-space:nowrap;">{{address}}</text>
+  <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx;">  </text>
+</navigator>
+<navigator class='standard_new' url="./editShop/editShop">
+  <text class='name' style="width:80%">卖家信息</text>
+  <text class='user' style="overflow:hidden;white-space:nowrap;">添加或修改</text>
+  <text class="iconfont icon-jiantouyou" style="font-size:45rpx;margin-left:10rpx;">  </text>
+</navigator>

@@ -53,6 +53,7 @@ Page({
      'adinfo_tip' : false,
      userImage: "",
      'phoneNum': '',
+     'address':"请填写地址"
   },
   edit:function(options){
     console.log("---view1 bindtap click");
@@ -90,7 +91,8 @@ Page({
         console.log(res)
         if (res['result'] == 0) {
           that.setData({
-            phoneNum: res.phoneNum
+            phoneNum: res.phoneNum,
+            address:res.full_address,
           });
         }
       },

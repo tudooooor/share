@@ -1,10 +1,11 @@
-<view class='header'>
-  <view class='standard_new'>
-    <image src="{{userInfo.avatarUrl}}"></image>
-    <view class='nickname'>{{userInfo.nickName}}</view>
-    <!-- <text class="iconfont icon-jiantouyou" style="font-size:25px;color:white;margin-left:360rpx">  </text> -->
+<navigator url="seller?userImage={{userInfo.avatarUrl}}&nickname={{userInfo.nickName}}">
+  <view class='header'>
+      <view class='standard_new'>
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <view class='nickname'>{{userInfo.nickName}}</view>
+      </view>
   </view>
-</view>
+</navigator>
 
 <view class='func'>
   <navigator class='fun_li' url="shops">
@@ -44,7 +45,7 @@
     <navigator class='fun_li' url="saleService/saleService">
       <text class='iconfont icon-weixiao' style="font-size:35px;margin-left: 20rpx;"></text>
       <view class='txt'>售后服务</view>
-      <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx">  </text>
+      <text class="iconfont icon-jiantouyou" style="font-size:15px;margin-left:430rpx"></text>
     </navigator>
   </view>
 
@@ -57,25 +58,3 @@
   </view>
 
 
-<!-- <view class='fun2'>
-  <navigator class='fun_li1' url="statistics/statistics">
-    <view class='mark fifth'></view>
-    <view class='txt'>流量统计</view>
-  </navigator>
-
-
-
-  <navigator class='fun_li1' url="instruction/instruction">
-    <view class='mark fifth'></view>
-    <view class='txt'>店铺说明</view>
-  </navigator>
-
-
-
-  <navigator class='fun_li1' url="saleService/saleService">
-    <view class='mark sixth'></view>
-    <view class='txt'>售后服务</view>
-  </navigator> 
-
-
-</view>-->

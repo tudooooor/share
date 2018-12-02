@@ -22,6 +22,8 @@ Page({
     submitTimes: 0,
     order_type:'',
     goods_id:'',
+    goodCategorys:[],
+    good_count:[],
   },
   
   onLoad:function(options){
@@ -391,18 +393,24 @@ Page({
                    order.state_class = "state_3";
                 }
 
+                var goodCategorys = JSON.parse(order.order_goods.goodCategorys);
                 if (data.order_imgs != '')
                 {
                   self.setData({
                     "order": order,
                     goods_id: data.order.goods_id,
-                    img_arr: data.order_imgs
+                    img_arr: data.order_imgs,
+                    goodCategorys:goodCategorys,
+                    good_count: order.good_count
                   });
                 }
                 else
                 {
                   self.setData({ "order": order,
-                    goods_id: data.order.goods_id, });
+                    goods_id: data.order.goods_id, 
+                    goodCategorys:goodCategorys,
+                    good_count:order.good_count
+                  });
                 }
 
 

@@ -20,7 +20,7 @@
   <!--订单信息  -->
   <view class='order_h1' style="margin-top: 25rpx;">
       <view class='standard' style="padding-left:20rpx">商品信息</view>
-      <!-- <view class='service'>{{order.order_sn}}</view>  -->
+      <view class='service'>{{order.order_sn}}</view> 
     </view>
     
     <view class='deliv_info'>
@@ -32,6 +32,15 @@
           <image src="{{order.order_goods.image_url}}" style="height:200rpx;width:200rpx;margin-left:20rpx;padding-bottom:20rpx"></image>
           <text style="height:200rpx;width:500rpx;margin-left:20rpx;overflow: hidden;white-space: normal;font-size: 22rpx"> {{order.order_goods.goods_desc}} </text>
       </navigator>
+
+      <block wx:for="{{goodCategorys}}">
+        <view wx:if="{{good_count[index]!=0}}" class='standard info'>
+          <text class='title_left' style="font-size:22rpx;;width:50%">规格:{{item.specifications}}</text>
+          <text class='title_left' style="font-size:22rpx;;width:50%">X {{good_count[index]}}</text>
+          <text class='title_right' style="width:50%;text-align:right;color:red">{{item.price}}</text>
+        </view>
+      </block>
+
       <view class='standard info'>
         <text class='title_left' style="font-size:26rpx;font-weight: 600;width:50%">订单总价</text>
         <text class='title_right' style="width:50%;text-align:right;color:red">{{order.pay_amount}}</text>
@@ -110,11 +119,12 @@
   <button id="button" class='submit' formType="submit">提交</button>
 </form>
 
-  <view wx:if="{{order.order_status!=0 || isSeller=='true'}}" style="width:100%;height:750rpx;">
+  <view wx:if="{{order.order_status!=0 && isSeller!='true'}}" style="width:100%;">
       <view style="display:flex;flex-direction:row;">
         <view class='order_h1' style="margin-top: 25rpx;">物流照片:</view>
+        <view wx:if="{{img_arr.length==0}}" class='order_h1' style="margin-top: 25rpx;">卖家还未上传物流照片</view>
       </view>
-      <swiper indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
+      <swiper wx:if="{{img_arr.length!=0}}" indicator-dots="true" bindchange="swiperChange" style='height:550rpx;'>
         <block wx:for="{{img_arr}}">
           <swiper-item>
             <image style="width:740rpx;height:550rpx;margin:0" src='{{item}}' mode="aspectFill"></image>
